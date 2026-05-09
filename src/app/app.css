@@ -1,0 +1,11 @@
+/* Layout styles added to app.css to wrap the main structure */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.layout-content {
+  flex: 1;
+  background-color: #EDEBE5; /* Matching var(--bg-color) */
+}
