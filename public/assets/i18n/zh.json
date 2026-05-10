@@ -27,6 +27,12 @@
       "reports": "报告",
       "configuration": "配置",
       "subscription": "订阅"
+    },
+    "header": {
+      "profile": "管理员资料",
+      "settings": "设置",
+      "logout": "退出登录",
+      "options": "选项"
     }
   }
 }

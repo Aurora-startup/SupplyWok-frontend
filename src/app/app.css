@@ -5,6 +5,12 @@
   width: 100%;
 }
 
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .layout-content {
   flex: 1;
   background-color: #EDEBE5; /* Matching var(--bg-color) */

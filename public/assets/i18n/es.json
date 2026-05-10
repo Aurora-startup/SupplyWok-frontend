@@ -27,6 +27,12 @@
       "reports": "Reportes",
       "configuration": "Configuración",
       "subscription": "Suscripción"
+    },
+    "header": {
+      "profile": "Perfil de administrador",
+      "settings": "Configuraciones",
+      "logout": "Cerrar Sesion",
+      "options": "Opciones"
     }
   }
 }
