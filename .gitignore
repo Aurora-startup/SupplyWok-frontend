@@ -43,3 +43,13 @@ __screenshots__/
 .DS_Store
 Thumbs.db
 package-lock.json
+
+# Cache de herramientas
+.angular/
+.claude/
+.gemini/
+.junie/
+
+# Configuración de editores
+.idea/
+.vscode/
