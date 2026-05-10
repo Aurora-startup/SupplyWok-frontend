@@ -1,0 +1,38 @@
+{
+  "welcome": "欢迎来到 SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "欢迎",
+      "new-supply": "SupplyWok 新用户？",
+      "sign-up-now": "立即注册",
+      "email": "电子邮件地址",
+      "email-example": "name@restaurant.com",
+      "password": "密码",
+      "password-example": "请输入您的密码",
+      "forgot-password": "忘记密码？",
+      "login": "登录"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "餐厅",
+      "current-plan": "当前计划：",
+      "dashboard": "仪表板",
+      "inventory": "库存",
+      "orders": "订单",
+      "kitchen-tickets": "厨房单",
+      "suppliers": "供应商",
+      "tables-and-occupancy": "桌位与入住",
+      "alerts": "警报",
+      "reports": "报告",
+      "configuration": "配置",
+      "subscription": "订阅"
+    },
+    "header": {
+      "profile": "管理员资料",
+      "settings": "设置",
+      "logout": "退出登录",
+      "options": "选项"
+    }
+  }
+}
