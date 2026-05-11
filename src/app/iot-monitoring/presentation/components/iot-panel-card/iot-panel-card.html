@@ -1,0 +1,19 @@
+<div class="iot-panel-card">
+  <div class="panel-header-section">
+    <div class="panel-title-container">
+      <img src="assets/images/icons/iot/iot-panel-icon.svg" alt="panel icon" class="panel-icon" />
+      <h2 class="panel-title">{{ 'iot.panel.title' | translate }}</h2>
+    </div>
+    <p class="panel-description">
+      {{ 'iot.panel.description' | translate }}
+    </p>
+  </div>
+
+  <div class="panel-content">
+    <app-kitchen-panel-card class="panel-item"></app-kitchen-panel-card>
+    <app-storage-panel-card class="panel-item"></app-storage-panel-card>
+    <app-dining-panel-card class="panel-item"></app-dining-panel-card>
+  </div>
+
+  <app-iot-panel-alerts></app-iot-panel-alerts>
+</div>

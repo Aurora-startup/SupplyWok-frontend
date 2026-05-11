@@ -1,0 +1,17 @@
+<div class="panel-item-card">
+  <div class="header">
+    <img [src]="iconSrc()" alt="icon" class="icon" />
+    <span class="title">{{ title() | translate }}</span>
+  </div>
+
+  <div class="value-container">
+    <span class="value" [style.color]="valueColor()">{{ displayValue }}</span>
+    <span class="unit" [style.color]="valueColor()">{{ unit() }}</span>
+  </div>
+
+  <div class="progress-track">
+    <div class="progress-fill" [style.width.%]="progressPercent()"></div>
+  </div>
+
+  <div class="subtitle">{{ subtitle() | translate:subtitleParams() }}</div>
+</div>

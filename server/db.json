@@ -1,0 +1,283 @@
+{
+  "sensors": [
+    {
+      "id": 1,
+      "name": "food warehouse",
+      "minValue": -10,
+      "maxValue": 40,
+      "enabled": true,
+      "lastValue": 3.5,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 2,
+      "name": "kitchen 1",
+      "minValue": 50,
+      "maxValue": 250,
+      "enabled": true,
+      "lastValue": 300,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 3,
+      "name": "Kitchen 2",
+      "minValue": 10,
+      "maxValue": 80,
+      "enabled": true,
+      "lastValue": 72.5,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 4,
+      "name": "rice cooker",
+      "minValue": 60,
+      "maxValue": 90,
+      "enabled": true,
+      "lastValue": 65.2,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 5,
+      "name": "freezer meatspace",
+      "minValue": -25,
+      "maxValue": -18,
+      "enabled": true,
+      "lastValue": -10,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 6,
+      "name": "air conditioner",
+      "minValue": 1,
+      "maxValue": 5,
+      "enabled": true,
+      "lastValue": 4.8,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 7,
+      "name": "soda fountain",
+      "minValue": 15,
+      "maxValue": 25,
+      "enabled": true,
+      "lastValue": 30,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 8,
+      "name": "vines",
+      "minValue": 12,
+      "maxValue": 18,
+      "enabled": true,
+      "lastValue": 14,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 9,
+      "name": "zone 1",
+      "minValue": -35,
+      "maxValue": 10,
+      "enabled": true,
+      "lastValue": -12.3,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 10,
+      "name": "zone 2",
+      "minValue": 18,
+      "maxValue": 30,
+      "enabled": false,
+      "lastValue": 26.7,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 11,
+      "name": "grill",
+      "minValue": 150,
+      "maxValue": 190,
+      "enabled": true,
+      "lastValue": 178.4,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 12,
+      "name": "table 1",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 90,
+      "type": "table-pressure"
+    },
+    {
+      "id": 13,
+      "name": "rice spot",
+      "minValue": 10,
+      "maxValue": 200,
+      "enabled": true,
+      "lastValue": 5,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 14,
+      "name": "table 2",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 15,
+      "type": "table-pressure"
+    },
+    {
+      "id": 15,
+      "name": "flour pallet",
+      "minValue": 50,
+      "maxValue": 1000,
+      "enabled": true,
+      "lastValue": 450,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 16,
+      "name": "table 3",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 0,
+      "type": "table-pressure"
+    },
+    {
+      "id": 17,
+      "name": "sugar sacks",
+      "minValue": 20,
+      "maxValue": 500,
+      "enabled": true,
+      "lastValue": 120,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 18,
+      "name": "table 4",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 85,
+      "type": "table-pressure"
+    },
+    {
+      "id": 19,
+      "name": "oil crates",
+      "minValue": 5,
+      "maxValue": 300,
+      "enabled": true,
+      "lastValue": 210,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 20,
+      "name": "table 5",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 12,
+      "type": "table-pressure"
+    },
+    {
+      "id": 21,
+      "name": "potato bin",
+      "minValue": 0,
+      "maxValue": 600,
+      "enabled": true,
+      "lastValue": 55,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 22,
+      "name": "table 6",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": false,
+      "lastValue": 0,
+      "type": "table-pressure"
+    },
+    {
+      "id": 23,
+      "name": "pasta storage",
+      "minValue": 10,
+      "maxValue": 400,
+      "enabled": true,
+      "lastValue": 310,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 24,
+      "name": "table 7",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 95,
+      "type": "table-pressure"
+    },
+    {
+      "id": 25,
+      "name": "canned goods rack",
+      "minValue": 50,
+      "maxValue": 800,
+      "enabled": true,
+      "lastValue": 720,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 26,
+      "name": "vip table 1",
+      "minValue": 0,
+      "maxValue": 150,
+      "enabled": true,
+      "lastValue": 110,
+      "type": "table-pressure"
+    },
+    {
+      "id": 27,
+      "name": "beverage crates",
+      "minValue": 0,
+      "maxValue": 500,
+      "enabled": true,
+      "lastValue": -5,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 28,
+      "name": "vip table 2",
+      "minValue": 0,
+      "maxValue": 150,
+      "enabled": true,
+      "lastValue": 0,
+      "type": "table-pressure"
+    },
+    {
+      "id": 29,
+      "name": "cleaning supplies",
+      "minValue": 5,
+      "maxValue": 200,
+      "enabled": true,
+      "lastValue": 2,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 30,
+      "name": "terrace table 1",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 40,
+      "type": "table-pressure"
+    },
+    {
+      "id": 31,
+      "name": "frozen meat pallet",
+      "minValue": 100,
+      "maxValue": 2000,
+      "enabled": true,
+      "lastValue": 1450,
+      "type": "storage-pressure"
+    }
+  ]
+}

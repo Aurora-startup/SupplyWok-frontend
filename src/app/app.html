@@ -3,7 +3,15 @@
   <div class="main-wrapper">
     <app-header-content></app-header-content>
     <main class="layout-content">
-      <!-- El contenido futuro se renderizará aquí -->
+      <div style="display: flex; gap: 16px; padding: 16px;">
+        <app-low-stock-card></app-low-stock-card>
+        <app-temp-alert-card></app-temp-alert-card>
+        <app-active-tables-card></app-active-tables-card>
+      </div>
+      
+      <div style="padding: 0 16px 16px 16px;">
+        <app-iot-panel-card></app-iot-panel-card>
+      </div>
     </main>
   </div>
 </div>
