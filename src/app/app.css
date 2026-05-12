@@ -14,4 +14,5 @@
 .layout-content {
   flex: 1;
   background-color: #EDEBE5; /* Matching var(--bg-color) */
+  padding: 24px;
 }
