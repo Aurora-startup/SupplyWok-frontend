@@ -1,0 +1,240 @@
+<div class="filters-container">
+
+  <!-- Search -->
+
+  <div class="filter-box search-box">
+
+    <div class="filter-label">
+      Search
+    </div>
+
+    <div class="search-input-wrapper">
+
+      <mat-icon class="search-icon">
+        search
+      </mat-icon>
+
+      <input
+        type="text"
+        class="search-input"
+        placeholder="Search inventory item..."
+        (input)="store.searchTerm.set($any($event.target).value); store.resetPage()"
+      >
+
+    </div>
+
+  </div>
+
+  <!-- Category -->
+
+  <div class="filter-box">
+
+    <div class="filter-label">
+      Category
+    </div>
+
+    <mat-select
+      class="custom-select"
+      placeholder="All Categories"
+      (selectionChange)="store.selectedCategory.set($event.value); store.resetPage()">
+
+      <mat-option [value]="null">
+        All Categories
+      </mat-option>
+
+      @for (category of store.inventoryCategories(); track category.id) {
+
+        <mat-option [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+
+      }
+
+    </mat-select>
+
+  </div>
+
+  <!-- Supplier -->
+
+  <div class="filter-box">
+
+    <div class="filter-label">
+      Supplier
+    </div>
+
+    <mat-select
+      class="custom-select"
+      placeholder="All Suppliers"
+      (selectionChange)="store.selectedSupplier.set($event.value); store.resetPage()">
+
+      <mat-option [value]="null">
+        All Suppliers
+      </mat-option>
+
+      @for (supplier of store.suppliers(); track supplier.id) {
+
+        <mat-option [value]="supplier.id">
+          {{ supplier.name }}
+        </mat-option>
+
+      }
+
+    </mat-select>
+
+  </div>
+
+  <!-- Status -->
+
+  <div class="filter-box">
+
+    <div class="filter-label">
+      Status
+    </div>
+
+    <mat-select
+      class="custom-select"
+      placeholder="All Status"
+      (selectionChange)="store.selectedStatus.set($event.value); store.resetPage()">
+
+      <mat-option value="ALL">
+        All Status
+      </mat-option>
+
+      <mat-option value="IN_STOCK">
+        In Stock
+      </mat-option>
+
+      <mat-option value="LOW_STOCK">
+        Low Stock
+      </mat-option>
+
+      <mat-option value="REFILL_NEEDED">
+        Refill Needed
+      </mat-option>
+
+    </mat-select>
+
+  </div>
+
+</div>
+
+<!-- inventory-items-list.html -->
+
+@if (store.loading()) {
+  <div class="loading-container">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+}
+
+@if (store.error()) {
+  <mat-error class="global-error">{{ store.error() }}</mat-error>
+}
+
+<!-- Table Card -->
+
+<div class="table-card">
+
+  <!-- Table -->
+  <table mat-table [dataSource]="store.pagedItems()" class="inventory-table">
+
+    <!-- Product Column -->
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef>PRODUCT</th>
+      <td mat-cell *matCellDef="let item">
+        <div class="product-cell">
+          <span class="product-name">{{ item.name }}</span>
+          @if (item.status === 'REFILL_NEEDED') {
+            <span class="stock-badge refill">Refill Needed</span>
+          } @else if (item.status === 'LOW_STOCK') {
+            <span class="stock-badge low">Low Stock</span>
+          } @else {
+            <span class="product-id">ID: {{ item.id }}</span>
+          }
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Stock Levels Column -->
+    <ng-container matColumnDef="stockLevels">
+      <th mat-header-cell *matHeaderCellDef>STOCK LEVELS</th>
+      <td mat-cell *matCellDef="let item">
+        <div class="stock-cell">
+          <div class="stock-numbers">
+            <span class="stock-quantity" [class]="getStockClass(item)">
+              {{ item.currentStock }} {{ item.unitOfMeasure.toLowerCase()}}
+            </span>
+            <span class="stock-min">MIN: {{ item.minimumStockLevel }}</span>
+          </div>
+          <div class="stock-bar-bg">
+            <div
+              class="stock-bar-fill"
+              [class]="getStockClass(item)"
+              [style.width.%]="getStockPercent(item)"
+            ></div>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>CATEGORY</th>
+      <td mat-cell *matCellDef="let item">
+        <span class="category-chip">{{ store.getCategoryName(item.idCategory) }}</span>
+      </td>
+    </ng-container>
+
+    <!-- Supplier Column -->
+    <ng-container matColumnDef="supplier">
+      <th mat-header-cell *matHeaderCellDef>SUPPLIER</th>
+      <td mat-cell *matCellDef="let item">
+        <div class="supplier-cell">
+          <mat-icon class="supplier-icon">grid_view</mat-icon>
+          <span>{{ store.getSupplierName(item.idSupplier) }}</span>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>ACTIONS</th>
+      <td mat-cell *matCellDef="let item">
+        <div class="actions-cell">
+          <button mat-icon-button class="action-btn edit" (click)="onEdit(item)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="action-btn delete" (click)="deleteInventoryItem(item.id)">
+            <mat-icon>delete_outline</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Pagination Footer -->
+  <div class="table-footer">
+    <span class="pagination-info">
+      Showing {{ (store.currentPage() - 1) * store.pageSize() + 1 }}–
+      {{ min(store.currentPage() * store.pageSize(), store.totalItems()) }}
+      of {{ store.totalItems() }} total items
+    </span>
+    <div class="pagination-actions">
+      <button
+        mat-stroked-button
+        class="page-btn"
+        [disabled]="store.currentPage() === 1"
+        (click)="store.prevPage()"
+      >Previous</button>
+      <button
+        mat-flat-button
+        class="page-btn next"
+        [disabled]="store.currentPage() === store.totalPages()"
+        (click)="store.nextPage()"
+      >Next</button>
+    </div>
+  </div>
+
+</div>

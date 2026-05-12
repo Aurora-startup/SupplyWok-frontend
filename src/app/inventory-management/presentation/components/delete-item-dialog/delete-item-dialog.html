@@ -1,0 +1,34 @@
+<div class="dialog-container">
+
+  <div class="dialog-icon">
+    ⚠️
+  </div>
+
+  <h2 class="dialog-title">
+    Delete Inventory Item
+  </h2>
+
+  <p class="dialog-text">
+    Are you sure you want to permanently delete
+    <span class="item-name">Pan con pollo</span>?
+  </p>
+
+  <div class="dialog-actions">
+
+    <button
+      mat-stroked-button
+      class="cancel-btn"
+      (click)="cancel()">
+      Cancel
+    </button>
+
+    <button
+      mat-flat-button
+      class="delete-btn"
+      (click)="confirm()">
+      Delete
+    </button>
+
+  </div>
+
+</div>

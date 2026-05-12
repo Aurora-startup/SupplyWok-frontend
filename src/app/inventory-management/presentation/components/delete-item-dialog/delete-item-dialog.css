@@ -1,0 +1,52 @@
+.dialog-container {
+  padding: 28px;
+  width: 380px;
+  background: #ffffff;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.dialog-icon {
+  font-size: 48px;
+  margin-bottom: 14px;
+}
+
+.dialog-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.dialog-text {
+  margin-top: 14px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #666;
+}
+
+.item-name {
+  font-weight: 700;
+  color: #C21204;
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.cancel-btn {
+  border-radius: 10px;
+  height: 42px;
+  min-width: 110px;
+}
+
+.delete-btn {
+  border-radius: 10px;
+  height: 42px;
+  min-width: 110px;
+  background: #C21204 !important;
+  color: white !important;
+}

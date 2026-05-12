@@ -1,0 +1,42 @@
+{
+  "welcome": "Welcome to SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "Welcome",
+      "new-supply": "New to SupplyWok?",
+      "sign-up-now": "Sign up now",
+      "email": "Email Address",
+      "email-example": "name@restaurant.com",
+      "password": "Password",
+      "password-example": "Enter your password",
+      "forgot-password": "Forgot your password?",
+      "login": "Log In"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "Restaurant",
+      "current-plan": "Current plan:",
+      "dashboard": "Dashboard",
+      "inventory": "Inventory",
+      "orders": "Orders",
+      "kitchen-tickets": "Kitchen tickets",
+      "suppliers": "Suppliers",
+      "tables-and-occupancy": "Tables and occupancy",
+      "alerts": "Alerts",
+      "reports": "Reports",
+      "configuration": "Configuration",
+      "subscription": "Subscription"
+    },
+    "header": {
+      "profile": "Admin Profile",
+      "settings": "Settings",
+      "logout": "Logout",
+      "options": "Options"
+    },
+
+    "options": {
+      "inventory": "Inventario"
+    }
+  }
+}
