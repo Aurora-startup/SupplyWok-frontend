@@ -121,5 +121,63 @@
       "unit-required": "Unit is required.",
       "unit-price-invalid": "Price must be a valid number greater than zero."
     }
+  },
+  "restaurant-management": {
+    "breadcrumb": "RESTAURANT",
+    "tables": {
+      "title": "Tables and occupancy",
+      "description": "Operational dining view with occupancy, dwell time, and sensor state.",
+      "occupied-tables": "Occupied Tables",
+      "free-tables": "Free Tables",
+      "current-occupancy": "Current Occupancy",
+      "capacity": "Capacity",
+      "tables-label": "Tables",
+      "search": "Search",
+      "search-placeholder": "Search by table name...",
+      "zone": "Zone",
+      "filter-by-zone": "Filter by Zone",
+      "seats": "Seats",
+      "dwell-time": "Dwell Time",
+      "sensor-state": "Sensor State",
+      "view-details": "View Details",
+      "checkout": "Checkout",
+      "assign-guest": "Assign Guest",
+      "no-tables": "No tables registered.",
+      "status": {
+        "OCCUPIED": "Occupied",
+        "FREE": "Free",
+        "RESERVED": "Reserved",
+        "CLEANING": "Cleaning"
+      },
+      "sensor": {
+        "active": "Active",
+        "idle": "Idle"
+      }
+    },
+    "kitchen": {
+      "title": "Kitchen tickets",
+      "description": "Real-time communication between dining room and kitchen. Track comanda preparation and delivery.",
+      "new-comanda": "New Comanda",
+      "all": "All",
+      "no-comandas": "No comandas found.",
+      "advance-to": "Advance to",
+      "create-title": "Create New Comanda",
+      "select-table": "Table",
+      "choose-table": "Select a table...",
+      "dishes": "Dishes",
+      "dish-name": "Dish name",
+      "add-dish": "Add dish",
+      "cancel": "Cancel",
+      "confirm": "Create Comanda",
+      "error-no-table": "Please select a table.",
+      "error-no-items": "Add at least one dish.",
+      "error-create-failed": "Failed to create comanda. Try again.",
+      "status": {
+        "EN_COLA": "In Queue",
+        "EN_PREPARACION": "In Preparation",
+        "LISTO": "Ready",
+        "ENTREGADO": "Delivered"
+      }
+    }
   }
 }

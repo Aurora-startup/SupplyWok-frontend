@@ -1,0 +1,127 @@
+.table-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid #e8e5df;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.2s;
+}
+
+.table-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.table-card-occupied {
+  border-left: 4px solid #C21204;
+}
+
+.table-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table-number {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.table-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-occupied { background: #fef2f2; color: #C21204; }
+.badge-free { background: #f0fdf4; color: #16a34a; }
+.badge-reserved { background: #fefce8; color: #ca8a04; }
+.badge-cleaning { background: #f0f4ff; color: #4f6df5; }
+
+.table-info {
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.table-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 8px;
+  border-top: 1px solid #f0ede8;
+}
+
+.detail-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-icon {
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+}
+
+.detail-label {
+  font-size: 13px;
+  color: #6b6b6b;
+}
+
+.detail-value {
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.sensor-badge {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.sensor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.sensor-active { color: #C21204; }
+.sensor-active .sensor-dot { background: #C21204; }
+.sensor-idle { color: #16a34a; }
+.sensor-idle .sensor-dot { background: #16a34a; }
+
+.table-card-actions {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid #f0ede8;
+}
+
+.btn-text {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b6b6b;
+  padding: 4px 0;
+  transition: color 0.2s;
+}
+
+.btn-text:hover { color: #1a1a1a; }
+.btn-checkout { color: #C21204; }
+.btn-checkout:hover { color: #a00f03; }
+.btn-assign { color: #16a34a; }
+.btn-assign:hover { color: #15803d; }

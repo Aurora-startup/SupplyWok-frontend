@@ -1,0 +1,33 @@
+<div class="comanda-card" [class]="'comanda-card comanda-' + comanda.status.toLowerCase()">
+  <div class="comanda-header">
+    <div class="comanda-table-info">
+      <span class="comanda-id">#{{ comanda.id }}</span>
+      <span class="comanda-table">{{ tableLabel }}</span>
+    </div>
+    <span class="comanda-status-badge" [class]="'badge-' + comanda.status.toLowerCase()">
+      {{ 'restaurant-management.kitchen.status.' + comanda.status | translate }}
+    </span>
+  </div>
+
+  <div class="comanda-time">
+    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </svg>
+    <span>{{ elapsedTime }}</span>
+  </div>
+
+  <div class="comanda-items">
+    @for (item of comanda.items; track item.id) {
+      <div class="comanda-item-row">
+        <span class="item-qty-badge">{{ item.quantity }}x</span>
+        <span class="item-name-text">{{ item.dishName }}</span>
+      </div>
+    }
+  </div>
+
+  @if (nextStatus; as ns) {
+    <button class="btn-advance" (click)="advance.emit(comanda)">
+      {{ 'restaurant-management.kitchen.advance-to' | translate }} {{ 'restaurant-management.kitchen.status.' + ns | translate }}
+    </button>
+  }
+</div>
