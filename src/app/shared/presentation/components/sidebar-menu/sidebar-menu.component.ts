@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 export interface MenuItem {
@@ -7,6 +8,7 @@ export interface MenuItem {
   i18nKey: string;
   iconOff: string;
   iconOn: string;
+  route?: string;
 }
 
 /**
@@ -17,13 +19,15 @@ export interface MenuItem {
 @Component({
   selector: 'app-sidebar-menu',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, RouterModule, TranslateModule],
   templateUrl: './sidebar-menu.component.html',
   styleUrl: './sidebar-menu.component.css'
 })
 export class SidebarMenuComponent {
   /** Reactive state for the currently active menu item ID. */
-  activeItem = signal<string>('dashboard');
+  activeItem = signal<string>('tables-and-occupancy');
+
+  constructor(private router: Router) {}
 
   /** Reactive state for the restaurant name. */
   restaurantName = signal<string>('GRAN DRAGÓN CHIFA');
@@ -36,9 +40,9 @@ export class SidebarMenuComponent {
     { id: 'dashboard', i18nKey: 'shared.sidebar.dashboard', iconOff: '/assets/images/icons/dashboard-icon.svg', iconOn: '/assets/images/icons/dashboard-on-icon.svg' },
     { id: 'inventory', i18nKey: 'shared.sidebar.inventory', iconOff: '/assets/images/icons/inventory-icon.svg', iconOn: '/assets/images/icons/inventory-on-icon.svg' },
     { id: 'orders', i18nKey: 'shared.sidebar.orders', iconOff: '/assets/images/icons/orders-icon.svg', iconOn: '/assets/images/icons/orders-on-icon.svg' },
-    { id: 'kitchen-tickets', i18nKey: 'shared.sidebar.kitchen-tickets', iconOff: '/assets/images/icons/kitchen-ticket-icon.svg', iconOn: '/assets/images/icons/kitchen-tickets-on-icon.svg' },
+    { id: 'kitchen-tickets', i18nKey: 'shared.sidebar.kitchen-tickets', iconOff: '/assets/images/icons/kitchen-ticket-icon.svg', iconOn: '/assets/images/icons/kitchen-tickets-on-icon.svg', route: '/kitchen-tickets' },
     { id: 'suppliers', i18nKey: 'shared.sidebar.suppliers', iconOff: '/assets/images/icons/suppliers-icon.svg', iconOn: '/assets/images/icons/suppliers-on-icon.svg' },
-    { id: 'tables-and-occupancy', i18nKey: 'shared.sidebar.tables-and-occupancy', iconOff: '/assets/images/icons/tables-and-occupancy-icon.svg', iconOn: '/assets/images/icons/tables-and-occupancy-on-icon.svg' },
+    { id: 'tables-and-occupancy', i18nKey: 'shared.sidebar.tables-and-occupancy', iconOff: '/assets/images/icons/tables-and-occupancy-icon.svg', iconOn: '/assets/images/icons/tables-and-occupancy-on-icon.svg', route: '/tables-and-occupancy' },
     { id: 'alerts', i18nKey: 'shared.sidebar.alerts', iconOff: '/assets/images/icons/alerts-icon.svg', iconOn: '/assets/images/icons/alerts-on-icon.svg' },
     { id: 'reports', i18nKey: 'shared.sidebar.reports', iconOff: '/assets/images/icons/reports-icon.svg', iconOn: '/assets/images/icons/reports-on-icon.svg' },
     { id: 'configuration', i18nKey: 'shared.sidebar.configuration', iconOff: '/assets/images/icons/configuration-icon.svg', iconOn: '/assets/images/icons/configuration-on-icon.svg' },
@@ -49,7 +53,10 @@ export class SidebarMenuComponent {
    * Sets the given item ID as the active selection in the menu.
    * @param itemId The ID of the menu item to activate.
    */
-  selectItem(itemId: string): void {
-    this.activeItem.set(itemId);
+  selectItem(item: MenuItem): void {
+    this.activeItem.set(item.id);
+    if (item.route) {
+      this.router.navigate([item.route]);
+    }
   }
 }

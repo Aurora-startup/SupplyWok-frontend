@@ -1,0 +1,136 @@
+<div class="page-container">
+  <div class="page-header">
+    <div class="page-header-top">
+      <div>
+        <span class="page-breadcrumb">{{ 'restaurant-management.breadcrumb' | translate }}</span>
+        <h1 class="page-title">{{ 'restaurant-management.kitchen.title' | translate }}</h1>
+        <p class="page-description">{{ 'restaurant-management.kitchen.description' | translate }}</p>
+      </div>
+      <button class="btn-primary" (click)="toggleCreateForm()">
+        + {{ 'restaurant-management.kitchen.new-comanda' | translate }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Status Summary -->
+  <div class="status-tabs">
+    <button class="status-tab" [class.active]="statusFilter() === ''" (click)="onFilterChange('')">
+      {{ 'restaurant-management.kitchen.all' | translate }}
+      <span class="tab-count">{{ statusCounts().total }}</span>
+    </button>
+    <button class="status-tab tab-en-cola" [class.active]="statusFilter() === 'EN_COLA'" (click)="onFilterChange('EN_COLA')">
+      {{ 'restaurant-management.kitchen.status.EN_COLA' | translate }}
+      <span class="tab-count">{{ statusCounts().EN_COLA }}</span>
+    </button>
+    <button class="status-tab tab-en-preparacion" [class.active]="statusFilter() === 'EN_PREPARACION'" (click)="onFilterChange('EN_PREPARACION')">
+      {{ 'restaurant-management.kitchen.status.EN_PREPARACION' | translate }}
+      <span class="tab-count">{{ statusCounts().EN_PREPARACION }}</span>
+    </button>
+    <button class="status-tab tab-listo" [class.active]="statusFilter() === 'LISTO'" (click)="onFilterChange('LISTO')">
+      {{ 'restaurant-management.kitchen.status.LISTO' | translate }}
+      <span class="tab-count">{{ statusCounts().LISTO }}</span>
+    </button>
+    <button class="status-tab tab-entregado" [class.active]="statusFilter() === 'ENTREGADO'" (click)="onFilterChange('ENTREGADO')">
+      {{ 'restaurant-management.kitchen.status.ENTREGADO' | translate }}
+      <span class="tab-count">{{ statusCounts().ENTREGADO }}</span>
+    </button>
+  </div>
+
+  <!-- Create Comanda Form -->
+  @if (showCreateForm()) {
+    <div class="create-form-overlay" (click)="toggleCreateForm()"></div>
+    <div class="create-form">
+      <h2 class="form-title">{{ 'restaurant-management.kitchen.create-title' | translate }}</h2>
+
+      <div class="form-group">
+        <label class="form-label">{{ 'restaurant-management.kitchen.select-table' | translate }}</label>
+        <select class="form-select" (change)="onSelectTable($any($event.target).value)">
+          <option value="">{{ 'restaurant-management.kitchen.choose-table' | translate }}</option>
+          @for (table of availableTables(); track table.id) {
+            <option [value]="table.id">T-{{ table.number < 10 ? '0' + table.number : table.number }} - {{ table.zone }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">{{ 'restaurant-management.kitchen.dishes' | translate }}</label>
+        @for (item of newComandaItems(); track $index; let i = $index) {
+          <div class="item-row">
+            <input
+              type="text"
+              class="form-input item-name"
+              [placeholder]="'restaurant-management.kitchen.dish-name' | translate"
+              [value]="item.dishName"
+              (input)="updateItemName(i, $any($event.target).value)"
+            />
+            <input
+              type="number"
+              class="form-input item-qty"
+              min="1"
+              [value]="item.quantity"
+              (input)="updateItemQuantity(i, +$any($event.target).value)"
+            />
+            @if (newComandaItems().length > 1) {
+              <button class="btn-remove-item" (click)="removeItem(i)">&times;</button>
+            }
+          </div>
+        }
+        <button class="btn-add-item" (click)="addItem()">+ {{ 'restaurant-management.kitchen.add-dish' | translate }}</button>
+      </div>
+
+      @if (createError()) {
+        <p class="form-error">{{ createError() | translate }}</p>
+      }
+
+      <div class="form-actions">
+        <button class="btn-cancel" (click)="toggleCreateForm()">{{ 'restaurant-management.kitchen.cancel' | translate }}</button>
+        <button class="btn-primary" (click)="submitComanda()">{{ 'restaurant-management.kitchen.confirm' | translate }}</button>
+      </div>
+    </div>
+  }
+
+  <!-- Comandas Grid -->
+  <div class="comandas-grid">
+    @for (comanda of filteredComandas(); track comanda.id) {
+      <div class="comanda-card" [class]="'comanda-card comanda-' + comanda.status.toLowerCase()">
+        <div class="comanda-header">
+          <div class="comanda-table-info">
+            <span class="comanda-id">#{{ comanda.id }}</span>
+            <span class="comanda-table">{{ getTableLabel(comanda.tableNumber) }}</span>
+          </div>
+          <span class="comanda-status-badge" [class]="'badge-' + comanda.status.toLowerCase()">
+            {{ 'restaurant-management.kitchen.status.' + comanda.status | translate }}
+          </span>
+        </div>
+
+        <div class="comanda-time">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <span>{{ getElapsedTime(comanda) }}</span>
+        </div>
+
+        <div class="comanda-items">
+          @for (item of comanda.items; track item.id) {
+            <div class="comanda-item-row">
+              <span class="item-qty-badge">{{ item.quantity }}x</span>
+              <span class="item-name-text">{{ item.dishName }}</span>
+            </div>
+          }
+        </div>
+
+        @if (getNextStatus(comanda.status); as nextStatus) {
+          <button class="btn-advance" (click)="advanceStatus(comanda)">
+            {{ 'restaurant-management.kitchen.advance-to' | translate }} {{ 'restaurant-management.kitchen.status.' + nextStatus | translate }}
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  @if (filteredComandas().length === 0) {
+    <div class="empty-state">
+      <p>{{ 'restaurant-management.kitchen.no-comandas' | translate }}</p>
+    </div>
+  }
+</div>

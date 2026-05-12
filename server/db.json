@@ -1,0 +1,437 @@
+{
+  "tables": [
+    {
+      "id": 1,
+      "number": 1,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 2535,
+      "sensorState": "active"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "capacity": 2,
+      "status": "FREE",
+      "zone": "Hall A",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 3900,
+      "sensorState": "active"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "capacity": 6,
+      "status": "FREE",
+      "zone": "Hall A",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 920,
+      "sensorState": "active"
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 1800,
+      "sensorState": "active"
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 4200,
+      "sensorState": "active"
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "capacity": 2,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 3300,
+      "sensorState": "active"
+    },
+    {
+      "id": 10,
+      "number": 10,
+      "capacity": 2,
+      "status": "FREE",
+      "zone": "Hall B",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 11,
+      "number": 11,
+      "capacity": 8,
+      "status": "OCCUPIED",
+      "zone": "Terrace",
+      "dwellTime": 5400,
+      "sensorState": "active"
+    },
+    {
+      "id": 12,
+      "number": 12,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Hall A",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 13,
+      "number": 13,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 2100,
+      "sensorState": "active"
+    },
+    {
+      "id": 14,
+      "number": 14,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 1500,
+      "sensorState": "active"
+    },
+    {
+      "id": 15,
+      "number": 15,
+      "capacity": 6,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 16,
+      "number": 16,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 600,
+      "sensorState": "active"
+    },
+    {
+      "id": 17,
+      "number": 17,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 780,
+      "sensorState": "active"
+    },
+    {
+      "id": 18,
+      "number": 18,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 19,
+      "number": 19,
+      "capacity": 6,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 2700,
+      "sensorState": "active"
+    },
+    {
+      "id": 20,
+      "number": 20,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Hall B",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 21,
+      "number": 21,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Terrace",
+      "dwellTime": 1200,
+      "sensorState": "active"
+    },
+    {
+      "id": 22,
+      "number": 22,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 3600,
+      "sensorState": "active"
+    },
+    {
+      "id": 23,
+      "number": 23,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 24,
+      "number": 24,
+      "capacity": 6,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 4500,
+      "sensorState": "active"
+    }
+  ],
+  "comandas": [
+    {
+      "id": 1,
+      "tableId": 1,
+      "tableNumber": 1,
+      "status": "EN_PREPARACION",
+      "createdAt": "2026-05-11T12:30:00.000Z",
+      "updatedAt": "2026-05-11T12:35:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Arroz Chaufa Especial",
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "dishName": "Wantán Frito",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "tableId": 3,
+      "tableNumber": 3,
+      "status": "EN_COLA",
+      "createdAt": "2026-05-11T12:45:00.000Z",
+      "updatedAt": "2026-05-11T12:45:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Tallarín Saltado",
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "dishName": "Sopa Wantán",
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "dishName": "Chicharrón de Pollo",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "tableId": 5,
+      "tableNumber": 5,
+      "status": "LISTO",
+      "createdAt": "2026-05-11T12:00:00.000Z",
+      "updatedAt": "2026-05-11T12:25:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Lomo Saltado",
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "dishName": "Arroz Chaufa de Mariscos",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "tableId": 7,
+      "tableNumber": 7,
+      "status": "ENTREGADO",
+      "createdAt": "2026-05-11T11:30:00.000Z",
+      "updatedAt": "2026-05-11T12:10:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Pollo Tipakay",
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "dishName": "Kam Lu Wantán",
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "dishName": "Chijaukay",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "tableId": 9,
+      "tableNumber": 9,
+      "status": "EN_PREPARACION",
+      "createdAt": "2026-05-11T12:40:00.000Z",
+      "updatedAt": "2026-05-11T12:42:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Aeropuerto",
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "dishName": "Chi Jau Kay",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "tableId": 6,
+      "tableNumber": 6,
+      "status": "EN_COLA",
+      "createdAt": "2026-05-11T12:50:00.000Z",
+      "updatedAt": "2026-05-11T12:50:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Tallarin con Pollo",
+          "quantity": 3
+        },
+        {
+          "id": 2,
+          "dishName": "Sopa de Fideo",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "tableId": 11,
+      "tableNumber": 11,
+      "status": "EN_COLA",
+      "createdAt": "2026-05-11T12:55:00.000Z",
+      "updatedAt": "2026-05-11T12:55:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Arroz con Mariscos",
+          "quantity": 4
+        },
+        {
+          "id": 2,
+          "dishName": "Ceviche de Pescado",
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "dishName": "Jalea Mixta",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "tableId": 13,
+      "tableNumber": 13,
+      "status": "LISTO",
+      "createdAt": "2026-05-11T12:15:00.000Z",
+      "updatedAt": "2026-05-11T12:40:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Min Pao",
+          "quantity": 6
+        },
+        {
+          "id": 2,
+          "dishName": "Siu Mai",
+          "quantity": 4
+        }
+      ]
+    },
+    {
+      "tableId": 22,
+      "tableNumber": 22,
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Arroz Chaufa Especial",
+          "quantity": 3
+        }
+      ],
+      "status": "ENTREGADO",
+      "createdAt": "2026-05-12T01:55:14.113Z",
+      "updatedAt": "2026-05-12T01:55:32.419Z",
+      "id": 9
+    },
+    {
+      "tableId": 12,
+      "tableNumber": 12,
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Chifa con Chorizo",
+          "quantity": 3
+        }
+      ],
+      "status": "ENTREGADO",
+      "createdAt": "2026-05-12T02:13:37.226Z",
+      "updatedAt": "2026-05-12T02:13:51.039Z",
+      "id": 10
+    }
+  ],
+  "restaurants": [
+    {
+      "id": 1,
+      "name": "SupplyWok - Gran Dragón Chifa",
+      "address": "Av. Javier Prado 123, San Isidro",
+      "phone": "+51 1 234-5678",
+      "operatingHours": "11:00 AM - 10:00 PM",
+      "totalTables": 24
+    }
+  ]
+}

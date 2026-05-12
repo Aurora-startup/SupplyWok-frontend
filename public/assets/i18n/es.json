@@ -34,5 +34,63 @@
       "logout": "Cerrar Sesion",
       "options": "Opciones"
     }
+  },
+  "restaurant-management": {
+    "breadcrumb": "RESTAURANTE",
+    "tables": {
+      "title": "Mesas y ocupación",
+      "description": "Vista operativa del comedor con ocupación, tiempo de permanencia y estado del sensor.",
+      "occupied-tables": "Mesas Ocupadas",
+      "free-tables": "Mesas Libres",
+      "current-occupancy": "Ocupación Actual",
+      "capacity": "Capacidad",
+      "tables-label": "Mesas",
+      "search": "Buscar",
+      "search-placeholder": "Buscar por nombre de mesa...",
+      "zone": "Zona",
+      "filter-by-zone": "Filtrar por Zona",
+      "seats": "Asientos",
+      "dwell-time": "Tiempo de Permanencia",
+      "sensor-state": "Estado del Sensor",
+      "view-details": "Ver Detalles",
+      "checkout": "Liberar",
+      "assign-guest": "Asignar Comensal",
+      "no-tables": "No hay mesas registradas.",
+      "status": {
+        "OCCUPIED": "Ocupada",
+        "FREE": "Libre",
+        "RESERVED": "Reservada",
+        "CLEANING": "Limpieza"
+      },
+      "sensor": {
+        "active": "Activo",
+        "idle": "Inactivo"
+      }
+    },
+    "kitchen": {
+      "title": "Comandas de cocina",
+      "description": "Comunicación en tiempo real entre el comedor y la cocina. Seguimiento de preparación y entrega de comandas.",
+      "new-comanda": "Nueva Comanda",
+      "all": "Todas",
+      "no-comandas": "No se encontraron comandas.",
+      "advance-to": "Avanzar a",
+      "create-title": "Crear Nueva Comanda",
+      "select-table": "Mesa",
+      "choose-table": "Selecciona una mesa...",
+      "dishes": "Platos",
+      "dish-name": "Nombre del plato",
+      "add-dish": "Agregar plato",
+      "cancel": "Cancelar",
+      "confirm": "Crear Comanda",
+      "error-no-table": "Por favor selecciona una mesa.",
+      "error-no-items": "Agrega al menos un plato.",
+      "error-create-failed": "Error al crear la comanda. Intenta de nuevo.",
+      "status": {
+        "EN_COLA": "En Cola",
+        "EN_PREPARACION": "En Preparación",
+        "LISTO": "Listo",
+        "ENTREGADO": "Entregado"
+      }
+    }
   }
 }
