@@ -1,5 +1,4 @@
 <aside class="sidebar">
-  <!-- Branding Section -->
   <div class="sidebar-brand">
     <img src="/assets/images/supplywok-logo.png" alt="SupplyWok Logo" class="sidebar-logo" />
     <div class="sidebar-brand-text">
@@ -8,28 +7,23 @@
     </div>
   </div>
 
-  <!-- Status Tags Section -->
   <div class="sidebar-status">
     <span class="sidebar-tag sidebar-tag-role">{{ 'shared.sidebar.restaurant' | translate }}</span>
     <span class="sidebar-tag sidebar-tag-plan">{{ 'shared.sidebar.current-plan' | translate }} {{ currentPlan() }}</span>
   </div>
 
-  <!-- Navigation Menu -->
   <nav class="sidebar-nav" aria-label="Main Navigation">
     <ul class="sidebar-menu">
       @for (item of menuItems; track item.id) {
-        <li 
-          class="sidebar-item"
-          [class.sidebar-item-active]="activeItem() === item.id"
-        >
-          <button class="sidebar-button" (click)="selectItem(item.id)">
-            <img 
-              [src]="activeItem() === item.id ? item.iconOn : item.iconOff" 
-              [alt]="(item.i18nKey | translate) + ' icon'" 
+        <li class="sidebar-item" [class.sidebar-item-active]="isActive(item)">
+          <a class="sidebar-button" [routerLink]="item.path">
+            <img
+              [src]="isActive(item) ? item.iconOn : item.iconOff"
+              [alt]="(item.i18nKey | translate) + ' icon'"
               class="sidebar-icon"
             />
             <span class="sidebar-label">{{ item.i18nKey | translate }}</span>
-          </button>
+          </a>
         </li>
       }
     </ul>
