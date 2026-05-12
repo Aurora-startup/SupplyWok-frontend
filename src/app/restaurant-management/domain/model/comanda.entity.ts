@@ -1,5 +1,7 @@
 export type ComandaStatus = 'EN_COLA' | 'EN_PREPARACION' | 'LISTO' | 'ENTREGADO';
 
+export const COMANDA_STATUS_ORDER: ComandaStatus[] = ['EN_COLA', 'EN_PREPARACION', 'LISTO', 'ENTREGADO'];
+
 export interface ComandaItem {
   id: number;
   dishName: string;

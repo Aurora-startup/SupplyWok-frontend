@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { restaurantManagementRoutes } from './restaurant-management/restaurant-management.routes';
+import { restaurantManagementRoutes } from './restaurant-management/presentation/restaurant-management.routes';
 
 export const routes: Routes = [
   ...restaurantManagementRoutes,
