@@ -1,0 +1,125 @@
+{
+  "welcome": "Bienvenido a SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "Bienvenido",
+      "new-supply": "Nuevo en SupplyWok?",
+      "sign-up-now": "Registrate ahora",
+      "email": "Correo electronico",
+      "email-example": "nombre@restaurante.com",
+      "password": "Contrasena",
+      "password-example": "Ingresa tu contrasena",
+      "forgot-password": "Olvidaste tu contrasena?",
+      "login": "Iniciar sesion"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "Restaurante",
+      "current-plan": "Plan actual:",
+      "dashboard": "Dashboard",
+      "inventory": "Inventario",
+      "orders": "Pedidos",
+      "kitchen-tickets": "Comandas",
+      "suppliers": "Proveedores",
+      "tables-and-occupancy": "Mesas y ocupacion",
+      "alerts": "Alertas",
+      "reports": "Reportes",
+      "configuration": "Configuracion",
+      "subscription": "Suscripcion"
+    },
+    "header": {
+      "profile": "Perfil de administrador",
+      "settings": "Configuraciones",
+      "logout": "Cerrar sesion",
+      "options": "Opciones"
+    }
+  },
+  "supply-and-purchasing": {
+    "shared": {
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "in-preparation": "En preparacion",
+        "delivered": "Entregado",
+        "delayed": "Retrasado"
+      }
+    },
+    "orders-page": {
+      "kicker": "Restaurante",
+      "title": "Pedidos",
+      "description": "Controla stock, niveles minimos y relacion con proveedores."
+    },
+    "purchase-order-form-page": {
+      "kicker": "Abastecimiento y compras",
+      "title": "Crear pedido",
+      "description": "Usa esta pantalla cuando quieras concentrarte solo en la creacion de pedidos."
+    },
+    "suppliers-page": {
+      "kicker": "Abastecimiento y compras",
+      "title": "Proveedores",
+      "description": "Esta pagina queda lista para recibir el directorio de proveedores de la primera version."
+    },
+    "form": {
+      "title": "Crear pedido",
+      "fields": {
+        "supplier": "Proveedor",
+        "estimated-date": "Fecha estimada",
+        "priority": "Prioridad",
+        "product": "Producto",
+        "product-placeholder": "Ejemplo: Arroz jazmin",
+        "quantity": "Cant.",
+        "unit": "Unidad",
+        "price": "Precio"
+      },
+      "actions": {
+        "add-line": "Agregar linea",
+        "create-order": "Crear pedido"
+      }
+    },
+    "table": {
+      "title": "Seguimiento de pedidos",
+      "search-placeholder": "Buscar por proveedor, estado o codigo",
+      "columns": {
+        "code": "Codigo",
+        "status": "Estado",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "detail": "Detalle"
+      },
+      "footer": {
+        "showing": "Mostrando {filtered} de {total}"
+      }
+    },
+    "detail": {
+      "kicker": "Detalle del pedido",
+      "meta": {
+        "status": "Estado",
+        "priority": "Prioridad",
+        "date": "Fecha",
+        "total": "Total"
+      },
+      "items": {
+        "product": "Producto",
+        "quantity": "Cantidad",
+        "unit": "Unidad",
+        "subtotal": "Subtotal"
+      }
+    },
+    "validation": {
+      "supplier-required": "El proveedor es obligatorio.",
+      "order-date-required": "La fecha estimada es obligatoria.",
+      "priority-required": "La prioridad es obligatoria.",
+      "items-required": "Agrega al menos una linea de producto.",
+      "product-name-required": "El nombre del producto es obligatorio.",
+      "quantity-invalid": "La cantidad debe ser un numero valido mayor que cero.",
+      "unit-required": "La unidad es obligatoria.",
+      "unit-price-invalid": "El precio debe ser un numero valido mayor que cero."
+    }
+  }
+}

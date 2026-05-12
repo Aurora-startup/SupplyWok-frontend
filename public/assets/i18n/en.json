@@ -1,0 +1,125 @@
+{
+  "welcome": "Welcome to SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "Welcome",
+      "new-supply": "New to SupplyWok?",
+      "sign-up-now": "Sign up now",
+      "email": "Email Address",
+      "email-example": "name@restaurant.com",
+      "password": "Password",
+      "password-example": "Enter your password",
+      "forgot-password": "Forgot your password?",
+      "login": "Log In"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "Restaurant",
+      "current-plan": "Current plan:",
+      "dashboard": "Dashboard",
+      "inventory": "Inventory",
+      "orders": "Orders",
+      "kitchen-tickets": "Kitchen tickets",
+      "suppliers": "Suppliers",
+      "tables-and-occupancy": "Tables and occupancy",
+      "alerts": "Alerts",
+      "reports": "Reports",
+      "configuration": "Configuration",
+      "subscription": "Subscription"
+    },
+    "header": {
+      "profile": "Admin Profile",
+      "settings": "Settings",
+      "logout": "Logout",
+      "options": "Options"
+    }
+  },
+  "supply-and-purchasing": {
+    "shared": {
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "status": {
+        "pending": "Pending",
+        "in-preparation": "In preparation",
+        "delivered": "Delivered",
+        "delayed": "Delayed"
+      }
+    },
+    "orders-page": {
+      "kicker": "Restaurant",
+      "title": "Orders",
+      "description": "Control stock, minimum levels, and supplier relationships."
+    },
+    "purchase-order-form-page": {
+      "kicker": "Supply and Purchasing",
+      "title": "Create order",
+      "description": "Use this standalone screen when you want to focus only on order creation."
+    },
+    "suppliers-page": {
+      "kicker": "Supply and Purchasing",
+      "title": "Suppliers",
+      "description": "This page is ready to receive the supplier directory view for the first frontend version."
+    },
+    "form": {
+      "title": "Create order",
+      "fields": {
+        "supplier": "Supplier",
+        "estimated-date": "Estimated date",
+        "priority": "Priority",
+        "product": "Product",
+        "product-placeholder": "Example: Jasmine rice",
+        "quantity": "Qty.",
+        "unit": "Unit",
+        "price": "Price"
+      },
+      "actions": {
+        "add-line": "Add line",
+        "create-order": "Create order"
+      }
+    },
+    "table": {
+      "title": "Order tracking",
+      "search-placeholder": "Search by supplier, status, or code",
+      "columns": {
+        "code": "Code",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "detail": "Detail"
+      },
+      "footer": {
+        "showing": "Showing {filtered} of {total}"
+      }
+    },
+    "detail": {
+      "kicker": "Order detail",
+      "meta": {
+        "status": "Status",
+        "priority": "Priority",
+        "date": "Date",
+        "total": "Total"
+      },
+      "items": {
+        "product": "Product",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "subtotal": "Subtotal"
+      }
+    },
+    "validation": {
+      "supplier-required": "Supplier is required.",
+      "order-date-required": "Estimated date is required.",
+      "priority-required": "Priority is required.",
+      "items-required": "Add at least one product line.",
+      "product-name-required": "Product name is required.",
+      "quantity-invalid": "Quantity must be a valid number greater than zero.",
+      "unit-required": "Unit is required.",
+      "unit-price-invalid": "Price must be a valid number greater than zero."
+    }
+  }
+}

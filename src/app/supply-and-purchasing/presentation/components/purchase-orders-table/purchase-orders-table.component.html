@@ -1,0 +1,127 @@
+<section class="purchase-orders-table">
+  <div class="purchase-orders-table__toolbar">
+    <div class="purchase-orders-table__heading">
+      <div class="purchase-orders-table__icon-wrap">
+        <i class="pi pi-chart-bar"></i>
+      </div>
+      <h2 class="purchase-orders-table__title">{{ 'supply-and-purchasing.table.title' | translate }}</h2>
+    </div>
+
+    <div class="purchase-orders-table__toolbar-actions">
+      <button type="button" class="purchase-orders-table__toolbar-button">
+        <i class="pi pi-filter"></i>
+      </button>
+      <button type="button" class="purchase-orders-table__toolbar-button">
+        <i class="pi pi-download"></i>
+      </button>
+    </div>
+  </div>
+
+  <label class="purchase-orders-table__search">
+    <i class="pi pi-search"></i>
+    <input
+      [(ngModel)]="searchValue"
+      [placeholder]="'supply-and-purchasing.table.search-placeholder' | translate"
+    />
+  </label>
+
+  @if (loading) {
+    <div class="purchase-orders-table__loading">Loading orders...</div>
+  } @else {
+    <div class="purchase-orders-table__grid">
+      <div class="purchase-orders-table__head">
+        <span>{{ 'supply-and-purchasing.table.columns.code' | translate }}</span>
+        <span>{{ 'supply-and-purchasing.table.columns.status' | translate }}</span>
+        <span>{{ 'supply-and-purchasing.table.columns.actions' | translate }}</span>
+      </div>
+
+      @for (purchaseOrder of filteredPurchaseOrders; track purchaseOrder.id) {
+        <div class="purchase-orders-table__row">
+          <div class="purchase-orders-table__code-cell">
+            <strong>{{ formatCode(purchaseOrder.id) }}</strong>
+            <span>{{ purchaseOrder.supplierName }}</span>
+          </div>
+
+          <div>
+            <span class="purchase-orders-table__badge" [class]="getStatusClass(purchaseOrder.status)">
+              {{ getStatusKey(purchaseOrder.status) | translate }}
+            </span>
+          </div>
+
+          <div>
+            <button
+              type="button"
+              class="purchase-orders-table__detail-button"
+              (click)="openPurchaseOrderDetail(purchaseOrder)"
+            >
+              {{ 'supply-and-purchasing.table.actions.detail' | translate }}
+            </button>
+          </div>
+        </div>
+      }
+
+      @if (!filteredPurchaseOrders.length) {
+        <div class="purchase-orders-table__empty">No orders found.</div>
+      }
+    </div>
+  }
+
+  <div class="purchase-orders-table__footer">
+    <span>{{ 'supply-and-purchasing.table.footer.showing' | translate:{ filtered: filteredPurchaseOrders.length, total: purchaseOrders.length } }}</span>
+  </div>
+
+  @if (selectedPurchaseOrder) {
+    <div class="purchase-orders-table__detail-overlay" (click)="closePurchaseOrderDetail()">
+      <section class="purchase-orders-table__detail-modal" (click)="$event.stopPropagation()">
+        <div class="purchase-orders-table__detail-header">
+          <div>
+            <span class="purchase-orders-table__detail-kicker">{{ 'supply-and-purchasing.detail.kicker' | translate }}</span>
+            <h3>{{ formatCode(selectedPurchaseOrder.id) }}</h3>
+            <p>{{ selectedPurchaseOrder.supplierName }}</p>
+          </div>
+
+          <button type="button" class="purchase-orders-table__toolbar-button" (click)="closePurchaseOrderDetail()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+
+        <div class="purchase-orders-table__detail-meta">
+          <article>
+            <span>{{ 'supply-and-purchasing.detail.meta.status' | translate }}</span>
+            <strong>{{ getStatusKey(selectedPurchaseOrder.status) | translate }}</strong>
+          </article>
+          <article>
+            <span>{{ 'supply-and-purchasing.detail.meta.priority' | translate }}</span>
+            <strong>{{ getPriorityKey(selectedPurchaseOrder.priority) | translate }}</strong>
+          </article>
+          <article>
+            <span>{{ 'supply-and-purchasing.detail.meta.date' | translate }}</span>
+            <strong>{{ selectedPurchaseOrder.orderDate }}</strong>
+          </article>
+          <article>
+            <span>{{ 'supply-and-purchasing.detail.meta.total' | translate }}</span>
+            <strong>$ {{ formatCurrency(calculateOrderTotal(selectedPurchaseOrder.items)) }}</strong>
+          </article>
+        </div>
+
+        <div class="purchase-orders-table__detail-items">
+          <div class="purchase-orders-table__detail-items-head">
+            <span>{{ 'supply-and-purchasing.detail.items.product' | translate }}</span>
+            <span>{{ 'supply-and-purchasing.detail.items.quantity' | translate }}</span>
+            <span>{{ 'supply-and-purchasing.detail.items.unit' | translate }}</span>
+            <span>{{ 'supply-and-purchasing.detail.items.subtotal' | translate }}</span>
+          </div>
+
+          @for (item of selectedPurchaseOrder.items; track item.id) {
+            <div class="purchase-orders-table__detail-item-row">
+              <strong>{{ item.productName }}</strong>
+              <span>{{ item.quantity }}</span>
+              <span>{{ item.unitType }}</span>
+              <span>$ {{ formatCurrency(calculateItemSubtotal(item)) }}</span>
+            </div>
+          }
+        </div>
+      </section>
+    </div>
+  }
+</section>
