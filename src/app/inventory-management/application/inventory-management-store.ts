@@ -35,7 +35,7 @@ export class InventoryManagementStore {
   }
 
   // ── Paginación ──────────────────────────────────────────────
-  readonly pageSize = signal<number>(6);
+  readonly pageSize = signal<number>(4);
   readonly currentPage = signal<number>(1);
 
   // ── Filters ──────────────────────────────────────────────

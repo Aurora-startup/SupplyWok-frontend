@@ -13,6 +13,7 @@ import { MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @Component({
@@ -32,6 +33,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    TranslateModule
   ],
   templateUrl: './inventory-items-list.html',
   styleUrl: './inventory-items-list.css',

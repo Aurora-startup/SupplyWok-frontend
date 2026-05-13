@@ -33,10 +33,61 @@
       "settings": "Settings",
       "logout": "Logout",
       "options": "Options"
+    }
+  },
+  "inventory":
+  {
+    "header": {
+      "section": "Restaurant",
+      "title": "Inventory",
+      "subtitle": "Control stock, minimums and relationships with suppliers.",
+      "add-item": "Add item"
+    },
+    "search-bar": {
+      "search-label": "Search",
+      "search-placeholder": "Search inventory items",
+      "category-label": "Category",
+      "category-placeholder": "All Categories",
+      "supplier-label": "Supplier",
+      "supplier-placeholder": "All suppliers",
+      "status-label": "Status",
+      "status-placeholder": "All status"
+      },
+
+    "list": {
+      "product-label": "Product",
+      "stock-levels-label": "Stock levels",
+      "refill-needed-label": "Refill needed",
+      "low-stock-label": "Low stock",
+      "category-label": "Category",
+      "supplier-label": "Supplier",
+      "actions-label": "Actions",
+      "pages-label": "Showing {{currentPage}} - {{totalPages}} of {{totalItems}} total items",
+      "next-page": "Next",
+      "previous-page": "Previous"
     },
 
-    "options": {
-      "inventory": "Inventario"
+    "item-form":
+    {
+      "edit-item-title": "Edit Inventory Item",
+      "new-item-title": "New Inventory Item",
+      "subtitle": "Manage your restaurant inventory efficiently",
+      "name-label": "Product Name",
+      "current-stock-label": "Current Stock",
+      "minimum-stock-label": "Minimum Stock",
+      "category-label": "Category",
+      "supplier-label": "Supplier",
+      "unit-of-measure-label": "Unit Of Measure",
+      "save-button": "Save",
+      "cancel-button": "Cancel"
+    },
+
+    "delete-dialog":
+    {
+      "title": "Delete Inventory Item",
+      "text": "Are you sure you want to permanently delete {{itemName}}?",
+      "confirm-button": "Delete",
+      "cancel-button": "Cancel"
     }
   }
 }

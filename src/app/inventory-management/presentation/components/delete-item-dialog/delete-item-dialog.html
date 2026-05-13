@@ -5,28 +5,35 @@
   </div>
 
   <h2 class="dialog-title">
-    Delete Inventory Item
+    {{ 'inventory.delete-dialog.title' | translate }}
   </h2>
 
+  <!--
   <p class="dialog-text">
-    Are you sure you want to permanently delete
-    <span class="item-name">Pan con pollo</span>?
+    {{
+      'inventory.delete-dialog.text'
+        | translate:{ itemName: data.itemName }
+    }}
   </p>
-
+-->
   <div class="dialog-actions">
 
     <button
       mat-stroked-button
       class="cancel-btn"
       (click)="cancel()">
-      Cancel
+
+      {{ 'inventory.delete-dialog.cancel-button' | translate }}
+
     </button>
 
     <button
       mat-flat-button
       class="delete-btn"
       (click)="confirm()">
-      Delete
+
+      {{ 'inventory.delete-dialog.confirm-button' | translate }}
+
     </button>
 
   </div>
