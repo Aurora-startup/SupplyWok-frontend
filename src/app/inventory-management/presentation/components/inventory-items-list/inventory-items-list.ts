@@ -3,11 +3,10 @@ import { InventoryManagementStore } from '../../../application/inventory-managem
 import { Router} from '@angular/router';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
-import {MatError, MatFormField, MatLabel } from '@angular/material/form-field';
+import {MatError } from '@angular/material/form-field';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import { InventoryItem } from '../../../domain/model/inventory-item.entity';
 import { MatIconModule } from '@angular/material/icon';
-import { MatInput } from '@angular/material/input';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,9 +24,6 @@ import { TranslateModule } from '@ngx-translate/core';
     MatError,
     MatProgressSpinner,
     MatIconModule,
-    MatFormField,
-    MatInput,
-    MatLabel,
     MatOption,
     MatSelect,
     MatFormFieldModule,
@@ -65,7 +61,7 @@ export class InventoryItemsList {
 
   protected onEdit(item: InventoryItem): void {
     // TODO: abrir dialog de edición
-    console.log('Edit', item);
+   // console.log('Edit', item);
   }
 
   deleteInventoryItem(id: number) {
