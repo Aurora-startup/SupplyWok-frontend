@@ -1,6 +1,6 @@
-/**
- * Abstract base class for API services managing multiple endpoints within a bounded context.
- */
+import { HttpClient } from '@angular/common/http';
+
 export abstract class BaseApi {
   // No methods defined; child classes will compose endpoint instances
+  protected constructor(protected readonly http: HttpClient) {}
 }

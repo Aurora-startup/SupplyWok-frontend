@@ -33,59 +33,116 @@
       "settings": "设置",
       "logout": "退出登录",
       "options": "选项"
+    }
+  },
+  "inventory": {
+    "header": {
+      "section": "餐厅",
+      "title": "库存",
+      "subtitle": "控制库存、最低库存以及与供应商的关系。",
+      "add-item": "添加商品"
     },
 
-    "inventory": {
-      "header": {
-        "section": "餐厅",
-        "title": "库存",
-        "subtitle": "控制库存、最低库存以及与供应商的关系。",
-        "add-item": "添加商品"
-      },
+    "search-bar": {
+      "search-label": "搜索",
+      "search-placeholder": "搜索库存商品",
+      "category-label": "分类",
+      "category-placeholder": "所有分类",
+      "supplier-label": "供应商",
+      "supplier-placeholder": "所有供应商",
+      "status-label": "状态",
+      "status-placeholder": "所有状态"
+    },
 
-      "search-bar": {
-        "search-label": "搜索",
-        "search-placeholder": "搜索库存商品",
-        "category-label": "分类",
-        "category-placeholder": "所有分类",
-        "supplier-label": "供应商",
-        "supplier-placeholder": "所有供应商",
-        "status-label": "状态",
-        "status-placeholder": "所有状态"
-      },
+    "list": {
+      "product-label": "商品",
+      "stock-levels-label": "库存水平",
+      "refill-needed-label": "需要补货",
+      "low-stock-label": "低库存",
+      "category-label": "分类",
+      "supplier-label": "供应商",
+      "actions-label": "操作",
+      "pages-label": "显示 {currentPage} - {totalPages} / 共 {totalItems} 个商品",
+      "next-page": "下一页",
+      "previous-page": "上一页"
+    },
 
-      "list": {
-        "product-label": "商品",
-        "stock-levels-label": "库存水平",
-        "refill-needed-label": "需要补货",
-        "low-stock-label": "低库存",
-        "category-label": "分类",
-        "supplier-label": "供应商",
-        "actions-label": "操作",
-        "pages-label": "显示 {currentPage} - {totalPages} / 共 {totalItems} 个商品",
-        "next-page": "下一页",
-        "previous-page": "上一页"
-      },
+    "item-form": {
+      "edit-item-title": "编辑库存商品",
+      "new-item-title": "新建库存商品",
+      "subtitle": "高效管理您的餐厅库存",
+      "name-label": "商品名称",
+      "current-stock-label": "当前库存",
+      "minimum-stock-label": "最低库存",
+      "category-label": "分类",
+      "supplier-label": "供应商",
+      "unit-of-measure-label": "计量单位",
+      "save-button": "保存",
+      "cancel-button": "取消"
+    },
 
-      "item-form": {
-        "edit-item-title": "编辑库存商品",
-        "new-item-title": "新建库存商品",
-        "subtitle": "高效管理您的餐厅库存",
-        "name-label": "商品名称",
-        "current-stock-label": "当前库存",
-        "minimum-stock-label": "最低库存",
-        "category-label": "分类",
-        "supplier-label": "供应商",
-        "unit-of-measure-label": "计量单位",
-        "save-button": "保存",
-        "cancel-button": "取消"
+    "delete-dialog": {
+      "title": "删除库存商品",
+      "text": "您确定要永久删除 {itemName} 吗？",
+      "confirm-button": "删除",
+      "cancel-button": "取消"
+    }
+  },
+  "restaurant-management": {
+    "breadcrumb": "餐厅",
+    "tables": {
+      "title": "桌位与占用",
+      "description": "餐厅运营视图，显示占用率、停留时间和传感器状态。",
+      "occupied-tables": "已占用桌位",
+      "free-tables": "空闲桌位",
+      "current-occupancy": "当前占用率",
+      "capacity": "容量",
+      "tables-label": "桌",
+      "search": "搜索",
+      "search-placeholder": "按桌号搜索...",
+      "zone": "区域",
+      "filter-by-zone": "按区域筛选",
+      "seats": "座位",
+      "dwell-time": "停留时间",
+      "sensor-state": "传感器状态",
+      "view-details": "查看详情",
+      "checkout": "结账",
+      "assign-guest": "分配客人",
+      "no-tables": "未注册桌位。",
+      "status": {
+        "OCCUPIED": "已占用",
+        "FREE": "空闲",
+        "RESERVED": "已预订",
+        "CLEANING": "清洁中"
       },
-
-      "delete-dialog": {
-        "title": "删除库存商品",
-        "text": "您确定要永久删除 {itemName} 吗？",
-        "confirm-button": "删除",
-        "cancel-button": "取消"
+      "sensor": {
+        "active": "活跃",
+        "idle": "空闲"
+      }
+    },
+    "kitchen": {
+      "title": "厨房订单",
+      "description": "餐厅与厨房之间的实时通信。跟踪订单准备和配送。",
+      "new-comanda": "新订单",
+      "all": "全部",
+      "no-comandas": "未找到订单。",
+      "advance-to": "推进到",
+      "create-title": "创建新订单",
+      "select-table": "桌号",
+      "choose-table": "选择桌位...",
+      "dishes": "菜品",
+      "dish-name": "菜名",
+      "add-dish": "添加菜品",
+      "cancel": "取消",
+      "confirm": "创建订单",
+      "error-no-table": "请选择桌位。",
+      "error-no-items": "至少添加一道菜。",
+      "error-create-failed": "创建订单失败，请重试。",
+      "status": {
+        "EN_COLA": "排队中",
+        "EN_PREPARACION": "准备中",
+        "LISTO": "就绪",
+        "ENTREGADO": "已送达"
       }
     }
   }

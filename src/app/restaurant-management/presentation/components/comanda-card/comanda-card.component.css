@@ -1,0 +1,114 @@
+.comanda-card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 20px;
+  border: 1px solid #e8e5df;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: box-shadow 0.2s;
+}
+
+.comanda-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.comanda-en_cola { border-left: 4px solid #f59e0b; }
+.comanda-en_preparacion { border-left: 4px solid #3b82f6; }
+.comanda-listo { border-left: 4px solid #16a34a; }
+.comanda-entregado { border-left: 4px solid #9ca3af; }
+
+.comanda-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comanda-table-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.comanda-id {
+  font-size: 13px;
+  color: #9ca3af;
+  font-weight: 600;
+}
+
+.comanda-table {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.comanda-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.badge-en_cola { background: #fef3c7; color: #b45309; }
+.badge-en_preparacion { background: #dbeafe; color: #1d4ed8; }
+.badge-listo { background: #dcfce7; color: #15803d; }
+.badge-entregado { background: #f3f4f6; color: #6b7280; }
+
+.comanda-time {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.comanda-items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 0;
+  border-top: 1px solid #f0ede8;
+  border-bottom: 1px solid #f0ede8;
+}
+
+.comanda-item-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item-qty-badge {
+  background: #f0ede8;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 6px;
+  min-width: 28px;
+  text-align: center;
+}
+
+.item-name-text {
+  font-size: 14px;
+  color: #374151;
+}
+
+.btn-advance {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #1a1a1a;
+  color: #fff;
+  transition: background 0.2s;
+}
+
+.btn-advance:hover {
+  background: #333;
+}

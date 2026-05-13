@@ -1,0 +1,49 @@
+<div class="table-card" [class.table-card-occupied]="table.status === 'OCCUPIED'">
+  <div class="table-card-header">
+    <span class="table-number">{{ label }}</span>
+    <span class="table-status-badge"
+          [class.badge-occupied]="table.status === 'OCCUPIED'"
+          [class.badge-free]="table.status === 'FREE'"
+          [class.badge-reserved]="table.status === 'RESERVED'"
+          [class.badge-cleaning]="table.status === 'CLEANING'">
+      {{ 'restaurant-management.tables.status.' + table.status | translate }}
+    </span>
+  </div>
+  <span class="table-info">{{ zoneLabel }} &bull; {{ table.capacity }} {{ 'restaurant-management.tables.seats' | translate }}</span>
+
+  <div class="table-card-details">
+    <div class="detail-row">
+      <div class="detail-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+      </div>
+      <span class="detail-label">{{ 'restaurant-management.tables.dwell-time' | translate }}</span>
+      <span class="detail-value">{{ dwellTime }}</span>
+    </div>
+    <div class="detail-row">
+      <div class="detail-icon sensor-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 12a5 5 0 0 0 5 5 8 8 0 0 1 5 2 8 8 0 0 1 5-2 5 5 0 0 0 5-5V7h-5a8 8 0 0 0-5 2 8 8 0 0 0-5-2H2z"/>
+        </svg>
+      </div>
+      <span class="detail-label">{{ 'restaurant-management.tables.sensor-state' | translate }}</span>
+      <span class="sensor-badge" [class.sensor-active]="table.sensorState === 'active'" [class.sensor-idle]="table.sensorState === 'idle'">
+        <span class="sensor-dot"></span>
+        {{ 'restaurant-management.tables.sensor.' + table.sensorState | translate }}
+      </span>
+    </div>
+  </div>
+
+  <div class="table-card-actions">
+    @if (table.status === 'OCCUPIED') {
+      <button class="btn-text">{{ 'restaurant-management.tables.view-details' | translate }}</button>
+      <button class="btn-text btn-checkout" (click)="checkout.emit(table)">{{ 'restaurant-management.tables.checkout' | translate }}</button>
+    } @else if (table.status === 'FREE') {
+      <button class="btn-text">{{ 'restaurant-management.tables.view-details' | translate }}</button>
+      <button class="btn-text btn-assign" (click)="assignGuest.emit(table)">{{ 'restaurant-management.tables.assign-guest' | translate }}</button>
+    } @else {
+      <button class="btn-text">{{ 'restaurant-management.tables.view-details' | translate }}</button>
+    }
+  </div>
+</div>

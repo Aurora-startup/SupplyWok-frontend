@@ -35,8 +35,7 @@
       "options": "Options"
     }
   },
-  "inventory":
-  {
+  "inventory": {
     "header": {
       "section": "Restaurant",
       "title": "Inventory",
@@ -52,8 +51,7 @@
       "supplier-placeholder": "All suppliers",
       "status-label": "Status",
       "status-placeholder": "All status"
-      },
-
+    },
     "list": {
       "product-label": "Product",
       "stock-levels-label": "Stock levels",
@@ -66,9 +64,7 @@
       "next-page": "Next",
       "previous-page": "Previous"
     },
-
-    "item-form":
-    {
+    "item-form": {
       "edit-item-title": "Edit Inventory Item",
       "new-item-title": "New Inventory Item",
       "subtitle": "Manage your restaurant inventory efficiently",
@@ -81,13 +77,156 @@
       "save-button": "Save",
       "cancel-button": "Cancel"
     },
-
-    "delete-dialog":
-    {
+    "delete-dialog": {
       "title": "Delete Inventory Item",
       "text": "Are you sure you want to permanently delete {{itemName}}?",
       "confirm-button": "Delete",
       "cancel-button": "Cancel"
+    }
+  },
+  "supply-and-purchasing": {
+    "shared": {
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "status": {
+        "pending": "Pending",
+        "in-preparation": "In preparation",
+        "delivered": "Delivered",
+        "delayed": "Delayed"
+      }
+    },
+    "orders-page": {
+      "kicker": "Restaurant",
+      "title": "Orders",
+      "description": "Control stock, minimum levels, and supplier relationships."
+    },
+    "purchase-order-form-page": {
+      "kicker": "Supply and Purchasing",
+      "title": "Create order",
+      "description": "Use this standalone screen when you want to focus only on order creation."
+    },
+    "suppliers-page": {
+      "kicker": "Supply and Purchasing",
+      "title": "Suppliers",
+      "description": "This page is ready to receive the supplier directory view for the first frontend version."
+    },
+    "form": {
+      "title": "Create order",
+      "fields": {
+        "supplier": "Supplier",
+        "estimated-date": "Estimated date",
+        "priority": "Priority",
+        "product": "Product",
+        "product-placeholder": "Example: Jasmine rice",
+        "quantity": "Qty.",
+        "unit": "Unit",
+        "price": "Price"
+      },
+      "actions": {
+        "add-line": "Add line",
+        "create-order": "Create order"
+      }
+    },
+    "table": {
+      "title": "Order tracking",
+      "search-placeholder": "Search by supplier, status, or code",
+      "columns": {
+        "code": "Code",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "detail": "Detail"
+      },
+      "footer": {
+        "showing": "Showing {filtered} of {total}"
+      }
+    },
+    "detail": {
+      "kicker": "Order detail",
+      "meta": {
+        "status": "Status",
+        "priority": "Priority",
+        "date": "Date",
+        "total": "Total"
+      },
+      "items": {
+        "product": "Product",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "subtotal": "Subtotal"
+      }
+    },
+    "validation": {
+      "supplier-required": "Supplier is required.",
+      "order-date-required": "Estimated date is required.",
+      "priority-required": "Priority is required.",
+      "items-required": "Add at least one product line.",
+      "product-name-required": "Product name is required.",
+      "quantity-invalid": "Quantity must be a valid number greater than zero.",
+      "unit-required": "Unit is required.",
+      "unit-price-invalid": "Price must be a valid number greater than zero."
+    }
+  },
+  "restaurant-management": {
+    "breadcrumb": "RESTAURANT",
+    "tables": {
+      "title": "Tables and occupancy",
+      "description": "Operational dining view with occupancy, dwell time, and sensor state.",
+      "occupied-tables": "Occupied Tables",
+      "free-tables": "Free Tables",
+      "current-occupancy": "Current Occupancy",
+      "capacity": "Capacity",
+      "tables-label": "Tables",
+      "search": "Search",
+      "search-placeholder": "Search by table name...",
+      "zone": "Zone",
+      "filter-by-zone": "Filter by Zone",
+      "seats": "Seats",
+      "dwell-time": "Dwell Time",
+      "sensor-state": "Sensor State",
+      "view-details": "View Details",
+      "checkout": "Checkout",
+      "assign-guest": "Assign Guest",
+      "no-tables": "No tables registered.",
+      "status": {
+        "OCCUPIED": "Occupied",
+        "FREE": "Free",
+        "RESERVED": "Reserved",
+        "CLEANING": "Cleaning"
+      },
+      "sensor": {
+        "active": "Active",
+        "idle": "Idle"
+      }
+    },
+    "kitchen": {
+      "title": "Kitchen tickets",
+      "description": "Real-time communication between dining room and kitchen. Track comanda preparation and delivery.",
+      "new-comanda": "New Comanda",
+      "all": "All",
+      "no-comandas": "No comandas found.",
+      "advance-to": "Advance to",
+      "create-title": "Create New Comanda",
+      "select-table": "Table",
+      "choose-table": "Select a table...",
+      "dishes": "Dishes",
+      "dish-name": "Dish name",
+      "add-dish": "Add dish",
+      "cancel": "Cancel",
+      "confirm": "Create Comanda",
+      "error-no-table": "Please select a table.",
+      "error-no-items": "Add at least one dish.",
+      "error-create-failed": "Failed to create comanda. Try again.",
+      "status": {
+        "EN_COLA": "In Queue",
+        "EN_PREPARACION": "In Preparation",
+        "LISTO": "Ready",
+        "ENTREGADO": "Delivered"
+      }
     }
   }
 }

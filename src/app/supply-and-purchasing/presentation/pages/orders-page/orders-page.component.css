@@ -1,0 +1,40 @@
+.orders-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.orders-page__kicker {
+  display: inline-block;
+  color: #a07832;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.orders-page__title {
+  margin: 0;
+  font-size: clamp(2rem, 2.2vw, 2.4rem);
+  line-height: 1;
+  color: #342923;
+}
+
+.orders-page__description {
+  margin: 8px 0 0;
+  color: #65594f;
+}
+
+.orders-page__workspace {
+  display: grid;
+  grid-template-columns: minmax(340px, 1fr) minmax(420px, 1fr);
+  gap: 18px;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .orders-page__workspace {
+    grid-template-columns: 1fr;
+  }
+}

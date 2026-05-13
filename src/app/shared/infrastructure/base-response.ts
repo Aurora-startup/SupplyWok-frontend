@@ -1,9 +1,7 @@
-export interface BaseResponse {}
-
-/**
- * Defines a standard structure for API resources/DTOs with a unique identifier.
- */
 export interface BaseResource {
+  id?: number | string | null;
+}
 
-  id: number;
+export interface BaseResponse {
+  [key: string]: unknown;
 }

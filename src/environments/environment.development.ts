@@ -1,9 +1,10 @@
 export const environment = {
-  production: true,
-  platformProviderApiBaseUrl: 'http://localhost:3000/api/v1',
+  production: false,
+  platformApiBaseUrl: 'http://localhost:3000/api/v1',
+  purchaseOrdersEndpointPath: '/purchase-orders',
   platformProviderInventoryItemsEndpointPath: '/inventoryItems',
   platformProviderCategoriesEndpointPath: '/categories',
   platformProviderSuppliersEndpointPath: '/suppliers',
   platformProviderUnitsOfMeasureEndpointPath: '/unitsOfMeasure',
-  logoProviderApiBaseUrl: 'https://logo.clearbit.com/',
+
 };

@@ -30,7 +30,7 @@ export class LanguageSwitcher {
    * Changes the application's current language.
    * Updates both the translation service and the component's local state.
    *
-   * @param language - The language code to switch to (e.g., 'en', 'es')
+   * @param language - The language code to switch to (e.g., 'en', 'es', 'zh')
    */
   useLanguage(language: string) {
     this.translate.use(language);
