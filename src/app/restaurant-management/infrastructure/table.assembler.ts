@@ -1,20 +1,51 @@
+import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Table } from '../domain/model/table.entity';
+import { TableResource, TableResponse } from './table-response';
 
-export class TableAssembler {
-  static toLabel(table: Table): string {
-    return `T-${String(table.number).padStart(2, '0')}`;
+export class TableAssembler extends BaseAssembler<Table, TableResource, TableResponse> {
+
+  /**
+   * Converts a TableResponse to an array of Table entities.
+   * @param response - The API response containing tables.
+   * @returns An array of Table entities.
+   */
+  toEntitiesFromResponse(response: TableResponse): Table[] {
+    return response.tables.map((resource) =>
+      this.toEntityFromResource(resource as TableResource)
+    );
   }
 
-  static toZoneLabel(zone: string): string {
-    return zone.charAt(0).toUpperCase() + zone.slice(1).replace(/-/g, ' ');
+  /**
+   * Converts a TableResource to a Table entity.
+   * @param resource - The resource to convert.
+   * @returns The converted Table entity.
+   */
+  toEntityFromResource(resource: TableResource): Table {
+    return new Table({
+      id: resource.id ?? null,
+      number: resource.number,
+      capacity: resource.capacity,
+      status: resource.status as Table['status'],
+      zone: resource.zone,
+      dwellTime: resource.dwellTime,
+      sensorState: resource.sensorState as Table['sensorState']
+    });
   }
 
-  static toDwellTimeFormatted(seconds: number): string {
-    if (seconds <= 0) return '-- : --';
-    const hours = Math.floor(seconds / 3600);
-    const minutes = Math.floor((seconds % 3600) / 60);
-    const secs = seconds % 60;
-    if (hours > 0) return `${hours}h ${String(minutes).padStart(2, '0')}m`;
-    return `${minutes}m ${String(secs).padStart(2, '0')}s`;
+  /**
+   * Converts a Table entity to a TableResource.
+   * @param entity - The entity to convert.
+   * @returns The converted TableResource.
+   */
+  toResourceFromEntity(entity: Table): TableResource {
+    return {
+      id: entity.id,
+      number: entity.number,
+      capacity: entity.capacity,
+      status: entity.status,
+      zone: entity.zone,
+      dwellTime: entity.dwellTime,
+      sensorState: entity.sensorState
+    };
   }
 }

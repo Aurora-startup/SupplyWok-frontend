@@ -1,30 +1,55 @@
-import { Comanda, ComandaStatus, COMANDA_STATUS_ORDER } from '../domain/model/comanda.entity';
+import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
+import { Comanda, ComandaItem } from '../domain/model/comanda.entity';
+import { ComandaItemResource, ComandaResource, ComandaResponse } from './comanda-response';
 
-export class ComandaAssembler {
-  static toElapsedTime(createdAt: string): string {
-    const diff = Math.floor((Date.now() - new Date(createdAt).getTime()) / 1000);
-    const hours = Math.floor(diff / 3600);
-    const minutes = Math.floor((diff % 3600) / 60);
-    if (hours > 0) return `${hours}h ${minutes}m`;
-    return `${minutes}m`;
+export class ComandaAssembler extends BaseAssembler<Comanda, ComandaResource, ComandaResponse> {
+
+  /**
+   * Converts a ComandaResponse to an array of Comanda entities.
+   * @param response - The API response containing comandas.
+   * @returns An array of Comanda entities.
+   */
+  toEntitiesFromResponse(response: ComandaResponse): Comanda[] {
+    return response.comandas.map((resource) =>
+      this.toEntityFromResource(resource as ComandaResource)
+    );
   }
 
-  static getNextStatus(current: ComandaStatus): ComandaStatus | null {
-    const index = COMANDA_STATUS_ORDER.indexOf(current);
-    return index < COMANDA_STATUS_ORDER.length - 1 ? COMANDA_STATUS_ORDER[index + 1] : null;
+  toEntityFromResource(resource: ComandaResource): Comanda {
+    return new Comanda({
+      id: resource.id ?? null,
+      tableId: resource.tableId,
+      tableNumber: resource.tableNumber,
+      items: Array.isArray(resource.items)
+        ? resource.items.map((item) => new ComandaItem({
+            id: item.id as number ?? 0,
+            dishName: item.dishName,
+            quantity: item.quantity
+          }))
+        : [],
+      status: resource.status as Comanda['status'],
+      createdAt: resource.createdAt,
+      updatedAt: resource.updatedAt
+    });
   }
 
-  static canAdvance(currentStatus: ComandaStatus, newStatus: ComandaStatus): boolean {
-    return COMANDA_STATUS_ORDER.indexOf(newStatus) > COMANDA_STATUS_ORDER.indexOf(currentStatus);
-  }
-
-  static toCreatePayload(comanda: Partial<Comanda>): Partial<Comanda> {
-    const now = new Date().toISOString();
+  toResourceFromEntity(entity: Comanda): ComandaResource {
     return {
-      ...comanda,
-      status: 'EN_COLA' as ComandaStatus,
-      createdAt: now,
-      updatedAt: now,
+      id: entity.id,
+      tableId: entity.tableId,
+      tableNumber: entity.tableNumber,
+      items: entity.items.map((item) => this.toItemResource(item)),
+      status: entity.status,
+      createdAt: entity.createdAt,
+      updatedAt: entity.updatedAt
+    };
+  }
+
+  private toItemResource(item: ComandaItem): ComandaItemResource {
+    return {
+      id: item.id,
+      dishName: item.dishName,
+      quantity: item.quantity
     };
   }
 }

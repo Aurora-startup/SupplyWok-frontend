@@ -1,29 +1,39 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Comanda, ComandaStatus } from '../domain/model/comanda.entity';
+import { BaseApi } from '../../shared/infrastructure/base-api';
+import { Comanda } from '../domain/model/comanda.entity';
 import { ComandaApiEndpoint } from './comanda-api-endpoint';
 
-@Injectable({ providedIn: 'root' })
-export class ComandaApi {
-  constructor(private http: HttpClient) {}
+@Injectable({
+  providedIn: 'root'
+})
+export class ComandaApi extends BaseApi {
+  private readonly comandasEndpoint: ComandaApiEndpoint;
 
-  getAll(): Observable<Comanda[]> {
-    return this.http.get<Comanda[]>(ComandaApiEndpoint.BASE);
+  constructor(http: HttpClient) {
+    super(http);
+    this.comandasEndpoint = new ComandaApiEndpoint(http);
   }
 
-  getById(id: number): Observable<Comanda> {
-    return this.http.get<Comanda>(ComandaApiEndpoint.byId(id));
+  /**
+   * Retrieves all comandas.
+   * @returns Observable of Comanda array.
+   */
+  getComandas(): Observable<Comanda[]> {
+    return this.comandasEndpoint.getAll();
   }
 
-  create(comanda: Partial<Comanda>): Observable<Comanda> {
-    return this.http.post<Comanda>(ComandaApiEndpoint.BASE, comanda);
+  createComanda(comanda: Comanda): Observable<Comanda> {
+    return this.comandasEndpoint.create(comanda);
   }
 
-  updateStatus(id: number, status: ComandaStatus): Observable<Comanda> {
-    return this.http.patch<Comanda>(ComandaApiEndpoint.byId(id), {
-      status,
-      updatedAt: new Date().toISOString(),
-    });
+  /**
+   * Updates an existing comanda.
+   * @param comanda - Comanda entity to update.
+   * @returns Observable of updated Comanda.
+   */
+  updateComanda(comanda: Comanda): Observable<Comanda> {
+    return this.comandasEndpoint.update(comanda, comanda.id!);
   }
 }
