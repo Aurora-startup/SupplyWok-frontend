@@ -1,0 +1,71 @@
+{
+  "welcome": "欢迎来到 SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "欢迎",
+      "new-supply": "SupplyWok 新用户？",
+      "sign-up-now": "立即注册",
+      "email": "电子邮件地址",
+      "email-example": "name@restaurant.com",
+      "password": "密码",
+      "password-example": "请输入您的密码",
+      "forgot-password": "忘记密码？",
+      "login": "登录"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "餐厅",
+      "current-plan": "当前计划：",
+      "dashboard": "仪表板",
+      "inventory": "库存",
+      "orders": "订单",
+      "kitchen-tickets": "厨房单",
+      "suppliers": "供应商",
+      "tables-and-occupancy": "桌位与入住",
+      "alerts": "警报",
+      "reports": "报告",
+      "configuration": "配置",
+      "subscription": "订阅"
+    },
+    "header": {
+      "profile": "管理员资料",
+      "settings": "设置",
+      "logout": "退出登录",
+      "options": "选项"
+    }
+  },
+  "iot": {
+    "stat-cards": {
+      "low-stock-items": "库存不足的物品",
+      "temp-alerts": "温度警报",
+      "active-tables": "活跃桌位",
+      "urgent": "紧急",
+      "alert": "警报"
+    },
+    "panel": {
+      "title": "支持真实传感器的物联网面板",
+      "description": "厨房、存储和入住率读数及最近事件阈值。",
+      "kitchen": "厨房",
+      "cold-storage": "冷库",
+      "dining-room": "餐厅",
+      "optimal-range": "最佳范围: {{min}}-{{max}}°C",
+      "occupancy-rate": "入住率"
+    },
+    "alerts": {
+      "notifications": "通知",
+      "no-active-alerts": "没有活动警报。",
+      "severity-critical": "严重",
+      "severity-warning": "警告",
+      "severity-normal": "正常",
+      "cold-storage-breach-title": "冷库阈值突破",
+      "kitchen-temp-breach-title": "厨房温度超出范围",
+      "temp-exceeded-msg": "{{sensorName}} 超出允许的最大范围 ({{lastValue}} °C)。 最佳为 {{minValue}} 到 {{maxValue}} °C。",
+      "temp-dropped-msg": "{{sensorName}} 低于允许的最小范围 ({{lastValue}} °C)。 最佳为 {{minValue}} 到 {{maxValue}} °C。",
+      "low-stock-title": "低库存警告",
+      "low-stock-msg": "{{sensorName}} 已降至 {{lastValue}} 单位（最低：{{minValue}}）。需要补货。",
+      "high-occupancy-title": "{{sensorName}} 达到高入住率",
+      "high-occupancy-msg": "负载集中在 {{sensorName}} ({{lastValue}}% 入住率)。"
+    }
+  }
+}

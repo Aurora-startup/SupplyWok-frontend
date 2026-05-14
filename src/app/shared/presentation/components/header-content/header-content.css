@@ -1,0 +1,66 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  height: 64px;
+  background-color: #FFFAF5;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.logo strong {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.icon-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #555;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.icon-btn:hover {
+  background-color: #f0f0f0;
+  color: #111;
+}
+
+.profile-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #444;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.profile-btn i {
+  font-size: 1.4rem;
+}
+
+.profile-btn span {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.profile-btn:hover {
+  background-color: #f0f0f0;
+  color: #111;
+}

@@ -1,0 +1,71 @@
+{
+  "welcome": "Bienvenido a SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "Bienvenido",
+      "new-supply": "¿Nuevo en SupplyWok?",
+      "sign-up-now": "Regístrate ahora",
+      "email": "Correo electrónico",
+      "email-example": "nombre@restaurante.com",
+      "password": "Contraseña",
+      "password-example": "Ingresa tu contraseña",
+      "forgot-password": "¿Olvidaste tu contraseña?",
+      "login": "Iniciar sesión"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "Restaurante",
+      "current-plan": "Plan actual:",
+      "dashboard": "Dashboard",
+      "inventory": "Inventario",
+      "orders": "Pedidos",
+      "kitchen-tickets": "Comandas",
+      "suppliers": "Proveedores",
+      "tables-and-occupancy": "Mesas y ocupación",
+      "alerts": "Alertas",
+      "reports": "Reportes",
+      "configuration": "Configuración",
+      "subscription": "Suscripción"
+    },
+    "header": {
+      "profile": "Perfil de administrador",
+      "settings": "Configuraciones",
+      "logout": "Cerrar Sesion",
+      "options": "Opciones"
+    }
+  },
+  "iot": {
+    "stat-cards": {
+      "low-stock-items": "ARTÍCULOS CON BAJO STOCK",
+      "temp-alerts": "ALERTAS TEMP.",
+      "active-tables": "MESAS ACTIVAS",
+      "urgent": "Urgente",
+      "alert": "Alerta"
+    },
+    "panel": {
+      "title": "Panel IoT listo para sensores reales",
+      "description": "Lecturas de cocina, almacén y ocupación con umbrales y eventos recientes.",
+      "kitchen": "COCINA",
+      "cold-storage": "ALMACÉN FRÍO",
+      "dining-room": "COMEDOR",
+      "optimal-range": "Rango óptimo: {{min}}-{{max}}°C",
+      "occupancy-rate": "Tasa de ocupación"
+    },
+    "alerts": {
+      "notifications": "Notificaciones",
+      "no-active-alerts": "No hay alertas activas.",
+      "severity-critical": "Crítico",
+      "severity-warning": "Advertencia",
+      "severity-normal": "Normal",
+      "cold-storage-breach-title": "Incumplimiento del umbral en almacén frío",
+      "kitchen-temp-breach-title": "Temperatura de cocina fuera de límites",
+      "temp-exceeded-msg": "{{sensorName}} excedió el rango máximo permitido ({{lastValue}} °C). El óptimo es de {{minValue}} a {{maxValue}} °C.",
+      "temp-dropped-msg": "{{sensorName}} cayó por debajo del rango mínimo permitido ({{lastValue}} °C). El óptimo es de {{minValue}} a {{maxValue}} °C.",
+      "low-stock-title": "Advertencia de bajo stock",
+      "low-stock-msg": "{{sensorName}} ha caído a {{lastValue}} unidades (Mínimo: {{minValue}}). Requiere reposición.",
+      "high-occupancy-title": "{{sensorName}} alcanzó una alta ocupación",
+      "high-occupancy-msg": "Carga concentrada en {{sensorName}} ({{lastValue}}% ocupado)."
+    }
+  }
+}

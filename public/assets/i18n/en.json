@@ -1,0 +1,71 @@
+{
+  "welcome": "Welcome to SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "Welcome",
+      "new-supply": "New to SupplyWok?",
+      "sign-up-now": "Sign up now",
+      "email": "Email Address",
+      "email-example": "name@restaurant.com",
+      "password": "Password",
+      "password-example": "Enter your password",
+      "forgot-password": "Forgot your password?",
+      "login": "Log In"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "Restaurant",
+      "current-plan": "Current plan:",
+      "dashboard": "Dashboard",
+      "inventory": "Inventory",
+      "orders": "Orders",
+      "kitchen-tickets": "Kitchen tickets",
+      "suppliers": "Suppliers",
+      "tables-and-occupancy": "Tables and occupancy",
+      "alerts": "Alerts",
+      "reports": "Reports",
+      "configuration": "Configuration",
+      "subscription": "Subscription"
+    },
+    "header": {
+      "profile": "Admin Profile",
+      "settings": "Settings",
+      "logout": "Logout",
+      "options": "Options"
+    }
+  },
+  "iot": {
+    "stat-cards": {
+      "low-stock-items": "LOW STOCK ITEMS",
+      "temp-alerts": "TEMP. ALERTS",
+      "active-tables": "ACTIVE TABLES",
+      "urgent": "Urgent",
+      "alert": "Alert"
+    },
+    "panel": {
+      "title": "IoT panel ready for real sensors",
+      "description": "Kitchen, storage, and occupancy readings with thresholds and recent events.",
+      "kitchen": "KITCHEN",
+      "cold-storage": "COLD STORAGE",
+      "dining-room": "DINING ROOM",
+      "optimal-range": "Optimal range: {{min}}-{{max}}°C",
+      "occupancy-rate": "Occupancy rate"
+    },
+    "alerts": {
+      "notifications": "Notifications",
+      "no-active-alerts": "No active alerts.",
+      "severity-critical": "Critical",
+      "severity-warning": "Warning",
+      "severity-normal": "Normal",
+      "cold-storage-breach-title": "Cold storage threshold breach",
+      "kitchen-temp-breach-title": "Kitchen temperature out of bounds",
+      "temp-exceeded-msg": "{{sensorName}} exceeded maximum allowed range ({{lastValue}} °C). Optimal is {{minValue}} to {{maxValue}} °C.",
+      "temp-dropped-msg": "{{sensorName}} dropped below minimum allowed range ({{lastValue}} °C). Optimal is {{minValue}} to {{maxValue}} °C.",
+      "low-stock-title": "Low stock warning",
+      "low-stock-msg": "{{sensorName}} has fallen to {{lastValue}} units (Minimum: {{minValue}}). Restock required.",
+      "high-occupancy-title": "{{sensorName}} peaked at high occupancy",
+      "high-occupancy-msg": "Load concentrated on {{sensorName}} ({{lastValue}}% occupied)."
+    }
+  }
+}
