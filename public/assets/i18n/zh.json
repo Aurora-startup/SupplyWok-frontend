@@ -1,0 +1,96 @@
+{
+  "welcome": "欢迎来到 SupplyWok",
+  "access": {
+    "log-in": {
+      "welcome": "欢迎",
+      "new-supply": "SupplyWok 新用户？",
+      "sign-up-now": "立即注册",
+      "email": "电子邮件地址",
+      "email-example": "name@restaurant.com",
+      "password": "密码",
+      "password-example": "请输入您的密码",
+      "forgot-password": "忘记密码？",
+      "login": "登录"
+    }
+  },
+  "shared": {
+    "sidebar": {
+      "restaurant": "餐厅",
+      "current-plan": "当前计划：",
+      "dashboard": "仪表板",
+      "inventory": "库存",
+      "orders": "订单",
+      "kitchen-tickets": "厨房单",
+      "suppliers": "供应商",
+      "tables-and-occupancy": "桌位与入住",
+      "alerts": "警报",
+      "reports": "报告",
+      "configuration": "配置",
+      "subscription": "订阅"
+    },
+    "header": {
+      "profile": "管理员资料",
+      "settings": "设置",
+      "logout": "退出登录",
+      "options": "选项"
+    }
+  },
+  "restaurant-management": {
+    "breadcrumb": "餐厅",
+    "tables": {
+      "title": "桌位与占用",
+      "description": "餐厅运营视图，显示占用率、停留时间和传感器状态。",
+      "occupied-tables": "已占用桌位",
+      "free-tables": "空闲桌位",
+      "current-occupancy": "当前占用率",
+      "capacity": "容量",
+      "tables-label": "桌",
+      "search": "搜索",
+      "search-placeholder": "按桌号搜索...",
+      "zone": "区域",
+      "filter-by-zone": "按区域筛选",
+      "seats": "座位",
+      "dwell-time": "停留时间",
+      "sensor-state": "传感器状态",
+      "view-details": "查看详情",
+      "checkout": "结账",
+      "assign-guest": "分配客人",
+      "no-tables": "未注册桌位。",
+      "status": {
+        "OCCUPIED": "已占用",
+        "FREE": "空闲",
+        "RESERVED": "已预订",
+        "CLEANING": "清洁中"
+      },
+      "sensor": {
+        "active": "活跃",
+        "idle": "空闲"
+      }
+    },
+    "kitchen": {
+      "title": "厨房订单",
+      "description": "餐厅与厨房之间的实时通信。跟踪订单准备和配送。",
+      "new-comanda": "新订单",
+      "all": "全部",
+      "no-comandas": "未找到订单。",
+      "advance-to": "推进到",
+      "create-title": "创建新订单",
+      "select-table": "桌号",
+      "choose-table": "选择桌位...",
+      "dishes": "菜品",
+      "dish-name": "菜名",
+      "add-dish": "添加菜品",
+      "cancel": "取消",
+      "confirm": "创建订单",
+      "error-no-table": "请选择桌位。",
+      "error-no-items": "至少添加一道菜。",
+      "error-create-failed": "创建订单失败，请重试。",
+      "status": {
+        "EN_COLA": "排队中",
+        "EN_PREPARACION": "准备中",
+        "LISTO": "就绪",
+        "ENTREGADO": "已送达"
+      }
+    }
+  }
+}

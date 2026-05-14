@@ -1,0 +1,25 @@
+<header class="header">
+  <div class="logo">
+    <strong>SupplyWok</strong>
+  </div>
+
+  <div class="actions">
+    <app-language-switcher></app-language-switcher>
+
+    <button class="icon-btn">
+      <i class="pi pi-bell"></i>
+    </button>
+    <button class="icon-btn">
+      <i class="pi pi-question-circle"></i>
+    </button>
+
+    <!-- Botón del perfil que dispara el menú -->
+    <button (click)="menu.toggle($event)" class="profile-btn">
+      <i class="pi pi-user"></i>
+      <span>{{ 'shared.header.profile'| translate }}</span>
+    </button>
+
+    <!-- El Menú Oculto de PrimeNG -->
+    <p-menu #menu [model]="profileItems" [popup]="true" styleClass="premium-menu"></p-menu>
+  </div>
+</header>
