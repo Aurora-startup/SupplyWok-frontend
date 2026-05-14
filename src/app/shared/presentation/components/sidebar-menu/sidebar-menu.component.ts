@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { RouterModule } from '@angular/router';
 
 export interface MenuItem {
   id: string;
   i18nKey: string;
   iconOff: string;
   iconOn: string;
+  route: string;
 }
 
 /**
@@ -17,7 +16,7 @@ export interface MenuItem {
 @Component({
   selector: 'app-sidebar-menu',
   standalone: true,
-  imports: [CommonModule, TranslateModule],
+  imports: [CommonModule, TranslateModule, RouterModule],
   templateUrl: './sidebar-menu.component.html',
   styleUrl: './sidebar-menu.component.css'
 })
@@ -33,16 +32,16 @@ export class SidebarMenuComponent {
 
   /** Array containing the main navigation items. */
   menuItems: MenuItem[] = [
-    { id: 'dashboard', i18nKey: 'shared.sidebar.dashboard', iconOff: '/assets/images/icons/dashboard-icon.svg', iconOn: '/assets/images/icons/dashboard-on-icon.svg' },
-    { id: 'inventory', i18nKey: 'shared.sidebar.inventory', iconOff: '/assets/images/icons/inventory-icon.svg', iconOn: '/assets/images/icons/inventory-on-icon.svg' },
-    { id: 'orders', i18nKey: 'shared.sidebar.orders', iconOff: '/assets/images/icons/orders-icon.svg', iconOn: '/assets/images/icons/orders-on-icon.svg' },
-    { id: 'kitchen-tickets', i18nKey: 'shared.sidebar.kitchen-tickets', iconOff: '/assets/images/icons/kitchen-ticket-icon.svg', iconOn: '/assets/images/icons/kitchen-tickets-on-icon.svg' },
-    { id: 'suppliers', i18nKey: 'shared.sidebar.suppliers', iconOff: '/assets/images/icons/suppliers-icon.svg', iconOn: '/assets/images/icons/suppliers-on-icon.svg' },
-    { id: 'tables-and-occupancy', i18nKey: 'shared.sidebar.tables-and-occupancy', iconOff: '/assets/images/icons/tables-and-occupancy-icon.svg', iconOn: '/assets/images/icons/tables-and-occupancy-on-icon.svg' },
-    { id: 'alerts', i18nKey: 'shared.sidebar.alerts', iconOff: '/assets/images/icons/alerts-icon.svg', iconOn: '/assets/images/icons/alerts-on-icon.svg' },
-    { id: 'reports', i18nKey: 'shared.sidebar.reports', iconOff: '/assets/images/icons/reports-icon.svg', iconOn: '/assets/images/icons/reports-on-icon.svg' },
-    { id: 'configuration', i18nKey: 'shared.sidebar.configuration', iconOff: '/assets/images/icons/configuration-icon.svg', iconOn: '/assets/images/icons/configuration-on-icon.svg' },
-    { id: 'subscription', i18nKey: 'shared.sidebar.subscription', iconOff: '/assets/images/icons/subscripcion-icon.svg', iconOn: '/assets/images/icons/subscription-on-icon.svg' }
+    { id: 'dashboard', i18nKey: 'shared.sidebar.dashboard', iconOff: '/assets/images/icons/dashboard-icon.svg', iconOn: '/assets/images/icons/dashboard-on-icon.svg', route: '/restaurant/dashboard' },
+    { id: 'inventory', i18nKey: 'shared.sidebar.inventory', iconOff: '/assets/images/icons/inventory-icon.svg', iconOn: '/assets/images/icons/inventory-on-icon.svg', route: '/restaurant/inventory' },
+    { id: 'orders', i18nKey: 'shared.sidebar.orders', iconOff: '/assets/images/icons/orders-icon.svg', iconOn: '/assets/images/icons/orders-on-icon.svg', route: '/restaurant/orders' },
+    { id: 'kitchen-tickets', i18nKey: 'shared.sidebar.kitchen-tickets', iconOff: '/assets/images/icons/kitchen-ticket-icon.svg', iconOn: '/assets/images/icons/kitchen-tickets-on-icon.svg', route: '/restaurant/kitchen-tickets' },
+    { id: 'suppliers', i18nKey: 'shared.sidebar.suppliers', iconOff: '/assets/images/icons/suppliers-icon.svg', iconOn: '/assets/images/icons/suppliers-on-icon.svg', route: '/restaurant/suppliers' },
+    { id: 'tables-and-occupancy', i18nKey: 'shared.sidebar.tables-and-occupancy', iconOff: '/assets/images/icons/tables-and-occupancy-icon.svg', iconOn: '/assets/images/icons/tables-and-occupancy-on-icon.svg', route: '/restaurant/tables-and-occupancy' },
+    { id: 'alerts', i18nKey: 'shared.sidebar.alerts', iconOff: '/assets/images/icons/alerts-icon.svg', iconOn: '/assets/images/icons/alerts-on-icon.svg', route: '/restaurant/alerts' },
+    { id: 'reports', i18nKey: 'shared.sidebar.reports', iconOff: '/assets/images/icons/reports-icon.svg', iconOn: '/assets/images/icons/reports-on-icon.svg', route: '/restaurant/reports' },
+    { id: 'configuration', i18nKey: 'shared.sidebar.configuration', iconOff: '/assets/images/icons/configuration-icon.svg', iconOn: '/assets/images/icons/configuration-on-icon.svg', route: '/restaurant/configuration' },
+    { id: 'subscription', i18nKey: 'shared.sidebar.subscription', iconOff: '/assets/images/icons/subscripcion-icon.svg', iconOn: '/assets/images/icons/subscription-on-icon.svg', route: '/restaurant/subscription' }
   ];
 
   /**

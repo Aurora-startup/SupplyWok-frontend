@@ -1,0 +1,61 @@
+<div class="auth-card">
+  <div class="logo-container">
+    <img src="assets/images/supplywok-logo.png" alt="SupplyWok Logo" class="logo" />
+    <div class="logo-text">
+      <span class="logo-text-supply">SUPPLY</span>
+      <span class="logo-text-wok">WOK</span>
+    </div>
+  </div>
+  
+  <h1 class="welcome-text">{{ 'access.log-in.welcome' | translate }}</h1>
+  
+  <p class="signup-prompt">
+    {{ 'access.log-in.new-supply' | translate }} 
+    <a routerLink="/register" class="link-primary">{{ 'access.log-in.sign-up-now' | translate }}</a>
+  </p>
+
+  <form (submit)="handleLogin(); $event.preventDefault()" class="form-container">
+    <div class="field">
+      <label for="email">{{ 'access.log-in.email' | translate }}</label>
+      <input 
+        pInputText 
+        id="email" 
+        [(ngModel)]="email" 
+        name="email"
+        type="email" 
+        [placeholder]="'access.log-in.email-example' | translate" 
+        [class.p-invalid]="errors.email"
+        class="w-full"
+      />
+      <small *ngIf="errors.email" class="error-msg">{{ 'access.validation.email-invalid' | translate }}</small>
+    </div>
+
+    <div class="field">
+      <label for="password">{{ 'access.log-in.password' | translate }}</label>
+      <input 
+        pInputText 
+        id="password" 
+        [(ngModel)]="password" 
+        name="password"
+        type="password" 
+        [placeholder]="'access.log-in.password-example' | translate" 
+        [class.p-invalid]="errors.password"
+        class="w-full"
+      />
+    </div>
+
+    <div class="forgot-password">
+      <a href="#" class="link-secondary">{{ 'access.log-in.forgot-password' | translate }}</a>
+    </div>
+
+    <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+
+    <p-button 
+      type="submit" 
+      [label]="'access.log-in.login' | translate" 
+      styleClass="submit-button" 
+      [loading]="loading"
+      class="w-full"
+    />
+  </form>
+</div>

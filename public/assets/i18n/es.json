@@ -2,15 +2,41 @@
   "welcome": "Bienvenido a SupplyWok",
   "access": {
     "log-in": {
-      "welcome": "Bienvenido",
+      "welcome": "¡Bienvenido!",
       "new-supply": "¿Nuevo en SupplyWok?",
       "sign-up-now": "Regístrate ahora",
       "email": "Correo electrónico",
-      "email-example": "nombre@restaurante.com",
+      "email-example": "ejemplo@email.com",
       "password": "Contraseña",
-      "password-example": "Ingresa tu contraseña",
+      "password-example": "Contraseña123",
       "forgot-password": "¿Olvidaste tu contraseña?",
       "login": "Iniciar sesión"
+    },
+    "register": {
+      "get-started": "Comenzar",
+      "phone": "Número de teléfono",
+      "phone-example": "999 666 333",
+      "role": "Rol",
+      "subscription": "Suscripción",
+      "select-one": "Selecciona uno",
+      "no-plans": "¿No conoces nuestros planes?",
+      "click-here": "Haz clic aquí",
+      "terms-accept": "Acepto los {{terms}} y la {{policy}}",
+      "terms": "términos",
+      "policy": "política de privacidad",
+      "go-to-pay": "Ir a pagar"
+    },
+    "languages": {
+      "english": "Inglés (US)",
+      "spanish": "Español (ES)",
+      "chinese": "Chino (ZH)"
+    },
+    "validation": {
+      "email-invalid": "El correo electrónico no es válido.",
+      "password-min": "La contraseña debe tener al menos 8 caracteres.",
+      "phone-invalid": "El número de teléfono no es válido.",
+      "terms-required": "Debes aceptar los términos para continuar.",
+      "invalid-credentials": "Correo o contraseña inválidos."
     }
   },
   "shared": {
@@ -29,9 +55,9 @@
       "subscription": "Suscripción"
     },
     "header": {
-      "profile": "Perfil de administrador",
-      "settings": "Configuraciones",
-      "logout": "Cerrar Sesion",
+      "profile": "Perfil Administrador",
+      "settings": "Ajustes",
+      "logout": "Cerrar Sesión",
       "options": "Opciones"
     }
   },
@@ -56,8 +82,9 @@
       "notifications": "Notificaciones",
       "no-active-alerts": "No hay alertas activas.",
       "severity-critical": "Crítico",
-      "severity-warning": "Advertencia",
-      "severity-normal": "Normal",
+      "severity-high": "Alta",
+      "severity-medium": "Media",
+      "severity-low": "Baja",
       "cold-storage-breach-title": "Incumplimiento del umbral en almacén frío",
       "kitchen-temp-breach-title": "Temperatura de cocina fuera de límites",
       "temp-exceeded-msg": "{{sensorName}} excedió el rango máximo permitido ({{lastValue}} °C). El óptimo es de {{minValue}} a {{maxValue}} °C.",
@@ -66,6 +93,47 @@
       "low-stock-msg": "{{sensorName}} ha caído a {{lastValue}} unidades (Mínimo: {{minValue}}). Requiere reposición.",
       "high-occupancy-title": "{{sensorName}} alcanzó una alta ocupación",
       "high-occupancy-msg": "Carga concentrada en {{sensorName}} ({{lastValue}}% ocupado)."
+    },
+    "alerts-page": {
+      "kicker": "Restaurante",
+      "title": "Alertas",
+      "description": "Consolida las desviaciones de stock, temperatura y entrega con acciones de seguimiento.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar alertas...",
+      "severity-label": "Severidad",
+      "severity-placeholder": "Filtrar por Severidad",
+      "table": {
+        "columns": {
+          "severity": "SEVERIDAD",
+          "detail": "DETALLE DE ALERTA",
+          "source": "ORIGEN",
+          "date": "FECHA",
+          "status": "ESTADO",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "view-details": "VER DETALLES",
+          "acknowledge": "RECONOCER"
+        },
+        "status": {
+          "open": "Abierta",
+          "resolved": "Resuelta",
+          "acknowledged": "Reconocida"
+        },
+        "footer": "Mostrando {{first}} a {{last}} de {{total}} alertas activas"
+      },
+      "dialog": {
+        "header": "Detalles de la Alerta",
+        "meta": {
+          "source": "Origen",
+          "date": "Fecha",
+          "sensor-id": "ID del Sensor"
+        },
+        "actions": {
+          "close": "Cerrar",
+          "acknowledge": "Reconocer"
+        }
+      }
     }
   }
 }

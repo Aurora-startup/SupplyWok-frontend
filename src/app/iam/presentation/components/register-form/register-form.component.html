@@ -1,0 +1,115 @@
+<div class="auth-card">
+  <div class="logo-container">
+    <img src="assets/images/supplywok-logo.png" alt="SupplyWok Logo" class="logo" />
+    <div class="logo-text">
+      <span class="logo-text-supply">SUPPLY</span>
+      <span class="logo-text-wok">WOK</span>
+    </div>
+  </div>
+  
+  <h1 class="welcome-text">{{ 'access.register.get-started' | translate }}</h1>
+
+  <form (submit)="handleRegister(); $event.preventDefault()" class="form-container">
+    <div class="field">
+      <label for="email">{{ 'access.log-in.email' | translate }}</label>
+      <input 
+        pInputText 
+        id="email" 
+        [(ngModel)]="email" 
+        name="email"
+        type="email" 
+        [placeholder]="'access.log-in.email-example' | translate" 
+        [class.p-invalid]="errors.email"
+        class="w-full"
+      />
+      <small *ngIf="errors.email" class="error-msg">{{ 'access.validation.email-invalid' | translate }}</small>
+    </div>
+
+    <div class="field">
+      <label for="password">{{ 'access.log-in.password' | translate }}</label>
+      <input 
+        pInputText 
+        id="password" 
+        [(ngModel)]="password" 
+        name="password"
+        type="password" 
+        [placeholder]="'access.log-in.password-example' | translate" 
+        [class.p-invalid]="errors.password"
+        class="w-full"
+      />
+      <small *ngIf="errors.password" class="error-msg">{{ 'access.validation.password-min' | translate }}</small>
+    </div>
+
+    <div class="field">
+      <label for="phone">{{ 'access.register.phone' | translate }}</label>
+      <input 
+        pInputText 
+        id="phone" 
+        [(ngModel)]="phone" 
+        name="phone"
+        type="text" 
+        [placeholder]="'access.register.phone-example' | translate" 
+        [class.p-invalid]="errors.phone"
+        class="w-full"
+      />
+      <small *ngIf="errors.phone" class="error-msg">{{ 'access.validation.phone-invalid' | translate }}</small>
+    </div>
+
+    <div class="field">
+      <label for="role">{{ 'access.register.role' | translate }}</label>
+      <p-select 
+        id="role" 
+        [(ngModel)]="role" 
+        name="role"
+        [options]="roles" 
+        optionLabel="label" 
+        optionValue="value"
+        [placeholder]="'access.register.select-one' | translate" 
+        [class.p-invalid]="errors.role"
+        styleClass="w-full"
+        appendTo="body"
+      />
+    </div>
+
+    <div class="field">
+      <label for="subscription">{{ 'access.register.subscription' | translate }}</label>
+      <p-select 
+        id="subscription" 
+        [(ngModel)]="subscription" 
+        name="subscription"
+        [options]="subscriptions" 
+        optionLabel="label" 
+        optionValue="value"
+        [placeholder]="'access.register.select-one' | translate" 
+        [class.p-invalid]="errors.subscription"
+        styleClass="w-full"
+        appendTo="body"
+      />
+    </div>
+
+    <p class="plans-help">
+      {{ 'access.register.no-plans' | translate }} 
+      <a [href]="landingUrl" target="_blank" class="link-secondary">{{ 'access.register.click-here' | translate }}</a>
+    </p>
+
+    <div class="terms-container">
+      <p-checkbox [(ngModel)]="termsAccepted" name="termsAccepted" [binary]="true" inputId="terms" [class.p-invalid]="errors.terms" />
+      <label for="terms" class="terms-label" [innerHTML]="'access.register.terms-accept' | translate: { 
+          terms: '<a href=\'' + landingUrl + '\' target=\'_blank\'>' + ('access.register.terms' | translate) + '</a>', 
+          policy: '<a href=\'' + landingUrl + '\' target=\'_blank\'>' + ('access.register.policy' | translate) + '</a>' 
+        }">
+      </label>
+    </div>
+    <small *ngIf="errors.terms" class="error-msg text-center">{{ 'access.validation.terms-required' | translate }}</small>
+
+    <p *ngIf="errorMessage" class="error-text">{{ errorMessage }}</p>
+
+    <p-button 
+      type="submit" 
+      [label]="'access.register.go-to-pay' | translate" 
+      styleClass="submit-button" 
+      [loading]="loading"
+      class="w-full"
+    />
+  </form>
+</div>
