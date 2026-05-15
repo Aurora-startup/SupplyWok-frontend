@@ -1,0 +1,66 @@
+.forecast-page {
+  color: #2d241e;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+.forecast-page__header {
+  margin-bottom: 24px;
+}
+
+.forecast-page__header p {
+  margin: 0 0 8px;
+  color: #b0762a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.forecast-page__header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.forecast-page__header span {
+  display: block;
+  margin-top: 8px;
+  color: #6f665d;
+}
+
+.forecast-page__charts,
+.forecast-page__insights {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.forecast-page__insights {
+  margin-top: 16px;
+}
+
+.forecast-page__chart {
+  height: 260px;
+}
+
+:host ::ng-deep .p-card {
+  border: 1px solid #efe4d4;
+  border-radius: 8px;
+  background: #fffdf9;
+  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+}
+
+h2 {
+  margin: 0 0 16px;
+  color: #4b5768;
+}
+
+p {
+  color: #6f665d;
+}
+
+@media (max-width: 900px) {
+  .forecast-page__charts,
+  .forecast-page__insights {
+    grid-template-columns: 1fr;
+  }
+}
