@@ -1,0 +1,86 @@
+.alerts-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 2rem;
+}
+
+.alerts-page__header p,
+.alerts-page__header span {
+  color: #64748b;
+  margin: 0;
+}
+
+.alerts-page__header p {
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.alerts-page__header h1 {
+  color: #0f172a;
+  font-size: 2rem;
+  margin: .25rem 0;
+}
+
+.alerts-page__filters {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: minmax(14rem, 1fr) 16rem;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.alerts-page__filters label {
+  color: #334155;
+  display: flex;
+  flex-direction: column;
+  font-size: .85rem;
+  font-weight: 600;
+  gap: .4rem;
+}
+
+.alerts-page__actions,
+.alerts-dialog__actions {
+  display: flex;
+  gap: .5rem;
+  justify-content: flex-end;
+}
+
+.alerts-dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.alerts-dialog__body dl {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+  margin: 0;
+}
+
+.alerts-dialog__body dt {
+  color: #64748b;
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.alerts-dialog__body dd {
+  color: #0f172a;
+  font-weight: 700;
+  margin: .2rem 0 0;
+}
+
+@media (max-width: 720px) {
+  .alerts-page {
+    padding: 1rem;
+  }
+
+  .alerts-page__filters,
+  .alerts-dialog__body dl {
+    grid-template-columns: 1fr;
+  }
+}
