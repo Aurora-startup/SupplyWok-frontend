@@ -1,14 +1,18 @@
 /* ─── Variables and Base ─── */
 .sidebar {
   width: 280px;
-  min-height: 100vh;
-  background-color: #2D241E; /* Dark brown background from mockup */
-  color: #B5B0A1; /* Muted text color for inactive elements */
+  min-width: 280px;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background-color: #2D241E;
+  color: #B5B0A1;
   font-family: 'Montserrat', system-ui, sans-serif;
   display: flex;
   flex-direction: column;
   padding: 24px 0;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 /* ─── Brand Section ─── */
