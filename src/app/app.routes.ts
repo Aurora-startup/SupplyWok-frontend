@@ -39,7 +39,7 @@ const placeholderRoutes: Routes = [
 ];
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'orders' },
+  { path: '', pathMatch: 'full', redirectTo: '/supplier/dashboard' },
   ...supplierManagementRoutes,
   ...placeholderRoutes,
   ...supplyAndPurchasingRoutes,
