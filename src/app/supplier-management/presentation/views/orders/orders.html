@@ -17,7 +17,14 @@
       <i class="pi pi-search"></i>
       <input pInputText type="search" [(ngModel)]="searchQuery" [placeholder]="'supplier-management.orders.search' | translate">
     </span>
-    <p-select [options]="statusOptions()" optionLabel="label" optionValue="value" [(ngModel)]="statusFilter" />
+    <p-select [options]="statusOptions" optionValue="value" [(ngModel)]="statusFilter">
+      <ng-template pTemplate="selectedItem" let-option>
+        {{ option?.labelKey | translate }}
+      </ng-template>
+      <ng-template pTemplate="item" let-option>
+        {{ option.labelKey | translate }}
+      </ng-template>
+    </p-select>
   </section>
 
   <p-table [value]="filteredOrders" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="p-datatable-sm">
@@ -39,8 +46,8 @@
         <td>{{ order.restaurantName }}</td>
         <td>{{ order.orderDate }}</td>
         <td>{{ order.estimatedDate }}</td>
-        <td>{{ order.priority }}</td>
-        <td><p-tag [value]="order.status" [severity]="getStatusSeverity(order.status)" /></td>
+        <td>{{ ('supplier-management.orders.priority.' + (order.priority === 'High' ? 'high' : order.priority === 'Medium' ? 'medium' : 'low')) | translate }}</td>
+        <td><p-tag [value]="('supplier-management.orders.filters.' + (order.status === 'In Transit' ? 'in-transit' : order.status === 'Pending' ? 'pending' : order.status === 'Confirmed' ? 'confirmed' : order.status === 'Delivered' ? 'delivered' : 'delayed')) | translate" [severity]="getStatusSeverity(order.status)" /></td>
         <td>{{ order.items.length }}</td>
         <td>
           <div class="orders-page__actions">
@@ -79,7 +86,7 @@
       <section class="orders-dialog__meta">
         <span>{{ 'supplier-management.orders.details.order-date' | translate }} <strong>{{ order.orderDate }}</strong></span>
         <span>{{ 'supplier-management.orders.details.delivery-date' | translate }} <strong>{{ order.estimatedDate }}</strong></span>
-        <span>{{ 'supplier-management.orders.details.priority' | translate }} <strong>{{ order.priority }}</strong></span>
+        <span>{{ 'supplier-management.orders.details.priority' | translate }} <strong>{{ ('supplier-management.orders.priority.' + (order.priority === 'High' ? 'high' : order.priority === 'Medium' ? 'medium' : 'low')) | translate }}</strong></span>
         <span>{{ 'supplier-management.orders.details.supplier' | translate }} <strong>{{ order.supplierName }}</strong></span>
       </section>
       <p-table [value]="order.items" responsiveLayout="scroll" styleClass="p-datatable-sm">

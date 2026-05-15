@@ -20,7 +20,7 @@
     />
     <app-supplier-aggregate-forecast-card
       [title]="'supplier-management.dashboard.aggregate.title' | translate"
-      [summary]="aggregateSummary()"
+      [summary]="'supplier-management.dashboard.aggregate.summary' | translate: { from: aggregateFirstValue(), to: aggregateLastValue() }"
       [series]="aggregateSeries()"
       [emptyText]="'supplier-management.dashboard.aggregate.empty' | translate"
     />

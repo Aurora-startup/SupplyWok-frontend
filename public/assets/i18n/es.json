@@ -21,7 +21,7 @@
       "select-one": "Selecciona uno",
       "no-plans": "¿No conoces nuestros planes?",
       "click-here": "Haz clic aquí",
-      "terms-accept": "Acepto los {terms} y la {policy}",
+      "terms-accept": "Acepto los {{ terms }} y la {{ policy }}",
       "terms": "términos",
       "policy": "política de privacidad",
       "go-to-pay": "Ir a pagar"
@@ -135,9 +135,9 @@
         "eyebrowAvailable": "Disponible",
         "actionCurrent": "Plan actual",
         "actionSelect": "Seleccionar plan",
-        "metaUsers": "{count} usuarios",
-        "metaLocations": "{count} locales",
-        "metaSensors": "{count} sensores",
+        "metaUsers": "{{ count }} usuarios",
+        "metaLocations": "{{ count }} locales",
+        "metaSensors": "{{ count }} sensores",
         "premium": {
           "features": [
             "Dashboard principal con monitoreo IoT",
@@ -156,7 +156,7 @@
         }
       },
       "messages": {
-        "switchSuccess": "La vista ahora refleja el plan {plan}. Conéctalo al flujo de pago cuando el módulo comercial esté listo."
+        "switchSuccess": "La vista ahora refleja el plan {{ plan }}. Conéctalo al flujo de pago cuando el módulo comercial esté listo."
       }
     }
   },
@@ -180,6 +180,11 @@
         "in-transit": "En tránsito",
         "delivered": "Entregada",
         "delayed": "Retrasada"
+      },
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
       },
       "columns": {
         "code": "Orden",
@@ -213,7 +218,7 @@
         }
       },
       "empty": "No hay órdenes que coincidan con tu búsqueda.",
-      "visible-count": "Mostrando {visible} de {total} órdenes totales"
+      "visible-count": "Mostrando {{ visible }} de {{ total }} órdenes totales"
     },
     "clients": {
       "breadcrumb": "PROVEEDOR",
@@ -235,7 +240,7 @@
         "last-order-date": "Última orden"
       },
       "empty": "No hay clientes que coincidan con tu búsqueda.",
-      "visible-count": "Mostrando {visible} de {total} elementos totales"
+      "visible-count": "Mostrando {{ visible }} de {{ total }} elementos totales"
     },
     "forecast": {
       "breadcrumb": "PROVEEDOR",
@@ -243,13 +248,19 @@
       "subtitle": "Combina demanda agregada y pronósticos por cliente para planificar el suministro.",
       "aggregate-title": "Vista agregada",
       "clients-title": "Por cliente",
-      "chart-summary": "Resumen del gráfico: {from} -> {to}",
-      "top-client-summary": "Resumen del gráfico: {value}",
+      "chart-summary": "Resumen del gráfico: {{ from }} -> {{ to }}",
+      "top-client-summary": "Resumen del gráfico: {{ value }}",
       "empty": "No hay datos de pronóstico disponibles.",
       "trend": {
         "upward": "Al alza",
         "stable": "Estable",
         "watch": "En observación"
+      },
+      "summaries": {
+        "client-1": "La demanda de mariscos y verduras sube antes de los fines de semana.",
+        "client-2": "Mantén una reposición estándar; el tráfico de almuerzo está estable.",
+        "client-3": "La demanda se mantiene moderada con pedidos semanales constantes.",
+        "client-4": "La demanda proyectada es estable y sin señales urgentes de reposición."
       }
     },
     "delivery": {
@@ -272,7 +283,7 @@
         "in-progress": "En curso",
         "completed": "Completada"
       },
-      "stop-orders": "{count} orden(es)",
+      "stop-orders": "{{ count }} orden(es)",
       "empty": "No hay rutas de entrega que coincidan con tus filtros."
     },
     "alerts": {
@@ -305,7 +316,7 @@
           "view-details": "VER DETALLES",
           "acknowledge": "RECONOCER"
         },
-        "footer": "Mostrando {first} a {last} de {total} alertas del proveedor"
+        "footer": "Mostrando {{ first }} a {{ last }} de {{ total }} alertas del proveedor"
       },
       "dialog": {
         "header": "Detalle de la alerta",
@@ -322,7 +333,10 @@
       "notification-title": "Notificación de Proveedor",
       "messages": {
         "rush-reorder": "Pedido de reabastecimiento urgente",
-        "route-congestion": "Congestión en la ruta detectada"
+        "route-congestion": "Congestión en la ruta detectada",
+        "client-stock-alert-received": "Alerta de stock recibida del cliente",
+        "delayed-delivery-on-route-lima-centro-am": "Entrega retrasada en la ruta Lima Centro AM",
+        "new-urgent-order-from-ming-garden": "Nuevo pedido urgente de Ming Garden"
       }
     },
     "catalog": {
@@ -350,11 +364,12 @@
         "unit": "Unidad",
         "delivery-conditions": "Condiciones de entrega",
         "cancel": "Cancelar",
+        "add": "Agregar",
         "save": "Guardar"
       },
       "delete-dialog": {
         "title": "Eliminar producto",
-        "message": "¿Seguro que quieres eliminar {product} del catálogo?",
+        "message": "¿Seguro que quieres eliminar {{ product }} del catálogo?",
         "confirm": "Eliminar"
       },
       "empty": "Aún no hay productos en el catálogo."
@@ -436,13 +451,13 @@
       },
       "routes": {
         "title": "Rutas activas de hoy",
-        "schedule": "{stops} Paradas · {departure} - {arrival}",
-        "date": "{date}",
+        "schedule": "{{ stops }} Paradas · {{ departure }} - {{ arrival }}",
+        "date": "{{ date }}",
         "empty": "No hay rutas activas disponibles."
       },
       "aggregate": {
         "title": "Vista agregada",
-        "summary": "Resumen del gráfico: {from} -> {to}",
+        "summary": "Resumen del gráfico: {{ from }} -> {{ to }}",
         "empty": "No hay datos de pronóstico disponibles."
       },
       "priority": {
@@ -498,12 +513,12 @@
         "next": "Siguiente"
       },
       "footer": {
-        "showing": "Mostrando {visible} de {total} productos"
+        "showing": "Mostrando {{ visible }} de {{ total }} productos"
       }
     },
     "belowMinimum": {
       "title": "Por debajo del mínimo",
-      "caption": "{count} producto(s) por debajo del nivel mínimo de stock",
+      "caption": "{{ count }} producto(s) por debajo del nivel mínimo de stock",
       "empty": "No hay productos por debajo del nivel mínimo de stock.",
       "columns": {
         "product": "PRODUCTO",
@@ -572,7 +587,7 @@
         }
       },
       "footer": {
-        "showing": "Mostrando {count} de {total} ítems totales",
+        "showing": "Mostrando {{ count }} de {{ total }} ítems totales",
         "previous": "Anterior",
         "next": "Siguiente"
       }
@@ -606,12 +621,12 @@
         "detail": "Detalle"
       },
       "footer": {
-        "showing": "Mostrando {filtered} de {total}"
+        "showing": "Mostrando {{ filtered }} de {{ total }}"
       }
     },
     "summary-card": {
       "title": "Pedidos",
-      "caption": "{count} pedidos cargados en el contexto",
+      "caption": "{{ count }} pedidos cargados en el contexto",
       "loading": "Cargando pedidos...",
       "error": "No se pudo cargar el resumen de pedidos.",
       "empty": "Todavia no hay pedidos registrados.",
@@ -665,7 +680,7 @@
       "kitchen": "COCINA",
       "cold-storage": "ALMACÉN FRÍO",
       "dining-room": "COMEDOR",
-      "optimal-range": "Rango óptimo: {min}-{max}°C",
+      "optimal-range": "Rango óptimo: {{ min }}-{{ max }}°C",
       "occupancy-rate": "Tasa de ocupación"
     },
     "alerts": {
@@ -677,12 +692,12 @@
       "severity-low": "Baja",
       "cold-storage-breach-title": "Incumplimiento del umbral en almacén frío",
       "kitchen-temp-breach-title": "Temperatura de cocina fuera de límites",
-      "temp-exceeded-msg": "{sensorName} excedió el rango máximo permitido ({lastValue} °C). El óptimo es de {minValue} a {maxValue} °C.",
-      "temp-dropped-msg": "{sensorName} cayó por debajo del rango mínimo permitido ({lastValue} °C). El óptimo es de {minValue} a {maxValue} °C.",
+      "temp-exceeded-msg": "{{ sensorName }} excedió el rango máximo permitido ({{ lastValue }} °C). El óptimo es de {{ minValue }} a {{ maxValue }} °C.",
+      "temp-dropped-msg": "{{ sensorName }} cayó por debajo del rango mínimo permitido ({{ lastValue }} °C). El óptimo es de {{ minValue }} a {{ maxValue }} °C.",
       "low-stock-title": "Advertencia de bajo stock",
-      "low-stock-msg": "{sensorName} ha caído a {lastValue} unidades (Mínimo: {minValue}). Requiere reposición.",
-      "high-occupancy-title": "{sensorName} alcanzó una alta ocupación",
-      "high-occupancy-msg": "Carga concentrada en {sensorName} ({lastValue}% ocupado).",
+      "low-stock-msg": "{{ sensorName }} ha caído a {{ lastValue }} unidades (Mínimo: {{ minValue }}). Requiere reposición.",
+      "high-occupancy-title": "{{ sensorName }} alcanzó una alta ocupación",
+      "high-occupancy-msg": "Carga concentrada en {{ sensorName }} ({{ lastValue }}% ocupado).",
       "severity-warning": "Advertencia",
       "severity-normal": "Normal"
     },
@@ -712,7 +727,7 @@
           "resolved": "Resuelta",
           "acknowledged": "Reconocida"
         },
-        "footer": "Mostrando {first} a {last} de {total} alertas activas"
+        "footer": "Mostrando {{ first }} a {{ last }} de {{ total }} alertas activas"
       },
       "dialog": {
         "header": "Detalles de la Alerta",
@@ -940,8 +955,8 @@
         "ordersTitle": "Pedidos por proveedor",
         "tempTitle": "Incidentes de temperatura",
         "summary": "Resumen de texto:",
-        "summaryDesc": "Resumen de texto del gráfico: {from} -> {to}",
-        "summaryValue": "Resumen de texto del gráfico: {value}",
+        "summaryDesc": "Resumen de texto del gráfico: {{ from }} -> {{ to }}",
+        "summaryValue": "Resumen de texto del gráfico: {{ value }}",
         "month": "Mes"
       }
     }

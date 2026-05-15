@@ -1,5 +1,5 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
 import { ChartModule } from 'primeng/chart';
 import { TagModule } from 'primeng/tag';
@@ -13,10 +13,15 @@ import { SupplierManagementStore } from '../../../application/supplier-managemen
 })
 export class Forecast implements OnInit {
   readonly store = inject(SupplierManagementStore);
-  private readonly translate = inject(TranslateService);
 
   readonly aggregateSeries = computed(() => this.store.demandForecast().aggregate);
   readonly clientSeries = computed(() => this.store.demandForecast().clients);
+  readonly aggregateFirstValue = computed(() => this.aggregateSeries()[0]?.value ?? 0);
+  readonly aggregateLastValue = computed(() => {
+    const series = this.aggregateSeries();
+    return series[series.length - 1]?.value ?? 0;
+  });
+  readonly topClientValue = computed(() => this.clientSeries().reduce((max, client) => Math.max(max, client.value), 0));
 
   readonly aggregateChartData = computed(() => ({
     labels: this.aggregateSeries().map((point) => point.period),
@@ -51,18 +56,6 @@ export class Forecast implements OnInit {
       y: { grid: { color: '#e6ded3' }, ticks: { color: '#6f665d' } }
     }
   };
-  readonly aggregateSummary = computed(() => {
-    const series = this.aggregateSeries();
-    return this.translate.instant('supplier-management.forecast.chart-summary', {
-      from: series[0]?.value ?? 0,
-      to: series[series.length - 1]?.value ?? 0
-    });
-  });
-  readonly clientSummary = computed(() => {
-    const topValue = this.clientSeries().reduce((max, client) => Math.max(max, client.value), 0);
-    return this.translate.instant('supplier-management.forecast.top-client-summary', { value: topValue });
-  });
-
   ngOnInit(): void {
     this.store.loadDemandForecast();
   }

@@ -32,10 +32,13 @@ export class Catalog implements OnInit {
 
   readonly isFormRoute = computed(() => {
     const path = this.route.snapshot.routeConfig?.path ?? '';
-    return path === 'catalog/new' || path === 'catalog/:itemId/edit';
+    return path === 'supplier/catalog/new' || path === 'supplier/catalog/:itemId/edit';
   });
   readonly isEditing = computed(() => !!this.itemId());
   readonly selectedItem = computed(() => this.store.getCatalogItemById(this.itemId()));
+  readonly submitLabelKey = computed(() => (this.isEditing()
+    ? 'supplier-management.catalog.form.save'
+    : 'supplier-management.catalog.form.add'));
 
   constructor() {
     effect(() => {
@@ -91,11 +94,15 @@ export class Catalog implements OnInit {
     this.deleteDialogVisible = true;
   }
 
+  closeDeleteDialog(): void {
+    this.deleteDialogVisible = false;
+    this.itemToDelete = null;
+  }
+
   confirmDelete(): void {
     if (this.itemToDelete?.id != null) {
       this.store.deleteCatalogItem(this.itemToDelete.id);
     }
-    this.deleteDialogVisible = false;
-    this.itemToDelete = null;
+    this.closeDeleteDialog();
   }
 }

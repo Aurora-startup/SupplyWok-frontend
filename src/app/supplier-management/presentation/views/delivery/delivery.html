@@ -6,8 +6,22 @@
   </header>
 
   <section class="delivery-page__filters">
-    <p-select [options]="dateOptions()" optionLabel="label" optionValue="value" [(ngModel)]="dateFilter" />
-    <p-select [options]="statusOptions()" optionLabel="label" optionValue="value" [(ngModel)]="statusFilter" />
+    <p-select [options]="dateOptions()" optionValue="value" [(ngModel)]="dateFilter">
+      <ng-template pTemplate="selectedItem" let-option>
+        {{ option?.labelKey ? (option.labelKey | translate) : option?.label }}
+      </ng-template>
+      <ng-template pTemplate="item" let-option>
+        {{ option.labelKey ? (option.labelKey | translate) : option.label }}
+      </ng-template>
+    </p-select>
+    <p-select [options]="statusOptions" optionValue="value" [(ngModel)]="statusFilter">
+      <ng-template pTemplate="selectedItem" let-option>
+        {{ option?.labelKey | translate }}
+      </ng-template>
+      <ng-template pTemplate="item" let-option>
+        {{ option.labelKey | translate }}
+      </ng-template>
+    </p-select>
   </section>
 
   <section class="delivery-page__stats">

@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, computed, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
@@ -17,13 +17,12 @@ import { SupplierManagementStore } from '../../../application/supplier-managemen
 })
 export class Clients implements OnInit {
   readonly store = inject(SupplierManagementStore);
-  private readonly translate = inject(TranslateService);
   searchQuery = '';
   statusFilter = 'all';
-  readonly statusOptions = computed(() => [
-    { label: this.translate.instant('supplier-management.clients.filters.all'), value: 'all' },
-    { label: this.translate.instant('supplier-management.clients.filters.active'), value: 'active' }
-  ]);
+  readonly statusOptions = [
+    { labelKey: 'supplier-management.clients.filters.all', value: 'all' },
+    { labelKey: 'supplier-management.clients.filters.active', value: 'active' }
+  ];
 
   get filteredClients(): Client[] {
     const query = this.searchQuery.trim().toLowerCase();

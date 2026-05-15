@@ -1,5 +1,5 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { SupplierManagementStore } from '../../../application/supplier-management-store';
 import { SupplierActiveRoutesPanel, SupplierRouteSummary } from '../../components/supplier-active-routes-panel/supplier-active-routes-panel';
 import { SupplierAggregateForecastCard } from '../../components/supplier-aggregate-forecast-card/supplier-aggregate-forecast-card';
@@ -13,14 +13,12 @@ import { SupplierDashboardStatCard } from '../../components/supplier-dashboard-s
 })
 export class Dashboard implements OnInit {
   readonly store = inject(SupplierManagementStore);
-  private readonly translate = inject(TranslateService);
 
   readonly aggregateSeries = computed(() => this.store.demandForecast().aggregate);
-  readonly aggregateSummary = computed(() => {
+  readonly aggregateFirstValue = computed(() => this.aggregateSeries()[0]?.value ?? 0);
+  readonly aggregateLastValue = computed(() => {
     const series = this.aggregateSeries();
-    const first = series[0]?.value ?? 0;
-    const last = series[series.length - 1]?.value ?? 0;
-    return this.translate.instant('supplier-management.dashboard.aggregate.summary', { from: first, to: last });
+    return series[series.length - 1]?.value ?? 0;
   });
   readonly activeRoutes = computed<SupplierRouteSummary[]>(() => this.store.deliveryRoutes()
     .filter((route) => ['planned', 'in-progress'].includes(route.status))
@@ -28,15 +26,13 @@ export class Dashboard implements OnInit {
     .map((route) => ({
       id: route.id,
       routeName: route.routeName,
-      priority: route.status === 'in-progress'
-        ? this.translate.instant('supplier-management.dashboard.priority.high')
-        : this.translate.instant('supplier-management.dashboard.priority.medium'),
-      schedule: this.translate.instant('supplier-management.dashboard.routes.schedule', {
-        stops: route.totalStops,
-        departure: route.estimatedDeparture,
-        arrival: route.estimatedArrival
-      }),
-      timestamp: this.translate.instant('supplier-management.dashboard.routes.date', { date: route.date })
+      priorityKey: route.status === 'in-progress'
+        ? 'supplier-management.dashboard.priority.high'
+        : 'supplier-management.dashboard.priority.medium',
+      stops: route.totalStops,
+      departure: route.estimatedDeparture,
+      arrival: route.estimatedArrival,
+      date: route.date
     })));
 
   ngOnInit(): void {

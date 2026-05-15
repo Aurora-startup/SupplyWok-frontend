@@ -1,10 +1,11 @@
 .forecast-page {
   color: #2d241e;
   font-family: 'Montserrat', system-ui, sans-serif;
+  padding: .2rem 0;
 }
 
 .forecast-page__header {
-  margin-bottom: 24px;
+  margin-bottom: 1.45rem;
 }
 
 .forecast-page__header p {
@@ -17,21 +18,21 @@
 }
 
 .forecast-page__header h1 {
-  margin: 0;
-  font-size: 30px;
+  margin: 0 0 .4rem;
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
 }
 
-.forecast-page__header span {
-  display: block;
-  margin-top: 8px;
+.forecast-page__subtitle {
+  margin: 0;
   color: #6f665d;
+  font-size: 1.05rem;
 }
 
 .forecast-page__charts,
 .forecast-page__insights {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
+  gap: 1rem;
 }
 
 .forecast-page__insights {
@@ -39,28 +40,70 @@
 }
 
 .forecast-page__chart {
-  height: 260px;
+  height: 245px;
 }
 
 :host ::ng-deep .p-card {
   border: 1px solid #efe4d4;
-  border-radius: 8px;
+  border-radius: 14px;
   background: #fffdf9;
-  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+  box-shadow: none;
 }
 
-h2 {
-  margin: 0 0 16px;
+.forecast-page__card-title {
+  margin: 0 0 1rem;
   color: #4b5768;
+  font-size: 2.8rem;
+  font-weight: 600;
 }
 
-p {
+.forecast-page__summary {
   color: #6f665d;
+  font-size: 1.03rem;
+  margin: .9rem 0 0;
+}
+
+.forecast-page__insight-title {
+  color: #445a76;
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0 0 .55rem;
+}
+
+.forecast-page__trend {
+  color: #2d241e;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 0 0 .55rem;
+}
+
+.forecast-page__insight-summary {
+  color: #6f665d;
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+:host ::ng-deep .forecast-page__charts .p-card .p-card-body,
+:host ::ng-deep .forecast-page__insights .p-card .p-card-body {
+  padding: 1.35rem 1.35rem 1.2rem;
+}
+
+:host ::ng-deep .forecast-page__insights .p-card .p-card-content,
+:host ::ng-deep .forecast-page__charts .p-card .p-card-content {
+  padding: 0;
 }
 
 @media (max-width: 900px) {
   .forecast-page__charts,
   .forecast-page__insights {
     grid-template-columns: 1fr;
+  }
+
+  .forecast-page__card-title {
+    font-size: 2rem;
+  }
+
+  .forecast-page__insight-title {
+    font-size: 1.65rem;
   }
 }

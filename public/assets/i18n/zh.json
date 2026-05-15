@@ -21,7 +21,7 @@
       "select-one": "请选择",
       "no-plans": "不了解我们的计划？",
       "click-here": "点击这里",
-      "terms-accept": "我接受 {terms} 和 {policy}",
+      "terms-accept": "我接受 {{ terms }} 和 {{ policy }}",
       "terms": "条款",
       "policy": "隐私政策",
       "go-to-pay": "去支付"
@@ -135,9 +135,9 @@
         "eyebrowAvailable": "可用",
         "actionCurrent": "當前方案",
         "actionSelect": "選擇方案",
-        "metaUsers": "{count} 位用戶",
-        "metaLocations": "{count} 個分店",
-        "metaSensors": "{count} 個傳感器",
+        "metaUsers": "{{ count }} 位用戶",
+        "metaLocations": "{{ count }} 個分店",
+        "metaSensors": "{{ count }} 個傳感器",
         "premium": {
           "features": [
             "帶物聯網監控的主儀表板",
@@ -156,7 +156,7 @@
         }
       },
       "messages": {
-        "switchSuccess": "視圖現在反映了 {plan} 方案。商業模塊準備就緒後，將其連接到付款流程。"
+        "switchSuccess": "視圖現在反映了 {{ plan }} 方案。商業模塊準備就緒後，將其連接到付款流程。"
       }
     }
   },
@@ -180,6 +180,11 @@
         "in-transit": "运输中",
         "delivered": "已交付",
         "delayed": "延迟"
+      },
+      "priority": {
+        "high": "高",
+        "medium": "中",
+        "low": "低"
       },
       "columns": {
         "code": "订单号",
@@ -213,7 +218,7 @@
         }
       },
       "empty": "没有符合搜索条件的订单。",
-      "visible-count": "显示 {visible}/{total} 条订单"
+      "visible-count": "显示 {{ visible }}/{{ total }} 条订单"
     },
     "clients": {
       "breadcrumb": "供应商",
@@ -235,7 +240,7 @@
         "last-order-date": "最近下单日期"
       },
       "empty": "没有符合搜索条件的客户。",
-      "visible-count": "显示 {visible}/{total} 条记录"
+      "visible-count": "显示 {{ visible }}/{{ total }} 条记录"
     },
     "forecast": {
       "breadcrumb": "供应商",
@@ -243,13 +248,19 @@
       "subtitle": "结合整体需求和客户级预测来规划供应。",
       "aggregate-title": "汇总视图",
       "clients-title": "按客户",
-      "chart-summary": "图表摘要: {from} -> {to}",
-      "top-client-summary": "图表摘要: {value}",
+      "chart-summary": "图表摘要: {{ from }} -> {{ to }}",
+      "top-client-summary": "图表摘要: {{ value }}",
       "empty": "暂无预测数据。",
       "trend": {
         "upward": "上升",
         "stable": "稳定",
         "watch": "关注"
+      },
+      "summaries": {
+        "client-1": "周末前海鲜和蔬菜需求呈上升趋势。",
+        "client-2": "保持标准补货节奏；午餐客流稳定。",
+        "client-3": "需求保持适中，每周订单稳定。",
+        "client-4": "预计需求稳定，没有紧急补货信号。"
       }
     },
     "delivery": {
@@ -272,7 +283,7 @@
         "in-progress": "进行中",
         "completed": "已完成"
       },
-      "stop-orders": "{count} 单",
+      "stop-orders": "{{ count }} 单",
       "empty": "没有符合筛选条件的配送路线。"
     },
     "alerts": {
@@ -305,7 +316,7 @@
           "view-details": "查看详情",
           "acknowledge": "确认"
         },
-        "footer": "显示第 {first} 至 {last} 条，共 {total} 条供应商警报"
+        "footer": "显示第 {{ first }} 至 {{ last }} 条，共 {{ total }} 条供应商警报"
       },
       "dialog": {
         "header": "警报详情",
@@ -322,7 +333,10 @@
       "notification-title": "供应商通知",
       "messages": {
         "rush-reorder": "紧急补货请求",
-        "route-congestion": "检测到路线拥堵"
+        "route-congestion": "检测到路线拥堵",
+        "client-stock-alert-received": "收到客户库存警报",
+        "delayed-delivery-on-route-lima-centro-am": "Lima Centro AM 路线配送延迟",
+        "new-urgent-order-from-ming-garden": "来自 Ming Garden 的新紧急订单"
       }
     },
     "catalog": {
@@ -350,11 +364,12 @@
         "unit": "单位",
         "delivery-conditions": "配送条件",
         "cancel": "取消",
+        "add": "添加",
         "save": "保存"
       },
       "delete-dialog": {
         "title": "删除产品",
-        "message": "确定要从目录中删除 {product} 吗？",
+        "message": "确定要从目录中删除 {{ product }} 吗？",
         "confirm": "删除"
       },
       "empty": "目录中还没有产品。"
@@ -436,13 +451,13 @@
       },
       "routes": {
         "title": "今日活跃路线",
-        "schedule": "{stops} 站 · {departure} - {arrival}",
-        "date": "{date}",
+        "schedule": "{{ stops }} 站 · {{ departure }} - {{ arrival }}",
+        "date": "{{ date }}",
         "empty": "暂无活跃路线。"
       },
       "aggregate": {
         "title": "汇总视图",
-        "summary": "图表摘要: {from} -> {to}",
+        "summary": "图表摘要: {{ from }} -> {{ to }}",
         "empty": "暂无预测数据。"
       },
       "priority": {
@@ -498,12 +513,12 @@
         "next": "下一页"
       },
       "footer": {
-        "showing": "显示 {visible}/{total} 个项目"
+        "showing": "显示 {{ visible }}/{{ total }} 个项目"
       }
     },
     "belowMinimum": {
       "title": "低于最低库存",
-      "caption": "{count} 件产品低于最低库存水平",
+      "caption": "{{ count }} 件产品低于最低库存水平",
       "empty": "没有产品低于最低库存水平。",
       "columns": {
         "product": "产品",
@@ -572,7 +587,7 @@
         }
       },
       "footer": {
-        "showing": "顯示 {total} 個項目中的 {count} 個",
+        "showing": "顯示 {{ total }} 個項目中的 {{ count }} 個",
         "previous": "上一步",
         "next": "下一步"
       }
@@ -606,12 +621,12 @@
         "detail": "详情"
       },
       "footer": {
-        "showing": "显示 {filtered} / {total}"
+        "showing": "显示 {{ filtered }} / {{ total }}"
       }
     },
     "summary-card": {
       "title": "订单",
-      "caption": "该上下文已加载 {count} 个订单",
+      "caption": "该上下文已加载 {{ count }} 个订单",
       "loading": "正在加载订单...",
       "error": "无法加载订单摘要。",
       "empty": "当前还没有订单。",
@@ -665,7 +680,7 @@
       "kitchen": "厨房",
       "cold-storage": "冷库",
       "dining-room": "餐厅",
-      "optimal-range": "最佳范围: {min}-{max}°C",
+      "optimal-range": "最佳范围: {{ min }}-{{ max }}°C",
       "occupancy-rate": "入住率"
     },
     "alerts": {
@@ -677,12 +692,12 @@
       "severity-low": "低",
       "cold-storage-breach-title": "冷库阈值突破",
       "kitchen-temp-breach-title": "厨房温度超出范围",
-      "temp-exceeded-msg": "{sensorName} 超出允许的最大范围 ({lastValue} °C)。 最佳为 {minValue} 到 {maxValue} °C。",
-      "temp-dropped-msg": "{sensorName} 低于允许的最小范围 ({lastValue} °C)。 最佳为 {minValue} 到 {maxValue} °C。",
+      "temp-exceeded-msg": "{{ sensorName }} 超出允许的最大范围 ({{ lastValue }} °C)。 最佳为 {{ minValue }} 到 {{ maxValue }} °C。",
+      "temp-dropped-msg": "{{ sensorName }} 低于允许的最小范围 ({{ lastValue }} °C)。 最佳为 {{ minValue }} 到 {{ maxValue }} °C。",
       "low-stock-title": "低库存警告",
-      "low-stock-msg": "{sensorName} 已降至 {lastValue} 单位（最低：{minValue}）。需要补货。",
-      "high-occupancy-title": "{sensorName} 达到高入住率",
-      "high-occupancy-msg": "负载集中在 {sensorName} ({lastValue}% 入住率)。",
+      "low-stock-msg": "{{ sensorName }} 已降至 {{ lastValue }} 单位（最低：{{ minValue }}）。需要补货。",
+      "high-occupancy-title": "{{ sensorName }} 达到高入住率",
+      "high-occupancy-msg": "负载集中在 {{ sensorName }} ({{ lastValue }}% 入住率)。",
       "severity-warning": "警告",
       "severity-normal": "正常"
     },
@@ -712,7 +727,7 @@
           "resolved": "已解决",
           "acknowledged": "已确认"
         },
-        "footer": "显示第 {first} 至 {last} 条，共 {total} 条活动警报"
+        "footer": "显示第 {{ first }} 至 {{ last }} 条，共 {{ total }} 条活动警报"
       },
       "dialog": {
         "header": "警报详情",
@@ -940,8 +955,8 @@
         "ordersTitle": "按供應商排序的訂單",
         "tempTitle": "溫度事件",
         "summary": "文本摘要：",
-        "summaryDesc": "圖表文本摘要：{from} -> {to}",
-        "summaryValue": "圖表文本摘要：{value}",
+        "summaryDesc": "圖表文本摘要：{{ from }} -> {{ to }}",
+        "summaryValue": "圖表文本摘要：{{ value }}",
         "month": "月"
       }
     }

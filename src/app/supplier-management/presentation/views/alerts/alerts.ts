@@ -3,7 +3,7 @@ import { Component, OnInit, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -24,18 +24,17 @@ export class Alerts implements OnInit {
   readonly store = inject(SupplierManagementStore);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly translate = inject(TranslateService);
   private readonly alertId = toSignal(this.route.paramMap.pipe(map((params) => params.get('alertId'))), { initialValue: null });
 
   searchQuery = '';
   severityFilter = 'all';
 
-  readonly severityOptions = computed(() => [
-    { label: this.translate.instant('supplier-management.orders.filters.all'), value: 'all' },
-    { label: this.translate.instant('supplier-management.alerts.severity.high'), value: 'high' },
-    { label: this.translate.instant('supplier-management.alerts.severity.medium'), value: 'medium' },
-    { label: this.translate.instant('supplier-management.alerts.severity.low'), value: 'low' }
-  ]);
+  readonly severityOptions = [
+    { labelKey: 'supplier-management.orders.filters.all', value: 'all' },
+    { labelKey: 'supplier-management.alerts.severity.high', value: 'high' },
+    { labelKey: 'supplier-management.alerts.severity.medium', value: 'medium' },
+    { labelKey: 'supplier-management.alerts.severity.low', value: 'low' }
+  ];
   readonly selectedAlert = computed(() => this.store.getAlertById(this.alertId()));
 
   get filteredAlerts(): SupplierAlert[] {

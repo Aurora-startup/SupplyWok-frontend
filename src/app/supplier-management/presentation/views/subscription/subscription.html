@@ -11,7 +11,7 @@
     @for (item of metricCards(); track item.labelKey) {
       <article>
         <span>{{ item.labelKey | translate }}</span>
-        <strong>{{ item.value }}</strong>
+        <strong>{{ item.valueKey ? (item.valueKey | translate) : item.value }}</strong>
       </article>
     }
   </section>
@@ -23,20 +23,20 @@
           <div class="subscription-page__plan-headline">
             <div>
               <small>{{ 'shared.subscriptionPage.plans.eyebrowAvailable' | translate }}</small>
-              <span>{{ getPlanName(plan) }}</span>
+              <span>{{ ('supplier-management.subscription.plans.' + plan.id + '.name') | translate }}</span>
             </div>
             <strong class="subscription-page__price">{{ plan.price }}</strong>
           </div>
         </ng-template>
         <ul>
-          @for (feature of getPlanFeatures(plan); track feature) {
+          @for (feature of ('shared.subscriptionPage.plans.' + plan.id + '.features' | translate); track feature) {
             <li>{{ feature }}</li>
           }
         </ul>
         <p class="subscription-page__capacity">
-          <span>{{ 'shared.subscriptionPage.plans.metaUsers' | translate : { count: getPlanCapacity(plan).users } }}</span>
-          <span>{{ 'shared.subscriptionPage.plans.metaLocations' | translate : { count: getPlanCapacity(plan).locations } }}</span>
-          <span>{{ 'shared.subscriptionPage.plans.metaSensors' | translate : { count: getPlanCapacity(plan).sensors } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaUsers' | translate : { count: plan.id === 'premium' ? 8 : 20 } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaLocations' | translate : { count: plan.id === 'premium' ? 1 : 4 } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaSensors' | translate : { count: plan.id === 'premium' ? 12 : 40 } }}</span>
         </p>
         <div class="subscription-page__plan-footer">
           <p-button severity="danger" [label]="'shared.subscriptionPage.plans.actionSelect' | translate" />
@@ -50,20 +50,20 @@
           <div class="subscription-page__plan-headline">
             <div>
               <small>{{ 'shared.subscriptionPage.plans.eyebrowCurrent' | translate }}</small>
-              <span>{{ getPlanName(plan) }}</span>
+              <span>{{ ('supplier-management.subscription.plans.' + plan.id + '.name') | translate }}</span>
             </div>
             <strong class="subscription-page__price">{{ plan.price }}</strong>
           </div>
         </ng-template>
         <ul>
-          @for (feature of getPlanFeatures(plan); track feature) {
+          @for (feature of ('shared.subscriptionPage.plans.' + plan.id + '.features' | translate); track feature) {
             <li>{{ feature }}</li>
           }
         </ul>
         <p class="subscription-page__capacity">
-          <span>{{ 'shared.subscriptionPage.plans.metaUsers' | translate : { count: getPlanCapacity(plan).users } }}</span>
-          <span>{{ 'shared.subscriptionPage.plans.metaLocations' | translate : { count: getPlanCapacity(plan).locations } }}</span>
-          <span>{{ 'shared.subscriptionPage.plans.metaSensors' | translate : { count: getPlanCapacity(plan).sensors } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaUsers' | translate : { count: plan.id === 'premium' ? 8 : 20 } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaLocations' | translate : { count: plan.id === 'premium' ? 1 : 4 } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaSensors' | translate : { count: plan.id === 'premium' ? 12 : 40 } }}</span>
         </p>
         <div class="subscription-page__plan-footer">
           <p-button [label]="'shared.subscriptionPage.plans.actionCurrent' | translate" [disabled]="true" />

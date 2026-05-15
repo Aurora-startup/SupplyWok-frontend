@@ -10,7 +10,14 @@
       <i class="pi pi-search"></i>
       <input pInputText type="search" [(ngModel)]="searchQuery" [placeholder]="'supplier-management.clients.search' | translate">
     </span>
-    <p-select [options]="statusOptions()" optionLabel="label" optionValue="value" [(ngModel)]="statusFilter" />
+    <p-select [options]="statusOptions" optionValue="value" [(ngModel)]="statusFilter">
+      <ng-template pTemplate="selectedItem" let-option>
+        {{ option?.labelKey | translate }}
+      </ng-template>
+      <ng-template pTemplate="item" let-option>
+        {{ option.labelKey | translate }}
+      </ng-template>
+    </p-select>
   </section>
 
   <p-table [value]="filteredClients" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="p-datatable-sm">
@@ -32,7 +39,7 @@
         <td>{{ client.frequency }}</td>
         <td>{{ client.averageTicket | currency }}</td>
         <td>{{ client.demandProjectionPercent }}%</td>
-        <td><p-tag [value]="client.status" severity="success" /></td>
+        <td><p-tag [value]="('supplier-management.clients.filters.' + client.status) | translate" severity="success" /></td>
         <td>{{ client.lastOrderDate }}</td>
       </tr>
     </ng-template>

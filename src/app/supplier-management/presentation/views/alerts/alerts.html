@@ -15,7 +15,14 @@
     </label>
     <label>
       <span>{{ 'supplier-management.alerts.severity-label' | translate }}</span>
-      <p-select [options]="severityOptions()" optionLabel="label" optionValue="value" [(ngModel)]="severityFilter" [placeholder]="'supplier-management.alerts.severity-placeholder' | translate" />
+      <p-select [options]="severityOptions" optionValue="value" [(ngModel)]="severityFilter" [placeholder]="'supplier-management.alerts.severity-placeholder' | translate">
+        <ng-template pTemplate="selectedItem" let-option>
+          {{ option?.labelKey | translate }}
+        </ng-template>
+        <ng-template pTemplate="item" let-option>
+          {{ option.labelKey | translate }}
+        </ng-template>
+      </p-select>
     </label>
   </section>
 
@@ -38,7 +45,17 @@
             <span>{{ 'supplier-management.alerts.severity.' + alert.severity | translate }}</span>
           </div>
         </td>
-        <td class="alerts-page__detail">{{ alert.detail }}</td>
+        <td class="alerts-page__detail">
+          {{ (alert.detail === 'Rush reorder request'
+            ? 'supplier-management.alerts.messages.rush-reorder'
+            : alert.detail === 'Route congestion detected'
+              ? 'supplier-management.alerts.messages.route-congestion'
+              : alert.detail === 'Client stock alert received'
+                ? 'supplier-management.alerts.messages.client-stock-alert-received'
+                : alert.detail === 'Delayed delivery on route Lima Centro AM'
+                  ? 'supplier-management.alerts.messages.delayed-delivery-on-route-lima-centro-am'
+                  : 'supplier-management.alerts.messages.new-urgent-order-from-ming-garden') | translate }}
+        </td>
         <td>{{ formatAlertDate(alert.date) }}</td>
         <td>
           <span
@@ -94,7 +111,17 @@
           </span>
         </div>
 
-        <p class="alerts-dialog__detail">{{ alert.detail }}</p>
+        <p class="alerts-dialog__detail">
+          {{ (alert.detail === 'Rush reorder request'
+            ? 'supplier-management.alerts.messages.rush-reorder'
+            : alert.detail === 'Route congestion detected'
+              ? 'supplier-management.alerts.messages.route-congestion'
+              : alert.detail === 'Client stock alert received'
+                ? 'supplier-management.alerts.messages.client-stock-alert-received'
+                : alert.detail === 'Delayed delivery on route Lima Centro AM'
+                  ? 'supplier-management.alerts.messages.delayed-delivery-on-route-lima-centro-am'
+                  : 'supplier-management.alerts.messages.new-urgent-order-from-ming-garden') | translate }}
+        </p>
 
         <div class="alerts-dialog__meta">
           <div class="alerts-dialog__meta-row">

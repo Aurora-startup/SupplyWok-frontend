@@ -3,7 +3,7 @@ import { Component, OnInit, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
@@ -24,20 +24,19 @@ export class Orders implements OnInit {
   readonly store = inject(SupplierManagementStore);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly translate = inject(TranslateService);
   private readonly orderId = toSignal(this.route.paramMap.pipe(map((params) => params.get('orderId'))), { initialValue: null });
 
   searchQuery = '';
   statusFilter = 'all';
 
-  readonly statusOptions = computed(() => [
-    { label: this.translate.instant('supplier-management.orders.filters.all'), value: 'all' },
-    { label: this.translate.instant('supplier-management.orders.filters.confirmed'), value: 'Confirmed' },
-    { label: this.translate.instant('supplier-management.orders.filters.pending'), value: 'Pending' },
-    { label: this.translate.instant('supplier-management.orders.filters.in-transit'), value: 'In Transit' },
-    { label: this.translate.instant('supplier-management.orders.filters.delivered'), value: 'Delivered' },
-    { label: this.translate.instant('supplier-management.orders.filters.delayed'), value: 'Delayed' }
-  ]);
+  readonly statusOptions = [
+    { labelKey: 'supplier-management.orders.filters.all', value: 'all' },
+    { labelKey: 'supplier-management.orders.filters.confirmed', value: 'Confirmed' },
+    { labelKey: 'supplier-management.orders.filters.pending', value: 'Pending' },
+    { labelKey: 'supplier-management.orders.filters.in-transit', value: 'In Transit' },
+    { labelKey: 'supplier-management.orders.filters.delivered', value: 'Delivered' },
+    { labelKey: 'supplier-management.orders.filters.delayed', value: 'Delayed' }
+  ];
 
   readonly selectedOrder = computed(() => this.store.getOrderById(this.orderId()));
 

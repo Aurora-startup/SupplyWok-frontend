@@ -21,7 +21,7 @@
       "select-one": "Select one",
       "no-plans": "Doesn't know our plans?",
       "click-here": "Click here",
-      "terms-accept": "I accept {terms} and {policy}",
+      "terms-accept": "I accept {{ terms }} and {{ policy }}",
       "terms": "terms",
       "policy": "private policy",
       "go-to-pay": "Go to pay"
@@ -135,9 +135,9 @@
         "eyebrowAvailable": "Available",
         "actionCurrent": "Current plan",
         "actionSelect": "Select plan",
-        "metaUsers": "{count} users",
-        "metaLocations": "{count} locations",
-        "metaSensors": "{count} sensors",
+        "metaUsers": "{{ count }} users",
+        "metaLocations": "{{ count }} locations",
+        "metaSensors": "{{ count }} sensors",
         "premium": {
           "features": [
             "Main dashboard with IoT monitoring",
@@ -156,7 +156,7 @@
         }
       },
       "messages": {
-        "switchSuccess": "The view now reflects the {plan} plan. Connect it to the payment flow when the commercial module is ready."
+        "switchSuccess": "The view now reflects the {{ plan }} plan. Connect it to the payment flow when the commercial module is ready."
       }
     }
   },
@@ -180,6 +180,11 @@
         "in-transit": "In transit",
         "delivered": "Delivered",
         "delayed": "Delayed"
+      },
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
       },
       "columns": {
         "code": "Order",
@@ -213,7 +218,7 @@
         }
       },
       "empty": "No orders match your search.",
-      "visible-count": "Showing {visible} of {total} total orders"
+      "visible-count": "Showing {{ visible }} of {{ total }} total orders"
     },
     "clients": {
       "breadcrumb": "SUPPLIER",
@@ -235,7 +240,7 @@
         "last-order-date": "Last order date"
       },
       "empty": "No clients match your search.",
-      "visible-count": "Showing {visible} of {total} total items"
+      "visible-count": "Showing {{ visible }} of {{ total }} total items"
     },
     "forecast": {
       "breadcrumb": "SUPPLIER",
@@ -243,13 +248,19 @@
       "subtitle": "Combine aggregate demand and client-level forecasts for supply planning.",
       "aggregate-title": "Aggregate view",
       "clients-title": "By client",
-      "chart-summary": "Text summary for the chart: {from} -> {to}",
-      "top-client-summary": "Text summary for the chart: {value}",
+      "chart-summary": "Text summary for the chart: {{ from }} -> {{ to }}",
+      "top-client-summary": "Text summary for the chart: {{ value }}",
       "empty": "No forecast data available.",
       "trend": {
         "upward": "Upward",
         "stable": "Stable",
         "watch": "Watch"
+      },
+      "summaries": {
+        "client-1": "Seafood and greens demand trending higher before weekends.",
+        "client-2": "Keep standard restock cadence; lunch traffic is stable.",
+        "client-3": "Demand remains moderate with steady weekly orders.",
+        "client-4": "Projected demand is steady with no urgent restock signal."
       }
     },
     "delivery": {
@@ -272,7 +283,7 @@
         "in-progress": "In progress",
         "completed": "Completed"
       },
-      "stop-orders": "{count} order(s)",
+      "stop-orders": "{{ count }} order(s)",
       "empty": "No delivery routes match your filters."
     },
     "alerts": {
@@ -305,7 +316,7 @@
           "view-details": "VIEW DETAILS",
           "acknowledge": "ACKNOWLEDGE"
         },
-        "footer": "Showing {first} to {last} of {total} supplier alerts"
+        "footer": "Showing {{ first }} to {{ last }} of {{ total }} supplier alerts"
       },
       "dialog": {
         "header": "Alert details",
@@ -322,7 +333,10 @@
       "notification-title": "Supplier Notification",
       "messages": {
         "rush-reorder": "Rush reorder request",
-        "route-congestion": "Route congestion detected"
+        "route-congestion": "Route congestion detected",
+        "client-stock-alert-received": "Client stock alert received",
+        "delayed-delivery-on-route-lima-centro-am": "Delayed delivery on route Lima Centro AM",
+        "new-urgent-order-from-ming-garden": "New urgent order from Ming Garden"
       }
     },
     "catalog": {
@@ -350,11 +364,12 @@
         "unit": "Unit",
         "delivery-conditions": "Delivery conditions",
         "cancel": "Cancel",
+        "add": "Add",
         "save": "Save"
       },
       "delete-dialog": {
         "title": "Delete product",
-        "message": "Are you sure you want to delete {product} from the catalog?",
+        "message": "Are you sure you want to delete {{ product }} from the catalog?",
         "confirm": "Delete"
       },
       "empty": "No products in the catalog yet."
@@ -436,13 +451,13 @@
       },
       "routes": {
         "title": "Today's active routes",
-        "schedule": "{stops} Stops · {departure} - {arrival}",
-        "date": "{date}",
+        "schedule": "{{ stops }} Stops · {{ departure }} - {{ arrival }}",
+        "date": "{{ date }}",
         "empty": "No active routes available."
       },
       "aggregate": {
         "title": "Aggregate view",
-        "summary": "Text summary for the chart: {from} -> {to}",
+        "summary": "Text summary for the chart: {{ from }} -> {{ to }}",
         "empty": "No forecast data available."
       },
       "priority": {
@@ -498,12 +513,12 @@
         "next": "Next"
       },
       "footer": {
-        "showing": "Showing {visible} of {total} total items"
+        "showing": "Showing {{ visible }} of {{ total }} total items"
       }
     },
     "belowMinimum": {
       "title": "Below minimum",
-      "caption": "{count} product(s) below minimum stock level",
+      "caption": "{{ count }} product(s) below minimum stock level",
       "empty": "No products below minimum stock level.",
       "columns": {
         "product": "PRODUCT",
@@ -572,7 +587,7 @@
         }
       },
       "footer": {
-        "showing": "Showing {count} of {total} total items",
+        "showing": "Showing {{ count }} of {{ total }} total items",
         "previous": "Previous",
         "next": "Next"
       }
@@ -606,12 +621,12 @@
         "detail": "Detail"
       },
       "footer": {
-        "showing": "Showing {filtered} of {total}"
+        "showing": "Showing {{ filtered }} of {{ total }}"
       }
     },
     "summary-card": {
       "title": "Orders",
-      "caption": "{count} orders loaded in this context",
+      "caption": "{{ count }} orders loaded in this context",
       "loading": "Loading orders...",
       "error": "Unable to load the orders summary.",
       "empty": "There are no orders yet.",
@@ -665,7 +680,7 @@
       "kitchen": "KITCHEN",
       "cold-storage": "COLD STORAGE",
       "dining-room": "DINING ROOM",
-      "optimal-range": "Optimal range: {min}-{max}°C",
+      "optimal-range": "Optimal range: {{ min }}-{{ max }}°C",
       "occupancy-rate": "Occupancy rate"
     },
     "alerts": {
@@ -677,12 +692,12 @@
       "severity-low": "Low",
       "cold-storage-breach-title": "Cold storage threshold breach",
       "kitchen-temp-breach-title": "Kitchen temperature out of bounds",
-      "temp-exceeded-msg": "{sensorName} exceeded maximum allowed range ({lastValue} °C). Optimal is {minValue} to {maxValue} °C.",
-      "temp-dropped-msg": "{sensorName} dropped below minimum allowed range ({lastValue} °C). Optimal is {minValue} to {maxValue} °C.",
+      "temp-exceeded-msg": "{{ sensorName }} exceeded maximum allowed range ({{ lastValue }} °C). Optimal is {{ minValue }} to {{ maxValue }} °C.",
+      "temp-dropped-msg": "{{ sensorName }} dropped below minimum allowed range ({{ lastValue }} °C). Optimal is {{ minValue }} to {{ maxValue }} °C.",
       "low-stock-title": "Low stock warning",
-      "low-stock-msg": "{sensorName} has fallen to {lastValue} units (Minimum: {minValue}). Restock required.",
-      "high-occupancy-title": "{sensorName} peaked at high occupancy",
-      "high-occupancy-msg": "Load concentrated on {sensorName} ({lastValue}% occupied).",
+      "low-stock-msg": "{{ sensorName }} has fallen to {{ lastValue }} units (Minimum: {{ minValue }}). Restock required.",
+      "high-occupancy-title": "{{ sensorName }} peaked at high occupancy",
+      "high-occupancy-msg": "Load concentrated on {{ sensorName }} ({{ lastValue }}% occupied).",
       "severity-warning": "Warning",
       "severity-normal": "Normal"
     },
@@ -712,7 +727,7 @@
           "resolved": "Resolved",
           "acknowledged": "Acknowledged"
         },
-        "footer": "Showing {first} to {last} of {total} active alerts"
+        "footer": "Showing {{ first }} to {{ last }} of {{ total }} active alerts"
       },
       "dialog": {
         "header": "Alert Details",
@@ -940,8 +955,8 @@
         "ordersTitle": "Orders by supplier",
         "tempTitle": "Temperature incidents",
         "summary": "Text summary:",
-        "summaryDesc": "Text summary for the chart: {from} -> {to}",
-        "summaryValue": "Text summary for the chart: {value}",
+        "summaryDesc": "Text summary for the chart: {{ from }} -> {{ to }}",
+        "summaryValue": "Text summary for the chart: {{ value }}",
         "month": "Month"
       }
     }

@@ -11,10 +11,10 @@
         <article class="routes-panel__item">
           <div class="routes-panel__item-head">
             <strong>{{ route.routeName }}</strong>
-            <p-tag [value]="route.priority" severity="warn" />
+            <p-tag [value]="route.priorityKey | translate" severity="warn" />
           </div>
-          <p>{{ route.schedule }}</p>
-          <small>{{ route.timestamp }}</small>
+          <p>{{ 'supplier-management.dashboard.routes.schedule' | translate: { stops: route.stops, departure: route.departure, arrival: route.arrival } }}</p>
+          <small>{{ 'supplier-management.dashboard.routes.date' | translate: { date: route.date } }}</small>
         </article>
       }
     </div>

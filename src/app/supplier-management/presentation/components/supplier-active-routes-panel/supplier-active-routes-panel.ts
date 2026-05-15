@@ -1,18 +1,21 @@
 import { Component, input } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
 
 export interface SupplierRouteSummary {
   id: number | string | null;
   routeName: string;
-  priority: string;
-  schedule: string;
-  timestamp: string;
+  priorityKey: string;
+  stops: number;
+  departure: string;
+  arrival: string;
+  date: string;
 }
 
 @Component({
   selector: 'app-supplier-active-routes-panel',
-  imports: [CardModule, TagModule],
+  imports: [CardModule, TagModule, TranslateModule],
   templateUrl: './supplier-active-routes-panel.html',
   styleUrl: './supplier-active-routes-panel.css',
 })
