@@ -1,0 +1,143 @@
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.settings-page__header p,
+.settings-page__header span {
+  color: var(--sw-text-muted);
+  margin: 0;
+}
+
+.settings-page__header p {
+  color: var(--sw-accent);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.settings-page__header h1 {
+  color: #131019;
+  font-size: 4rem;
+  margin: .25rem 0;
+  line-height: 1.02;
+}
+
+.settings-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(24rem, 0.95fr);
+  gap: 2rem;
+}
+
+.settings-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.settings-page__form label {
+  color: #4c4037;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  gap: .7rem;
+}
+
+.settings-page__toggles {
+  align-items: center;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.settings-page__toggle-item {
+  align-items: center;
+  color: #4c4037;
+  display: inline-flex;
+  flex-direction: row;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  gap: .75rem;
+}
+
+.settings-page__actions-row {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-top: .25rem;
+}
+
+.settings-page__zone-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.settings-page__zone-chip {
+  align-items: center;
+  background: #f2ac17;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  gap: .6rem;
+  padding: 0.8rem 1.2rem;
+}
+
+.settings-page__zone-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1rem;
+  margin-bottom: 1.6rem;
+}
+
+.settings-page__contacts {
+  border-top: 1px solid #e9dcc8;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.settings-page__contacts li {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.35rem 0;
+  border-bottom: 1px solid #e9dcc8;
+}
+
+.settings-page__contacts strong {
+  color: #60748f;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+@media (max-width: 900px) {
+  .settings-page__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .settings-page__header h1 {
+    font-size: 2.8rem;
+  }
+
+  .settings-page__actions-row,
+  .settings-page__toggles {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
