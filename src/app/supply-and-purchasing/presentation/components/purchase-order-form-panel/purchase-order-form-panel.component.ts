@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import { Component, OnInit, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -6,22 +6,23 @@ import { PurchaseOrder } from '../../../domain/model/purchase-order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 import { PurchaseOrderStore } from '../../../application/purchase-order.store';
 
-interface SupplierOption {
-  id: string;
-  name: string;
-}
-
 @Component({
   selector: 'app-purchase-order-form-panel',
   imports: [CommonModule, FormsModule, TranslateModule],
   templateUrl: './purchase-order-form-panel.component.html',
   styleUrl: './purchase-order-form-panel.component.css'
 })
-export class PurchaseOrderFormPanelComponent {
+export class PurchaseOrderFormPanelComponent implements OnInit {
   protected readonly store = inject(PurchaseOrderStore);
 
   constructor() {
     effect(() => {
+      const suppliers = this.supplierOptions();
+      if (!this.form.supplierId && suppliers.length > 0) {
+        this.form.supplierId = suppliers[0].id;
+        this.form.supplierName = suppliers[0].name;
+      }
+
       if (this.store.orderCreated()) {
         this.orderLines = [];
         this.resetDraftLine();
@@ -30,11 +31,11 @@ export class PurchaseOrderFormPanelComponent {
     });
   }
 
-  protected readonly supplierOptions: SupplierOption[] = [
-    { id: '201', name: 'Golden Wok Produce' },
-    { id: '202', name: 'Andes Cold Chain' },
-    { id: '203', name: 'Orient Pantry Co.' }
-  ];
+  ngOnInit(): void {
+    this.store.ensureSuppliersLoaded();
+  }
+
+  protected readonly supplierOptions = computed(() => this.store.supplierDirectory());
 
   protected readonly priorityOptions = computed(() => [
     { value: 'High', labelKey: 'supply-and-purchasing.shared.priority.high' },
@@ -45,9 +46,9 @@ export class PurchaseOrderFormPanelComponent {
   protected readonly draftLineErrorScope = signal('draftLine');
 
   protected readonly form = {
-    supplierId: this.supplierOptions[0].id,
-    supplierName: this.supplierOptions[0].name,
-    orderDate: '2026-05-22',
+    supplierId: '',
+    supplierName: '',
+    orderDate: this.formatLocalDate(new Date()),
     priority: 'Medium'
   };
 
@@ -61,7 +62,7 @@ export class PurchaseOrderFormPanelComponent {
   protected orderLines: OrderItem[] = [];
 
   protected syncSupplierData(): void {
-    const selectedSupplier = this.supplierOptions.find((supplier) => supplier.id === this.form.supplierId);
+    const selectedSupplier = this.supplierOptions().find((supplier) => supplier.id === this.form.supplierId);
     this.form.supplierName = selectedSupplier?.name ?? '';
   }
 
@@ -141,5 +142,12 @@ export class PurchaseOrderFormPanelComponent {
 
   protected formatPrice(value: number): string {
     return Number.isFinite(value) ? value.toFixed(2) : '0.00';
+  }
+
+  private formatLocalDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 }

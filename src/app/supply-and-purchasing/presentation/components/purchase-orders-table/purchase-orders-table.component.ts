@@ -42,6 +42,8 @@ export class PurchaseOrdersTableComponent {
     const translations: Record<string, string> = {
       'Pending': 'supply-and-purchasing.shared.status.pending',
       'In Preparation': 'supply-and-purchasing.shared.status.in-preparation',
+      'Confirmed': 'supply-and-purchasing.shared.status.confirmed',
+      'In Transit': 'supply-and-purchasing.shared.status.in-transit',
       'Delivered': 'supply-and-purchasing.shared.status.delivered',
       'Delayed': 'supply-and-purchasing.shared.status.delayed'
     };
@@ -61,7 +63,7 @@ export class PurchaseOrdersTableComponent {
 
   protected getStatusClass(status: string): string {
     if (status === 'Pending') return 'purchase-orders-table__badge--warning';
-    if (status === 'In Preparation') return 'purchase-orders-table__badge--info';
+    if (status === 'In Preparation' || status === 'Confirmed' || status === 'In Transit') return 'purchase-orders-table__badge--info';
     if (status === 'Delivered') return 'purchase-orders-table__badge--success';
     if (status === 'Delayed') return 'purchase-orders-table__badge--danger';
     return 'purchase-orders-table__badge--secondary';

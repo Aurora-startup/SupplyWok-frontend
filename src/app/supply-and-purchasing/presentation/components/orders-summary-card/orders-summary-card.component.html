@@ -1,0 +1,50 @@
+<section class="orders-summary-card">
+  <div class="orders-summary-card__header">
+    <div>
+      <h2 class="orders-summary-card__title">{{ 'supply-and-purchasing.summary-card.title' | translate }}</h2>
+      <p class="orders-summary-card__caption">
+        {{ 'supply-and-purchasing.summary-card.caption' | translate:{ count: store.purchaseOrdersCount() } }}
+      </p>
+    </div>
+  </div>
+
+  @if (store.loading() && !store.purchaseOrdersLoaded()) {
+    <div class="orders-summary-card__state">
+      {{ 'supply-and-purchasing.summary-card.loading' | translate }}
+    </div>
+  } @else if (store.errors().length && !store.purchaseOrders().length) {
+    <div class="orders-summary-card__state orders-summary-card__state--error">
+      {{ 'supply-and-purchasing.summary-card.error' | translate }}
+    </div>
+  } @else {
+    <div class="orders-summary-card__table">
+      <div class="orders-summary-card__head">
+        <span>{{ 'supply-and-purchasing.summary-card.columns.id' | translate }}</span>
+        <span>{{ 'supply-and-purchasing.summary-card.columns.supplier' | translate }}</span>
+        <span>{{ 'supply-and-purchasing.summary-card.columns.status' | translate }}</span>
+        <span>{{ 'supply-and-purchasing.summary-card.columns.date' | translate }}</span>
+      </div>
+
+      @for (purchaseOrder of visiblePurchaseOrders(); track purchaseOrder.id) {
+        <div class="orders-summary-card__row">
+          <strong>{{ formatCode(purchaseOrder.id) }}</strong>
+          <span>{{ purchaseOrder.supplierName || '-' }}</span>
+          <span class="orders-summary-card__badge" [class]="getStatusClass(purchaseOrder.status)">
+            {{ getStatusKey(purchaseOrder.status) | translate }}
+          </span>
+          <span>{{ formatOrderDate(purchaseOrder.orderDate) }}</span>
+        </div>
+      }
+
+      @if (!visiblePurchaseOrders().length) {
+        <div class="orders-summary-card__state">
+          {{ 'supply-and-purchasing.summary-card.empty' | translate }}
+        </div>
+      }
+    </div>
+  }
+
+  <a routerLink="/orders" class="orders-summary-card__cta">
+    {{ 'supply-and-purchasing.summary-card.actions.view-history' | translate }}
+  </a>
+</section>

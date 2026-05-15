@@ -120,6 +120,8 @@
       "status": {
         "pending": "Pending",
         "in-preparation": "In preparation",
+        "confirmed": "Confirmed",
+        "in-transit": "In transit",
         "delivered": "Delivered",
         "delayed": "Delayed"
       }
@@ -135,9 +137,31 @@
       "description": "Use this standalone screen when you want to focus only on order creation."
     },
     "suppliers-page": {
-      "kicker": "Supply and Purchasing",
+      "kicker": "Restaurant",
       "title": "Suppliers",
-      "description": "This page is ready to receive the supplier directory view for the first frontend version."
+      "description": "Visibility of contacts, supplied categories, and recent performance.",
+      "loading": "Loading suppliers...",
+      "error": "Failed to load suppliers.",
+      "table": {
+        "headers": {
+          "supplier": "SUPPLIER",
+          "contact": "CONTACT",
+          "categories": "SUPPLIED CATEGORIES",
+          "history": "LINKED HISTORY",
+          "responseTime": "RESPONSE TIME"
+        },
+        "categories": {
+          "grains": "Grains",
+          "protein": "Proteins",
+          "sauces": "Sauces",
+          "seafood": "Seafood"
+        }
+      },
+      "footer": {
+        "showing": "Showing {{from}}-{{to}} of {{total}} suppliers",
+        "previous": "Previous",
+        "next": "Next"
+      }
     },
     "form": {
       "title": "Create order",
@@ -168,7 +192,23 @@
         "detail": "Detail"
       },
       "footer": {
-        "showing": "Showing {filtered} of {total}"
+        "showing": "Showing {{filtered}} of {{total}}"
+      }
+    },
+    "summary-card": {
+      "title": "Orders",
+      "caption": "{{count}} orders loaded in this context",
+      "loading": "Loading orders...",
+      "error": "Could not load the orders summary.",
+      "empty": "There are no orders registered yet.",
+      "columns": {
+        "id": "ID",
+        "supplier": "Supplier",
+        "status": "Status",
+        "date": "Date"
+      },
+      "actions": {
+        "view-history": "View order history"
       }
     },
     "detail": {
