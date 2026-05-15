@@ -92,5 +92,38 @@
         "ENTREGADO": "已送达"
       }
     }
+  },
+  "iot": {
+    "stat-cards": {
+      "low-stock-items": "库存不足的物品",
+      "temp-alerts": "温度警报",
+      "active-tables": "活跃桌位",
+      "urgent": "紧急",
+      "alert": "警报"
+    },
+    "panel": {
+      "title": "支持真实传感器的物联网面板",
+      "description": "厨房、存储和入住率读数及最近事件阈值。",
+      "kitchen": "厨房",
+      "cold-storage": "冷库",
+      "dining-room": "餐厅",
+      "optimal-range": "最佳范围: {{min}}-{{max}}°C",
+      "occupancy-rate": "入住率"
+    },
+    "alerts": {
+      "notifications": "通知",
+      "no-active-alerts": "没有活动警报。",
+      "severity-critical": "严重",
+      "severity-warning": "警告",
+      "severity-normal": "正常",
+      "cold-storage-breach-title": "冷库阈值突破",
+      "kitchen-temp-breach-title": "厨房温度超出范围",
+      "temp-exceeded-msg": "{{sensorName}} 超出允许的最大范围 ({{lastValue}} °C)。 最佳为 {{minValue}} 到 {{maxValue}} °C。",
+      "temp-dropped-msg": "{{sensorName}} 低于允许的最小范围 ({{lastValue}} °C)。 最佳为 {{minValue}} 到 {{maxValue}} °C。",
+      "low-stock-title": "低库存警告",
+      "low-stock-msg": "{{sensorName}} 已降至 {{lastValue}} 单位（最低：{{minValue}}）。需要补货。",
+      "high-occupancy-title": "{{sensorName}} 达到高入住率",
+      "high-occupancy-msg": "负载集中在 {{sensorName}} ({{lastValue}}% 入住率)。"
+    }
   }
 }

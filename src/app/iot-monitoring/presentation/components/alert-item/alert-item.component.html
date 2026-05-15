@@ -1,0 +1,12 @@
+<div class="alert-item">
+  <div class="alert-content">
+    <div class="alert-title">{{ alert().titleKey | translate:alert().messageParams }}</div>
+    <div class="alert-message">{{ alert().messageKey | translate:alert().messageParams }}</div>
+  </div>
+  <div class="alert-meta">
+    <span class="alert-badge" [ngClass]="'badge-' + alert().severity.toLowerCase()">
+      {{ 'iot.alerts.severity-' + alert().severity.toLowerCase() | translate }}
+    </span>
+    <span class="alert-time">{{ alert().timestamp | date:'HH:mm' }}</span>
+  </div>
+</div>

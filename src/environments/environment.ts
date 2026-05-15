@@ -3,5 +3,7 @@ export const environment = {
   platformApiBaseUrl: 'http://localhost:3000/api/v1',
   purchaseOrdersEndpointPath: '/purchase-orders',
   tablesEndpointPath: '/tables',
-  comandasEndpointPath: '/comandas'
+  comandasEndpointPath: '/comandas',
+  platformProviderApiBaseUrl: 'http://localhost:3000/api/v1',
+  platformProviderSensorsEndpointPath: '/sensors'
 };

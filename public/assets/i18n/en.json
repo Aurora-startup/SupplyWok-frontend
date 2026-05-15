@@ -179,5 +179,38 @@
         "ENTREGADO": "Delivered"
       }
     }
+  },
+  "iot": {
+    "stat-cards": {
+      "low-stock-items": "LOW STOCK ITEMS",
+      "temp-alerts": "TEMP. ALERTS",
+      "active-tables": "ACTIVE TABLES",
+      "urgent": "Urgent",
+      "alert": "Alert"
+    },
+    "panel": {
+      "title": "IoT panel ready for real sensors",
+      "description": "Kitchen, storage, and occupancy readings with thresholds and recent events.",
+      "kitchen": "KITCHEN",
+      "cold-storage": "COLD STORAGE",
+      "dining-room": "DINING ROOM",
+      "optimal-range": "Optimal range: {{min}}-{{max}}°C",
+      "occupancy-rate": "Occupancy rate"
+    },
+    "alerts": {
+      "notifications": "Notifications",
+      "no-active-alerts": "No active alerts.",
+      "severity-critical": "Critical",
+      "severity-warning": "Warning",
+      "severity-normal": "Normal",
+      "cold-storage-breach-title": "Cold storage threshold breach",
+      "kitchen-temp-breach-title": "Kitchen temperature out of bounds",
+      "temp-exceeded-msg": "{{sensorName}} exceeded maximum allowed range ({{lastValue}} °C). Optimal is {{minValue}} to {{maxValue}} °C.",
+      "temp-dropped-msg": "{{sensorName}} dropped below minimum allowed range ({{lastValue}} °C). Optimal is {{minValue}} to {{maxValue}} °C.",
+      "low-stock-title": "Low stock warning",
+      "low-stock-msg": "{{sensorName}} has fallen to {{lastValue}} units (Minimum: {{minValue}}). Restock required.",
+      "high-occupancy-title": "{{sensorName}} peaked at high occupancy",
+      "high-occupancy-msg": "Load concentrated on {{sensorName}} ({{lastValue}}% occupied)."
+    }
   }
 }

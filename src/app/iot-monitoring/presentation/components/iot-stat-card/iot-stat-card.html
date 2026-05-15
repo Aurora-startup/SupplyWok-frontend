@@ -1,0 +1,15 @@
+<div class="stat-card">
+  <div class="card-header">
+    <img [src]="iconSrc()" alt="sensor icon" class="card-icon" />
+    <span
+      *ngIf="showBadge() && badgeLabel()"
+      class="card-badge"
+      [ngClass]="'badge--' + badgeSeverity()"
+    >
+      {{ badgeLabel() | translate }}
+    </span>
+  </div>
+
+  <div class="card-value">{{ displayValue }}</div>
+  <div class="card-label">{{ label() | translate }}</div>
+</div>

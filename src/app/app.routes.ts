@@ -3,13 +3,9 @@ import { PageNotFoundComponent } from './shared/presentation/views/page-not-foun
 import { PlaceholderPageComponent } from './shared/presentation/views/placeholder-page.component';
 import { supplyAndPurchasingRoutes } from './supply-and-purchasing/presentation/supply-and-purchasing.routes';
 import { restaurantManagementRoutes } from './restaurant-management/presentation/restaurant-management.routes';
+import { iotMonitoringRoutes } from './iot-monitoring/presentation/iot-monitoring.routes';
 
 const placeholderRoutes: Routes = [
-  {
-    path: 'dashboard',
-    component: PlaceholderPageComponent,
-    data: { title: 'Dashboard', description: 'This dashboard page is reserved for another bounded context.' }
-  },
   {
     path: 'inventory',
     component: PlaceholderPageComponent,
@@ -42,5 +38,6 @@ export const routes: Routes = [
   ...placeholderRoutes,
   ...supplyAndPurchasingRoutes,
   ...restaurantManagementRoutes,
+  ...iotMonitoringRoutes,
   { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' }
 ];

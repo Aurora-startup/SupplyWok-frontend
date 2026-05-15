@@ -8,8 +8,22 @@
       "priority": "High",
       "status": "Pending",
       "items": [
-        { "id": 1, "inventoryItemId": 101, "productName": "Rice", "quantity": 25, "unitPrice": 4.5, "unitType": "kg" },
-        { "id": 2, "inventoryItemId": 102, "productName": "Soy Sauce", "quantity": 12, "unitPrice": 8.2, "unitType": "ltr" }
+        {
+          "id": 1,
+          "inventoryItemId": 101,
+          "productName": "Rice",
+          "quantity": 25,
+          "unitPrice": 4.5,
+          "unitType": "kg"
+        },
+        {
+          "id": 2,
+          "inventoryItemId": 102,
+          "productName": "Soy Sauce",
+          "quantity": 12,
+          "unitPrice": 8.2,
+          "unitType": "ltr"
+        }
       ]
     },
     {
@@ -20,7 +34,14 @@
       "priority": "Medium",
       "status": "In Preparation",
       "items": [
-        { "id": 3, "inventoryItemId": 103, "productName": "Chicken Breast", "quantity": 18, "unitPrice": 14.8, "unitType": "kg" }
+        {
+          "id": 3,
+          "inventoryItemId": 103,
+          "productName": "Chicken Breast",
+          "quantity": 18,
+          "unitPrice": 14.8,
+          "unitType": "kg"
+        }
       ]
     },
     {
@@ -31,7 +52,14 @@
       "priority": "Low",
       "status": "Delivered",
       "items": [
-        { "id": 4, "inventoryItemId": 104, "productName": "Sesame Oil", "quantity": 6, "unitPrice": 18.4, "unitType": "ltr" }
+        {
+          "id": 4,
+          "inventoryItemId": 104,
+          "productName": "Sesame Oil",
+          "quantity": 6,
+          "unitPrice": 18.4,
+          "unitType": "ltr"
+        }
       ]
     },
     {
@@ -42,52 +70,715 @@
       "priority": "Medium",
       "status": "Pending",
       "items": [
-        { "id": 1778555054689, "inventoryItemId": null, "productName": "ejemloxd", "quantity": 50, "unitPrice": 2.5, "unitType": "Kg" }
+        {
+          "id": 1778555054689,
+          "inventoryItemId": null,
+          "productName": "ejemloxd",
+          "quantity": 50,
+          "unitPrice": 2.5,
+          "unitType": "Kg"
+        }
       ]
     }
   ],
   "suppliers": [
-    { "id": 201, "name": "Golden Wok Produce" },
-    { "id": 202, "name": "Andes Cold Chain" },
-    { "id": 203, "name": "Orient Pantry Co." }
+    {
+      "id": 201,
+      "name": "Golden Wok Produce"
+    },
+    {
+      "id": 202,
+      "name": "Andes Cold Chain"
+    },
+    {
+      "id": 203,
+      "name": "Orient Pantry Co."
+    }
   ],
   "tables": [
-    { "id": 1, "number": 1, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 2535, "sensorState": "active" },
-    { "id": 2, "number": 2, "capacity": 2, "status": "FREE", "zone": "Hall A", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 3, "number": 3, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 3900, "sensorState": "active" },
-    { "id": 4, "number": 4, "capacity": 6, "status": "FREE", "zone": "Hall A", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 5, "number": 5, "capacity": 2, "status": "OCCUPIED", "zone": "Hall B", "dwellTime": 920, "sensorState": "active" },
-    { "id": 6, "number": 6, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 1800, "sensorState": "active" },
-    { "id": 7, "number": 7, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 4200, "sensorState": "active" },
-    { "id": 8, "number": 8, "capacity": 2, "status": "FREE", "zone": "Terrace", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 9, "number": 9, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 3300, "sensorState": "active" },
-    { "id": 10, "number": 10, "capacity": 2, "status": "FREE", "zone": "Hall B", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 11, "number": 11, "capacity": 8, "status": "OCCUPIED", "zone": "Terrace", "dwellTime": 5400, "sensorState": "active" },
-    { "id": 12, "number": 12, "capacity": 4, "status": "FREE", "zone": "Hall A", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 13, "number": 13, "capacity": 4, "status": "OCCUPIED", "zone": "Hall B", "dwellTime": 2100, "sensorState": "active" },
-    { "id": 14, "number": 14, "capacity": 2, "status": "OCCUPIED", "zone": "Hall B", "dwellTime": 1500, "sensorState": "active" },
-    { "id": 15, "number": 15, "capacity": 6, "status": "FREE", "zone": "Terrace", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 16, "number": 16, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 600, "sensorState": "active" },
-    { "id": 17, "number": 17, "capacity": 2, "status": "OCCUPIED", "zone": "Hall B", "dwellTime": 780, "sensorState": "active" },
-    { "id": 18, "number": 18, "capacity": 4, "status": "FREE", "zone": "Terrace", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 19, "number": 19, "capacity": 6, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 2700, "sensorState": "active" },
-    { "id": 20, "number": 20, "capacity": 4, "status": "FREE", "zone": "Hall B", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 21, "number": 21, "capacity": 2, "status": "OCCUPIED", "zone": "Terrace", "dwellTime": 1200, "sensorState": "active" },
-    { "id": 22, "number": 22, "capacity": 4, "status": "OCCUPIED", "zone": "Hall A", "dwellTime": 3600, "sensorState": "active" },
-    { "id": 23, "number": 23, "capacity": 4, "status": "FREE", "zone": "Terrace", "dwellTime": 0, "sensorState": "idle" },
-    { "id": 24, "number": 24, "capacity": 6, "status": "OCCUPIED", "zone": "Hall B", "dwellTime": 4500, "sensorState": "active" }
+    {
+      "id": 1,
+      "number": 1,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 2535,
+      "sensorState": "active"
+    },
+    {
+      "id": 2,
+      "number": 2,
+      "capacity": 2,
+      "status": "FREE",
+      "zone": "Hall A",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 3,
+      "number": 3,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 3900,
+      "sensorState": "active"
+    },
+    {
+      "id": 4,
+      "number": 4,
+      "capacity": 6,
+      "status": "FREE",
+      "zone": "Hall A",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 5,
+      "number": 5,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 920,
+      "sensorState": "active"
+    },
+    {
+      "id": 6,
+      "number": 6,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 1800,
+      "sensorState": "active"
+    },
+    {
+      "id": 7,
+      "number": 7,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 4200,
+      "sensorState": "active"
+    },
+    {
+      "id": 8,
+      "number": 8,
+      "capacity": 2,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 9,
+      "number": 9,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 3300,
+      "sensorState": "active"
+    },
+    {
+      "id": 10,
+      "number": 10,
+      "capacity": 2,
+      "status": "FREE",
+      "zone": "Hall B",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 11,
+      "number": 11,
+      "capacity": 8,
+      "status": "OCCUPIED",
+      "zone": "Terrace",
+      "dwellTime": 5400,
+      "sensorState": "active"
+    },
+    {
+      "id": 12,
+      "number": 12,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Hall A",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 13,
+      "number": 13,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 2100,
+      "sensorState": "active"
+    },
+    {
+      "id": 14,
+      "number": 14,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 1500,
+      "sensorState": "active"
+    },
+    {
+      "id": 15,
+      "number": 15,
+      "capacity": 6,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 16,
+      "number": 16,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 600,
+      "sensorState": "active"
+    },
+    {
+      "id": 17,
+      "number": 17,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 780,
+      "sensorState": "active"
+    },
+    {
+      "id": 18,
+      "number": 18,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 19,
+      "number": 19,
+      "capacity": 6,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 2700,
+      "sensorState": "active"
+    },
+    {
+      "id": 20,
+      "number": 20,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Hall B",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 21,
+      "number": 21,
+      "capacity": 2,
+      "status": "OCCUPIED",
+      "zone": "Terrace",
+      "dwellTime": 1200,
+      "sensorState": "active"
+    },
+    {
+      "id": 22,
+      "number": 22,
+      "capacity": 4,
+      "status": "OCCUPIED",
+      "zone": "Hall A",
+      "dwellTime": 3600,
+      "sensorState": "active"
+    },
+    {
+      "id": 23,
+      "number": 23,
+      "capacity": 4,
+      "status": "FREE",
+      "zone": "Terrace",
+      "dwellTime": 0,
+      "sensorState": "idle"
+    },
+    {
+      "id": 24,
+      "number": 24,
+      "capacity": 6,
+      "status": "OCCUPIED",
+      "zone": "Hall B",
+      "dwellTime": 4500,
+      "sensorState": "active"
+    }
   ],
   "comandas": [
-    { "id": 1, "tableId": 1, "tableNumber": 1, "status": "EN_PREPARACION", "createdAt": "2026-05-11T12:30:00.000Z", "updatedAt": "2026-05-11T12:35:00.000Z", "items": [{ "id": 1, "dishName": "Arroz Chaufa Especial", "quantity": 2 }, { "id": 2, "dishName": "Wantán Frito", "quantity": 1 }] },
-    { "id": 2, "tableId": 3, "tableNumber": 3, "status": "EN_COLA", "createdAt": "2026-05-11T12:45:00.000Z", "updatedAt": "2026-05-11T12:45:00.000Z", "items": [{ "id": 1, "dishName": "Tallarín Saltado", "quantity": 1 }, { "id": 2, "dishName": "Sopa Wantán", "quantity": 2 }, { "id": 3, "dishName": "Chicharrón de Pollo", "quantity": 1 }] },
-    { "id": 3, "tableId": 5, "tableNumber": 5, "status": "LISTO", "createdAt": "2026-05-11T12:00:00.000Z", "updatedAt": "2026-05-11T12:25:00.000Z", "items": [{ "id": 1, "dishName": "Lomo Saltado", "quantity": 1 }, { "id": 2, "dishName": "Arroz Chaufa de Mariscos", "quantity": 1 }] },
-    { "id": 4, "tableId": 7, "tableNumber": 7, "status": "ENTREGADO", "createdAt": "2026-05-11T11:30:00.000Z", "updatedAt": "2026-05-11T12:10:00.000Z", "items": [{ "id": 1, "dishName": "Pollo Tipakay", "quantity": 2 }, { "id": 2, "dishName": "Kam Lu Wantán", "quantity": 1 }, { "id": 3, "dishName": "Chijaukay", "quantity": 1 }] },
-    { "id": 5, "tableId": 9, "tableNumber": 9, "status": "EN_PREPARACION", "createdAt": "2026-05-11T12:40:00.000Z", "updatedAt": "2026-05-11T12:42:00.000Z", "items": [{ "id": 1, "dishName": "Aeropuerto", "quantity": 2 }, { "id": 2, "dishName": "Chi Jau Kay", "quantity": 1 }] },
-    { "id": 6, "tableId": 6, "tableNumber": 6, "status": "EN_COLA", "createdAt": "2026-05-11T12:50:00.000Z", "updatedAt": "2026-05-11T12:50:00.000Z", "items": [{ "id": 1, "dishName": "Tallarin con Pollo", "quantity": 3 }, { "id": 2, "dishName": "Sopa de Fideo", "quantity": 2 }] },
-    { "id": 7, "tableId": 11, "tableNumber": 11, "status": "EN_COLA", "createdAt": "2026-05-11T12:55:00.000Z", "updatedAt": "2026-05-11T12:55:00.000Z", "items": [{ "id": 1, "dishName": "Arroz con Mariscos", "quantity": 4 }, { "id": 2, "dishName": "Ceviche de Pescado", "quantity": 2 }, { "id": 3, "dishName": "Jalea Mixta", "quantity": 1 }] },
-    { "id": 8, "tableId": 13, "tableNumber": 13, "status": "LISTO", "createdAt": "2026-05-11T12:15:00.000Z", "updatedAt": "2026-05-11T12:40:00.000Z", "items": [{ "id": 1, "dishName": "Min Pao", "quantity": 6 }, { "id": 2, "dishName": "Siu Mai", "quantity": 4 }] }
+    {
+      "id": 1,
+      "tableId": 1,
+      "tableNumber": 1,
+      "status": "EN_PREPARACION",
+      "createdAt": "2026-05-11T12:30:00.000Z",
+      "updatedAt": "2026-05-11T12:35:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Arroz Chaufa Especial",
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "dishName": "Wantán Frito",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "tableId": 3,
+      "tableNumber": 3,
+      "status": "EN_COLA",
+      "createdAt": "2026-05-11T12:45:00.000Z",
+      "updatedAt": "2026-05-11T12:45:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Tallarín Saltado",
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "dishName": "Sopa Wantán",
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "dishName": "Chicharrón de Pollo",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "tableId": 5,
+      "tableNumber": 5,
+      "status": "LISTO",
+      "createdAt": "2026-05-11T12:00:00.000Z",
+      "updatedAt": "2026-05-11T12:25:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Lomo Saltado",
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "dishName": "Arroz Chaufa de Mariscos",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "tableId": 7,
+      "tableNumber": 7,
+      "status": "ENTREGADO",
+      "createdAt": "2026-05-11T11:30:00.000Z",
+      "updatedAt": "2026-05-11T12:10:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Pollo Tipakay",
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "dishName": "Kam Lu Wantán",
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "dishName": "Chijaukay",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "tableId": 9,
+      "tableNumber": 9,
+      "status": "EN_PREPARACION",
+      "createdAt": "2026-05-11T12:40:00.000Z",
+      "updatedAt": "2026-05-11T12:42:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Aeropuerto",
+          "quantity": 2
+        },
+        {
+          "id": 2,
+          "dishName": "Chi Jau Kay",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "tableId": 6,
+      "tableNumber": 6,
+      "status": "EN_COLA",
+      "createdAt": "2026-05-11T12:50:00.000Z",
+      "updatedAt": "2026-05-11T12:50:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Tallarin con Pollo",
+          "quantity": 3
+        },
+        {
+          "id": 2,
+          "dishName": "Sopa de Fideo",
+          "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "tableId": 11,
+      "tableNumber": 11,
+      "status": "EN_COLA",
+      "createdAt": "2026-05-11T12:55:00.000Z",
+      "updatedAt": "2026-05-11T12:55:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Arroz con Mariscos",
+          "quantity": 4
+        },
+        {
+          "id": 2,
+          "dishName": "Ceviche de Pescado",
+          "quantity": 2
+        },
+        {
+          "id": 3,
+          "dishName": "Jalea Mixta",
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "tableId": 13,
+      "tableNumber": 13,
+      "status": "LISTO",
+      "createdAt": "2026-05-11T12:15:00.000Z",
+      "updatedAt": "2026-05-11T12:40:00.000Z",
+      "items": [
+        {
+          "id": 1,
+          "dishName": "Min Pao",
+          "quantity": 6
+        },
+        {
+          "id": 2,
+          "dishName": "Siu Mai",
+          "quantity": 4
+        }
+      ]
+    }
   ],
   "restaurants": [
-    { "id": 1, "name": "SupplyWok - Gran Dragón Chifa", "address": "Av. Javier Prado 123, San Isidro", "phone": "+51 1 234-5678", "operatingHours": "11:00 AM - 10:00 PM", "totalTables": 24 }
+    {
+      "id": 1,
+      "name": "SupplyWok - Gran Dragón Chifa",
+      "address": "Av. Javier Prado 123, San Isidro",
+      "phone": "+51 1 234-5678",
+      "operatingHours": "11:00 AM - 10:00 PM",
+      "totalTables": 24
+    }
+  ],
+  "sensors": [
+    {
+      "id": 1,
+      "name": "food warehouse",
+      "minValue": -10,
+      "maxValue": 40,
+      "enabled": true,
+      "lastValue": 3.5,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 2,
+      "name": "kitchen 1",
+      "minValue": 50,
+      "maxValue": 250,
+      "enabled": true,
+      "lastValue": 300,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 3,
+      "name": "Kitchen 2",
+      "minValue": 10,
+      "maxValue": 80,
+      "enabled": true,
+      "lastValue": 72.5,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 4,
+      "name": "rice cooker",
+      "minValue": 60,
+      "maxValue": 90,
+      "enabled": true,
+      "lastValue": 65.2,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 5,
+      "name": "freezer meatspace",
+      "minValue": -25,
+      "maxValue": -18,
+      "enabled": true,
+      "lastValue": -10,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 6,
+      "name": "air conditioner",
+      "minValue": 1,
+      "maxValue": 5,
+      "enabled": true,
+      "lastValue": 4.8,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 7,
+      "name": "soda fountain",
+      "minValue": 15,
+      "maxValue": 25,
+      "enabled": true,
+      "lastValue": 30,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 8,
+      "name": "vines",
+      "minValue": 12,
+      "maxValue": 18,
+      "enabled": true,
+      "lastValue": 14,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 9,
+      "name": "zone 1",
+      "minValue": -35,
+      "maxValue": 10,
+      "enabled": true,
+      "lastValue": -12.3,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 10,
+      "name": "zone 2",
+      "minValue": 18,
+      "maxValue": 30,
+      "enabled": false,
+      "lastValue": 26.7,
+      "type": "storage-temperature"
+    },
+    {
+      "id": 11,
+      "name": "grill",
+      "minValue": 150,
+      "maxValue": 190,
+      "enabled": true,
+      "lastValue": 178.4,
+      "type": "kitchen-temperature"
+    },
+    {
+      "id": 12,
+      "name": "table 1",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 90,
+      "type": "table-pressure"
+    },
+    {
+      "id": 13,
+      "name": "rice spot",
+      "minValue": 10,
+      "maxValue": 200,
+      "enabled": true,
+      "lastValue": 5,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 14,
+      "name": "table 2",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 15,
+      "type": "table-pressure"
+    },
+    {
+      "id": 15,
+      "name": "flour pallet",
+      "minValue": 50,
+      "maxValue": 1000,
+      "enabled": true,
+      "lastValue": 450,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 16,
+      "name": "table 3",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 0,
+      "type": "table-pressure"
+    },
+    {
+      "id": 17,
+      "name": "sugar sacks",
+      "minValue": 20,
+      "maxValue": 500,
+      "enabled": true,
+      "lastValue": 120,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 18,
+      "name": "table 4",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 85,
+      "type": "table-pressure"
+    },
+    {
+      "id": 19,
+      "name": "oil crates",
+      "minValue": 5,
+      "maxValue": 300,
+      "enabled": true,
+      "lastValue": 210,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 20,
+      "name": "table 5",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 12,
+      "type": "table-pressure"
+    },
+    {
+      "id": 21,
+      "name": "potato bin",
+      "minValue": 0,
+      "maxValue": 600,
+      "enabled": true,
+      "lastValue": 55,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 22,
+      "name": "table 6",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": false,
+      "lastValue": 0,
+      "type": "table-pressure"
+    },
+    {
+      "id": 23,
+      "name": "pasta storage",
+      "minValue": 10,
+      "maxValue": 400,
+      "enabled": true,
+      "lastValue": 310,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 24,
+      "name": "table 7",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 95,
+      "type": "table-pressure"
+    },
+    {
+      "id": 25,
+      "name": "canned goods rack",
+      "minValue": 50,
+      "maxValue": 800,
+      "enabled": true,
+      "lastValue": 720,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 26,
+      "name": "vip table 1",
+      "minValue": 0,
+      "maxValue": 150,
+      "enabled": true,
+      "lastValue": 110,
+      "type": "table-pressure"
+    },
+    {
+      "id": 27,
+      "name": "beverage crates",
+      "minValue": 0,
+      "maxValue": 500,
+      "enabled": true,
+      "lastValue": -5,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 28,
+      "name": "vip table 2",
+      "minValue": 0,
+      "maxValue": 150,
+      "enabled": true,
+      "lastValue": 0,
+      "type": "table-pressure"
+    },
+    {
+      "id": 29,
+      "name": "cleaning supplies",
+      "minValue": 5,
+      "maxValue": 200,
+      "enabled": true,
+      "lastValue": 2,
+      "type": "storage-pressure"
+    },
+    {
+      "id": 30,
+      "name": "terrace table 1",
+      "minValue": 0,
+      "maxValue": 100,
+      "enabled": true,
+      "lastValue": 40,
+      "type": "table-pressure"
+    },
+    {
+      "id": 31,
+      "name": "frozen meat pallet",
+      "minValue": 100,
+      "maxValue": 2000,
+      "enabled": true,
+      "lastValue": 1450,
+      "type": "storage-pressure"
+    }
   ]
 }
