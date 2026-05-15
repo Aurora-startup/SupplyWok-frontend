@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { DemandForecast } from '../domain/model/demand-forecast.entity';
-import { DemandForecastResource, DemandForecastsResponse } from './supplier-management-response';
+import { DemandForecastResource, DemandForecastsResponse } from './demand-forecasts-response';
 
-export class DemandForecastAssembler extends BaseAssembler<DemandForecast, DemandForecastResource, DemandForecastsResponse> {
+export class DemandForecastAssembler implements BaseAssembler<DemandForecast, DemandForecastResource, DemandForecastsResponse> {
   toEntityFromResource(resource: DemandForecastResource): DemandForecast {
     return new DemandForecast({
       id: resource.id ?? null,

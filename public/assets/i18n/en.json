@@ -2,21 +2,47 @@
   "welcome": "Welcome to SupplyWok",
   "access": {
     "log-in": {
-      "welcome": "Welcome",
-      "new-supply": "New to SupplyWok?",
+      "welcome": "Welcome!",
+      "new-supply": "New in SupplyWok?",
       "sign-up-now": "Sign up now",
-      "email": "Email Address",
-      "email-example": "name@restaurant.com",
+      "email": "Email",
+      "email-example": "example{'@'}email.com",
       "password": "Password",
-      "password-example": "Enter your password",
-      "forgot-password": "Forgot your password?",
-      "login": "Log In"
+      "password-example": "Password123",
+      "forgot-password": "Forgot password?",
+      "login": "Log in"
+    },
+    "register": {
+      "get-started": "Get Started",
+      "phone": "Phone number",
+      "phone-example": "999 666 333",
+      "role": "Role",
+      "subscription": "Subscription",
+      "select-one": "Select one",
+      "no-plans": "Doesn't know our plans?",
+      "click-here": "Click here",
+      "terms-accept": "I accept {terms} and {policy}",
+      "terms": "terms",
+      "policy": "private policy",
+      "go-to-pay": "Go to pay"
+    },
+    "languages": {
+      "english": "English (US)",
+      "spanish": "Spanish (ES)",
+      "chinese": "Chinese (ZH)"
+    },
+    "validation": {
+      "email-invalid": "Invalid email address.",
+      "password-min": "Password must be at least 8 characters.",
+      "phone-invalid": "Invalid phone number.",
+      "terms-required": "You must accept the terms to continue."
     }
   },
   "shared": {
     "sidebar": {
       "restaurant": "Restaurant",
       "current-plan": "Current plan:",
+      "supplier": "Supplier",
       "dashboard": "Dashboard",
       "inventory": "Inventory",
       "orders": "Orders",
@@ -27,161 +53,110 @@
       "reports": "Reports",
       "configuration": "Configuration",
       "subscription": "Subscription",
-      "supplier": "Supplier",
       "clients": "My Clients",
-      "delivery": "Delivery Planning",
       "forecast": "Demand Forecast",
-      "catalog": "Product Catalog"
+      "catalog": "Product Catalog",
+      "delivery": "Delivery Planning"
     },
-    "header": {
-      "profile": "Admin Profile",
-      "settings": "Settings",
-      "logout": "Logout",
-      "options": "Options"
-    }
-  },
-  "supply-and-purchasing": {
-    "shared": {
-      "priority": {
-        "high": "High",
-        "medium": "Medium",
-        "low": "Low"
-      },
-      "status": {
-        "pending": "Pending",
-        "in-preparation": "In preparation",
-        "delivered": "Delivered",
-        "delayed": "Delayed"
-      }
+    "titles": {
+      "dashboard": "Dashboard",
+      "inventory": "Inventory",
+      "orders": "Orders",
+      "create-order": "Create Order",
+      "suppliers": "Suppliers",
+      "kitchen-tickets": "Kitchen Tickets",
+      "tables": "Tables",
+      "alerts": "Alerts",
+      "reports": "Reports",
+      "configuration": "Configuration",
+      "subscription": "Subscription",
+      "dish-menu": "Dish Menu",
+      "create-kitchen-order": "Create Kitchen Order",
+      "tables-and-occupancy": "Tables and Occupancy",
+      "login": "Log in",
+      "register": "Register",
+      "not-found": "Page Not Found"
     },
-    "orders-page": {
+    "placeholder": {
+      "kicker": "Frontend first version",
+      "description": "This module is reserved and can be completed in the next sprint tasks.",
+      "dashboardTitle": "Kitchen Dashboard",
+      "dashboardDesc": "Real-time supply chain and floor monitoring."
+    },
+    "errors": {
+      "pageNotFoundTitle": "Page not found",
+      "pageNotFoundDesc": "The requested route does not exist in the current frontend version."
+    },
+    "configurationPage": {
       "kicker": "Restaurant",
-      "title": "Orders",
-      "description": "Control stock, minimum levels, and supplier relationships."
-    },
-    "purchase-order-form-page": {
-      "kicker": "Supply and Purchasing",
-      "title": "Create order",
-      "description": "Use this standalone screen when you want to focus only on order creation."
-    },
-    "suppliers-page": {
-      "kicker": "Supply and Purchasing",
-      "title": "Suppliers",
-      "description": "This page is ready to receive the supplier directory view for the first frontend version."
-    },
-    "form": {
-      "title": "Create order",
-      "fields": {
-        "supplier": "Supplier",
-        "estimated-date": "Estimated date",
-        "priority": "Priority",
-        "product": "Product",
-        "product-placeholder": "Example: Jasmine rice",
-        "quantity": "Qty.",
-        "unit": "Unit",
-        "price": "Price"
+      "title": "Restaurant settings",
+      "description": "Operational profile, hours, notifications, thresholds, and access.",
+      "profile": {
+        "title": "Restaurant profile",
+        "save": "Save",
+        "fields": {
+          "name": "Restaurant profile",
+          "hours": "Operating hours",
+          "thresholds": "Minimum stock thresholds",
+          "days": "Operating days",
+          "contact": "Support contact",
+          "email": "Email",
+          "sms": "SMS"
+        }
       },
-      "actions": {
-        "add-line": "Add line",
-        "create-order": "Create order"
+      "users": {
+        "title": "User list",
+        "status": {
+          "active": "Active"
+        }
+      },
+      "demo": {
+        "state": "Demo state"
+      },
+      "lock": {
+        "title": "Employee lock mode",
+        "restrictedMode": "Enable restricted mode",
+        "password": "Unlock password",
+        "callout": "Only the owner can change restricted mode settings."
       }
     },
-    "table": {
-      "title": "Order tracking",
-      "search-placeholder": "Search by supplier, status, or code",
-      "columns": {
-        "code": "Code",
-        "status": "Status",
-        "actions": "Actions"
+    "subscriptionPage": {
+      "kicker": "Subscription",
+      "title": "Available plans",
+      "description": "Compare capacity, operational scope, and benefits before moving the restaurant to a higher plan.",
+      "summary": {
+        "currentPlan": "Current plan",
+        "users": "Users",
+        "locations": "Locations",
+        "sensors": "Sensors"
       },
-      "actions": {
-        "detail": "Detail"
+      "plans": {
+        "eyebrowCurrent": "Current plan",
+        "eyebrowAvailable": "Available",
+        "actionCurrent": "Current plan",
+        "actionSelect": "Select plan",
+        "metaUsers": "{count} users",
+        "metaLocations": "{count} locations",
+        "metaSensors": "{count} sensors",
+        "premium": {
+          "features": [
+            "Main dashboard with IoT monitoring",
+            "Inventory, orders, and suppliers",
+            "Real-time operational alerts",
+            "Report export in CSV and PDF"
+          ]
+        },
+        "enterprise": {
+          "features": [
+            "Multi-location and extended traceability",
+            "Greater sensor and user capacity",
+            "Priority for support and audits",
+            "Advanced scaling for operational teams"
+          ]
+        }
       },
-      "footer": {
-        "showing": "Showing {filtered} of {total}"
-      }
-    },
-    "detail": {
-      "kicker": "Order detail",
-      "meta": {
-        "status": "Status",
-        "priority": "Priority",
-        "date": "Date",
-        "total": "Total"
-      },
-      "items": {
-        "product": "Product",
-        "quantity": "Quantity",
-        "unit": "Unit",
-        "subtotal": "Subtotal"
-      }
-    },
-    "validation": {
-      "supplier-required": "Supplier is required.",
-      "order-date-required": "Estimated date is required.",
-      "priority-required": "Priority is required.",
-      "items-required": "Add at least one product line.",
-      "product-name-required": "Product name is required.",
-      "quantity-invalid": "Quantity must be a valid number greater than zero.",
-      "unit-required": "Unit is required.",
-      "unit-price-invalid": "Price must be a valid number greater than zero."
-    }
-  },
-  "restaurant-management": {
-    "breadcrumb": "RESTAURANT",
-    "tables": {
-      "title": "Tables and occupancy",
-      "description": "Operational dining view with occupancy, dwell time, and sensor state.",
-      "occupied-tables": "Occupied Tables",
-      "free-tables": "Free Tables",
-      "current-occupancy": "Current Occupancy",
-      "capacity": "Capacity",
-      "tables-label": "Tables",
-      "search": "Search",
-      "search-placeholder": "Search by table name...",
-      "zone": "Zone",
-      "filter-by-zone": "Filter by Zone",
-      "seats": "Seats",
-      "dwell-time": "Dwell Time",
-      "sensor-state": "Sensor State",
-      "view-details": "View Details",
-      "checkout": "Checkout",
-      "assign-guest": "Assign Guest",
-      "no-tables": "No tables registered.",
-      "status": {
-        "OCCUPIED": "Occupied",
-        "FREE": "Free",
-        "RESERVED": "Reserved",
-        "CLEANING": "Cleaning"
-      },
-      "sensor": {
-        "active": "Active",
-        "idle": "Idle"
-      }
-    },
-    "kitchen": {
-      "title": "Kitchen tickets",
-      "description": "Real-time communication between dining room and kitchen. Track comanda preparation and delivery.",
-      "new-comanda": "New Comanda",
-      "all": "All",
-      "no-comandas": "No comandas found.",
-      "advance-to": "Advance to",
-      "create-title": "Create New Comanda",
-      "select-table": "Table",
-      "choose-table": "Select a table...",
-      "dishes": "Dishes",
-      "dish-name": "Dish name",
-      "add-dish": "Add dish",
-      "cancel": "Cancel",
-      "confirm": "Create Comanda",
-      "error-no-table": "Please select a table.",
-      "error-no-items": "Add at least one dish.",
-      "error-create-failed": "Failed to create comanda. Try again.",
-      "status": {
-        "EN_COLA": "In Queue",
-        "EN_PREPARACION": "In Preparation",
-        "LISTO": "Ready",
-        "ENTREGADO": "Delivered"
+      "messages": {
+        "switchSuccess": "The view now reflects the {plan} plan. Connect it to the payment flow when the commercial module is ready."
       }
     }
   },
@@ -476,5 +451,514 @@
         "low": "Low"
       }
     }
+  },
+  "inventoryManagement": {
+    "page": {
+      "kicker": "Restaurant",
+      "title": "Inventory",
+      "description": "Manage stock levels, minimums and movements.",
+      "actions": {
+        "add": "Add supply"
+      }
+    },
+    "metrics": {
+      "items": "Items",
+      "totalStock": "Total stock",
+      "critical": "Critical items",
+      "movements": "Movements"
+    },
+    "table": {
+      "title": "Inventory",
+      "search": "Search",
+      "searchPlaceholder": "Search product name, category or supplier...",
+      "category": "Category",
+      "allCategories": "All categories",
+      "filterUnit": "Filter by unit",
+      "minimum": "MIN",
+      "empty": "No inventory items match your search.",
+      "error": "Unable to load inventory items.",
+      "unassignedSupplier": "Unassigned supplier",
+      "columns": {
+        "product": "Product",
+        "stock": "Stock",
+        "stockLevels": "Stock levels",
+        "unit": "Unit",
+        "restaurant": "Restaurant",
+        "category": "Category",
+        "supplier": "Supplier",
+        "actions": "Actions"
+      },
+      "actions": {
+        "add": "Add",
+        "edit": "Edit item",
+        "delete": "Delete item"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "footer": {
+        "showing": "Showing {visible} of {total} total items"
+      }
+    },
+    "belowMinimum": {
+      "title": "Below minimum",
+      "caption": "{count} product(s) below minimum stock level",
+      "empty": "No products below minimum stock level.",
+      "columns": {
+        "product": "PRODUCT",
+        "currentStock": "CURRENT STOCK",
+        "status": "STATUS"
+      },
+      "actions": {
+        "sortAll": "SORT ALL"
+      }
+    },
+    "stockStatus": {
+      "critical": "Critical",
+      "warning": "Low",
+      "healthy": "Healthy"
+    },
+    "units": {
+      "kilograms": "Kilograms",
+      "liters": "Liters",
+      "units": "Units",
+      "grams": "Grams"
+    }
+  },
+  "supply-and-purchasing": {
+    "shared": {
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "status": {
+        "pending": "Pending",
+        "in-preparation": "In preparation",
+        "confirmed": "Confirmed",
+        "in-transit": "In Transit",
+        "delivered": "Delivered",
+        "delayed": "Delayed"
+      }
+    },
+    "orders-page": {
+      "kicker": "Restaurant",
+      "title": "Orders",
+      "description": "Control stock, minimum levels, and supplier relationships."
+    },
+    "purchase-order-form-page": {
+      "kicker": "Supply and Purchasing",
+      "title": "Create order",
+      "description": "Use this standalone screen when you want to focus only on order creation."
+    },
+    "suppliers-page": {
+      "kicker": "Restaurant",
+      "title": "Suppliers",
+      "description": "Visibility into contacts, supplied categories, and recent performance.",
+      "table": {
+        "headers": {
+          "supplier": "SUPPLIER",
+          "contact": "CONTACT",
+          "categories": "SUPPLIED CATEGORIES",
+          "history": "LINKED HISTORY",
+          "responseTime": "RESPONSE TIME"
+        },
+        "categories": {
+          "grains": "Grains",
+          "protein": "Protein",
+          "sauces": "Sauces",
+          "seafood": "Seafood"
+        }
+      },
+      "footer": {
+        "showing": "Showing {count} of {total} total items",
+        "previous": "Previous",
+        "next": "Next"
+      }
+    },
+    "form": {
+      "title": "Create order",
+      "fields": {
+        "supplier": "Supplier",
+        "estimated-date": "Estimated date",
+        "priority": "Priority",
+        "product": "Product",
+        "product-placeholder": "Example: Jasmine rice",
+        "quantity": "Qty.",
+        "unit": "Unit",
+        "price": "Price"
+      },
+      "actions": {
+        "add-line": "Add line",
+        "create-order": "Create order"
+      }
+    },
+    "table": {
+      "title": "Order tracking",
+      "search-placeholder": "Search by supplier, status, or code",
+      "columns": {
+        "code": "Code",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "detail": "Detail"
+      },
+      "footer": {
+        "showing": "Showing {filtered} of {total}"
+      }
+    },
+    "summary-card": {
+      "title": "Orders",
+      "caption": "{count} orders loaded in this context",
+      "loading": "Loading orders...",
+      "error": "Unable to load the orders summary.",
+      "empty": "There are no orders yet.",
+      "columns": {
+        "id": "ID",
+        "supplier": "Supplier",
+        "status": "Status",
+        "date": "Date"
+      },
+      "actions": {
+        "view-history": "View order history"
+      }
+    },
+    "detail": {
+      "kicker": "Order detail",
+      "meta": {
+        "status": "Status",
+        "priority": "Priority",
+        "date": "Date",
+        "total": "Total"
+      },
+      "items": {
+        "product": "Product",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "subtotal": "Subtotal"
+      }
+    },
+    "validation": {
+      "supplier-required": "Supplier is required.",
+      "order-date-required": "Estimated date is required.",
+      "priority-required": "Priority is required.",
+      "items-required": "Add at least one product line.",
+      "product-name-required": "Product name is required.",
+      "quantity-invalid": "Quantity must be a valid number greater than zero.",
+      "unit-required": "Unit is required.",
+      "unit-price-invalid": "Price must be a valid number greater than zero."
+    }
+  },
+  "iot": {
+    "stat-cards": {
+      "low-stock-items": "LOW STOCK ITEMS",
+      "temp-alerts": "TEMP. ALERTS",
+      "active-tables": "ACTIVE TABLES",
+      "urgent": "Urgent",
+      "alert": "Alert"
+    },
+    "panel": {
+      "title": "IoT panel ready for real sensors",
+      "description": "Kitchen, storage, and occupancy readings with thresholds and recent events.",
+      "kitchen": "KITCHEN",
+      "cold-storage": "COLD STORAGE",
+      "dining-room": "DINING ROOM",
+      "optimal-range": "Optimal range: {min}-{max}°C",
+      "occupancy-rate": "Occupancy rate"
+    },
+    "alerts": {
+      "notifications": "Notifications",
+      "no-active-alerts": "No active alerts.",
+      "severity-critical": "Critical",
+      "severity-high": "High",
+      "severity-medium": "Medium",
+      "severity-low": "Low",
+      "cold-storage-breach-title": "Cold storage threshold breach",
+      "kitchen-temp-breach-title": "Kitchen temperature out of bounds",
+      "temp-exceeded-msg": "{sensorName} exceeded maximum allowed range ({lastValue} °C). Optimal is {minValue} to {maxValue} °C.",
+      "temp-dropped-msg": "{sensorName} dropped below minimum allowed range ({lastValue} °C). Optimal is {minValue} to {maxValue} °C.",
+      "low-stock-title": "Low stock warning",
+      "low-stock-msg": "{sensorName} has fallen to {lastValue} units (Minimum: {minValue}). Restock required.",
+      "high-occupancy-title": "{sensorName} peaked at high occupancy",
+      "high-occupancy-msg": "Load concentrated on {sensorName} ({lastValue}% occupied).",
+      "severity-warning": "Warning",
+      "severity-normal": "Normal"
+    },
+    "alerts-page": {
+      "kicker": "Restaurant",
+      "title": "Alerts",
+      "description": "Consolidate stock, temperature, and delivery deviations with follow-up actions.",
+      "search-label": "Search",
+      "search-placeholder": "Search alerts...",
+      "severity-label": "Severity",
+      "severity-placeholder": "Filter by Severity",
+      "table": {
+        "columns": {
+          "severity": "SEVERITY",
+          "detail": "ALERT DETAIL",
+          "source": "SOURCE",
+          "date": "DATE",
+          "status": "STATUS",
+          "actions": "ACTIONS"
+        },
+        "actions": {
+          "view-details": "VIEW DETAILS",
+          "acknowledge": "ACKNOWLEDGE"
+        },
+        "status": {
+          "open": "Open",
+          "resolved": "Resolved",
+          "acknowledged": "Acknowledged"
+        },
+        "footer": "Showing {first} to {last} of {total} active alerts"
+      },
+      "dialog": {
+        "header": "Alert Details",
+        "meta": {
+          "source": "Source",
+          "date": "Date",
+          "sensor-id": "Sensor ID"
+        },
+        "actions": {
+          "close": "Close",
+          "acknowledge": "Acknowledge"
+        }
+      }
+    }
+  },
+  "tables": {
+    "title": "Tables",
+    "id": "ID",
+    "number": "Number",
+    "capacity": "Capacity",
+    "location": "Location",
+    "state": "State",
+    "active": "Active",
+    "kitchenOrderCurrentId": "Kitchen Order Current ID"
+  },
+  "dishes": {
+    "title": "Dishes",
+    "id": "ID",
+    "code": "Code",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "outstanding": "Outstanding",
+    "categoryId": "Category ID",
+    "categoryName": "Category Name"
+  },
+  "dishesCategories": {
+    "title": "Dishes Categories",
+    "id": "ID",
+    "name": "Name",
+    "order": "Order",
+    "active": "Active"
+  },
+  "kitchenOrders": {
+    "title": "Kitchen Orders",
+    "id": "ID",
+    "number": "Number",
+    "tableId": "Table ID",
+    "tableNumber": "Table Number",
+    "typeService": "Type Service",
+    "state": "State",
+    "observations": "Observations",
+    "userId": "User ID",
+    "dateCreated": "Date Created",
+    "hourReady": "Hour Ready",
+    "hourDelivered": "Hour Delivered",
+    "preparationTime": "Preparation Time"
+  },
+  "kitchenOrderItems": {
+    "title": "Kitchen Order Items",
+    "id": "ID",
+    "kitchenOrderId": "Kitchen Order ID",
+    "dishId": "Dish ID",
+    "dishName": "Dish Name",
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "totalPrice": "Total Price",
+    "state": "State",
+    "observations": "Observations"
+  },
+  "kitchenLocks": {
+    "title": "Kitchen Locks",
+    "id": "ID",
+    "restaurantId": "Restaurant ID",
+    "stateLocked": "State Locked",
+    "hashPassword": "Hash Password",
+    "lastLocked": "Last Locked",
+    "lastUnlocked": "Last Unlocked",
+    "failedAttempts": "Failed Attempts",
+    "lockedUntil": "Locked Until"
+  },
+  "supplyAndPurchasing": {
+    "dashboard": {
+      "pendingOrders": {
+        "label": "Pending Orders"
+      }
+    }
+  },
+  "restaurantManagement": {
+    "dishMenuPage": {
+      "kicker": "Menu",
+      "title": "Dish Menu",
+      "description": "Browse all available dishes. Click on a dish to add it to a new order.",
+      "searchPlaceholder": "Search dishes...",
+      "addToOrder": "Add to Order",
+      "price": "Price",
+      "outstanding": "Featured",
+      "noDishes": "No dishes available",
+      "category": "Category",
+      "categories": {
+        "rice": "Rice",
+        "noodles": "Noodles",
+        "soups": "Soups",
+        "special_dishes": "Special Dishes",
+        "desserts": "Desserts",
+        "drinks": "Drinks"
+      }
+    },
+    "createKitchenOrderPage": {
+      "kicker": "New Order",
+      "title": "Create Kitchen Order",
+      "description": "Create a new kitchen order for table service or to take home.",
+      "tableSelection": "Table Selection",
+      "serviceType": "Service Type",
+      "tableService": "Table Service",
+      "toTakeHome": "To Take Home",
+      "selectTable": "Select a table",
+      "table": "Table",
+      "dishes": "Dishes",
+      "selectedDishes": "Selected Dishes",
+      "observations": "Observations",
+      "observationsPlaceholder": "Any special instructions...",
+      "totalItems": "Total Items",
+      "totalAmount": "Total Amount",
+      "createOrder": "Create Order",
+      "noItems": "No dishes added yet",
+      "addDishes": "Add from Menu",
+      "quantity": "Qty",
+      "item": "Item",
+      "unitPrice": "Price",
+      "freeTables": "Free Tables",
+      "back": "Back to Kitchen Tickets",
+      "updateOrder": "Update Order"
+    },
+    "kitchenTicketsPage": {
+      "kicker": "Kitchen",
+      "title": "Kitchen Tickets",
+      "description": "Manage kitchen orders and update their status.",
+      "pending": "Pending",
+      "inPreparation": "In Preparation",
+      "ready": "Ready",
+      "delivered": "Delivered",
+      "cancelled": "Cancelled",
+      "allOrders": "All Orders",
+      "markInPreparation": "Start Preparing",
+      "markReady": "Mark as Ready",
+      "markDelivered": "Mark as Delivered",
+      "cancel": "Cancel",
+      "newTicket": "New Ticket",
+      "noOrders": "No orders in this status",
+      "orderNumber": "Order",
+      "tableNumber": "Table",
+      "typeService": "Service",
+      "items": "Items",
+      "observations": "Obs",
+      "dateCreated": "Created",
+      "edit": "Edit",
+      "delete": "Delete",
+      "confirmDelete": "Are you sure you want to delete this order?"
+    },
+    "tablesAndOccupancyPage": {
+      "kicker": "Tables",
+      "title": "Tables and Occupancy",
+      "description": "View the occupancy status of all tables in the restaurant.",
+      "free": "Available",
+      "occupied": "Busy",
+      "all": "All",
+      "capacity": "Capacity",
+      "location": "Location",
+      "tableNumber": "Table",
+      "state": "Status",
+      "noTables": "No tables available",
+      "totalTables": "Total Tables",
+      "freeTables": "Available",
+      "occupiedTables": "Busy",
+      "searchPlaceholder": "Search tables by number or location...",
+      "allLocations": "All Locations",
+      "addTable": "Add Table",
+      "confirmAddTable": "Add",
+      "cancel": "Cancel",
+      "locations": {
+        "main_hall": "Main Hall",
+        "terrace": "Terrace",
+        "bar": "Bar"
+      },
+      "viewDetails": "View details",
+      "tableDetails": "Table Details",
+      "deleteTable": "Delete Table",
+      "close": "Close",
+      "people": "people"
+    },
+    "shared": {
+      "status": {
+        "pending": "Pending",
+        "in_preparation": "In Preparation",
+        "ready": "Ready",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      },
+      "serviceType": {
+        "table_service": "Table Service",
+        "to_take_home": "To Take Home"
+      }
+    },
+    "dashboard": {
+      "kitchenTickets": {
+        "title": "Kitchen Tickets",
+        "seeAll": "See All Kitchen Tickets"
+      },
+      "activeCommands": {
+        "label": "Kitchen Commands"
+      }
+    },
+    "reportsPage": {
+      "kicker": "Restaurant",
+      "title": "Reports",
+      "description": "Inventory evolution, consumption, supplier orders, demand, and thermal events.",
+      "actions": {
+        "exportCsv": "Export CSV",
+        "exportPdf": "Export PDF"
+      },
+      "charts": {
+        "inventoryTitle": "Inventory evolution",
+        "consumptionTitle": "Consumption by period",
+        "ordersTitle": "Orders by supplier",
+        "tempTitle": "Temperature incidents",
+        "summary": "Text summary:",
+        "summaryDesc": "Text summary for the chart: {from} -> {to}",
+        "summaryValue": "Text summary for the chart: {value}",
+        "month": "Month"
+      }
+    }
+  },
+  "historyStateKitchenOrders": {
+    "title": "History State Kitchen Orders",
+    "id": "ID",
+    "kitchenOrderId": "Kitchen Order ID",
+    "previousState": "Previous State",
+    "newState": "New State",
+    "dateChange": "Date Change",
+    "observation": "Observation"
+  },
+  "header": {
+    "settings": "Settings",
+    "logout": "Log Out",
+    "help": "Help",
+    "adminProfile": "Admin Profile"
   }
 }

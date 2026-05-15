@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { DeliveryRoute } from '../domain/model/delivery-route.entity';
-import { DeliveryRouteResource, DeliveryRoutesResponse } from './supplier-management-response';
+import { DeliveryRouteResource, DeliveryRoutesResponse } from './delivery-routes-response';
 
-export class DeliveryRouteAssembler extends BaseAssembler<DeliveryRoute, DeliveryRouteResource, DeliveryRoutesResponse> {
+export class DeliveryRouteAssembler implements BaseAssembler<DeliveryRoute, DeliveryRouteResource, DeliveryRoutesResponse> {
   toEntityFromResource(resource: DeliveryRouteResource): DeliveryRoute {
     return new DeliveryRoute({
       id: resource.id ?? null,

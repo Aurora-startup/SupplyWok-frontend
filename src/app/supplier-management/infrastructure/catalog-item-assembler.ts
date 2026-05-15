@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { CatalogItem } from '../domain/model/catalog-item.entity';
-import { CatalogItemResource, CatalogItemsResponse } from './supplier-management-response';
+import { CatalogItemResource, CatalogItemsResponse } from './catalog-items-response';
 
-export class CatalogItemAssembler extends BaseAssembler<CatalogItem, CatalogItemResource, CatalogItemsResponse> {
+export class CatalogItemAssembler implements BaseAssembler<CatalogItem, CatalogItemResource, CatalogItemsResponse> {
   toEntityFromResource(resource: CatalogItemResource): CatalogItem {
     return new CatalogItem({
       id: resource.id ?? null,

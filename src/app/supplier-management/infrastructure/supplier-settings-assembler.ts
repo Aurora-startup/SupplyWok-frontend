@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { SupplierSettings } from '../domain/model/supplier-settings.entity';
-import { SupplierSettingsResource, SupplierSettingsResponse } from './supplier-management-response';
+import { SupplierSettingsResource, SupplierSettingsResponse } from './supplier-settings-response';
 
-export class SupplierSettingsAssembler extends BaseAssembler<SupplierSettings, SupplierSettingsResource, SupplierSettingsResponse> {
+export class SupplierSettingsAssembler implements BaseAssembler<SupplierSettings, SupplierSettingsResource, SupplierSettingsResponse> {
   toEntityFromResource(resource: SupplierSettingsResource): SupplierSettings {
     return new SupplierSettings({
       id: resource.id ?? null,

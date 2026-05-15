@@ -34,7 +34,7 @@ export class SupplierManagementApi extends BaseApi {
   private readonly supplierSubscriptionsEndpoint: SupplierSubscriptionsApiEndpoint;
 
   constructor(http: HttpClient) {
-    super(http);
+    super();
     this.ordersEndpoint = new OrdersApiEndpoint(http);
     this.catalogItemsEndpoint = new CatalogItemsApiEndpoint(http);
     this.clientsEndpoint = new ClientsApiEndpoint(http);

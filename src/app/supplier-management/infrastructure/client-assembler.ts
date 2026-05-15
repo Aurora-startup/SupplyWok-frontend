@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Client } from '../domain/model/client.entity';
-import { ClientResource, ClientsResponse } from './supplier-management-response';
+import { ClientResource, ClientsResponse } from './clients-response';
 
-export class ClientAssembler extends BaseAssembler<Client, ClientResource, ClientsResponse> {
+export class ClientAssembler implements BaseAssembler<Client, ClientResource, ClientsResponse> {
   toEntityFromResource(resource: ClientResource): Client {
     return new Client({
       id: resource.id ?? null,

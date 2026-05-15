@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { BaseApiEndpoint } from '../../shared/infrastructure/base-api-endpoint';
 import { Order } from '../domain/model/order.entity';
 import { OrderAssembler } from './order-assembler';
-import { OrderResource, OrdersResponse } from './supplier-management-response';
+import { OrderResource, OrdersResponse } from './orders-response';
 
 export class OrdersApiEndpoint extends BaseApiEndpoint<Order, OrderResource, OrdersResponse, OrderAssembler> {
   constructor(http: HttpClient) {

@@ -2,19 +2,19 @@
   <header class="settings-page__header">
     <p>{{ 'supplier-management.settings.breadcrumb' | translate }}</p>
     <h1>{{ 'supplier-management.settings.title' | translate }}</h1>
-    <span>{{ 'supplier-management.settings.subtitle' | translate }}</span>
+    <p class="settings-page__subtitle">{{ 'supplier-management.settings.subtitle' | translate }}</p>
   </header>
 
   <section class="settings-page__grid">
     <p-card styleClass="settings-page__card">
-      <ng-template pTemplate="title">{{ 'supplier-management.settings.profile.title' | translate }}</ng-template>
+      <h2 class="settings-page__card-title">{{ 'supplier-management.settings.profile.title' | translate }}</h2>
       <form class="settings-page__form" (ngSubmit)="save()">
         <label>
-          <span>{{ 'supplier-management.settings.profile.supplier-name' | translate }}</span>
+          <span class="settings-page__field-label">{{ 'supplier-management.settings.profile.supplier-name' | translate }}</span>
           <input pInputText name="supplierName" [(ngModel)]="formModel.supplierName">
         </label>
         <label>
-          <span>{{ 'supplier-management.settings.profile.support-contact' | translate }}</span>
+          <span class="settings-page__field-label">{{ 'supplier-management.settings.profile.support-contact' | translate }}</span>
           <input pInputText name="supportContact" [(ngModel)]="formModel.supportContact">
         </label>
 
@@ -35,7 +35,7 @@
     </p-card>
 
     <p-card styleClass="settings-page__card">
-      <ng-template pTemplate="title">{{ 'supplier-management.settings.zones.title' | translate }}</ng-template>
+      <h2 class="settings-page__card-title">{{ 'supplier-management.settings.zones.title' | translate }}</h2>
       <div class="settings-page__zone-chip-list">
         @for (zone of formModel.serviceZones; track zone) {
           <button type="button" class="settings-page__zone-chip" (click)="removeZone(zone)">
@@ -52,7 +52,7 @@
         @for (contact of formModel.contacts; track contact.name) {
           <li>
             <strong>{{ contact.name }}</strong>
-            <p-tag [value]="contact.state" severity="info" />
+            <span class="settings-page__status-badge">Active</span>
           </li>
         }
       </ul>

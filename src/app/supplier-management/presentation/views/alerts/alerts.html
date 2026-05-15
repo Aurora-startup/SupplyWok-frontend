@@ -2,7 +2,7 @@
   <header class="alerts-page__header">
     <p>{{ 'supplier-management.alerts.breadcrumb' | translate }}</p>
     <h1>{{ 'supplier-management.alerts.title' | translate }}</h1>
-    <span>{{ 'supplier-management.alerts.description' | translate }}</span>
+    <p class="alerts-page__subtitle">{{ 'supplier-management.alerts.description' | translate }}</p>
   </header>
 
   <section class="alerts-page__filters">
@@ -19,27 +19,44 @@
     </label>
   </section>
 
-  <p-table [value]="filteredAlerts" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="p-datatable-sm">
+  <section class="alerts-page__table-shell">
+  <p-table [value]="filteredAlerts" [paginator]="true" [rows]="4" responsiveLayout="scroll" styleClass="alerts-page__table">
     <ng-template pTemplate="header">
       <tr>
-        <th>{{ 'supplier-management.alerts.table.columns.severity' | translate }}</th>
+        <th>{{ 'supplier-management.alerts.table.columns.severity' | translate }} <span class="alerts-page__sort">↑↓</span></th>
         <th>{{ 'supplier-management.alerts.table.columns.detail' | translate }}</th>
-        <th>{{ 'supplier-management.alerts.table.columns.date' | translate }}</th>
-        <th>{{ 'supplier-management.alerts.table.columns.status' | translate }}</th>
+        <th>{{ 'supplier-management.alerts.table.columns.date' | translate }} <span class="alerts-page__sort">↑↓</span></th>
+        <th>{{ 'supplier-management.alerts.table.columns.status' | translate }} <span class="alerts-page__sort">↑↓</span></th>
         <th>{{ 'supplier-management.alerts.table.columns.actions' | translate }}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-alert>
       <tr>
-        <td><p-tag [value]="'supplier-management.alerts.severity.' + alert.severity | translate" [severity]="getSeverity(alert.severity)" /></td>
-        <td>{{ alert.detail }}</td>
-        <td>{{ alert.date }}</td>
-        <td><p-tag [value]="alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate)" [severity]="alert.status === 'acknowledged' ? 'success' : 'warn'" /></td>
+        <td>
+          <div class="alerts-page__severity-cell">
+            <span class="alerts-page__severity-dot" [ngClass]="'alerts-page__severity-dot--' + alert.severity"></span>
+            <span>{{ 'supplier-management.alerts.severity.' + alert.severity | translate }}</span>
+          </div>
+        </td>
+        <td class="alerts-page__detail">{{ alert.detail }}</td>
+        <td>{{ formatAlertDate(alert.date) }}</td>
+        <td>
+          <span
+            class="alerts-page__status-badge"
+            [ngClass]="alert.status === 'acknowledged' ? 'alerts-page__status-badge--ack' : 'alerts-page__status-badge--open'"
+          >
+            {{ alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate) }}
+          </span>
+        </td>
         <td>
           <div class="alerts-page__actions">
-            <p-button outlined size="small" [label]="'supplier-management.alerts.table.actions.view-details' | translate" (onClick)="openDetails(alert)" />
+            <button type="button" class="alerts-page__action-link" (click)="openDetails(alert)">
+              {{ 'supplier-management.alerts.table.actions.view-details' | translate }}
+            </button>
             @if (alert.status !== 'acknowledged') {
-              <p-button text size="small" [label]="'supplier-management.alerts.table.actions.acknowledge' | translate" (onClick)="acknowledge(alert)" />
+              <button type="button" class="alerts-page__action-link" (click)="acknowledge(alert)">
+                {{ 'supplier-management.alerts.table.actions.acknowledge' | translate }}
+              </button>
             }
           </div>
         </td>
@@ -49,34 +66,51 @@
       <tr><td colspan="5">{{ 'supplier-management.alerts.empty' | translate }}</td></tr>
     </ng-template>
   </p-table>
+  </section>
 
   <p-dialog
     [visible]="!!selectedAlert()"
     [modal]="true"
     [dismissableMask]="true"
-    [header]="'supplier-management.alerts.dialog.header' | translate"
     styleClass="alerts-dialog"
     (onHide)="closeDetails()"
   >
     @if (selectedAlert(); as alert) {
       <div class="alerts-dialog__body">
-        <p-tag [value]="'supplier-management.alerts.severity.' + alert.severity | translate" [severity]="getSeverity(alert.severity)" />
-        <p>{{ alert.detail }}</p>
-        <dl>
-          <div>
-            <dt>{{ 'supplier-management.alerts.dialog.meta.date' | translate }}</dt>
-            <dd>{{ alert.date }}</dd>
+        <div class="alerts-dialog__topbar">
+          <h3>{{ 'supplier-management.alerts.dialog.header' | translate }}</h3>
+          <button type="button" class="alerts-dialog__close" (click)="closeDetails()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+
+        <div class="alerts-dialog__severity-row">
+          <span class="alerts-dialog__severity">{{ 'supplier-management.alerts.severity.' + alert.severity | translate }}</span>
+          <span
+            class="alerts-page__status-badge"
+            [ngClass]="alert.status === 'acknowledged' ? 'alerts-page__status-badge--ack' : 'alerts-page__status-badge--open'"
+          >
+            {{ alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate) }}
+          </span>
+        </div>
+
+        <p class="alerts-dialog__detail">{{ alert.detail }}</p>
+
+        <div class="alerts-dialog__meta">
+          <div class="alerts-dialog__meta-row">
+            <dt>{{ 'supplier-management.alerts.dialog.meta.date' | translate }}:</dt>
+            <dd>{{ formatAlertDate(alert.date) }}</dd>
           </div>
-          <div>
-            <dt>{{ 'supplier-management.alerts.dialog.meta.status' | translate }}</dt>
-            <dd>{{ alert.status }}</dd>
+          <div class="alerts-dialog__meta-row">
+            <dt>{{ 'supplier-management.alerts.dialog.meta.status' | translate }}:</dt>
+            <dd>{{ alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate) }}</dd>
           </div>
-        </dl>
+        </div>
       </div>
       <div class="alerts-dialog__actions">
-        <p-button text [label]="'supplier-management.alerts.dialog.actions.close' | translate" (onClick)="closeDetails()" />
+        <p-button text [label]="'supplier-management.alerts.dialog.actions.close' | translate" (onClick)="closeDetails()" styleClass="alerts-dialog__close-btn" />
         @if (alert.status !== 'acknowledged') {
-          <p-button [label]="'supplier-management.alerts.dialog.actions.acknowledge' | translate" (onClick)="acknowledge(alert)" />
+          <p-button [label]="'supplier-management.alerts.dialog.actions.acknowledge' | translate" (onClick)="acknowledge(alert)" styleClass="alerts-dialog__ack-btn" />
         }
       </div>
     }

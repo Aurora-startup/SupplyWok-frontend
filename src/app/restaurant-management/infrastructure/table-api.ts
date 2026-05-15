@@ -12,7 +12,7 @@ export class TableApi extends BaseApi {
   private readonly tablesEndpoint: TableApiEndpoint;
 
   constructor(http: HttpClient) {
-    super(http);
+    super();
     this.tablesEndpoint = new TableApiEndpoint(http);
   }
 

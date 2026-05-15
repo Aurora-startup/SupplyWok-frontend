@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { BaseApiEndpoint } from '../../shared/infrastructure/base-api-endpoint';
 import { SupplierAlert } from '../domain/model/supplier-alert.entity';
 import { SupplierAlertAssembler } from './supplier-alert-assembler';
-import { SupplierAlertResource, SupplierAlertsResponse } from './supplier-management-response';
+import { SupplierAlertResource, SupplierAlertsResponse } from './supplier-alerts-response';
 
 export class SupplierAlertsApiEndpoint extends BaseApiEndpoint<SupplierAlert, SupplierAlertResource, SupplierAlertsResponse, SupplierAlertAssembler> {
   constructor(http: HttpClient) {

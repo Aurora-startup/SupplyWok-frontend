@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { SupplierAlert } from '../domain/model/supplier-alert.entity';
-import { SupplierAlertResource, SupplierAlertsResponse } from './supplier-management-response';
+import { SupplierAlertResource, SupplierAlertsResponse } from './supplier-alerts-response';
 
-export class SupplierAlertAssembler extends BaseAssembler<SupplierAlert, SupplierAlertResource, SupplierAlertsResponse> {
+export class SupplierAlertAssembler implements BaseAssembler<SupplierAlert, SupplierAlertResource, SupplierAlertsResponse> {
   toEntityFromResource(resource: SupplierAlertResource): SupplierAlert {
     return new SupplierAlert({
       id: resource.id ?? null,

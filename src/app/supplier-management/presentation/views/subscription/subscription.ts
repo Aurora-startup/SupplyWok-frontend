@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, inject } from '@angular/core';
-import { TranslateModule } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { TagModule } from 'primeng/tag';
@@ -14,7 +14,7 @@ interface PlanCapacity {
 }
 
 interface SubscriptionMetricCard {
-  label: string;
+  labelKey: string;
   value: string | number;
 }
 
@@ -26,6 +26,7 @@ interface SubscriptionMetricCard {
 })
 export class Subscription implements OnInit {
   readonly store = inject(SupplierManagementStore);
+  readonly translate = inject(TranslateService);
   readonly subscription = computed(() => this.store.supplierSubscription());
   readonly activePlan = computed(() => this.subscription().plans.find((plan) => plan.isActive));
   readonly availablePlans = computed(() => this.subscription().plans.filter((plan) => !plan.isActive));
@@ -34,10 +35,13 @@ export class Subscription implements OnInit {
     const capacity = this.getPlanCapacity(activePlan);
 
     return [
-      { label: 'CURRENT PLAN', value: activePlan?.name ?? 'Enterprise' },
-      { label: 'USERS', value: capacity.users },
-      { label: 'LOCATIONS', value: capacity.locations },
-      { label: 'SENSORS', value: capacity.sensors }
+      {
+        labelKey: 'shared.subscriptionPage.summary.currentPlan',
+        value: activePlan?.name ?? this.subscription().currentPlan ?? 'Enterprise'
+      },
+      { labelKey: 'shared.subscriptionPage.summary.users', value: capacity.users },
+      { labelKey: 'shared.subscriptionPage.summary.locations', value: capacity.locations },
+      { labelKey: 'shared.subscriptionPage.summary.sensors', value: capacity.sensors }
     ];
   });
 
@@ -53,8 +57,15 @@ export class Subscription implements OnInit {
     return { users: 20, locations: 4, sensors: 40 };
   }
 
-  getPlanCapacitySummary(plan: SupplierSubscriptionPlan): string {
-    const capacity = this.getPlanCapacity(plan);
-    return `${capacity.users} users  ${capacity.locations} locations  ${capacity.sensors} sensors`;
+  getPlanName(plan: SupplierSubscriptionPlan): string {
+    const key = `supplier-management.subscription.plans.${plan.id}.name`;
+    const translated = this.translate.instant(key);
+    return translated !== key ? translated : plan.name;
+  }
+
+  getPlanFeatures(plan: SupplierSubscriptionPlan): string[] {
+    const key = `shared.subscriptionPage.plans.${plan.id}.features`;
+    const translated = this.translate.instant(key);
+    return Array.isArray(translated) && translated.length ? translated : plan.features;
   }
 }

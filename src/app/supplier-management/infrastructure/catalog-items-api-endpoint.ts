@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { BaseApiEndpoint } from '../../shared/infrastructure/base-api-endpoint';
 import { CatalogItem } from '../domain/model/catalog-item.entity';
 import { CatalogItemAssembler } from './catalog-item-assembler';
-import { CatalogItemResource, CatalogItemsResponse } from './supplier-management-response';
+import { CatalogItemResource, CatalogItemsResponse } from './catalog-items-response';
 
 export class CatalogItemsApiEndpoint extends BaseApiEndpoint<CatalogItem, CatalogItemResource, CatalogItemsResponse, CatalogItemAssembler> {
   constructor(http: HttpClient) {

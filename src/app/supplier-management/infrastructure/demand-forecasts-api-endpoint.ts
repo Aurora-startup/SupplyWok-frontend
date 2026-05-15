@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { BaseApiEndpoint } from '../../shared/infrastructure/base-api-endpoint';
 import { DemandForecast } from '../domain/model/demand-forecast.entity';
 import { DemandForecastAssembler } from './demand-forecast-assembler';
-import { DemandForecastResource, DemandForecastsResponse } from './supplier-management-response';
+import { DemandForecastResource, DemandForecastsResponse } from './demand-forecasts-response';
 
 export class DemandForecastsApiEndpoint extends BaseApiEndpoint<DemandForecast, DemandForecastResource, DemandForecastsResponse, DemandForecastAssembler> {
   constructor(http: HttpClient) {

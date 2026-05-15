@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Order, SupplierOrderItem } from '../domain/model/order.entity';
-import { OrderResource, OrdersResponse, SupplierOrderItemResource } from './supplier-management-response';
+import { OrderResource, OrdersResponse, SupplierOrderItemResource } from './orders-response';
 
-export class OrderAssembler extends BaseAssembler<Order, OrderResource, OrdersResponse> {
+export class OrderAssembler implements BaseAssembler<Order, OrderResource, OrdersResponse> {
   toEntityFromResource(resource: OrderResource): Order {
     return new Order({
       id: resource.id ?? null,

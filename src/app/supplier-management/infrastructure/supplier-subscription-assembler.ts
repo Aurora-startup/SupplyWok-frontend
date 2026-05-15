@@ -1,8 +1,8 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { SupplierSubscription } from '../domain/model/supplier-subscription.entity';
-import { SupplierSubscriptionResource, SupplierSubscriptionsResponse } from './supplier-management-response';
+import { SupplierSubscriptionResource, SupplierSubscriptionsResponse } from './supplier-subscriptions-response';
 
-export class SupplierSubscriptionAssembler extends BaseAssembler<SupplierSubscription, SupplierSubscriptionResource, SupplierSubscriptionsResponse> {
+export class SupplierSubscriptionAssembler implements BaseAssembler<SupplierSubscription, SupplierSubscriptionResource, SupplierSubscriptionsResponse> {
   toEntityFromResource(resource: SupplierSubscriptionResource): SupplierSubscription {
     return new SupplierSubscription({
       id: resource.id ?? null,

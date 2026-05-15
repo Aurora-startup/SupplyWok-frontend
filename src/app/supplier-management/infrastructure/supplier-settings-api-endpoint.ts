@@ -3,7 +3,7 @@ import { environment } from '../../../environments/environment';
 import { BaseApiEndpoint } from '../../shared/infrastructure/base-api-endpoint';
 import { SupplierSettings } from '../domain/model/supplier-settings.entity';
 import { SupplierSettingsAssembler } from './supplier-settings-assembler';
-import { SupplierSettingsResource, SupplierSettingsResponse } from './supplier-management-response';
+import { SupplierSettingsResource, SupplierSettingsResponse } from './supplier-settings-response';
 
 export class SupplierSettingsApiEndpoint extends BaseApiEndpoint<SupplierSettings, SupplierSettingsResource, SupplierSettingsResponse, SupplierSettingsAssembler> {
   constructor(http: HttpClient) {

@@ -1,14 +1,16 @@
 <section class="subscription-page">
   <section class="subscription-page__hero">
     <p>{{ 'supplier-management.subscription.breadcrumb' | translate }}</p>
-    <h1>Available plans</h1>
-    <span>Compare capacity, operational scope, and benefits before moving the restaurant to a higher plan.</span>
+    <h1>{{ 'shared.subscriptionPage.title' | translate }}</h1>
+    <p class="subscription-page__hero-subtitle">
+      {{ 'shared.subscriptionPage.description' | translate }}
+    </p>
   </section>
 
   <section class="subscription-page__summary">
-    @for (item of metricCards(); track item.label) {
+    @for (item of metricCards(); track item.labelKey) {
       <article>
-        <span>{{ item.label }}</span>
+        <span>{{ item.labelKey | translate }}</span>
         <strong>{{ item.value }}</strong>
       </article>
     }
@@ -20,20 +22,24 @@
         <ng-template pTemplate="title">
           <div class="subscription-page__plan-headline">
             <div>
-              <small>AVAILABLE</small>
-              <span>{{ plan.name }}</span>
+              <small>{{ 'shared.subscriptionPage.plans.eyebrowAvailable' | translate }}</small>
+              <span>{{ getPlanName(plan) }}</span>
             </div>
             <strong class="subscription-page__price">{{ plan.price }}</strong>
           </div>
         </ng-template>
         <ul>
-          @for (feature of plan.features; track feature) {
+          @for (feature of getPlanFeatures(plan); track feature) {
             <li>{{ feature }}</li>
           }
         </ul>
-        <p class="subscription-page__capacity">{{ getPlanCapacitySummary(plan) }}</p>
+        <p class="subscription-page__capacity">
+          <span>{{ 'shared.subscriptionPage.plans.metaUsers' | translate : { count: getPlanCapacity(plan).users } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaLocations' | translate : { count: getPlanCapacity(plan).locations } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaSensors' | translate : { count: getPlanCapacity(plan).sensors } }}</span>
+        </p>
         <div class="subscription-page__plan-footer">
-          <p-button severity="danger" [label]="'Select plan'" />
+          <p-button severity="danger" [label]="'shared.subscriptionPage.plans.actionSelect' | translate" />
         </div>
       </p-card>
     }
@@ -43,20 +49,24 @@
         <ng-template pTemplate="title">
           <div class="subscription-page__plan-headline">
             <div>
-              <small>CURRENT PLAN</small>
-              <span>{{ plan.name }}</span>
+              <small>{{ 'shared.subscriptionPage.plans.eyebrowCurrent' | translate }}</small>
+              <span>{{ getPlanName(plan) }}</span>
             </div>
             <strong class="subscription-page__price">{{ plan.price }}</strong>
           </div>
         </ng-template>
         <ul>
-          @for (feature of plan.features; track feature) {
+          @for (feature of getPlanFeatures(plan); track feature) {
             <li>{{ feature }}</li>
           }
         </ul>
-        <p class="subscription-page__capacity">{{ getPlanCapacitySummary(plan) }}</p>
+        <p class="subscription-page__capacity">
+          <span>{{ 'shared.subscriptionPage.plans.metaUsers' | translate : { count: getPlanCapacity(plan).users } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaLocations' | translate : { count: getPlanCapacity(plan).locations } }}</span>
+          <span>{{ 'shared.subscriptionPage.plans.metaSensors' | translate : { count: getPlanCapacity(plan).sensors } }}</span>
+        </p>
         <div class="subscription-page__plan-footer">
-          <p-button [label]="'Current plan'" [disabled]="true" />
+          <p-button [label]="'shared.subscriptionPage.plans.actionCurrent' | translate" [disabled]="true" />
         </div>
       </p-card>
     }

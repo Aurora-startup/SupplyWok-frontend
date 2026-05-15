@@ -2,7 +2,7 @@ import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Table } from '../domain/model/table.entity';
 import { TableResource, TableResponse } from './table-response';
 
-export class TableAssembler extends BaseAssembler<Table, TableResource, TableResponse> {
+export class TableAssembler implements BaseAssembler<Table, TableResource, TableResponse> {
 
   /**
    * Converts a TableResponse to an array of Table entities.
