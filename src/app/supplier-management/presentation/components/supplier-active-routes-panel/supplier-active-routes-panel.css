@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .routes-panel {
+  min-height: 388px;
+  border: 1px solid #efe4d4;
+  border-radius: 8px;
+  background: #fffdf9;
+  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+}
+
+:host ::ng-deep .routes-panel .p-card-body {
+  padding: 0;
+}
+
+.routes-panel__header {
+  border-bottom: 1px solid #ece5dc;
+  padding: 12px 18px;
+}
+
+.routes-panel__header h2 {
+  margin: 0;
+  color: #4b5768;
+  font-size: 18px;
+}
+
+.routes-panel__list {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.routes-panel__item {
+  border: 1px solid #f0ebe3;
+  border-radius: 8px;
+  padding: 12px;
+  background: #ffffff;
+}
+
+.routes-panel__item-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.routes-panel__item p {
+  margin: 8px 0 0;
+  color: #6f665d;
+  font-size: 14px;
+}
+
+.routes-panel__item small {
+  display: block;
+  margin-top: 14px;
+  color: #998f83;
+}
+
+.routes-panel__empty {
+  margin: 0;
+  padding: 22px 18px;
+  color: #6f665d;
+}
