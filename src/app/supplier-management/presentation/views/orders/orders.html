@@ -1,0 +1,108 @@
+<section class="orders-page">
+  <header class="orders-page__header">
+    <p>{{ 'supplier-management.orders.breadcrumb' | translate }}</p>
+    <h1>{{ 'supplier-management.orders.title' | translate }}</h1>
+    <span>{{ 'supplier-management.orders.subtitle' | translate }}</span>
+  </header>
+
+  <section class="orders-page__stats">
+    <article><span>{{ 'supplier-management.orders.stats.total' | translate }}</span><strong>{{ store.ordersCount() }}</strong></article>
+    <article><span>{{ 'supplier-management.orders.stats.pending' | translate }}</span><strong>{{ store.pendingOrdersCount() }}</strong></article>
+    <article><span>{{ 'supplier-management.orders.stats.in-transit' | translate }}</span><strong>{{ store.inTransitOrdersCount() }}</strong></article>
+    <article><span>{{ 'supplier-management.orders.stats.delivered' | translate }}</span><strong>{{ store.deliveredOrdersCount() }}</strong></article>
+  </section>
+
+  <section class="orders-page__filters">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input pInputText type="search" [(ngModel)]="searchQuery" [placeholder]="'supplier-management.orders.search' | translate">
+    </span>
+    <p-select [options]="statusOptions()" optionLabel="label" optionValue="value" [(ngModel)]="statusFilter" />
+  </section>
+
+  <p-table [value]="filteredOrders" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="p-datatable-sm">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ 'supplier-management.orders.columns.code' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.restaurant' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.order-date' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.delivery-date' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.priority' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.status' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.items' | translate }}</th>
+        <th>{{ 'supplier-management.orders.columns.actions' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-order>
+      <tr>
+        <td>{{ order.code }}</td>
+        <td>{{ order.restaurantName }}</td>
+        <td>{{ order.orderDate }}</td>
+        <td>{{ order.estimatedDate }}</td>
+        <td>{{ order.priority }}</td>
+        <td><p-tag [value]="order.status" [severity]="getStatusSeverity(order.status)" /></td>
+        <td>{{ order.items.length }}</td>
+        <td>
+          <div class="orders-page__actions">
+            @if (order.status === 'Pending') {
+              <p-button text size="small" [label]="'supplier-management.orders.actions.confirm' | translate" (onClick)="updateStatus(order, 'Confirmed')" />
+            }
+            @if (order.status === 'Confirmed') {
+              <p-button text size="small" [label]="'supplier-management.orders.actions.mark-in-transit' | translate" (onClick)="updateStatus(order, 'In Transit')" />
+            }
+            @if (order.status === 'In Transit') {
+              <p-button text size="small" [label]="'supplier-management.orders.actions.mark-delivered' | translate" (onClick)="updateStatus(order, 'Delivered')" />
+            }
+            <p-button outlined size="small" [label]="'supplier-management.orders.actions.view' | translate" (onClick)="openDetails(order)" />
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr><td colspan="8">{{ 'supplier-management.orders.empty' | translate }}</td></tr>
+    </ng-template>
+  </p-table>
+
+  <p class="orders-page__count">
+    {{ 'supplier-management.orders.visible-count' | translate: { visible: filteredOrders.length, total: store.ordersCount() } }}
+  </p>
+
+  <p-dialog
+    [visible]="!!selectedOrder()"
+    [modal]="true"
+    [dismissableMask]="true"
+    [header]="'supplier-management.orders.details.title' | translate"
+    styleClass="orders-dialog"
+    (onHide)="closeDetails()"
+  >
+    @if (selectedOrder(); as order) {
+      <section class="orders-dialog__meta">
+        <span>{{ 'supplier-management.orders.details.order-date' | translate }} <strong>{{ order.orderDate }}</strong></span>
+        <span>{{ 'supplier-management.orders.details.delivery-date' | translate }} <strong>{{ order.estimatedDate }}</strong></span>
+        <span>{{ 'supplier-management.orders.details.priority' | translate }} <strong>{{ order.priority }}</strong></span>
+        <span>{{ 'supplier-management.orders.details.supplier' | translate }} <strong>{{ order.supplierName }}</strong></span>
+      </section>
+      <p-table [value]="order.items" responsiveLayout="scroll" styleClass="p-datatable-sm">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>{{ 'supplier-management.orders.details.columns.product' | translate }}</th>
+            <th>{{ 'supplier-management.orders.details.columns.quantity' | translate }}</th>
+            <th>{{ 'supplier-management.orders.details.columns.unit' | translate }}</th>
+            <th>{{ 'supplier-management.orders.details.columns.unit-price' | translate }}</th>
+            <th>{{ 'supplier-management.orders.details.columns.subtotal' | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>{{ item.unitType }}</td>
+            <td>{{ item.unitPrice | currency }}</td>
+            <td>{{ getItemSubtotal(item) | currency }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <strong class="orders-dialog__total">{{ getOrderTotal(order) | currency }}</strong>
+    }
+  </p-dialog>
+</section>
