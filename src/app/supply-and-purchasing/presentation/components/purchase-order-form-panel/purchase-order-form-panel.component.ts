@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -19,6 +19,16 @@ interface SupplierOption {
 })
 export class PurchaseOrderFormPanelComponent {
   protected readonly store = inject(PurchaseOrderStore);
+
+  constructor() {
+    effect(() => {
+      if (this.store.orderCreated()) {
+        this.orderLines = [];
+        this.resetDraftLine();
+        this.store.resetOrderCreated();
+      }
+    });
+  }
 
   protected readonly supplierOptions: SupplierOption[] = [
     { id: '201', name: 'Golden Wok Produce' },
@@ -88,7 +98,7 @@ export class PurchaseOrderFormPanelComponent {
     this.orderLines = this.orderLines.filter((_, itemIndex) => itemIndex !== index);
   }
 
-  protected async handleSubmit(): Promise<void> {
+  protected handleSubmit(): void {
     this.syncSupplierData();
 
     const items = [...this.orderLines];
@@ -110,13 +120,7 @@ export class PurchaseOrderFormPanelComponent {
       items
     });
 
-    const wasCreated = await this.store.addPurchaseOrder(purchaseOrder);
-    if (!wasCreated) {
-      return;
-    }
-
-    this.orderLines = [];
-    this.resetDraftLine();
+    this.store.addPurchaseOrder(purchaseOrder);
   }
 
   protected getFieldError(field: string): string {

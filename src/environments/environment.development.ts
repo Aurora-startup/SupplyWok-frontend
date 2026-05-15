@@ -10,4 +10,5 @@ export const environment = {
   platformProviderCategoriesEndpointPath: '/categories',
   platformProviderSuppliersEndpointPath: '/suppliers',
   platformProviderUnitsOfMeasureEndpointPath: '/unitsOfMeasure',
+  platformProviderUsersEndpointPath: '/supplywok/users'
 };

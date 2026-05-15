@@ -1,0 +1,73 @@
+.alerts-container {
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 64px);
+}
+
+.card {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Table Overrides */
+:host ::ng-deep .custom-table.p-datatable {
+  border: none;
+}
+
+:host ::ng-deep .custom-table .p-datatable-thead > tr > th {
+  background: #fdfdfd;
+  color: #6b7280;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+:host ::ng-deep .custom-table .p-datatable-tbody > tr {
+  background: #ffffff;
+  transition: background-color 0.2s;
+}
+
+:host ::ng-deep .custom-table .p-datatable-tbody > tr:hover {
+  background: #f9fafb !important;
+}
+
+:host ::ng-deep .custom-table .p-datatable-tbody > tr > td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+/* Paginator */
+:host ::ng-deep .p-paginator {
+  background: #ffffff !important;
+  border: none !important;
+  padding: 1rem !important;
+  border-top: 1px solid #f3f4f6 !important;
+}
+
+/* Dialog */
+:host ::ng-deep .custom-dialog .p-dialog-header {
+  border-bottom: 1px solid #f3f4f6;
+  padding: 1.5rem;
+  border-radius: 16px 16px 0 0;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-content {
+  padding: 1.5rem;
+}
+
+:host ::ng-deep .custom-dialog .p-dialog-footer {
+  border-top: 1px solid #f3f4f6;
+  padding: 1rem 1.5rem;
+  border-radius: 0 0 16px 16px;
+}
+
+/* Utils */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

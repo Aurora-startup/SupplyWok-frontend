@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InventoryManagementStore } from '../../../application/inventory-management-store';
@@ -59,6 +59,13 @@ export class InventoryItemForm {
   itemId: number | null = null;
 
   constructor() {
+    effect(() => {
+      if (this.store.itemSaved()) {
+        this.store.resetItemSaved();
+        this.router.navigate(['/inventory/inventoryItems']);
+      }
+    });
+
     this.route.params.subscribe((params) => {
       this.itemId = params['id'] ? +params['id'] : null;
 
@@ -105,7 +112,5 @@ export class InventoryItemForm {
     } else {
       this.store.addInventoryItem(inventoryItem);
     }
-
-    this.router.navigate(['inventory/inventoryItems']).then();
   }
 }

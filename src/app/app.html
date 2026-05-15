@@ -1,9 +1,13 @@
-<div class="layout">
-  <app-sidebar-menu></app-sidebar-menu>
-  <div class="main-wrapper">
-    <app-header-content></app-header-content>
-    <main class="layout-content">
-      <router-outlet></router-outlet>
-    </main>
+@if (iamStore.isAuthenticated()) {
+  <div class="layout">
+    <app-sidebar-menu></app-sidebar-menu>
+    <div class="main-wrapper">
+      <app-header-content></app-header-content>
+      <main class="layout-content">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
   </div>
-</div>
+} @else {
+  <router-outlet></router-outlet>
+}

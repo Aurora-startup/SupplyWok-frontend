@@ -1,0 +1,92 @@
+<div class="alerts-container" style="padding: 24px;">
+  <div class="card" style="background: #fff; padding: 24px; border-radius: 16px;">
+
+    <div style="margin-bottom: 8px;">
+      <span style="font-size: 0.8rem; font-weight: 600; color: #C21204; text-transform: uppercase; letter-spacing: 0.05em;">{{ 'iot.alerts-page.kicker' | translate }}</span>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+      <div>
+        <h2 style="margin: 0 0 4px 0; font-size: 1.5rem; font-weight: 700;">{{ 'iot.alerts-page.title' | translate }}</h2>
+        <p style="margin: 0; font-size: 0.875rem; color: #6b7280;">{{ 'iot.alerts-page.description' | translate }}</p>
+      </div>
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <span class="p-input-icon-left" style="position: relative; display: inline-flex; align-items: center;">
+          <i class="pi pi-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af; z-index: 1;"></i>
+          <input pInputText type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" [placeholder]="'iot.alerts-page.search-placeholder' | translate" style="padding-left: 36px;" />
+        </span>
+        <p-select [options]="severities" [ngModel]="selectedSeverity()" (ngModelChange)="selectedSeverity.set($event)" optionLabel="label" optionValue="value" [placeholder]="'iot.alerts-page.severity-placeholder' | translate" />
+      </div>
+    </div>
+
+    <p-table [value]="filteredAlerts()" [paginator]="true" [rows]="8" styleClass="custom-table" [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ 'iot.alerts-page.table.columns.severity' | translate }}</th>
+          <th>{{ 'iot.alerts-page.table.columns.detail' | translate }}</th>
+          <th>{{ 'iot.alerts-page.table.columns.source' | translate }}</th>
+          <th>{{ 'iot.alerts-page.table.columns.date' | translate }}</th>
+          <th>{{ 'iot.alerts-page.table.columns.status' | translate }}</th>
+          <th>{{ 'iot.alerts-page.table.columns.actions' | translate }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-alert>
+        <tr>
+          <td>
+            <p-tag [value]="alert.severity" [severity]="getSeveritySeverity(alert.severity)" />
+          </td>
+          <td>
+            <span class="line-clamp-1">{{ alert.title | translate: alert.messageParams }}</span>
+          </td>
+          <td>{{ alert.source }}</td>
+          <td>{{ alert.timestamp | date: 'short' }}</td>
+          <td>
+            <p-tag [value]="alert.status" [severity]="getStatusSeverity(alert.status)" />
+          </td>
+          <td style="display: flex; gap: 4px;">
+            <p-button icon="pi pi-eye" [rounded]="true" [text]="true" [pTooltip]="'iot.alerts-page.table.actions.view-details' | translate" (onClick)="showDetails(alert)" />
+            <p-button *ngIf="alert.status === 'Open'" icon="pi pi-check" [rounded]="true" [text]="true" severity="success" [pTooltip]="'iot.alerts-page.table.actions.acknowledge' | translate" (onClick)="acknowledgeAlert(alert)" />
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6" style="text-align: center; padding: 2rem;">
+            {{ 'iot.alerts.no-active-alerts' | translate }}
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+  <p-dialog [(visible)]="displayDialog" [modal]="true" [style]="{width: '500px'}" styleClass="custom-dialog" [header]="'iot.alerts-page.dialog.header' | translate">
+    <div *ngIf="selectedAlert" style="display: flex; flex-direction: column; gap: 16px;">
+      <div>
+        <span style="font-weight: 600;">{{ selectedAlert.title | translate: selectedAlert.messageParams }}</span>
+      </div>
+      <div style="color: #6b7280;">
+        {{ selectedAlert.message | translate: selectedAlert.messageParams }}
+      </div>
+      <div style="display: flex; gap: 16px;">
+        <p-tag [value]="selectedAlert.severity" [severity]="getSeveritySeverity(selectedAlert.severity)" />
+        <p-tag [value]="selectedAlert.status" [severity]="getStatusSeverity(selectedAlert.status)" />
+      </div>
+      <div style="display: flex; gap: 24px; font-size: 0.875rem; color: #6b7280;">
+        <div>
+          <strong>{{ 'iot.alerts-page.dialog.meta.source' | translate }}:</strong> {{ selectedAlert.source }}
+        </div>
+        <div>
+          <strong>{{ 'iot.alerts-page.dialog.meta.date' | translate }}:</strong> {{ selectedAlert.timestamp | date: 'medium' }}
+        </div>
+        <div>
+          <strong>{{ 'iot.alerts-page.dialog.meta.sensor-id' | translate }}:</strong> {{ selectedAlert.sensorId }}
+        </div>
+      </div>
+    </div>
+    <ng-template pTemplate="footer">
+      <div style="display: flex; gap: 8px; justify-content: flex-end;">
+        <p-button [label]="'iot.alerts-page.dialog.actions.close' | translate" [text]="true" (onClick)="displayDialog = false" />
+        <p-button *ngIf="selectedAlert && selectedAlert.status === 'Open'" [label]="'iot.alerts-page.dialog.actions.acknowledge' | translate" icon="pi pi-check" severity="success" (onClick)="acknowledgeSelected()" />
+      </div>
+    </ng-template>
+  </p-dialog>
+</div>

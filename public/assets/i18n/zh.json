@@ -2,21 +2,47 @@
   "welcome": "欢迎来到 SupplyWok",
   "access": {
     "log-in": {
-      "welcome": "欢迎",
+      "welcome": "欢迎！",
       "new-supply": "SupplyWok 新用户？",
       "sign-up-now": "立即注册",
-      "email": "电子邮件地址",
-      "email-example": "name@restaurant.com",
+      "email": "电子邮件",
+      "email-example": "example@email.com",
       "password": "密码",
-      "password-example": "请输入您的密码",
+      "password-example": "Password123",
       "forgot-password": "忘记密码？",
       "login": "登录"
+    },
+    "register": {
+      "get-started": "开始使用",
+      "phone": "电话号码",
+      "phone-example": "999 666 333",
+      "role": "角色",
+      "subscription": "订阅",
+      "select-one": "请选择",
+      "no-plans": "不了解我们的计划？",
+      "click-here": "点击这里",
+      "terms-accept": "我接受 {{terms}} 和 {{policy}}",
+      "terms": "条款",
+      "policy": "隐私政策",
+      "go-to-pay": "去支付"
+    },
+    "languages": {
+      "english": "英语 (US)",
+      "spanish": "西班牙语 (ES)",
+      "chinese": "中文 (ZH)"
+    },
+    "validation": {
+      "email-invalid": "电子邮件地址无效。",
+      "password-min": "密码必须至少为 8 个字符。",
+      "phone-invalid": "电话号码无效。",
+      "terms-required": "您必须接受条款才能继续。",
+      "invalid-credentials": "电子邮件或密码无效。"
     }
   },
   "shared": {
     "sidebar": {
       "restaurant": "餐厅",
-      "current-plan": "当前计划：",
+      "current-plan": "当前计划:",
       "dashboard": "仪表板",
       "inventory": "库存",
       "orders": "订单",
@@ -29,9 +55,9 @@
       "subscription": "订阅"
     },
     "header": {
-      "profile": "管理员资料",
+      "profile": "管理员个人资料",
       "settings": "设置",
-      "logout": "退出登录",
+      "logout": "登出",
       "options": "选项"
     }
   },
@@ -167,8 +193,9 @@
       "notifications": "通知",
       "no-active-alerts": "没有活动警报。",
       "severity-critical": "严重",
-      "severity-warning": "警告",
-      "severity-normal": "正常",
+      "severity-high": "高",
+      "severity-medium": "中",
+      "severity-low": "低",
       "cold-storage-breach-title": "冷库阈值突破",
       "kitchen-temp-breach-title": "厨房温度超出范围",
       "temp-exceeded-msg": "{{sensorName}} 超出允许的最大范围 ({{lastValue}} °C)。 最佳为 {{minValue}} 到 {{maxValue}} °C。",
@@ -177,6 +204,47 @@
       "low-stock-msg": "{{sensorName}} 已降至 {{lastValue}} 单位（最低：{{minValue}}）。需要补货。",
       "high-occupancy-title": "{{sensorName}} 达到高入住率",
       "high-occupancy-msg": "负载集中在 {{sensorName}} ({{lastValue}}% 入住率)。"
+    },
+    "alerts-page": {
+      "kicker": "餐厅",
+      "title": "警报",
+      "description": "整合库存、温度 and 交付偏差，并采取后续行动。",
+      "search-label": "搜索",
+      "search-placeholder": "搜索警报...",
+      "severity-label": "严重程度",
+      "severity-placeholder": "按严重程度筛选",
+      "table": {
+        "columns": {
+          "severity": "严重程度",
+          "detail": "警报详情",
+          "source": "来源",
+          "date": "日期",
+          "status": "状态",
+          "actions": "操作"
+        },
+        "actions": {
+          "view-details": "查看详情",
+          "acknowledge": "确认"
+        },
+        "status": {
+          "open": "开启",
+          "resolved": "已解决",
+          "acknowledged": "已确认"
+        },
+        "footer": "显示第 {{first}} 至 {{last}} 条，共 {{total}} 条活动警报"
+      },
+      "dialog": {
+        "header": "警报详情",
+        "meta": {
+          "source": "来源",
+          "date": "日期",
+          "sensor-id": "传感器 ID"
+        },
+        "actions": {
+          "close": "关闭",
+          "acknowledge": "确认"
+        }
+      }
     }
   }
 }

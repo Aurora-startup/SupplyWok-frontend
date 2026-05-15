@@ -1,0 +1,23 @@
+<div class="language-selector">
+  <p-select
+    [options]="languages"
+    [(ngModel)]="selectedLanguage"
+    optionLabel="name"
+    (onChange)="onLanguageChange($event)"
+    class="w-full md:w-14rem custom-select"
+    appendTo="body"
+  >
+    <ng-template pTemplate="selectedItem" let-selectedOption>
+      <div class="flex align-items-center gap-2">
+        <img [src]="selectedOption.icon" [alt]="selectedOption.code" class="lang-icon" />
+        <div class="lang-name">{{ selectedOption.name }}</div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="item" let-option>
+      <div class="flex align-items-center gap-2">
+        <img [src]="option.icon" [alt]="option.code" class="lang-icon" />
+        <div class="lang-name">{{ option.name }}</div>
+      </div>
+    </ng-template>
+  </p-select>
+</div>

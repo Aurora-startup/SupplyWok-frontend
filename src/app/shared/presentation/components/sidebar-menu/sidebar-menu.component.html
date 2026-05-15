@@ -16,7 +16,7 @@
     <ul class="sidebar-menu">
       @for (item of menuItems; track item.id) {
         <li class="sidebar-item" [class.sidebar-item-active]="isActive(item)">
-          <a class="sidebar-button" [routerLink]="item.path">
+          <a class="sidebar-link" [routerLink]="item.path">
             <img
               [src]="isActive(item) ? item.iconOn : item.iconOff"
               [alt]="(item.i18nKey | translate) + ' icon'"

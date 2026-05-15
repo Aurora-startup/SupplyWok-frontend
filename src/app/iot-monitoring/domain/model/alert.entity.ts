@@ -1,7 +1,8 @@
 import { BaseEntity } from '../../../shared/infrastructure/base-entity';
 import { Sensor } from './sensor.entity';
 
-export type AlertSeverity = 'Critical' | 'Warning' | 'Normal';
+export type AlertSeverity = 'Critical' | 'High' | 'Medium' | 'Low';
+export type AlertStatus = 'Open' | 'Resolved' | 'Acknowledged';
 
 /**
  * Domain entity representing a system alert generated from sensor data.
@@ -14,6 +15,8 @@ export class Alert implements BaseEntity {
   private _messageKey: string;
   private _messageParams: Record<string, any>;
   private _severity: AlertSeverity;
+  private _status: AlertStatus;
+  private _source: string;
   private _timestamp: Date;
 
   constructor(alert: {
@@ -23,6 +26,8 @@ export class Alert implements BaseEntity {
     messageKey: string;
     messageParams?: Record<string, any>;
     severity: AlertSeverity;
+    status: AlertStatus;
+    source: string;
     timestamp: Date;
   }) {
     this._id = alert.id;
@@ -31,6 +36,8 @@ export class Alert implements BaseEntity {
     this._messageKey = alert.messageKey;
     this._messageParams = alert.messageParams || {};
     this._severity = alert.severity;
+    this._status = alert.status;
+    this._source = alert.source;
     this._timestamp = alert.timestamp;
   }
 
@@ -44,15 +51,34 @@ export class Alert implements BaseEntity {
   get messageKey(): string { return this._messageKey; }
   get messageParams(): Record<string, any> { return this._messageParams; }
 
-  // Fallbacks for standard usage without translation
   get title(): string { return this._titleKey; }
   get message(): string { return this._messageKey; }
 
   get severity(): AlertSeverity { return this._severity; }
   set severity(value: AlertSeverity) { this._severity = value; }
 
+  get status(): AlertStatus { return this._status; }
+  set status(value: AlertStatus) { this._status = value; }
+
+  get source(): string { return this._source; }
+  set source(value: string) { this._source = value; }
+
   get timestamp(): Date { return this._timestamp; }
   set timestamp(value: Date) { this._timestamp = value; }
+
+  /**
+   * Marks the alert as resolved.
+   */
+  resolve(): void {
+    this._status = 'Resolved';
+  }
+
+  /**
+   * Marks the alert as acknowledged.
+   */
+  acknowledge(): void {
+    this._status = 'Acknowledged';
+  }
 
   static fromSensor(sensor: Sensor): Alert | null {
     if (!sensor.enabled) return null;
@@ -77,6 +103,8 @@ export class Alert implements BaseEntity {
             maxValue: sensor.maxValue
           },
           severity: 'Critical',
+          status: 'Open',
+          source: sensor.type.includes('kitchen') ? 'Kitchen' : 'Storage',
           timestamp: now
         });
       }
@@ -94,7 +122,9 @@ export class Alert implements BaseEntity {
             lastValue: sensor.lastValue,
             minValue: sensor.minValue
           },
-          severity: 'Warning',
+          severity: 'High',
+          status: 'Open',
+          source: 'Inventory',
           timestamp: now
         });
       }
@@ -111,7 +141,9 @@ export class Alert implements BaseEntity {
               sensorName: sensor.name,
               lastValue: sensor.lastValue
             },
-            severity: 'Warning',
+            severity: 'Medium',
+            status: 'Open',
+            source: 'Dining Area',
             timestamp: now
           });
        }

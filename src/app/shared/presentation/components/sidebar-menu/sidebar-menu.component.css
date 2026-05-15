@@ -93,7 +93,7 @@
   position: relative;
 }
 
-.sidebar-button {
+.sidebar-link {
   width: 100%;
   display: flex;
   align-items: center;
@@ -105,6 +105,7 @@
   text-align: left;
   text-decoration: none;
   transition: all 0.2s ease;
+  text-decoration: none; /* Add this for <a> tags */
 }
 
 /* Inactive Icon and Text */
@@ -124,11 +125,11 @@
 }
 
 /* Hover Effects */
-.sidebar-button:hover .sidebar-label {
+.sidebar-link:hover .sidebar-label {
   color: #E2DFD8;
 }
 
-.sidebar-button:hover .sidebar-icon {
+.sidebar-link:hover .sidebar-icon {
   opacity: 1;
 }
 

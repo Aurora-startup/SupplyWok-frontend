@@ -1,3 +1,4 @@
 {
+  "/api/v1/supplywok/users": "/users",
   "/api/v1/*": "/$1"
 }

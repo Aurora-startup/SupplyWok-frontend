@@ -24,6 +24,13 @@ export class InventoryManagementStore {
   private readonly errorSignal = signal<string | null>(null);
   readonly error = this.errorSignal.asReadonly();
 
+  private readonly itemSavedSignal = signal(false);
+  readonly itemSaved = this.itemSavedSignal.asReadonly();
+
+  resetItemSaved(): void {
+    this.itemSavedSignal.set(false);
+  }
+
   readonly inventoryItemCount = computed(() => this.inventoryItems().length);
   readonly inventoryCategoryCount = computed(() => this.inventoryCategories().length);
   readonly suppliersCount = computed(() => this.suppliers().length);
@@ -125,6 +132,7 @@ export class InventoryManagementStore {
   addInventoryItem(inventoryItem: InventoryItem): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
+    this.itemSavedSignal.set(false);
 
     this.inventoryManagementApi
       .createInventoryItem(inventoryItem)
@@ -132,13 +140,12 @@ export class InventoryManagementStore {
       .subscribe({
         next: (createdInventoryItem) => {
           this.inventoryItemsSignal.update((items) => [...items, createdInventoryItem]);
-
           this.loadingSignal.set(false);
+          this.itemSavedSignal.set(true);
         },
 
         error: (err) => {
           this.errorSignal.set(this.formatError(err, 'Failed to create inventory item'));
-
           this.loadingSignal.set(false);
         },
       });
@@ -172,6 +179,7 @@ export class InventoryManagementStore {
   updateInventoryItem(updatedInventoryItem: InventoryItem): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
+    this.itemSavedSignal.set(false);
 
     this.inventoryManagementApi
       .updateInventoryItem(updatedInventoryItem)
@@ -181,13 +189,12 @@ export class InventoryManagementStore {
           this.inventoryItemsSignal.update((items) =>
             items.map((item) => (item.id === inventoryItem.id ? inventoryItem : item)),
           );
-
           this.loadingSignal.set(false);
+          this.itemSavedSignal.set(true);
         },
 
         error: (err) => {
           this.errorSignal.set(this.formatError(err, 'Failed to update inventory item'));
-
           this.loadingSignal.set(false);
         },
       });

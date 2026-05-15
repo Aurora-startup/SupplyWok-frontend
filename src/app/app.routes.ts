@@ -5,13 +5,10 @@ import { supplyAndPurchasingRoutes } from './supply-and-purchasing/presentation/
 import { restaurantManagementRoutes } from './restaurant-management/presentation/restaurant-management.routes';
 import { iotMonitoringRoutes } from './iot-monitoring/presentation/iot-monitoring.routes';
 import { inventoryManagementRoutes } from './inventory-management/presentation/inventory-management.routes';
+import { LoginComponent } from './iam/presentation/views/login/login.component';
+import { RegisterComponent } from './iam/presentation/views/register/register.component';
 
 const placeholderRoutes: Routes = [
-  {
-    path: 'alerts',
-    component: PlaceholderPageComponent,
-    data: { title: 'Alerts', description: 'This alerts page is reserved for another bounded context.' }
-  },
   {
     path: 'reports',
     component: PlaceholderPageComponent,
@@ -30,7 +27,9 @@ const placeholderRoutes: Routes = [
 ];
 
 export const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'orders' },
+  { path: '', pathMatch: 'full', redirectTo: 'login' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   ...placeholderRoutes,
   ...supplyAndPurchasingRoutes,
   ...restaurantManagementRoutes,
