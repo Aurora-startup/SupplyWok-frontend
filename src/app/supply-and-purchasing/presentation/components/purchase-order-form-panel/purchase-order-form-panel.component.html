@@ -16,7 +16,7 @@
         [class.purchase-order-form-panel__select--invalid]="getFieldError('supplierId')"
         (change)="syncSupplierData()"
       >
-        @for (supplier of supplierOptions; track supplier.id) {
+        @for (supplier of supplierOptions(); track supplier.id) {
           <option [value]="supplier.id">{{ supplier.name }}</option>
         }
       </select>

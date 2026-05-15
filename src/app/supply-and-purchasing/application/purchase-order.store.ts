@@ -3,6 +3,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { PurchaseOrder } from '../domain/model/purchase-order.entity';
 import { OrderItem } from '../domain/model/order-item.entity';
 import { PurchaseOrderApi } from '../infrastructure/purchase-order-api';
+import { Supplier } from '../domain/model/supplier.entity';
+import { SupplierApi } from '../infrastructure/supplier-api';
 
 type ValidationErrors = Record<string, string | Record<string, string> | Record<number, Record<string, string>>>;
 
@@ -11,18 +13,23 @@ type ValidationErrors = Record<string, string | Record<string, string> | Record<
 })
 export class PurchaseOrderStore {
   private readonly purchaseOrderApi = inject(PurchaseOrderApi);
+  private readonly supplierApi = inject(SupplierApi);
   private readonly translate = inject(TranslateService);
 
   private readonly purchaseOrdersSignal = signal<PurchaseOrder[]>([]);
+  private readonly suppliersSignal = signal<Supplier[]>([]);
   private readonly errorsSignal = signal<string[]>([]);
   private readonly validationErrorsSignal = signal<ValidationErrors>({});
   private readonly purchaseOrdersLoadedSignal = signal(false);
+  private readonly suppliersLoadedSignal = signal(false);
   private readonly loadingSignal = signal(false);
 
   readonly purchaseOrders = this.purchaseOrdersSignal.asReadonly();
+  readonly suppliers = this.suppliersSignal.asReadonly();
   readonly errors = this.errorsSignal.asReadonly();
   readonly validationErrors = this.validationErrorsSignal.asReadonly();
   readonly purchaseOrdersLoaded = this.purchaseOrdersLoadedSignal.asReadonly();
+  readonly suppliersLoaded = this.suppliersLoadedSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
 
   readonly purchaseOrdersCount = computed(() =>
@@ -37,9 +44,30 @@ export class PurchaseOrderStore {
     this.purchaseOrdersSignal().filter((purchaseOrder) => purchaseOrder.priority === 'High').length
   );
 
+  readonly supplierDirectory = computed(() =>
+    this.suppliersSignal().map((supplier) => ({
+      ...supplier,
+      id: String(supplier.id ?? ''),
+      name: supplier.name ?? '',
+      contactName: supplier.contactName ?? '',
+      email: supplier.email ?? '',
+      phone: supplier.phone ?? '',
+      category: supplier.category ?? '',
+      linkedDate: supplier.linkedDate ?? '',
+      sla: supplier.sla ?? '',
+      responseTime: supplier.responseTime ?? ''
+    }))
+  );
+
   ensurePurchaseOrdersLoaded(): void {
     if (!this.purchaseOrdersLoadedSignal() && !this.loadingSignal()) {
       this.fetchPurchaseOrders();
+    }
+  }
+
+  ensureSuppliersLoaded(): void {
+    if (!this.suppliersLoadedSignal()) {
+      this.fetchSuppliers();
     }
   }
 
@@ -49,6 +77,21 @@ export class PurchaseOrderStore {
       next: (purchaseOrders) => {
         this.purchaseOrdersSignal.set(purchaseOrders);
         this.purchaseOrdersLoadedSignal.set(true);
+        this.loadingSignal.set(false);
+      },
+      error: (error) => {
+        this.pushError(error);
+        this.loadingSignal.set(false);
+      }
+    });
+  }
+
+  fetchSuppliers(): void {
+    this.loadingSignal.set(true);
+    this.supplierApi.getSuppliers().subscribe({
+      next: (suppliers) => {
+        this.suppliersSignal.set(suppliers);
+        this.suppliersLoadedSignal.set(true);
         this.loadingSignal.set(false);
       },
       error: (error) => {
