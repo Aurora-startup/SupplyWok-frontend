@@ -3,6 +3,8 @@ export const environment = {
   platformApiBaseUrl: 'https://my-json-server.typicode.com/joanfpp2-ai/supplywok-db-server',
   purchaseOrdersEndpointPath: '/purchase-orders',
   platformProviderSuppliersEndpointPath: '/suppliers',
+  supplyAndPurchasingSuppliersApiBaseUrl: 'https://6a05da5eaa826ca75c0ab970.mockapi.io/supplywok',
+  supplyAndPurchasingSuppliersEndpointPath: '/suppliers',
   tablesEndpointPath: '/tables',
   comandasEndpointPath: '/comandas',
 

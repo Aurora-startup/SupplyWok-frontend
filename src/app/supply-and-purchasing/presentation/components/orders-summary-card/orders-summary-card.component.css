@@ -1,0 +1,129 @@
+.orders-summary-card {
+  display: grid;
+  gap: 14px;
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 14px 34px rgba(45, 36, 30, 0.1);
+}
+
+.orders-summary-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: start;
+}
+
+.orders-summary-card__title {
+  margin: 0;
+  color: #40342d;
+  font-size: 1.55rem;
+}
+
+.orders-summary-card__caption {
+  margin: 6px 0 0;
+  color: #85786c;
+  font-size: 0.92rem;
+}
+
+.orders-summary-card__table {
+  border: 1px solid #efe6da;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.orders-summary-card__head,
+.orders-summary-card__row {
+  display: grid;
+  grid-template-columns: minmax(110px, 0.9fr) minmax(0, 1.5fr) minmax(120px, 0.9fr) minmax(110px, 0.8fr);
+  gap: 14px;
+  align-items: center;
+  padding: 14px 16px;
+}
+
+.orders-summary-card__head {
+  background: #f7f0e6;
+  color: #6d5f55;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.orders-summary-card__row {
+  border-top: 1px solid #efe6da;
+  color: #4b3d34;
+  font-size: 0.95rem;
+}
+
+.orders-summary-card__row strong {
+  color: #342923;
+}
+
+.orders-summary-card__badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.orders-summary-card__badge--warning {
+  background: #fef3c7;
+  color: #a16207;
+}
+
+.orders-summary-card__badge--info {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.orders-summary-card__badge--success {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.orders-summary-card__badge--danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.orders-summary-card__badge--secondary {
+  background: #ede9e3;
+  color: #5e5046;
+}
+
+.orders-summary-card__state {
+  padding: 18px 4px;
+  color: #7d7065;
+}
+
+.orders-summary-card__state--error {
+  color: #b91c1c;
+}
+
+.orders-summary-card__cta {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  border: 1px solid #e4d8ca;
+  border-radius: 10px;
+  color: #342923;
+  text-decoration: none;
+  font-weight: 600;
+  background: #fffdfa;
+}
+
+.orders-summary-card__cta:hover {
+  background: #faf5ee;
+}
+
+@media (max-width: 960px) {
+  .orders-summary-card__head,
+  .orders-summary-card__row {
+    grid-template-columns: 1fr;
+  }
+}
