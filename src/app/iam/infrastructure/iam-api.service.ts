@@ -12,7 +12,7 @@ import { UserAssembler } from './assemblers/user.assembler';
   providedIn: 'root',
 })
 export class IamApiService {
-  private readonly baseUrl = environment.platformProviderApiBaseUrl;
+  private readonly baseUrl = environment.platformIotApiBaseURL;
   private readonly endpoint = environment.platformProviderUsersEndpointPath;
 
   constructor(private http: HttpClient) {}

@@ -1,14 +1,20 @@
 export const environment = {
   production: false,
-  platformApiBaseUrl: 'http://localhost:3000/api/v1',
+
+  platformApiBaseUrl: 'https://my-json-server.typicode.com/joanfpp2-ai/supplywok-db-server',
   purchaseOrdersEndpointPath: '/purchase-orders',
+  platformProviderSuppliersEndpointPath: '/suppliers',
   tablesEndpointPath: '/tables',
   comandasEndpointPath: '/comandas',
-  platformProviderApiBaseUrl: 'http://localhost:3000/api/v1',
-  platformProviderSensorsEndpointPath: '/sensors',
+
+  platformProviderApiBaseUrl:
+    'https://my-json-server.typicode.com/joanfpp2-ai/supplywok-db-server1',
   platformProviderInventoryItemsEndpointPath: '/inventoryItems',
   platformProviderCategoriesEndpointPath: '/categories',
-  platformProviderSuppliersEndpointPath: '/suppliers',
   platformProviderUnitsOfMeasureEndpointPath: '/unitsOfMeasure',
-  platformProviderUsersEndpointPath: '/supplywok/users'
+
+  platformIotApiBaseURL: 'https://6a03931d2afe8349b4b55a06.mockapi.io/supplywok',
+  platformProviderUsersEndpointPath: '/users',
+  platformProviderSensorsEndpointPath: '/sensors',
+
 };

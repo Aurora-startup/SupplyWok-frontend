@@ -981,22 +981,4 @@
       "name": "Flours"
     }
   ],
-  "users": [
-    {
-      "id": 1,
-      "email": "admin@supplywok.com",
-      "password": "admin123",
-      "phoneNumber": "+51 987 654 321",
-      "role": "Restaurant",
-      "subscription": "Premium"
-    },
-    {
-      "id": 2,
-      "email": "supplier@supplywok.com",
-      "password": "supplier123",
-      "phoneNumber": "+51 912 345 678",
-      "role": "Supplier",
-      "subscription": "Enterprise"
-    }
-  ]
 }

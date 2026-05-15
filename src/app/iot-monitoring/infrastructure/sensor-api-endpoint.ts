@@ -15,6 +15,6 @@ export class SensorApiEndpoint extends BaseApiEndpoint<Sensor, SensorResource, S
    * @param http The Angular HttpClient instance.
    */
   constructor(http: HttpClient) {
-    super(http, `${environment.platformProviderApiBaseUrl}${environment.platformProviderSensorsEndpointPath}`, new SensorAssembler());
+    super(http, `${environment.platformIotApiBaseURL}${environment.platformProviderSensorsEndpointPath}`, new SensorAssembler());
   }
 }
