@@ -1,0 +1,171 @@
+.subscription-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.subscription-page__hero {
+  background: linear-gradient(90deg, #fff4c9 0%, #fffdf9 34%);
+  border: 1px solid var(--sw-border);
+  border-radius: 24px;
+  box-shadow: var(--sw-shadow);
+  padding: 2.4rem 2.6rem;
+}
+
+.subscription-page__hero p,
+.subscription-page__hero span {
+  color: var(--sw-text-muted);
+  margin: 0;
+}
+
+.subscription-page__hero p {
+  color: var(--sw-accent);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.subscription-page__hero h1 {
+  color: #24160f;
+  font-size: 4rem;
+  margin: .3rem 0 .4rem;
+}
+
+.subscription-page__summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.subscription-page__summary article {
+  background: var(--sw-surface);
+  border: 1px solid var(--sw-border);
+  border-radius: 22px;
+  box-shadow: var(--sw-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: .45rem;
+  padding: 1.65rem;
+}
+
+.subscription-page__summary span {
+  color: #8c7658;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.subscription-page__summary strong {
+  color: #2d211b;
+  font-size: 2.6rem;
+  line-height: 1;
+}
+
+.subscription-page__plans {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.subscription-page__plan-headline {
+  align-items: flex-start;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.subscription-page__plan-headline small {
+  color: var(--sw-accent);
+  display: block;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: .75rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  margin-bottom: .45rem;
+}
+
+.subscription-page__plan-headline span {
+  color: #2d211b;
+  display: block;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+.subscription-page__price {
+  color: #2d211b;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 2.2rem;
+  line-height: 1;
+}
+
+.subscription-page__plans ul {
+  color: #5d544b;
+  display: flex;
+  flex-direction: column;
+  gap: .85rem;
+  margin: 0 0 1.5rem;
+  padding-left: 1.4rem;
+}
+
+.subscription-page__capacity {
+  color: #6b5f53;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0 0 1.25rem;
+}
+
+.subscription-page__plan-footer {
+  margin-top: auto;
+}
+
+:host ::ng-deep .subscription-page__plan-card {
+  min-height: 100%;
+}
+
+:host ::ng-deep .subscription-page__plan-card .p-card-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+:host ::ng-deep .subscription-page__plan-card .p-card-content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+:host ::ng-deep .subscription-page__plan-card .p-button {
+  min-height: 3.9rem;
+  width: 100%;
+}
+
+:host ::ng-deep .subscription-page__plan-card .p-button.p-disabled {
+  background: #e8dccd !important;
+  border-color: #e8dccd !important;
+  color: #7d6f61 !important;
+  opacity: 1;
+}
+
+:host ::ng-deep .subscription-page__plan-card .p-button-danger {
+  background: #d41106 !important;
+  border-color: #d41106 !important;
+}
+
+@media (max-width: 900px) {
+  .subscription-page__summary,
+  .subscription-page__plans {
+    grid-template-columns: 1fr;
+  }
+
+  .subscription-page__hero {
+    padding: 1.75rem;
+  }
+
+  .subscription-page__hero h1 {
+    font-size: 2.8rem;
+  }
+}

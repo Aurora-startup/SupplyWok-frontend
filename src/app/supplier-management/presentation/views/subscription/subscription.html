@@ -1,0 +1,64 @@
+<section class="subscription-page">
+  <section class="subscription-page__hero">
+    <p>{{ 'supplier-management.subscription.breadcrumb' | translate }}</p>
+    <h1>Available plans</h1>
+    <span>Compare capacity, operational scope, and benefits before moving the restaurant to a higher plan.</span>
+  </section>
+
+  <section class="subscription-page__summary">
+    @for (item of metricCards(); track item.label) {
+      <article>
+        <span>{{ item.label }}</span>
+        <strong>{{ item.value }}</strong>
+      </article>
+    }
+  </section>
+
+  <section class="subscription-page__plans">
+    @for (plan of availablePlans(); track plan.id ?? plan.name) {
+      <p-card styleClass="subscription-page__plan-card">
+        <ng-template pTemplate="title">
+          <div class="subscription-page__plan-headline">
+            <div>
+              <small>AVAILABLE</small>
+              <span>{{ plan.name }}</span>
+            </div>
+            <strong class="subscription-page__price">{{ plan.price }}</strong>
+          </div>
+        </ng-template>
+        <ul>
+          @for (feature of plan.features; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+        <p class="subscription-page__capacity">{{ getPlanCapacitySummary(plan) }}</p>
+        <div class="subscription-page__plan-footer">
+          <p-button severity="danger" [label]="'Select plan'" />
+        </div>
+      </p-card>
+    }
+
+    @if (activePlan(); as plan) {
+      <p-card styleClass="subscription-page__plan-card subscription-page__plan-card--active">
+        <ng-template pTemplate="title">
+          <div class="subscription-page__plan-headline">
+            <div>
+              <small>CURRENT PLAN</small>
+              <span>{{ plan.name }}</span>
+            </div>
+            <strong class="subscription-page__price">{{ plan.price }}</strong>
+          </div>
+        </ng-template>
+        <ul>
+          @for (feature of plan.features; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+        <p class="subscription-page__capacity">{{ getPlanCapacitySummary(plan) }}</p>
+        <div class="subscription-page__plan-footer">
+          <p-button [label]="'Current plan'" [disabled]="true" />
+        </div>
+      </p-card>
+    }
+  </section>
+</section>
