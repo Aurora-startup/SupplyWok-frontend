@@ -1,0 +1,41 @@
+<!-- inventory-search-bar.component.html -->
+<div class="search-bar-card">
+
+  <!-- Search Input -->
+  <div class="search-group">
+    <label class="search-label">Search</label>
+    <div class="input-wrapper">
+      <mat-icon class="input-icon">search</mat-icon>
+      <input
+        class="search-input"
+        type="text"
+        placeholder="Search product name, category or supplier..."
+        [value]="searchValue()"
+        (input)="onSearchChange($event)"
+      />
+    </div>
+  </div>
+
+  <!-- Divider -->
+  <div class="search-divider"></div>
+
+  <!-- Category Select -->
+  <div class="search-group">
+    <label class="search-label">Category</label>
+    <div class="input-wrapper">
+      <mat-icon class="input-icon">search</mat-icon>
+      <mat-select
+        class="category-select"
+        placeholder="Search product name, category or supplier..."
+        [value]="categoryValue()"
+        (selectionChange)="onCategoryChange($event.value)"
+      >
+        <mat-option [value]="null">All categories</mat-option>
+        @for (category of categories(); track category.id) {
+          <mat-option [value]="category.id">{{ category.name }}</mat-option>
+        }
+      </mat-select>
+    </div>
+  </div>
+
+</div>

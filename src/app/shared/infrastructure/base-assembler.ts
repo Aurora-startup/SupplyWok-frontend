@@ -1,5 +1,5 @@
-import { BaseEntity } from './base-entity';
 import { BaseResource, BaseResponse } from './base-response';
+import { BaseEntity } from './base-entity';
 
 export abstract class BaseAssembler<
   TEntity extends BaseEntity,

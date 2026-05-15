@@ -1,0 +1,110 @@
+/* ── Filters ── */
+
+.filters-container {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-field {
+  flex: 1;
+  min-width: 260px;
+}
+
+.filters-container mat-form-field {
+  min-width: 180px;
+}
+
+
+/* inventory-search-bar.component.scss */
+.search-bar-card {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border: 1.5px solid #e0e0e0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.search-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 20px;
+  gap: 6px;
+}
+
+.search-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #1a1a1a;
+  letter-spacing: 0.01em;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: #aaa;
+  flex-shrink: 0;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 13px;
+  color: #555;
+  width: 100%;
+  font-family: inherit;
+
+  &::placeholder {
+    color: #bbb;
+  }
+}
+
+/* Mat-select styled to match the plain input */
+.category-select {
+  width: 100%;
+  font-size: 13px;
+
+// Remove Material underline/border
+&.mat-mdc-select {
+  .mat-mdc-select-trigger {
+    border: none !important;
+    padding: 0;
+  }
+  .mdc-line-ripple { display: none; }
+  .mat-mdc-form-field-subscript-wrapper { display: none; }
+}
+
+  ::ng-deep .mat-mdc-select-value-text {
+    color: #555;
+    font-size: 13px;
+  }
+
+  ::ng-deep .mat-mdc-select-placeholder {
+    color: #bbb;
+    font-size: 13px;
+  }
+
+  ::ng-deep .mat-mdc-select-arrow {
+    color: #aaa;
+  }
+}
+
+/* Vertical divider between the two groups */
+.search-divider {
+  width: 1.5px;
+  background: #e0e0e0;
+  margin: 12px 0;
+}

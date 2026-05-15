@@ -5,5 +5,9 @@ export const environment = {
   tablesEndpointPath: '/tables',
   comandasEndpointPath: '/comandas',
   platformProviderApiBaseUrl: 'http://localhost:3000/api/v1',
-  platformProviderSensorsEndpointPath: '/sensors'
+  platformProviderSensorsEndpointPath: '/sensors',
+  platformProviderInventoryItemsEndpointPath: '/inventoryItems',
+  platformProviderCategoriesEndpointPath: '/categories',
+  platformProviderSuppliersEndpointPath: '/suppliers',
+  platformProviderUnitsOfMeasureEndpointPath: '/unitsOfMeasure',
 };

@@ -780,5 +780,154 @@
       "lastValue": 1450,
       "type": "storage-pressure"
     }
+  ],
+  "inventoryItems": [
+    {
+      "id": 4,
+      "name": "Aceite de sésamo",
+      "currentStock": 12,
+      "minimumStockLevel": 20,
+      "unitOfMeasure": "LTS",
+      "idCategory": 3,
+      "idSupplier": 3
+    },
+    {
+      "id": 5,
+      "name": "Langostino mediano",
+      "currentStock": 16,
+      "minimumStockLevel": 18,
+      "unitOfMeasure": "KG",
+      "idCategory": 4,
+      "idSupplier": 1
+    },
+    {
+      "id": 6,
+      "name": "Cebolla china",
+      "currentStock": 28,
+      "minimumStockLevel": 14,
+      "unitOfMeasure": "KG",
+      "idCategory": 5,
+      "idSupplier": 2
+    },
+    {
+      "id": 7,
+      "name": "Salsa de soya",
+      "currentStock": 30,
+      "minimumStockLevel": 15,
+      "unitOfMeasure": "LTS",
+      "idCategory": 3,
+      "idSupplier": 3
+    },
+    {
+      "id": 8,
+      "name": "Fideos udon",
+      "currentStock": 90,
+      "minimumStockLevel": 40,
+      "unitOfMeasure": "UNITS",
+      "idCategory": 6,
+      "idSupplier": 2
+    },
+    {
+      "id": 9,
+      "name": "Tofu firme",
+      "currentStock": 14,
+      "minimumStockLevel": 25,
+      "unitOfMeasure": "KG",
+      "idCategory": 2,
+      "idSupplier": 4
+    },
+    {
+      "id": 10,
+      "name": "Champiñones shiitake",
+      "currentStock": 19,
+      "minimumStockLevel": 10,
+      "unitOfMeasure": "KG",
+      "idCategory": 5,
+      "idSupplier": 5
+    },
+    {
+      "id": 11,
+      "name": "Salmón fresco",
+      "currentStock": 8,
+      "minimumStockLevel": 15,
+      "unitOfMeasure": "KG",
+      "idCategory": 4,
+      "idSupplier": 1
+    },
+    {
+      "id": 12,
+      "name": "Harina tempura",
+      "currentStock": 65,
+      "minimumStockLevel": 25,
+      "unitOfMeasure": "KG",
+      "idCategory": 7,
+      "idSupplier": 4
+    },
+    {
+      "id": 13,
+      "name": "Vinagre de arroz",
+      "currentStock": 18,
+      "minimumStockLevel": 20,
+      "unitOfMeasure": "LTS",
+      "idCategory": 3,
+      "idSupplier": 3
+    },
+    {
+      "id": 14,
+      "name": "Brócoli",
+      "currentStock": 35,
+      "minimumStockLevel": 18,
+      "unitOfMeasure": "KG",
+      "idCategory": 5,
+      "idSupplier": 5
+    },
+    {
+      "id": 15,
+      "name": "Carne de res marinada",
+      "currentStock": 48,
+      "minimumStockLevel": 30,
+      "unitOfMeasure": "KG",
+      "idCategory": 2,
+      "idSupplier": 4
+    },
+    {
+      "id": 16,
+      "name": "Salsa de Ostion",
+      "currentStock": 0,
+      "minimumStockLevel": 10,
+      "unitOfMeasure": "LTS",
+      "idCategory": 3,
+      "idSupplier": 2
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Grains"
+    },
+    {
+      "id": 2,
+      "name": "Protein"
+    },
+    {
+      "id": 3,
+      "name": "Sauces"
+    },
+    {
+      "id": 4,
+      "name": "Seafood"
+    },
+    {
+      "id": 5,
+      "name": "Vegetables"
+    },
+    {
+      "id": 6,
+      "name": "Noodles"
+    },
+    {
+      "id": 7,
+      "name": "Flours"
+    }
   ]
 }

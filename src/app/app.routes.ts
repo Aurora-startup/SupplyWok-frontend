@@ -4,13 +4,9 @@ import { PlaceholderPageComponent } from './shared/presentation/views/placeholde
 import { supplyAndPurchasingRoutes } from './supply-and-purchasing/presentation/supply-and-purchasing.routes';
 import { restaurantManagementRoutes } from './restaurant-management/presentation/restaurant-management.routes';
 import { iotMonitoringRoutes } from './iot-monitoring/presentation/iot-monitoring.routes';
+import { inventoryManagementRoutes } from './inventory-management/presentation/inventory-management.routes';
 
 const placeholderRoutes: Routes = [
-  {
-    path: 'inventory',
-    component: PlaceholderPageComponent,
-    data: { title: 'Inventory', description: 'This inventory page is reserved for another bounded context.' }
-  },
   {
     path: 'alerts',
     component: PlaceholderPageComponent,
@@ -39,5 +35,6 @@ export const routes: Routes = [
   ...supplyAndPurchasingRoutes,
   ...restaurantManagementRoutes,
   ...iotMonitoringRoutes,
+  ...inventoryManagementRoutes,
   { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' }
 ];

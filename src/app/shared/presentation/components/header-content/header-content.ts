@@ -25,7 +25,7 @@ export class HeaderContent implements OnInit {
   private updateMenuTranslations() {
     this.translate.get(['shared.header.options', 'shared.header.settings', 'shared.header.logout']).subscribe(translations => {
       this.profileItems = [
-        { 
+        {
           label: translations['shared.header.options'] || 'Options',
           items: [
             { label: translations['shared.header.settings'] || 'Settings', icon: 'pi pi-cog' },

@@ -22,17 +22,66 @@
       "orders": "Pedidos",
       "kitchen-tickets": "Comandas",
       "suppliers": "Proveedores",
-      "tables-and-occupancy": "Mesas y ocupacion",
       "alerts": "Alertas",
-      "reports": "Reportes",
-      "configuration": "Configuracion",
-      "subscription": "Suscripcion"
+      "reports": "Reportes"
     },
     "header": {
       "profile": "Perfil de administrador",
       "settings": "Configuraciones",
-      "logout": "Cerrar sesion",
       "options": "Opciones"
+    }
+  },
+  "inventory": {
+    "header": {
+      "section": "Restaurante",
+      "title": "Inventario",
+      "subtitle": "Controla el stock, mínimos y relaciones con proveedores.",
+      "add-item": "Agregar ítem"
+    },
+
+    "search-bar": {
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar productos del inventario",
+      "category-label": "Categoría",
+      "category-placeholder": "Todas las categorías",
+      "supplier-label": "Proveedor",
+      "supplier-placeholder": "Todos los proveedores",
+      "status-label": "Estado",
+      "status-placeholder": "Todos los estados"
+    },
+
+    "list": {
+      "product-label": "Producto",
+      "stock-levels-label": "Niveles de stock",
+      "refill-needed-label": "Reabastecimiento necesario",
+      "low-stock-label": "Stock bajo",
+      "category-label": "Categoría",
+      "supplier-label": "Proveedor",
+      "actions-label": "Acciones",
+      "pages-label": "Mostrando {{currentPage}} - {{totalPages}} de {{totalItems}} productos totales",
+      "next-page": "Siguiente",
+      "previous-page": "Anterior"
+    },
+
+    "item-form": {
+      "edit-item-title": "Editar producto del inventario",
+      "new-item-title": "Nuevo producto del inventario",
+      "subtitle": "Gestiona eficientemente el inventario de tu restaurante",
+      "name-label": "Nombre del producto",
+      "current-stock-label": "Stock actual",
+      "minimum-stock-label": "Stock mínimo",
+      "category-label": "Categoría",
+      "supplier-label": "Proveedor",
+      "unit-of-measure-label": "Unidad de medida",
+      "save-button": "Guardar",
+      "cancel-button": "Cancelar"
+    },
+
+    "delete-dialog": {
+      "title": "Eliminar producto del inventario",
+      "text": "¿Estás seguro de que deseas eliminar permanentemente {{itemName}}?",
+      "confirm-button": "Eliminar",
+      "cancel-button": "Cancelar"
     }
   },
   "supply-and-purchasing": {

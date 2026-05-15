@@ -41,7 +41,7 @@ export class SidebarMenuComponent {
 
   readonly menuItems: MenuItem[] = [
     { id: 'dashboard', path: '/dashboard', i18nKey: 'shared.sidebar.dashboard', iconOff: '/assets/images/icons/dashboard-icon.svg', iconOn: '/assets/images/icons/dashboard-on-icon.svg', exact: true },
-    { id: 'inventory', path: '/inventory', i18nKey: 'shared.sidebar.inventory', iconOff: '/assets/images/icons/inventory-icon.svg', iconOn: '/assets/images/icons/inventory-on-icon.svg', exact: true },
+    { id: 'inventory', path: '/inventory/inventoryItems', i18nKey: 'shared.sidebar.inventory', iconOff: '/assets/images/icons/inventory-icon.svg', iconOn: '/assets/images/icons/inventory-on-icon.svg', exact: true },
     { id: 'orders', path: '/orders', i18nKey: 'shared.sidebar.orders', iconOff: '/assets/images/icons/orders-icon.svg', iconOn: '/assets/images/icons/orders-on-icon.svg' },
     { id: 'kitchen-tickets', path: '/kitchen-tickets', i18nKey: 'shared.sidebar.kitchen-tickets', iconOff: '/assets/images/icons/kitchen-ticket-icon.svg', iconOn: '/assets/images/icons/kitchen-tickets-on-icon.svg', exact: true },
     { id: 'suppliers', path: '/suppliers', i18nKey: 'shared.sidebar.suppliers', iconOff: '/assets/images/icons/suppliers-icon.svg', iconOn: '/assets/images/icons/suppliers-on-icon.svg', exact: true },

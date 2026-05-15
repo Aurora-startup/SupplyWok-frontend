@@ -57,7 +57,11 @@ export abstract class BaseApiEndpoint<
       catchError(this.handleError('Failed to delete entity'))
     );
   }
-
+  /**
+   * Deletes an entity by ID.
+   * @param id - The ID of the entity to delete.
+   * @returns An Observable of void.
+   */
   protected handleError(operation: string) {
     return (error: HttpErrorResponse): Observable<never> => {
       let errorMessage = operation;

@@ -1,0 +1,41 @@
+<div class="dialog-container">
+
+  <div class="dialog-icon">
+    ⚠️
+  </div>
+
+  <h2 class="dialog-title">
+    {{ 'inventory.delete-dialog.title' | translate }}
+  </h2>
+
+  <!--
+  <p class="dialog-text">
+    {{
+      'inventory.delete-dialog.text'
+        | translate:{ itemName: data.itemName }
+    }}
+  </p>
+-->
+  <div class="dialog-actions">
+
+    <button
+      mat-stroked-button
+      class="cancel-btn"
+      (click)="cancel()">
+
+      {{ 'inventory.delete-dialog.cancel-button' | translate }}
+
+    </button>
+
+    <button
+      mat-flat-button
+      class="delete-btn"
+      (click)="confirm()">
+
+      {{ 'inventory.delete-dialog.confirm-button' | translate }}
+
+    </button>
+
+  </div>
+
+</div>

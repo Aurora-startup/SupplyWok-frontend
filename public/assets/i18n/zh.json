@@ -35,6 +35,59 @@
       "options": "选项"
     }
   },
+  "inventory": {
+    "header": {
+      "section": "餐厅",
+      "title": "库存",
+      "subtitle": "控制库存、最低库存以及与供应商的关系。",
+      "add-item": "添加商品"
+    },
+
+    "search-bar": {
+      "search-label": "搜索",
+      "search-placeholder": "搜索库存商品",
+      "category-label": "分类",
+      "category-placeholder": "所有分类",
+      "supplier-label": "供应商",
+      "supplier-placeholder": "所有供应商",
+      "status-label": "状态",
+      "status-placeholder": "所有状态"
+    },
+
+    "list": {
+      "product-label": "商品",
+      "stock-levels-label": "库存水平",
+      "refill-needed-label": "需要补货",
+      "low-stock-label": "低库存",
+      "category-label": "分类",
+      "supplier-label": "供应商",
+      "actions-label": "操作",
+      "pages-label": "显示 {currentPage} - {totalPages} / 共 {totalItems} 个商品",
+      "next-page": "下一页",
+      "previous-page": "上一页"
+    },
+
+    "item-form": {
+      "edit-item-title": "编辑库存商品",
+      "new-item-title": "新建库存商品",
+      "subtitle": "高效管理您的餐厅库存",
+      "name-label": "商品名称",
+      "current-stock-label": "当前库存",
+      "minimum-stock-label": "最低库存",
+      "category-label": "分类",
+      "supplier-label": "供应商",
+      "unit-of-measure-label": "计量单位",
+      "save-button": "保存",
+      "cancel-button": "取消"
+    },
+
+    "delete-dialog": {
+      "title": "删除库存商品",
+      "text": "您确定要永久删除 {itemName} 吗？",
+      "confirm-button": "删除",
+      "cancel-button": "取消"
+    }
+  },
   "restaurant-management": {
     "breadcrumb": "餐厅",
     "tables": {

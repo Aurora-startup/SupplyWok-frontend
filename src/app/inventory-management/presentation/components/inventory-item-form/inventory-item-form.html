@@ -1,0 +1,158 @@
+<div class="form-page">
+
+  <div class="form-card">
+
+    <!-- Header -->
+    <div class="form-header">
+
+      <div class="form-title-group">
+
+        <h2 class="form-title">
+          {{
+            isEdit
+              ? ('inventory.item-form.edit-item-title' | translate)
+              : ('inventory.item-form.new-item-title' | translate)
+          }}
+        </h2>
+
+        <span class="form-subtitle">
+          {{ 'inventory.item-form.subtitle' | translate }}
+        </span>
+
+      </div>
+
+    </div>
+
+    <!-- Form -->
+    <form [formGroup]="form" (ngSubmit)="submit()">
+
+      <div class="form-body">
+
+        <div class="form-grid">
+
+          <!-- Name -->
+          <mat-form-field appearance="outline" class="full-width">
+
+            <mat-label>
+              {{ 'inventory.item-form.name-label' | translate }}
+            </mat-label>
+
+            <input matInput formControlName="name">
+
+          </mat-form-field>
+
+          <!-- Current Stock -->
+          <mat-form-field appearance="outline">
+
+            <mat-label>
+              {{ 'inventory.item-form.current-stock-label' | translate }}
+            </mat-label>
+
+            <input matInput type="number" formControlName="currentStock">
+
+          </mat-form-field>
+
+          <!-- Minimum Stock -->
+          <mat-form-field appearance="outline">
+
+            <mat-label>
+              {{ 'inventory.item-form.minimum-stock-label' | translate }}
+            </mat-label>
+
+            <input matInput type="number" formControlName="minimumStockLevel">
+
+          </mat-form-field>
+
+          <!-- Category -->
+          <mat-form-field appearance="outline">
+
+            <mat-label>
+              {{ 'inventory.item-form.category-label' | translate }}
+            </mat-label>
+
+            <mat-select formControlName="idCategory">
+
+              @for (category of categories(); track category.id) {
+
+                <mat-option [value]="category.id">
+                  {{ category.name }}
+                </mat-option>
+
+              }
+
+            </mat-select>
+
+          </mat-form-field>
+
+          <!-- Supplier -->
+          <mat-form-field appearance="outline">
+
+            <mat-label>
+              {{ 'inventory.item-form.supplier-label' | translate }}
+            </mat-label>
+
+            <mat-select formControlName="idSupplier">
+
+              @for (supplier of suppliers(); track supplier.id) {
+
+                <mat-option [value]="supplier.id">
+                  {{ supplier.name }}
+                </mat-option>
+
+              }
+
+            </mat-select>
+
+          </mat-form-field>
+
+          <!-- Unit -->
+          <mat-form-field appearance="outline">
+
+            <mat-label>
+              {{ 'inventory.item-form.unit-of-measure-label' | translate }}
+            </mat-label>
+
+            <mat-select formControlName="unitOfMeasure">
+
+              <mat-option value="KG">KG</mat-option>
+              <mat-option value="LTS">LTS</mat-option>
+              <mat-option value="UNITS">UNITS</mat-option>
+
+            </mat-select>
+
+          </mat-form-field>
+
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="form-footer">
+
+        <button
+          mat-stroked-button
+          type="button"
+          class="cancel-btn"
+          routerLink="/">
+
+          {{ 'inventory.item-form.cancel-button' | translate }}
+
+        </button>
+
+        <button
+          mat-flat-button
+          type="submit"
+          class="save-btn"
+          [disabled]="form.invalid">
+
+          {{ 'inventory.item-form.save-button' | translate }}
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

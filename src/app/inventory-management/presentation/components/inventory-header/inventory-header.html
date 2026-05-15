@@ -1,0 +1,22 @@
+<header class="inventory-header">
+  <div class="header-info">
+    <span class="header-section">
+      {{ 'inventory.header.section' | translate }}
+    </span>
+    <h1 class="header-title">
+      {{ 'inventory.header.title' | translate }}
+    </h1>
+    <p class="header-subtitle">
+      {{ 'inventory.header.subtitle' | translate }}
+    </p>
+  </div>
+
+  <button
+    mat-flat-button
+    class="add-btn"
+    (click)="onAddSupply()">
+    <mat-icon>add</mat-icon>
+    {{ 'inventory.header.add-item' | translate }}
+  </button>
+
+</header>
