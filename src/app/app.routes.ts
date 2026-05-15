@@ -3,6 +3,7 @@ import { PageNotFoundComponent } from './shared/presentation/views/page-not-foun
 import { PlaceholderPageComponent } from './shared/presentation/views/placeholder-page.component';
 import { supplyAndPurchasingRoutes } from './supply-and-purchasing/presentation/supply-and-purchasing.routes';
 import { restaurantManagementRoutes } from './restaurant-management/presentation/restaurant-management.routes';
+import { supplierManagementRoutes } from './supplier-management/presentation/supplier-management.routes';
 
 const placeholderRoutes: Routes = [
   {
@@ -39,6 +40,7 @@ const placeholderRoutes: Routes = [
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'orders' },
+  ...supplierManagementRoutes,
   ...placeholderRoutes,
   ...supplyAndPurchasingRoutes,
   ...restaurantManagementRoutes,

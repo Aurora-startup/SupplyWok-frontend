@@ -1,6 +1,41 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeicons/primeicons.css";
 
+:root {
+  --sw-bg: #ede8df;
+  --sw-surface: #fffdf9;
+  --sw-surface-soft: #fff7eb;
+  --sw-border: #eedfca;
+  --sw-sidebar: #342206;
+  --sw-sidebar-active: #57390d;
+  --sw-accent: #c58726;
+  --sw-accent-strong: #bd852a;
+  --sw-text: #2d211b;
+  --sw-text-muted: #756b62;
+  --sw-shadow: 0 18px 36px rgba(85, 60, 20, 0.08);
+}
+
+html, body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--sw-bg);
+  color: var(--sw-text);
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', system-ui, sans-serif;
+  letter-spacing: 0;
+}
+
+input, button, select, textarea {
+  font-family: inherit;
+}
+
 /* Premium PrimeNG Menu Customization */
 .premium-menu {
   border-radius: 12px !important;
@@ -42,4 +77,96 @@
   font-weight: 700 !important;
   padding: 10px 12px 6px 12px !important;
   font-size: 0.85rem !important;
+}
+
+.p-inputtext,
+.p-select {
+  border: 1px solid #d7deea !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  min-height: 56px;
+}
+
+.p-inputtext {
+  padding: 0.9rem 1.15rem !important;
+}
+
+.p-select {
+  align-items: center;
+  background: #fff !important;
+}
+
+.p-select .p-select-label {
+  padding: 0.9rem 1.15rem !important;
+}
+
+.p-card {
+  background: var(--sw-surface) !important;
+  border: 1px solid var(--sw-border) !important;
+  border-radius: 18px !important;
+  box-shadow: var(--sw-shadow) !important;
+}
+
+.p-datatable {
+  background: transparent !important;
+}
+
+.p-datatable-table-container,
+.p-datatable .p-paginator {
+  background: var(--sw-surface) !important;
+}
+
+.p-datatable-table {
+  border: 1px solid var(--sw-border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.p-datatable-thead > tr > th {
+  background: #fff2c9 !important;
+  border-color: var(--sw-border) !important;
+  color: #34261d !important;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  padding: 1.2rem 1rem !important;
+}
+
+.p-datatable-tbody > tr > td {
+  border-color: #eee4d6 !important;
+  color: #506682;
+  font-size: 1rem;
+  padding: 1.3rem 1rem !important;
+  vertical-align: middle;
+}
+
+.p-datatable-tbody > tr {
+  background: var(--sw-surface) !important;
+}
+
+.p-button {
+  border-radius: 16px !important;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 600 !important;
+}
+
+.p-button:not(.p-button-text):not(.p-button-outlined) {
+  background: var(--sw-accent-strong) !important;
+  border-color: var(--sw-accent-strong) !important;
+}
+
+.p-button.p-button-text {
+  color: #11b876 !important;
+}
+
+.p-button.p-button-outlined {
+  color: #c24f28 !important;
+  border-color: #f1d1c4 !important;
+}
+
+.p-tag {
+  border-radius: 999px !important;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 700 !important;
+  padding: 0.45rem 0.9rem !important;
 }

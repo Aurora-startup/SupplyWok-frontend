@@ -26,7 +26,12 @@
       "alerts": "Alerts",
       "reports": "Reports",
       "configuration": "Configuration",
-      "subscription": "Subscription"
+      "subscription": "Subscription",
+      "supplier": "Supplier",
+      "clients": "My Clients",
+      "delivery": "Delivery Planning",
+      "forecast": "Demand Forecast",
+      "catalog": "Product Catalog"
     },
     "header": {
       "profile": "Admin Profile",
@@ -177,6 +182,298 @@
         "EN_PREPARACION": "In Preparation",
         "LISTO": "Ready",
         "ENTREGADO": "Delivered"
+      }
+    }
+  },
+  "supplier-management": {
+    "orders": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Purchase orders",
+      "subtitle": "Track restaurant orders and delivery commitments.",
+      "search": "Search",
+      "stats": {
+        "total": "Total orders",
+        "pending": "Pending",
+        "in-transit": "In transit",
+        "delivered": "Delivered"
+      },
+      "filters": {
+        "status": "Status",
+        "all": "All statuses",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "in-transit": "In transit",
+        "delivered": "Delivered",
+        "delayed": "Delayed"
+      },
+      "columns": {
+        "code": "Order",
+        "restaurant": "Restaurant",
+        "order-date": "Order date",
+        "delivery-date": "Estimated delivery",
+        "priority": "Priority",
+        "status": "Status",
+        "items": "Items",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm",
+        "mark-in-transit": "Mark in transit",
+        "mark-delivered": "Mark delivered",
+        "view": "View details"
+      },
+      "details": {
+        "title": "Order details",
+        "order-date": "Order date",
+        "delivery-date": "Estimated delivery",
+        "priority": "Priority",
+        "supplier": "Supplier",
+        "close": "Close",
+        "columns": {
+          "product": "Product",
+          "quantity": "Quantity",
+          "unit": "Unit",
+          "unit-price": "Unit price",
+          "subtotal": "Subtotal"
+        }
+      },
+      "empty": "No orders match your search.",
+      "visible-count": "Showing {visible} of {total} total orders"
+    },
+    "clients": {
+      "breadcrumb": "SUPPLIER",
+      "title": "My clients",
+      "subtitle": "Purchase frequency, average ticket, and demand momentum by restaurant.",
+      "search": "Search",
+      "filters": {
+        "status": "Status",
+        "all": "All statuses",
+        "active": "Active"
+      },
+      "columns": {
+        "client": "My clients",
+        "district": "District",
+        "frequency": "Frequency",
+        "ticket": "Ticket",
+        "demand": "Demand projection",
+        "status": "Status",
+        "last-order-date": "Last order date"
+      },
+      "empty": "No clients match your search.",
+      "visible-count": "Showing {visible} of {total} total items"
+    },
+    "forecast": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Demand forecast",
+      "subtitle": "Combine aggregate demand and client-level forecasts for supply planning.",
+      "aggregate-title": "Aggregate view",
+      "clients-title": "By client",
+      "chart-summary": "Text summary for the chart: {from} -> {to}",
+      "top-client-summary": "Text summary for the chart: {value}",
+      "empty": "No forecast data available.",
+      "trend": {
+        "upward": "Upward",
+        "stable": "Stable",
+        "watch": "Watch"
+      }
+    },
+    "delivery": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Delivery planning",
+      "subtitle": "Plan grouped deliveries by date and route sequence for nearby restaurants.",
+      "filters": {
+        "date": "Date",
+        "all-dates": "All dates",
+        "status": "Status",
+        "all-statuses": "All statuses"
+      },
+      "stats": {
+        "routes": "Routes",
+        "stops": "Stops",
+        "orders": "Orders"
+      },
+      "status": {
+        "planned": "Planned",
+        "in-progress": "In progress",
+        "completed": "Completed"
+      },
+      "stop-orders": "{count} order(s)",
+      "empty": "No delivery routes match your filters."
+    },
+    "alerts": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier alerts",
+      "description": "Monitor urgent changes, delays, and signals shared by clients.",
+      "search-label": "Search",
+      "search-placeholder": "Search alerts...",
+      "severity-label": "Severity",
+      "severity-placeholder": "Filter by Severity",
+      "severity": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "status": {
+        "open": "Open",
+        "acknowledged": "Acknowledged"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERITY",
+          "detail": "ALERT DETAIL",
+          "source": "SOURCE",
+          "date": "DATE",
+          "status": "STATUS",
+          "actions": "ACTIONS"
+        },
+        "actions": {
+          "view-details": "VIEW DETAILS",
+          "acknowledge": "ACKNOWLEDGE"
+        },
+        "footer": "Showing {first} to {last} of {total} supplier alerts"
+      },
+      "dialog": {
+        "header": "Alert details",
+        "meta": {
+          "date": "Date",
+          "status": "Status"
+        },
+        "actions": {
+          "close": "Close",
+          "acknowledge": "Acknowledge"
+        }
+      },
+      "empty": "No alerts match your search.",
+      "notification-title": "Supplier Notification",
+      "messages": {
+        "rush-reorder": "Rush reorder request",
+        "route-congestion": "Route congestion detected"
+      }
+    },
+    "catalog": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Product catalog",
+      "subtitle": "Manage offer, price, unit, and delivery conditions.",
+      "add": "Add",
+      "search": "Search",
+      "columns": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "unit": "Unit",
+        "delivery-conditions": "Delivery conditions",
+        "actions": "Actions"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "unit": "Unit",
+        "delivery-conditions": "Delivery conditions",
+        "cancel": "Cancel",
+        "save": "Save"
+      },
+      "delete-dialog": {
+        "title": "Delete product",
+        "message": "Are you sure you want to delete {product} from the catalog?",
+        "confirm": "Delete"
+      },
+      "empty": "No products in the catalog yet."
+    },
+    "settings": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier settings",
+      "subtitle": "Commercial profile, zones, contacts, and operating preferences.",
+      "profile": {
+        "title": "Supplier profile",
+        "supplier-name": "Supplier profile",
+        "support-contact": "Support contact",
+        "email": "Email",
+        "sms": "SMS",
+        "save": "Save",
+        "saving": "Saving...",
+        "saved": "Settings saved."
+      },
+      "zones": {
+        "title": "Service zones",
+        "active": "Active",
+        "add-placeholder": "Add service zone",
+        "remove": "Remove zone"
+      }
+    },
+    "subscription": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier subscription",
+      "subtitle": "Commercial capacity, limits, and enterprise features.",
+      "active": "Active plan",
+      "summary": {
+        "current-plan": {
+          "label": "Current plan",
+          "value": "Enterprise"
+        },
+        "users": {
+          "label": "Users",
+          "value": "Unlimited users"
+        },
+        "locations": {
+          "label": "Locations",
+          "value": "Multi-location"
+        },
+        "sensors": {
+          "label": "Sensors",
+          "value": "Unlimited sensors"
+        }
+      },
+      "plans": {
+        "premium": {
+          "name": "Premium",
+          "features": [
+            "Core dashboards",
+            "IoT monitoring",
+            "Email support"
+          ]
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "features": [
+            "Advanced analytics",
+            "Multi-location",
+            "Route optimization",
+            "Priority support"
+          ]
+        }
+      }
+    },
+    "dashboard": {
+      "title": "Supplier dashboard",
+      "subtitle": "Incoming orders, logistics load, clients, and demand outlook.",
+      "loading": "Loading dashboard data...",
+      "stats": {
+        "orders-received": "Orders received",
+        "scheduled-deliveries": "Scheduled deliveries",
+        "demand-outlook": "Demand outlook",
+        "urgent-requests": "Urgent requests",
+        "alert-badge": "Alert"
+      },
+      "routes": {
+        "title": "Today's active routes",
+        "schedule": "{stops} Stops · {departure} - {arrival}",
+        "date": "{date}",
+        "empty": "No active routes available."
+      },
+      "aggregate": {
+        "title": "Aggregate view",
+        "summary": "Text summary for the chart: {from} -> {to}",
+        "empty": "No forecast data available."
+      },
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
       }
     }
   }

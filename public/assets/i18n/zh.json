@@ -26,7 +26,12 @@
       "alerts": "警报",
       "reports": "报告",
       "configuration": "配置",
-      "subscription": "订阅"
+      "subscription": "订阅",
+      "supplier": "供应商",
+      "clients": "我的客户",
+      "delivery": "配送计划",
+      "forecast": "需求预测",
+      "catalog": "产品目录"
     },
     "header": {
       "profile": "管理员资料",
@@ -90,6 +95,298 @@
         "EN_PREPARACION": "准备中",
         "LISTO": "就绪",
         "ENTREGADO": "已送达"
+      }
+    }
+  },
+  "supplier-management": {
+    "orders": {
+      "breadcrumb": "供应商",
+      "title": "采购订单",
+      "subtitle": "跟踪餐厅订单与交付承诺。",
+      "search": "搜索",
+      "stats": {
+        "total": "订单总数",
+        "pending": "待处理",
+        "in-transit": "运输中",
+        "delivered": "已交付"
+      },
+      "filters": {
+        "status": "状态",
+        "all": "全部状态",
+        "confirmed": "已确认",
+        "pending": "待处理",
+        "in-transit": "运输中",
+        "delivered": "已交付",
+        "delayed": "延迟"
+      },
+      "columns": {
+        "code": "订单号",
+        "restaurant": "餐厅",
+        "order-date": "下单日期",
+        "delivery-date": "预计交付",
+        "priority": "优先级",
+        "status": "状态",
+        "items": "项目数",
+        "actions": "操作"
+      },
+      "actions": {
+        "confirm": "确认",
+        "mark-in-transit": "标记运输中",
+        "mark-delivered": "标记已交付",
+        "view": "查看详情"
+      },
+      "details": {
+        "title": "订单详情",
+        "order-date": "下单日期",
+        "delivery-date": "预计交付",
+        "priority": "优先级",
+        "supplier": "供应商",
+        "close": "关闭",
+        "columns": {
+          "product": "产品",
+          "quantity": "数量",
+          "unit": "单位",
+          "unit-price": "单价",
+          "subtotal": "小计"
+        }
+      },
+      "empty": "没有符合搜索条件的订单。",
+      "visible-count": "显示 {visible}/{total} 条订单"
+    },
+    "clients": {
+      "breadcrumb": "供应商",
+      "title": "我的客户",
+      "subtitle": "按餐厅查看采购频率、平均客单价和需求走势。",
+      "search": "搜索",
+      "filters": {
+        "status": "状态",
+        "all": "全部状态",
+        "active": "活跃"
+      },
+      "columns": {
+        "client": "我的客户",
+        "district": "区域",
+        "frequency": "频率",
+        "ticket": "客单价",
+        "demand": "需求预测",
+        "status": "状态",
+        "last-order-date": "最近下单日期"
+      },
+      "empty": "没有符合搜索条件的客户。",
+      "visible-count": "显示 {visible}/{total} 条记录"
+    },
+    "forecast": {
+      "breadcrumb": "供应商",
+      "title": "需求预测",
+      "subtitle": "结合整体需求和客户级预测来规划供应。",
+      "aggregate-title": "汇总视图",
+      "clients-title": "按客户",
+      "chart-summary": "图表摘要: {from} -> {to}",
+      "top-client-summary": "图表摘要: {value}",
+      "empty": "暂无预测数据。",
+      "trend": {
+        "upward": "上升",
+        "stable": "稳定",
+        "watch": "关注"
+      }
+    },
+    "delivery": {
+      "breadcrumb": "供应商",
+      "title": "配送计划",
+      "subtitle": "按日期和路线顺序规划附近餐厅的合并配送。",
+      "filters": {
+        "date": "日期",
+        "all-dates": "全部日期",
+        "status": "状态",
+        "all-statuses": "全部状态"
+      },
+      "stats": {
+        "routes": "路线",
+        "stops": "停靠点",
+        "orders": "订单"
+      },
+      "status": {
+        "planned": "已计划",
+        "in-progress": "进行中",
+        "completed": "已完成"
+      },
+      "stop-orders": "{count} 单",
+      "empty": "没有符合筛选条件的配送路线。"
+    },
+    "alerts": {
+      "breadcrumb": "供应商",
+      "title": "供应商警报",
+      "description": "监控客户共享的紧急变更、延误和信号。",
+      "search-label": "搜索",
+      "search-placeholder": "搜索警报...",
+      "severity-label": "严重程度",
+      "severity-placeholder": "按严重程度筛选",
+      "severity": {
+        "high": "高",
+        "medium": "中",
+        "low": "低"
+      },
+      "status": {
+        "open": "开启",
+        "acknowledged": "已确认"
+      },
+      "table": {
+        "columns": {
+          "severity": "严重程度",
+          "detail": "警报详情",
+          "source": "来源",
+          "date": "日期",
+          "status": "状态",
+          "actions": "操作"
+        },
+        "actions": {
+          "view-details": "查看详情",
+          "acknowledge": "确认"
+        },
+        "footer": "显示第 {first} 至 {last} 条，共 {total} 条供应商警报"
+      },
+      "dialog": {
+        "header": "警报详情",
+        "meta": {
+          "date": "日期",
+          "status": "状态"
+        },
+        "actions": {
+          "close": "关闭",
+          "acknowledge": "确认"
+        }
+      },
+      "empty": "没有符合搜索条件的警报。",
+      "notification-title": "供应商通知",
+      "messages": {
+        "rush-reorder": "紧急补货请求",
+        "route-congestion": "检测到路线拥堵"
+      }
+    },
+    "catalog": {
+      "breadcrumb": "供应商",
+      "title": "产品目录",
+      "subtitle": "管理报价、价格、单位和配送条件。",
+      "add": "添加",
+      "search": "搜索",
+      "columns": {
+        "product": "产品",
+        "category": "类别",
+        "price": "价格",
+        "unit": "单位",
+        "delivery-conditions": "配送条件",
+        "actions": "操作"
+      },
+      "actions": {
+        "edit": "编辑",
+        "delete": "删除"
+      },
+      "form": {
+        "product": "产品",
+        "category": "类别",
+        "price": "价格",
+        "unit": "单位",
+        "delivery-conditions": "配送条件",
+        "cancel": "取消",
+        "save": "保存"
+      },
+      "delete-dialog": {
+        "title": "删除产品",
+        "message": "确定要从目录中删除 {product} 吗？",
+        "confirm": "删除"
+      },
+      "empty": "目录中还没有产品。"
+    },
+    "settings": {
+      "breadcrumb": "供应商",
+      "title": "供应商设置",
+      "subtitle": "商业资料、服务区域、联系人和运营偏好。",
+      "profile": {
+        "title": "供应商资料",
+        "supplier-name": "供应商资料",
+        "support-contact": "支持联系人",
+        "email": "邮件",
+        "sms": "短信",
+        "save": "保存",
+        "saving": "保存中...",
+        "saved": "设置已保存。"
+      },
+      "zones": {
+        "title": "服务区域",
+        "active": "启用",
+        "add-placeholder": "添加服务区域",
+        "remove": "移除区域"
+      }
+    },
+    "subscription": {
+      "breadcrumb": "供应商",
+      "title": "供应商订阅",
+      "subtitle": "商业容量、限制和企业功能。",
+      "active": "当前计划",
+      "summary": {
+        "current-plan": {
+          "label": "当前计划",
+          "value": "Enterprise"
+        },
+        "users": {
+          "label": "用户",
+          "value": "无限用户"
+        },
+        "locations": {
+          "label": "站点",
+          "value": "多站点"
+        },
+        "sensors": {
+          "label": "传感器",
+          "value": "无限传感器"
+        }
+      },
+      "plans": {
+        "premium": {
+          "name": "Premium",
+          "features": [
+            "核心仪表板",
+            "IoT 监控",
+            "邮件支持"
+          ]
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "features": [
+            "高级分析",
+            "多站点",
+            "路线优化",
+            "优先支持"
+          ]
+        }
+      }
+    },
+    "dashboard": {
+      "title": "供应商仪表板",
+      "subtitle": "传入订单、物流负载、客户与需求走势。",
+      "loading": "正在加载仪表板数据...",
+      "stats": {
+        "orders-received": "已接收订单",
+        "scheduled-deliveries": "已安排配送",
+        "demand-outlook": "需求走势",
+        "urgent-requests": "紧急请求",
+        "alert-badge": "警报"
+      },
+      "routes": {
+        "title": "今日活跃路线",
+        "schedule": "{stops} 站 · {departure} - {arrival}",
+        "date": "{date}",
+        "empty": "暂无活跃路线。"
+      },
+      "aggregate": {
+        "title": "汇总视图",
+        "summary": "图表摘要: {from} -> {to}",
+        "empty": "暂无预测数据。"
+      },
+      "priority": {
+        "high": "高",
+        "medium": "中",
+        "low": "低"
       }
     }
   }

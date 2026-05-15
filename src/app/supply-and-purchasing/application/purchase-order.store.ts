@@ -1,5 +1,4 @@
 import { Injectable, computed, signal, inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { PurchaseOrder } from '../domain/model/purchase-order.entity';
 import { OrderItem } from '../domain/model/order-item.entity';
@@ -38,23 +37,25 @@ export class PurchaseOrderStore {
     this.purchaseOrdersSignal().filter((purchaseOrder) => purchaseOrder.priority === 'High').length
   );
 
-  async ensurePurchaseOrdersLoaded(): Promise<void> {
+  ensurePurchaseOrdersLoaded(): void {
     if (!this.purchaseOrdersLoadedSignal() && !this.loadingSignal()) {
-      await this.fetchPurchaseOrders();
+      this.fetchPurchaseOrders();
     }
   }
 
-  async fetchPurchaseOrders(): Promise<void> {
+  fetchPurchaseOrders(): void {
     this.loadingSignal.set(true);
-    try {
-      const purchaseOrders = await firstValueFrom(this.purchaseOrderApi.getPurchaseOrders());
-      this.purchaseOrdersSignal.set(purchaseOrders);
-      this.purchaseOrdersLoadedSignal.set(true);
-    } catch (error) {
-      this.pushError(error);
-    } finally {
-      this.loadingSignal.set(false);
-    }
+    this.purchaseOrderApi.getPurchaseOrders().subscribe({
+      next: (purchaseOrders) => {
+        this.purchaseOrdersSignal.set(purchaseOrders);
+        this.purchaseOrdersLoadedSignal.set(true);
+        this.loadingSignal.set(false);
+      },
+      error: (error) => {
+        this.pushError(error);
+        this.loadingSignal.set(false);
+      }
+    });
   }
 
   clearValidationErrors(): void {
@@ -117,22 +118,25 @@ export class PurchaseOrderStore {
     return Object.keys(nextValidationErrors).length === 0;
   }
 
-  async addPurchaseOrder(purchaseOrder: PurchaseOrder): Promise<boolean> {
+  addPurchaseOrder(purchaseOrder: PurchaseOrder, onSuccess?: () => void): boolean {
     this.clearValidationScope('draftLine');
 
     if (!this.validatePurchaseOrder(purchaseOrder)) {
       return false;
     }
 
-    try {
-      const newPurchaseOrder = await firstValueFrom(this.purchaseOrderApi.createPurchaseOrder(purchaseOrder));
-      this.purchaseOrdersSignal.update((orders) => [newPurchaseOrder, ...orders]);
-      this.clearValidationErrors();
-      return true;
-    } catch (error) {
-      this.pushError(error);
-      return false;
-    }
+    this.purchaseOrderApi.createPurchaseOrder(purchaseOrder).subscribe({
+      next: (newPurchaseOrder) => {
+        this.purchaseOrdersSignal.update((orders) => [newPurchaseOrder, ...orders]);
+        this.clearValidationErrors();
+        onSuccess?.();
+      },
+      error: (error) => {
+        this.pushError(error);
+      }
+    });
+
+    return true;
   }
 
   private collectOrderItemValidationErrors(item: Partial<OrderItem>): Record<string, string> {

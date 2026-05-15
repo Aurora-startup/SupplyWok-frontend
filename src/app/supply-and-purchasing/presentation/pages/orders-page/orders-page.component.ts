@@ -13,7 +13,7 @@ import { PurchaseOrdersTableComponent } from '../../components/purchase-orders-t
 export class OrdersPageComponent implements OnInit {
   protected readonly store = inject(PurchaseOrderStore);
 
-  async ngOnInit(): Promise<void> {
-    await this.store.ensurePurchaseOrdersLoaded();
+  ngOnInit(): void {
+    this.store.ensurePurchaseOrdersLoaded();
   }
 }

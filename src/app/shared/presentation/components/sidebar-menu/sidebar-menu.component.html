@@ -3,18 +3,18 @@
     <img src="/assets/images/supplywok-logo.png" alt="SupplyWok Logo" class="sidebar-logo" />
     <div class="sidebar-brand-text">
       <h2 class="sidebar-title">SupplyWok</h2>
-      <span class="sidebar-subtitle">{{ restaurantName() }}</span>
+      <span class="sidebar-subtitle">{{ activeBusinessName() }}</span>
     </div>
   </div>
 
   <div class="sidebar-status">
-    <span class="sidebar-tag sidebar-tag-role">{{ 'shared.sidebar.restaurant' | translate }}</span>
+    <span class="sidebar-tag sidebar-tag-role">{{ activeRoleKey() | translate }}</span>
     <span class="sidebar-tag sidebar-tag-plan">{{ 'shared.sidebar.current-plan' | translate }} {{ currentPlan() }}</span>
   </div>
 
   <nav class="sidebar-nav" aria-label="Main Navigation">
     <ul class="sidebar-menu">
-      @for (item of menuItems; track item.id) {
+      @for (item of menuItems(); track item.id) {
         <li class="sidebar-item" [class.sidebar-item-active]="isActive(item)">
           <a class="sidebar-button" [routerLink]="item.path">
             <img

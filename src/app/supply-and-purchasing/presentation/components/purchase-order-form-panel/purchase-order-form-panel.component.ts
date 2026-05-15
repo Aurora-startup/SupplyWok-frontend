@@ -88,7 +88,7 @@ export class PurchaseOrderFormPanelComponent {
     this.orderLines = this.orderLines.filter((_, itemIndex) => itemIndex !== index);
   }
 
-  protected async handleSubmit(): Promise<void> {
+  protected handleSubmit(): void {
     this.syncSupplierData();
 
     const items = [...this.orderLines];
@@ -110,13 +110,13 @@ export class PurchaseOrderFormPanelComponent {
       items
     });
 
-    const wasCreated = await this.store.addPurchaseOrder(purchaseOrder);
+    const wasCreated = this.store.addPurchaseOrder(purchaseOrder, () => {
+      this.orderLines = [];
+      this.resetDraftLine();
+    });
     if (!wasCreated) {
       return;
     }
-
-    this.orderLines = [];
-    this.resetDraftLine();
   }
 
   protected getFieldError(field: string): string {

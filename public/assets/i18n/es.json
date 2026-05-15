@@ -26,7 +26,12 @@
       "alerts": "Alertas",
       "reports": "Reportes",
       "configuration": "Configuracion",
-      "subscription": "Suscripcion"
+      "subscription": "Suscripcion",
+      "supplier": "Proveedor",
+      "clients": "Mis Clientes",
+      "delivery": "Planificación de Entregas",
+      "forecast": "Pronóstico de Demanda",
+      "catalog": "Catálogo de Productos"
     },
     "header": {
       "profile": "Perfil de administrador",
@@ -177,6 +182,298 @@
         "EN_PREPARACION": "En Preparación",
         "LISTO": "Listo",
         "ENTREGADO": "Entregado"
+      }
+    }
+  },
+  "supplier-management": {
+    "orders": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Órdenes de compra",
+      "subtitle": "Monitorea pedidos de restaurantes y compromisos de entrega.",
+      "search": "Buscar",
+      "stats": {
+        "total": "Órdenes totales",
+        "pending": "Pendientes",
+        "in-transit": "En tránsito",
+        "delivered": "Entregadas"
+      },
+      "filters": {
+        "status": "Estado",
+        "all": "Todos los estados",
+        "confirmed": "Confirmada",
+        "pending": "Pendiente",
+        "in-transit": "En tránsito",
+        "delivered": "Entregada",
+        "delayed": "Retrasada"
+      },
+      "columns": {
+        "code": "Orden",
+        "restaurant": "Restaurante",
+        "order-date": "Fecha de orden",
+        "delivery-date": "Entrega estimada",
+        "priority": "Prioridad",
+        "status": "Estado",
+        "items": "Items",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "confirm": "Confirmar",
+        "mark-in-transit": "Marcar en tránsito",
+        "mark-delivered": "Marcar entregada",
+        "view": "Ver detalle"
+      },
+      "details": {
+        "title": "Detalle de la orden",
+        "order-date": "Fecha de orden",
+        "delivery-date": "Entrega estimada",
+        "priority": "Prioridad",
+        "supplier": "Proveedor",
+        "close": "Cerrar",
+        "columns": {
+          "product": "Producto",
+          "quantity": "Cantidad",
+          "unit": "Unidad",
+          "unit-price": "Precio unitario",
+          "subtotal": "Subtotal"
+        }
+      },
+      "empty": "No hay órdenes que coincidan con tu búsqueda.",
+      "visible-count": "Mostrando {visible} de {total} órdenes totales"
+    },
+    "clients": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Mis clientes",
+      "subtitle": "Frecuencia de compra, ticket promedio y momentum de demanda por restaurante.",
+      "search": "Buscar",
+      "filters": {
+        "status": "Estado",
+        "all": "Todos los estados",
+        "active": "Activo"
+      },
+      "columns": {
+        "client": "Mis clientes",
+        "district": "Distrito",
+        "frequency": "Frecuencia",
+        "ticket": "Ticket",
+        "demand": "Proyección de demanda",
+        "status": "Estado",
+        "last-order-date": "Última orden"
+      },
+      "empty": "No hay clientes que coincidan con tu búsqueda.",
+      "visible-count": "Mostrando {visible} de {total} elementos totales"
+    },
+    "forecast": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Pronóstico de demanda",
+      "subtitle": "Combina demanda agregada y pronósticos por cliente para planificar el suministro.",
+      "aggregate-title": "Vista agregada",
+      "clients-title": "Por cliente",
+      "chart-summary": "Resumen del gráfico: {from} -> {to}",
+      "top-client-summary": "Resumen del gráfico: {value}",
+      "empty": "No hay datos de pronóstico disponibles.",
+      "trend": {
+        "upward": "Al alza",
+        "stable": "Estable",
+        "watch": "En observación"
+      }
+    },
+    "delivery": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Planificación de entregas",
+      "subtitle": "Planifica entregas agrupadas por fecha y secuencia de ruta para restaurantes cercanos.",
+      "filters": {
+        "date": "Fecha",
+        "all-dates": "Todas las fechas",
+        "status": "Estado",
+        "all-statuses": "Todos los estados"
+      },
+      "stats": {
+        "routes": "Rutas",
+        "stops": "Paradas",
+        "orders": "Órdenes"
+      },
+      "status": {
+        "planned": "Planificada",
+        "in-progress": "En curso",
+        "completed": "Completada"
+      },
+      "stop-orders": "{count} orden(es)",
+      "empty": "No hay rutas de entrega que coincidan con tus filtros."
+    },
+    "alerts": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Alertas del proveedor",
+      "description": "Monitorea cambios urgentes, retrasos y senales compartidas por clientes.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar alertas...",
+      "severity-label": "Severidad",
+      "severity-placeholder": "Filtrar por severidad",
+      "severity": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      },
+      "status": {
+        "open": "Abierta",
+        "acknowledged": "Reconocida"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERIDAD",
+          "detail": "DETALLE DE ALERTA",
+          "source": "ORIGEN",
+          "date": "FECHA",
+          "status": "ESTADO",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "view-details": "VER DETALLES",
+          "acknowledge": "RECONOCER"
+        },
+        "footer": "Mostrando {first} a {last} de {total} alertas del proveedor"
+      },
+      "dialog": {
+        "header": "Detalle de la alerta",
+        "meta": {
+          "date": "Fecha",
+          "status": "Estado"
+        },
+        "actions": {
+          "close": "Cerrar",
+          "acknowledge": "Reconocer"
+        }
+      },
+      "empty": "No hay alertas que coincidan con tu busqueda.",
+      "notification-title": "Notificación de Proveedor",
+      "messages": {
+        "rush-reorder": "Pedido de reabastecimiento urgente",
+        "route-congestion": "Congestión en la ruta detectada"
+      }
+    },
+    "catalog": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Catálogo de productos",
+      "subtitle": "Gestiona oferta, precio, unidad y condiciones de entrega.",
+      "add": "Agregar",
+      "search": "Buscar",
+      "columns": {
+        "product": "Producto",
+        "category": "Categoría",
+        "price": "Precio",
+        "unit": "Unidad",
+        "delivery-conditions": "Condiciones de entrega",
+        "actions": "Acciones"
+      },
+      "actions": {
+        "edit": "Editar",
+        "delete": "Eliminar"
+      },
+      "form": {
+        "product": "Producto",
+        "category": "Categoría",
+        "price": "Precio",
+        "unit": "Unidad",
+        "delivery-conditions": "Condiciones de entrega",
+        "cancel": "Cancelar",
+        "save": "Guardar"
+      },
+      "delete-dialog": {
+        "title": "Eliminar producto",
+        "message": "¿Seguro que quieres eliminar {product} del catálogo?",
+        "confirm": "Eliminar"
+      },
+      "empty": "Aún no hay productos en el catálogo."
+    },
+    "settings": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Configuración del proveedor",
+      "subtitle": "Perfil comercial, zonas, contactos y preferencias operativas.",
+      "profile": {
+        "title": "Perfil del proveedor",
+        "supplier-name": "Perfil del proveedor",
+        "support-contact": "Contacto de soporte",
+        "email": "Correo",
+        "sms": "SMS",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "saved": "Configuración guardada."
+      },
+      "zones": {
+        "title": "Zonas de servicio",
+        "active": "Activo",
+        "add-placeholder": "Agregar zona de servicio",
+        "remove": "Quitar zona"
+      }
+    },
+    "subscription": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Suscripción del proveedor",
+      "subtitle": "Capacidad comercial, límites y funcionalidades empresariales.",
+      "active": "Plan activo",
+      "summary": {
+        "current-plan": {
+          "label": "Plan actual",
+          "value": "Enterprise"
+        },
+        "users": {
+          "label": "Usuarios",
+          "value": "Usuarios ilimitados"
+        },
+        "locations": {
+          "label": "Ubicaciones",
+          "value": "Multi-ubicación"
+        },
+        "sensors": {
+          "label": "Sensores",
+          "value": "Sensores ilimitados"
+        }
+      },
+      "plans": {
+        "premium": {
+          "name": "Premium",
+          "features": [
+            "Dashboards base",
+            "Monitoreo IoT",
+            "Soporte por correo"
+          ]
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "features": [
+            "Analítica avanzada",
+            "Multi-ubicación",
+            "Optimización de rutas",
+            "Soporte prioritario"
+          ]
+        }
+      }
+    },
+    "dashboard": {
+      "title": "Dashboard del proveedor",
+      "subtitle": "Pedidos entrantes, carga logística, clientes y perspectiva de demanda.",
+      "loading": "Cargando datos del dashboard...",
+      "stats": {
+        "orders-received": "Órdenes recibidas",
+        "scheduled-deliveries": "Entregas programadas",
+        "demand-outlook": "Perspectiva de demanda",
+        "urgent-requests": "Solicitudes urgentes",
+        "alert-badge": "Alerta"
+      },
+      "routes": {
+        "title": "Rutas activas de hoy",
+        "schedule": "{stops} Paradas · {departure} - {arrival}",
+        "date": "{date}",
+        "empty": "No hay rutas activas disponibles."
+      },
+      "aggregate": {
+        "title": "Vista agregada",
+        "summary": "Resumen del gráfico: {from} -> {to}",
+        "empty": "No hay datos de pronóstico disponibles."
+      },
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
       }
     }
   }
