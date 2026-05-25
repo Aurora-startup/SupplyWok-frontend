@@ -3,7 +3,7 @@ import { OrderItem } from '../domain/model/order-item.entity';
 import { PurchaseOrder } from '../domain/model/purchase-order.entity';
 import { PurchaseOrderItemResource, PurchaseOrderResource, PurchaseOrderResponse } from './purchase-order-response';
 
-export class PurchaseOrderAssembler extends BaseAssembler<
+export class PurchaseOrderAssembler implements BaseAssembler<
   PurchaseOrder,
   PurchaseOrderResource,
   PurchaseOrderResponse

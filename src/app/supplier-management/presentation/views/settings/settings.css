@@ -1,0 +1,248 @@
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 2.15rem;
+}
+
+.settings-page__header p {
+  color: var(--sw-accent);
+  font-size: .8rem;
+  font-weight: 800;
+  letter-spacing: .08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.settings-page__header h1 {
+  color: #131019;
+  font-size: clamp(3.35rem, 5.8vw, 4.75rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.04;
+  margin: .5rem 0 .7rem;
+  max-width: 720px;
+}
+
+.settings-page__subtitle {
+  color: #6c6660;
+  font-size: 1.12rem;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.settings-page__grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+}
+
+.settings-page__card-title {
+  color: #334a67;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.06;
+  margin: 0 0 1.55rem;
+}
+
+.settings-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.settings-page__form label {
+  color: #4c4037;
+  display: flex;
+  flex-direction: column;
+  gap: .7rem;
+}
+
+.settings-page__field-label {
+  color: #4f453c;
+  font-size: 1.06rem;
+  font-weight: 700;
+}
+
+.settings-page__actions-row {
+  align-items: center;
+  display: flex;
+  gap: 1.1rem;
+  margin-top: .5rem;
+}
+
+.settings-page__toggles {
+  align-items: center;
+  display: flex;
+  gap: 1.4rem;
+}
+
+.settings-page__toggle-item {
+  align-items: center;
+  color: #4f453c;
+  display: inline-flex;
+  flex-direction: row;
+  font-size: 1.95rem;
+  font-weight: 700;
+  gap: .75rem;
+}
+
+.settings-page__zone-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-bottom: 1rem;
+}
+
+.settings-page__zone-chip {
+  align-items: center;
+  background: #f2ac17;
+  border: 0;
+  border-radius: 999px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.02rem;
+  font-weight: 700;
+  gap: .55rem;
+  padding: .65rem 1.1rem;
+}
+
+.settings-page__zone-chip i {
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+.settings-page__zone-form {
+  display: grid;
+  gap: .72rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  margin-bottom: 1.6rem;
+}
+
+.settings-page__contacts {
+  border-top: 1px solid #e9dcc8;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.settings-page__contacts li {
+  align-items: center;
+  border-bottom: 1px solid #e9dcc8;
+  display: flex;
+  justify-content: space-between;
+  padding: 1.22rem 0;
+}
+
+.settings-page__contacts strong {
+  color: #60748f;
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1.05;
+}
+
+:host ::ng-deep .settings-page__card {
+  border-radius: 22px;
+  min-height: 438px;
+}
+
+:host ::ng-deep .settings-page__card .p-card-body {
+  padding: 2rem 1.95rem 1.8rem;
+}
+
+:host ::ng-deep .settings-page__card .p-card-content {
+  padding: 0;
+}
+
+:host ::ng-deep .settings-page__form .p-inputtext,
+:host ::ng-deep .settings-page__zone-form .p-inputtext {
+  border: 1px solid #d2dbe5;
+  border-radius: 16px;
+  color: #3f4f64;
+  font-size: 1.03rem;
+  height: 3.55rem;
+  padding: 0 1.1rem;
+}
+
+:host ::ng-deep .settings-page__zone-form .p-button {
+  background: #8f8a83;
+  border-color: #8f8a83;
+  border-radius: 16px;
+  height: 3.55rem;
+  min-width: 3.45rem;
+}
+
+:host ::ng-deep .settings-page__zone-form .p-button .p-button-icon {
+  font-size: 1.6rem;
+}
+
+:host ::ng-deep .settings-page__actions-row .p-button {
+  background: #b98124;
+  border-color: #b98124;
+  border-radius: 18px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  height: 3.6rem;
+  min-width: 6.8rem;
+}
+
+:host ::ng-deep .settings-page__toggle-item .p-toggleswitch {
+  --p-toggleswitch-width: 3.25rem;
+  --p-toggleswitch-height: 2rem;
+}
+
+:host ::ng-deep .settings-page__toggle-item .p-toggleswitch.p-toggleswitch-checked .p-toggleswitch-slider {
+  background: #e0a314;
+}
+
+.settings-page__status-badge {
+  background: #35a9dd;
+  border-radius: 999px;
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  padding: .45rem .95rem;
+}
+
+@media (max-width: 1100px) {
+  .settings-page__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .settings-page__header h1 {
+    font-size: 2.95rem;
+  }
+
+  .settings-page__subtitle {
+    font-size: 1rem;
+  }
+
+  .settings-page__card-title {
+    font-size: 2.35rem;
+  }
+
+  .settings-page__actions-row {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .settings-page__toggle-item {
+    font-size: 1.5rem;
+  }
+
+  :host ::ng-deep .settings-page__form .p-inputtext,
+  :host ::ng-deep .settings-page__zone-form .p-inputtext {
+    font-size: 1.08rem;
+  }
+
+  .settings-page__contacts strong {
+    font-size: 2.6rem;
+  }
+}

@@ -1,0 +1,58 @@
+<section class="delivery-page">
+  <header class="delivery-page__header">
+    <p>{{ 'supplier-management.delivery.breadcrumb' | translate }}</p>
+    <h1>{{ 'supplier-management.delivery.title' | translate }}</h1>
+    <span>{{ 'supplier-management.delivery.subtitle' | translate }}</span>
+  </header>
+
+  <section class="delivery-page__filters">
+    <p-select [options]="dateOptions()" optionValue="value" [(ngModel)]="dateFilter">
+      <ng-template pTemplate="selectedItem" let-option>
+        {{ option?.labelKey ? (option.labelKey | translate) : option?.label }}
+      </ng-template>
+      <ng-template pTemplate="item" let-option>
+        {{ option.labelKey ? (option.labelKey | translate) : option.label }}
+      </ng-template>
+    </p-select>
+    <p-select [options]="statusOptions" optionValue="value" [(ngModel)]="statusFilter">
+      <ng-template pTemplate="selectedItem" let-option>
+        {{ option?.labelKey | translate }}
+      </ng-template>
+      <ng-template pTemplate="item" let-option>
+        {{ option.labelKey | translate }}
+      </ng-template>
+    </p-select>
+  </section>
+
+  <section class="delivery-page__stats">
+    <article><span>{{ 'supplier-management.delivery.stats.routes' | translate }}</span><strong>{{ routeSummary().totalRoutes }}</strong></article>
+    <article><span>{{ 'supplier-management.delivery.stats.stops' | translate }}</span><strong>{{ routeSummary().totalStops }}</strong></article>
+    <article><span>{{ 'supplier-management.delivery.stats.orders' | translate }}</span><strong>{{ routeSummary().totalOrders }}</strong></article>
+  </section>
+
+  <section class="delivery-page__routes">
+    @for (route of filteredRoutes; track route.id) {
+      <p-card styleClass="route-card">
+        <div class="route-card__header">
+          <div>
+            <h2>{{ route.routeName }}</h2>
+            <p>{{ route.supplierName }} · {{ route.vehicle }} · {{ route.estimatedDeparture }} - {{ route.estimatedArrival }}</p>
+          </div>
+          <p-tag [value]="'supplier-management.delivery.status.' + route.status | translate" severity="info" />
+        </div>
+        <div class="route-card__stops">
+          @for (stop of route.stops; track stop.sequence + stop.restaurantName) {
+            <article>
+              <strong>{{ stop.sequence }}</strong>
+              <div>
+                <b>{{ stop.restaurantName }}</b>
+                <span>{{ stop.district }} · {{ stop.estimatedArrival }}</span>
+              </div>
+              <p-tag [value]="'supplier-management.delivery.stop-orders' | translate: { count: stop.ordersCount }" severity="secondary" />
+            </article>
+          }
+        </div>
+      </p-card>
+    }
+  </section>
+</section>

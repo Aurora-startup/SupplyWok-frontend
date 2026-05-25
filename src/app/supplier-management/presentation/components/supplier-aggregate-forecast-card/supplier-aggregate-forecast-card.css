@@ -1,0 +1,40 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .forecast-card {
+  min-height: 388px;
+  border: 1px solid #efe4d4;
+  border-radius: 8px;
+  background: #fffdf9;
+  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+}
+
+:host ::ng-deep .forecast-card .p-card-body {
+  padding: 18px;
+}
+
+.forecast-card__header {
+  border-bottom: 1px solid #ece5dc;
+  padding: 10px 18px;
+}
+
+.forecast-card__header h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  color: #4b5768;
+  font-size: 18px;
+}
+
+.forecast-card__chart {
+  height: 230px;
+}
+
+.forecast-card__summary,
+.forecast-card__empty {
+  margin: 16px 0 0;
+  color: #6f665d;
+  font-size: 14px;
+}

@@ -16,12 +16,31 @@
   "shared": {
     "sidebar": {
       "restaurant": "Restaurante",
+      "supplier": "Proveedor",
       "current-plan": "Plan actual:",
       "dashboard": "Dashboard",
       "inventory": "Inventario",
       "orders": "Pedidos",
       "kitchen-tickets": "Comandas",
       "suppliers": "Proveedores",
+      "tables-and-occupancy": "Mesas y ocupación",
+      "alerts": "Alertas",
+      "reports": "Reportes",
+      "configuration": "Configuración",
+      "subscription": "Suscripción",
+      "clients": "Mis Clientes",
+      "forecast": "Pronóstico de Demanda",
+      "catalog": "Catálogo de Productos",
+      "delivery": "Planificación de Entregas"
+    },
+    "titles": {
+      "dashboard": "Dashboard",
+      "inventory": "Inventario",
+      "orders": "Pedidos",
+      "create-order": "Crear pedido",
+      "suppliers": "Proveedores",
+      "kitchen-tickets": "Comandas",
+      "tables": "Mesas",
       "alerts": "Alertas",
       "reports": "Reportes"
     },

@@ -1,0 +1,44 @@
+.clients-page {
+  color: #2d241e;
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
+.clients-page__header {
+  margin-bottom: 20px;
+}
+
+.clients-page__header p {
+  margin: 0 0 8px;
+  color: #b0762a;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.clients-page__header h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.clients-page__header span {
+  display: block;
+  margin-top: 8px;
+  color: #6f665d;
+}
+
+.clients-page__filters {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(180px, 260px);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.clients-page__filters input {
+  width: 100%;
+}
+
+.clients-page__count {
+  color: var(--sw-text-muted);
+  margin: 1rem 0 0;
+}

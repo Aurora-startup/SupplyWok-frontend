@@ -1,0 +1,24 @@
+<p-card styleClass="routes-panel">
+  <ng-template pTemplate="header">
+    <div class="routes-panel__header">
+      <h2>{{ title() }}</h2>
+    </div>
+  </ng-template>
+
+  @if (routes().length) {
+    <div class="routes-panel__list">
+      @for (route of routes(); track route.id) {
+        <article class="routes-panel__item">
+          <div class="routes-panel__item-head">
+            <strong>{{ route.routeName }}</strong>
+            <p-tag [value]="route.priorityKey | translate" severity="warn" />
+          </div>
+          <p>{{ 'supplier-management.dashboard.routes.schedule' | translate: { stops: route.stops, departure: route.departure, arrival: route.arrival } }}</p>
+          <small>{{ 'supplier-management.dashboard.routes.date' | translate: { date: route.date } }}</small>
+        </article>
+      }
+    </div>
+  } @else {
+    <p class="routes-panel__empty">{{ emptyText() }}</p>
+  }
+</p-card>

@@ -7,6 +7,7 @@ import { iotMonitoringRoutes } from './iot-monitoring/presentation/iot-monitorin
 import { inventoryManagementRoutes } from './inventory-management/presentation/inventory-management.routes';
 import { LoginComponent } from './iam/presentation/views/login/login.component';
 import { RegisterComponent } from './iam/presentation/views/register/register.component';
+import { supplierManagementRoutes } from './supplier-management/presentation/supplier-management.routes';
 
 const placeholderRoutes: Routes = [
   {
@@ -30,6 +31,8 @@ export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: '', pathMatch: 'full', redirectTo: '/supplier/dashboard' },
+  ...supplierManagementRoutes,
   ...placeholderRoutes,
   ...supplyAndPurchasingRoutes,
   ...restaurantManagementRoutes,
