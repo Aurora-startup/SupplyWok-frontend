@@ -12,7 +12,7 @@ export class ComandaApi extends BaseApi {
   private readonly comandasEndpoint: ComandaApiEndpoint;
 
   constructor(http: HttpClient) {
-    super();
+    super(http);
     this.comandasEndpoint = new ComandaApiEndpoint(http);
   }
 

@@ -8,6 +8,8 @@ import { inventoryManagementRoutes } from './inventory-management/presentation/i
 import { LoginComponent } from './iam/presentation/views/login/login.component';
 import { RegisterComponent } from './iam/presentation/views/register/register.component';
 import { supplierManagementRoutes } from './supplier-management/presentation/supplier-management.routes';
+import { authGuard } from './iam/presentation/guards/auth.guard';
+import { guestGuard } from './iam/presentation/guards/guest.guard';
 
 const placeholderRoutes: Routes = [
   {
@@ -29,14 +31,19 @@ const placeholderRoutes: Routes = [
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
-  { path: '', pathMatch: 'full', redirectTo: '/supplier/dashboard' },
-  ...supplierManagementRoutes,
-  ...placeholderRoutes,
-  ...supplyAndPurchasingRoutes,
-  ...restaurantManagementRoutes,
-  ...iotMonitoringRoutes,
-  ...inventoryManagementRoutes,
+  { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
+  { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
+  {
+    path: '',
+    canActivate: [authGuard],
+    children: [
+      ...supplierManagementRoutes,
+      ...placeholderRoutes,
+      ...supplyAndPurchasingRoutes,
+      ...restaurantManagementRoutes,
+      ...iotMonitoringRoutes,
+      ...inventoryManagementRoutes
+    ]
+  },
   { path: '**', component: PageNotFoundComponent, title: 'Page Not Found' }
 ];

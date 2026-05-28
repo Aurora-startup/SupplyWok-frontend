@@ -12,7 +12,7 @@ export class PurchaseOrderApi extends BaseApi {
   private readonly purchaseOrdersEndpoint: PurchaseOrderApiEndpoint;
 
   constructor(http: HttpClient) {
-    super();
+    super(http);
     this.purchaseOrdersEndpoint = new PurchaseOrderApiEndpoint(http);
   }
 

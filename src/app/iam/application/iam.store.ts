@@ -9,6 +9,7 @@ import { User } from '../domain/model/user.entity';
   providedIn: 'root',
 })
 export class IamStore {
+  private static readonly CURRENT_USER_STORAGE_KEY = 'iam.currentUser';
   private readonly usersSignal = signal<User[]>([]);
   private readonly currentUserSignal = signal<User | null>(null);
   private readonly loadingSignal = signal<boolean>(false);
@@ -23,7 +24,9 @@ export class IamStore {
   readonly isAuthenticated = computed(() => this.currentUserSignal() !== null);
   readonly currentUserRole = computed(() => this.currentUserSignal()?.role || null);
 
-  constructor(private iamApi: IamApiService) {}
+  constructor(private iamApi: IamApiService) {
+    this.restoreSession();
+  }
 
   /**
    * Loads all users from the API.
@@ -55,7 +58,7 @@ export class IamStore {
       next: allUsers => {
         const user = allUsers.find(u => u.email === email && u.password === password);
         if (user) {
-          this.currentUserSignal.set(user);
+          this.setCurrentUser(user);
         } else {
           this.errorSignal.set('Invalid email or password');
         }
@@ -93,6 +96,48 @@ export class IamStore {
    * Clears the current user session.
    */
   logout(): void {
-    this.currentUserSignal.set(null);
+    this.setCurrentUser(null);
+  }
+
+  private restoreSession(): void {
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    try {
+      const rawUser = window.localStorage.getItem(IamStore.CURRENT_USER_STORAGE_KEY);
+      if (!rawUser) {
+        return;
+      }
+
+      const parsedUser = JSON.parse(rawUser) as User;
+      this.currentUserSignal.set(
+        new User(
+          parsedUser.id,
+          parsedUser.email,
+          parsedUser.phoneNumber,
+          parsedUser.role,
+          parsedUser.subscription,
+          parsedUser.password
+        )
+      );
+    } catch {
+      window.localStorage.removeItem(IamStore.CURRENT_USER_STORAGE_KEY);
+    }
+  }
+
+  private setCurrentUser(user: User | null): void {
+    this.currentUserSignal.set(user);
+
+    if (typeof window === 'undefined') {
+      return;
+    }
+
+    if (user) {
+      window.localStorage.setItem(IamStore.CURRENT_USER_STORAGE_KEY, JSON.stringify(user));
+      return;
+    }
+
+    window.localStorage.removeItem(IamStore.CURRENT_USER_STORAGE_KEY);
   }
 }
