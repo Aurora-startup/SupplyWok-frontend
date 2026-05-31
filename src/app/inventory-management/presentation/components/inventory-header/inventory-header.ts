@@ -15,6 +15,6 @@ export class InventoryHeader {
   private router = inject(Router);
 
   protected onAddSupply(): void {
-    this.router.navigate(['/inventory/inventoryItems/new']);
+    this.router.navigate(['/restaurant/inventory/new']);
   }
 }

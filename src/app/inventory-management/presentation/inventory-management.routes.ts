@@ -3,7 +3,7 @@ import { InventoryPageComponent } from './pages/inventory-page/inventory-page.co
 import { InventoryItemForm } from './components/inventory-item-form/inventory-item-form';
 
 export const inventoryManagementRoutes: Routes = [
-  { path: 'inventory/inventoryItems', component: InventoryPageComponent },
-  { path: 'inventory/inventoryItems/new', component: InventoryItemForm },
-  { path: 'inventory/inventoryItems/:id/edit', component: InventoryItemForm },
+  { path: 'restaurant/inventory', component: InventoryPageComponent },
+  { path: 'restaurant/inventory/new', component: InventoryItemForm },
+  { path: 'restaurant/inventory/:id/edit', component: InventoryItemForm },
 ];

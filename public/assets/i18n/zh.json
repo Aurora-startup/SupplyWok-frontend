@@ -42,6 +42,7 @@
   "shared": {
     "sidebar": {
       "restaurant": "餐厅",
+      "supplier": "供应商",
       "current-plan": "当前计划:",
       "dashboard": "仪表板",
       "inventory": "库存",
@@ -52,11 +53,17 @@
       "alerts": "警报",
       "reports": "报告",
       "configuration": "配置",
-      "subscription": "订阅"
+      "subscription": "订阅",
+      "clients": "我的客户",
+      "forecast": "需求预测",
+      "catalog": "产品目录",
+      "delivery": "配送规划"
     },
     "header": {
-      "profile": "管理员个人资料",
+      "profile": "个人资料",
+      "adminProfile": "管理员资料",
       "settings": "设置",
+      "help": "帮助",
       "logout": "登出",
       "options": "选项"
     }

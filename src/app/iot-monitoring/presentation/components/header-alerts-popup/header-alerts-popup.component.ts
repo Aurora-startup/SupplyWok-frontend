@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { NgFor, NgIf, NgClass } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertItemComponent } from '../alert-item/alert-item.component';
@@ -35,8 +35,8 @@ import { IotStore } from '../../../application/iot-store';
   styles: [`
     .alerts-popup-container {
       position: absolute;
-      top: 60px; /* Adjust based on header height */
-      right: 20px;
+      top: calc(100% + 12px);
+      right: 0;
       width: 360px;
       background: #ffffff;
       border-radius: 12px;
@@ -85,11 +85,5 @@ import { IotStore } from '../../../application/iot-store';
 })
 export class HeaderAlertsPopupComponent {
   protected readonly store = inject(IotStore);
-  
-  // State to manage popup visibility. Can be toggled from the parent component.
-  readonly isOpen = signal<boolean>(true);
-
-  toggle() {
-    this.isOpen.update(v => !v);
-  }
+  readonly isOpen = input<boolean>(false);
 }

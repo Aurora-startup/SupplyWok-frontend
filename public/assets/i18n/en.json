@@ -59,6 +59,14 @@
       "catalog": "Product Catalog",
       "delivery": "Delivery Planning"
     },
+    "header": {
+      "options": "Options",
+      "help": "Help",
+      "profile": "Profile",
+      "adminProfile": "Admin profile",
+      "settings": "Settings",
+      "logout": "Logout"
+    },
     "titles": {
       "dashboard": "Dashboard",
       "inventory": "Inventory",
@@ -440,6 +448,7 @@
       }
     },
     "dashboard": {
+      "breadcrumb": "SUPPLIER",
       "title": "Supplier dashboard",
       "subtitle": "Incoming orders, logistics load, clients, and demand outlook.",
       "loading": "Loading dashboard data...",

@@ -62,7 +62,7 @@ export class InventoryItemForm {
     effect(() => {
       if (this.store.itemSaved()) {
         this.store.resetItemSaved();
-        this.router.navigate(['/inventory/inventoryItems']);
+        this.router.navigate(['/restaurant/inventory']);
       }
     });
 

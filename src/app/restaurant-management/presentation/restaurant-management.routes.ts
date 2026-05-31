@@ -3,6 +3,6 @@ import { TablesAndOccupancyComponent } from './pages/tables-and-occupancy/tables
 import { KitchenTicketsComponent } from './pages/kitchen-tickets/kitchen-tickets.component';
 
 export const restaurantManagementRoutes: Routes = [
-  { path: 'tables-and-occupancy', component: TablesAndOccupancyComponent },
-  { path: 'kitchen-tickets', component: KitchenTicketsComponent },
+  { path: 'restaurant/tables', component: TablesAndOccupancyComponent },
+  { path: 'restaurant/kitchen', component: KitchenTicketsComponent },
 ];

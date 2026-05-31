@@ -13,26 +13,45 @@ import { guestGuard } from './iam/presentation/guards/guest.guard';
 
 const placeholderRoutes: Routes = [
   {
-    path: 'reports',
+    path: 'restaurant/reports',
     component: PlaceholderPageComponent,
     data: { title: 'Reports', description: 'This reports page is reserved for another bounded context.' }
   },
   {
-    path: 'configuration',
+    path: 'restaurant/configuration',
     component: PlaceholderPageComponent,
     data: { title: 'Configuration', description: 'This configuration page is reserved for another bounded context.' }
   },
   {
-    path: 'subscription',
+    path: 'restaurant/subscription',
     component: PlaceholderPageComponent,
     data: { title: 'Subscription', description: 'This subscription page is reserved for another bounded context.' }
   }
+];
+
+const legacyRedirectRoutes: Routes = [
+  { path: 'restaurant', pathMatch: 'full', redirectTo: 'restaurant/dashboard' },
+  { path: 'dashboard', pathMatch: 'full', redirectTo: 'restaurant/dashboard' },
+  { path: 'alerts', pathMatch: 'full', redirectTo: 'restaurant/alerts' },
+  { path: 'reports', pathMatch: 'full', redirectTo: 'restaurant/reports' },
+  { path: 'configuration', pathMatch: 'full', redirectTo: 'restaurant/configuration' },
+  { path: 'subscription', pathMatch: 'full', redirectTo: 'restaurant/subscription' },
+  { path: 'inventory', pathMatch: 'full', redirectTo: 'restaurant/inventory' },
+  { path: 'inventory/inventoryItems', pathMatch: 'full', redirectTo: 'restaurant/inventory' },
+  { path: 'inventory/inventoryItems/new', pathMatch: 'full', redirectTo: 'restaurant/inventory/new' },
+  { path: 'inventory/inventoryItems/:id/edit', redirectTo: 'restaurant/inventory/:id/edit' },
+  { path: 'orders', pathMatch: 'full', redirectTo: 'restaurant/orders' },
+  { path: 'orders/new', pathMatch: 'full', redirectTo: 'restaurant/orders/new' },
+  { path: 'suppliers', pathMatch: 'full', redirectTo: 'restaurant/suppliers' },
+  { path: 'kitchen-tickets', pathMatch: 'full', redirectTo: 'restaurant/kitchen' },
+  { path: 'tables-and-occupancy', pathMatch: 'full', redirectTo: 'restaurant/tables' }
 ];
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'login' },
   { path: 'login', component: LoginComponent, canActivate: [guestGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [guestGuard] },
+  ...legacyRedirectRoutes,
   {
     path: '',
     canActivate: [authGuard],

@@ -1,28 +1,28 @@
-<aside class="sidebar">
-  <div class="sidebar-brand">
-    <img src="/assets/images/supplywok-logo.png" alt="SupplyWok Logo" class="sidebar-logo" />
-    <div class="sidebar-brand-text">
-      <h2 class="sidebar-title">SupplyWok</h2>
-      <span class="sidebar-subtitle">{{ activeBusinessName() }}</span>
+<aside class="sidebar" [class.sidebar--supplier]="isSupplierArea()">
+  <div class="sidebar__brand">
+    <img src="/assets/images/supplywok-logo.png" alt="SupplyWok Logo" class="sidebar__logo" />
+    <div class="sidebar__brand-text">
+      <h2 class="sidebar__title">SupplyWok</h2>
+      <span class="sidebar__subtitle">{{ activeBusinessName() }}</span>
     </div>
   </div>
 
-  <div class="sidebar-status">
-    <span class="sidebar-tag sidebar-tag-role">{{ activeRoleKey() | translate }}</span>
-    <span class="sidebar-tag sidebar-tag-plan">{{ 'shared.sidebar.current-plan' | translate }} {{ currentPlan() }}</span>
+  <div class="sidebar__status">
+    <span class="sidebar__tag sidebar__tag--role">{{ activeRoleKey() | translate }}</span>
+    <span class="sidebar__tag sidebar__tag--plan">{{ 'shared.sidebar.current-plan' | translate }} {{ currentPlan() }}</span>
   </div>
 
-  <nav class="sidebar-nav" aria-label="Main Navigation">
-    <ul class="sidebar-menu">
+  <nav class="sidebar__nav" aria-label="Main Navigation">
+    <ul class="sidebar__menu">
       @for (item of menuItems(); track item.id) {
-        <li class="sidebar-item" [class.sidebar-item-active]="isActive(item)">
-          <a class="sidebar-link" [routerLink]="item.path">
+        <li class="sidebar__item" [class.sidebar__item--active]="isActive(item)">
+          <a class="sidebar__link" [routerLink]="item.path" [attr.aria-current]="isActive(item) ? 'page' : null">
             <img
               [src]="isActive(item) ? item.iconOn : item.iconOff"
               [alt]="(item.i18nKey | translate) + ' icon'"
-              class="sidebar-icon"
+              class="sidebar__icon"
             />
-            <span class="sidebar-label">{{ item.i18nKey | translate }}</span>
+            <span class="sidebar__label">{{ item.i18nKey | translate }}</span>
           </a>
         </li>
       }

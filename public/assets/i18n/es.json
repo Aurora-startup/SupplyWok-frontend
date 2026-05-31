@@ -45,8 +45,11 @@
       "reports": "Reportes"
     },
     "header": {
-      "profile": "Perfil de administrador",
+      "profile": "Perfil",
+      "adminProfile": "Perfil de administrador",
       "settings": "Configuraciones",
+      "help": "Ayuda",
+      "logout": "Cerrar sesion",
       "options": "Opciones"
     }
   },

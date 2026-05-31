@@ -5,17 +5,17 @@ import { SuppliersPageComponent } from './pages/suppliers-page/suppliers-page.co
 
 export const supplyAndPurchasingRoutes: Routes = [
   {
-    path: 'orders',
+    path: 'restaurant/orders',
     component: OrdersPageComponent,
     title: 'Orders'
   },
   {
-    path: 'orders/new',
+    path: 'restaurant/orders/new',
     component: PurchaseOrderFormPageComponent,
     title: 'Create Order'
   },
   {
-    path: 'suppliers',
+    path: 'restaurant/suppliers',
     component: SuppliersPageComponent,
     title: 'Suppliers'
   }
