@@ -1,6 +1,5 @@
 import { Routes } from '@angular/router';
 import { PageNotFoundComponent } from './shared/presentation/views/page-not-found.component';
-import { PlaceholderPageComponent } from './shared/presentation/views/placeholder-page.component';
 import { supplyAndPurchasingRoutes } from './supply-and-purchasing/presentation/supply-and-purchasing.routes';
 import { restaurantManagementRoutes } from './restaurant-management/presentation/restaurant-management.routes';
 import { iotMonitoringRoutes } from './iot-monitoring/presentation/iot-monitoring.routes';
@@ -10,22 +9,25 @@ import { RegisterComponent } from './iam/presentation/views/register/register.co
 import { supplierManagementRoutes } from './supplier-management/presentation/supplier-management.routes';
 import { authGuard } from './iam/presentation/guards/auth.guard';
 import { guestGuard } from './iam/presentation/guards/guest.guard';
+import { ReportsPageComponent } from './shared/presentation/views/reports-page.component';
+import { ConfigurationPageComponent } from './shared/presentation/views/configuration-page.component';
+import { SubscriptionPageComponent } from './shared/presentation/views/subscription-page.component';
 
 const placeholderRoutes: Routes = [
   {
     path: 'restaurant/reports',
-    component: PlaceholderPageComponent,
-    data: { title: 'Reports', description: 'This reports page is reserved for another bounded context.' }
+    component: ReportsPageComponent,
+    title: 'Reports'
   },
   {
     path: 'restaurant/configuration',
-    component: PlaceholderPageComponent,
-    data: { title: 'Configuration', description: 'This configuration page is reserved for another bounded context.' }
+    component: ConfigurationPageComponent,
+    title: 'Configuration'
   },
   {
     path: 'restaurant/subscription',
-    component: PlaceholderPageComponent,
-    data: { title: 'Subscription', description: 'This subscription page is reserved for another bounded context.' }
+    component: SubscriptionPageComponent,
+    title: 'Subscription'
   }
 ];
 

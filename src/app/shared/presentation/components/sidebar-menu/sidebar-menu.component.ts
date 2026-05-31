@@ -5,6 +5,7 @@ import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { filter, map, startWith } from 'rxjs/operators';
 import { getRoleFromPath } from '../../../application/role-routing';
+import { RestaurantSubscriptionStore } from '../../../application/restaurant-subscription.store';
 
 export interface MenuItem {
   id: string;
@@ -23,6 +24,7 @@ export interface MenuItem {
 })
 export class SidebarMenuComponent {
   private readonly router = inject(Router);
+  private readonly restaurantSubscriptionStore = inject(RestaurantSubscriptionStore);
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
@@ -33,7 +35,9 @@ export class SidebarMenuComponent {
   );
 
   readonly restaurantName = computed(() => 'GRAN DRAGON CHIFA');
-  readonly currentPlan = computed(() => 'Premium');
+  readonly currentPlan = computed(() =>
+    this.isSupplierArea() ? 'Enterprise' : this.restaurantSubscriptionStore.plan()
+  );
   readonly isSupplierArea = computed(() => getRoleFromPath(this.currentUrl() ?? '') === 'supplier');
   readonly activeRoleKey = computed(() => this.isSupplierArea() ? 'shared.sidebar.supplier' : 'shared.sidebar.restaurant');
   readonly activeBusinessName = computed(() => this.isSupplierArea() ? 'DISTRIBUIDORA FRESH ANDES' : this.restaurantName());

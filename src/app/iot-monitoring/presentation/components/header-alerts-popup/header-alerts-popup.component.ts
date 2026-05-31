@@ -1,5 +1,5 @@
 import { Component, inject, input } from '@angular/core';
-import { NgFor, NgIf, NgClass } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { AlertItemComponent } from '../alert-item/alert-item.component';
 import { IotStore } from '../../../application/iot-store';
@@ -10,7 +10,7 @@ import { IotStore } from '../../../application/iot-store';
  */
 @Component({
   selector: 'app-header-alerts-popup',
-  imports: [NgFor, NgIf, NgClass, TranslateModule, AlertItemComponent],
+  imports: [NgFor, NgIf, TranslateModule, AlertItemComponent],
   template: `
     <div class="alerts-popup-container" *ngIf="isOpen()">
       <div class="popup-header">
@@ -38,10 +38,10 @@ import { IotStore } from '../../../application/iot-store';
       top: calc(100% + 12px);
       right: 0;
       width: 360px;
-      background: #ffffff;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      border: 1px solid #eaeaea;
+      background: #fffdf9;
+      border-radius: 18px;
+      box-shadow: 0 24px 60px rgba(24, 18, 15, 0.16);
+      border: 1px solid #eadfce;
       z-index: 1000;
       overflow: hidden;
     }
@@ -51,21 +51,21 @@ import { IotStore } from '../../../application/iot-store';
       justify-content: space-between;
       align-items: center;
       padding: 16px 20px;
-      background: #fafafa;
-      border-bottom: 1px solid #eaeaea;
+      background: #f8f2e8;
+      border-bottom: 1px solid #eadfce;
     }
 
     .popup-title {
-      font-weight: 600;
-      color: #333;
+      font-weight: 700;
+      color: #3e332d;
     }
 
     .popup-count {
-      background: #f15252;
+      background: #2d241e;
       color: white;
       font-size: 11px;
-      font-weight: bold;
-      padding: 2px 8px;
+      font-weight: 700;
+      padding: 4px 9px;
       border-radius: 12px;
     }
 
@@ -78,7 +78,7 @@ import { IotStore } from '../../../application/iot-store';
     .empty-state {
       padding: 24px;
       text-align: center;
-      color: #888;
+      color: #7d7065;
       font-size: 13px;
     }
   `]

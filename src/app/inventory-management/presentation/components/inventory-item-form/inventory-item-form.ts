@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { InventoryManagementStore } from '../../../application/inventory-management-store';
 import { UnitOfMeasure } from '../../../domain/enums/unit-of-measure.enum';
 import { InventoryItem } from '../../../domain/model/inventory-item.entity';
-import { MatError, MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
@@ -13,7 +13,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-inventory-items-form',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInput, MatError, TranslateModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInput, TranslateModule],
   templateUrl: './inventory-item-form.html',
   styleUrl: './inventory-item-form.css',
 })

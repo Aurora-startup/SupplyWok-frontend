@@ -1,21 +1,23 @@
 .comanda-card {
-  background: #fff;
-  border-radius: 14px;
+  background: var(--sw-surface);
+  border-radius: 18px;
   padding: 20px;
-  border: 1px solid #e8e5df;
+  border: 1px solid var(--sw-border);
   display: flex;
   flex-direction: column;
   gap: 14px;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s;
+  box-shadow: var(--sw-shadow);
 }
 
 .comanda-card:hover {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 16px 28px rgba(45, 36, 30, 0.12);
+  transform: translateY(-2px);
 }
 
-.comanda-en_cola { border-left: 4px solid #f59e0b; }
-.comanda-en_preparacion { border-left: 4px solid #3b82f6; }
-.comanda-listo { border-left: 4px solid #16a34a; }
+.comanda-en_cola { border-left: 4px solid #d2a03d; }
+.comanda-en_preparacion { border-left: 4px solid #6b82b9; }
+.comanda-listo { border-left: 4px solid #2f8a57; }
 .comanda-entregado { border-left: 4px solid #9ca3af; }
 
 .comanda-header {
@@ -32,7 +34,7 @@
 
 .comanda-id {
   font-size: 13px;
-  color: #9ca3af;
+  color: #9e907f;
   font-weight: 600;
 }
 
@@ -40,7 +42,7 @@
   font-family: 'Poppins', system-ui, sans-serif;
   font-size: 18px;
   font-weight: 700;
-  color: #1a1a1a;
+  color: #2d241e;
 }
 
 .comanda-status-badge {
@@ -52,9 +54,9 @@
   letter-spacing: 0.3px;
 }
 
-.badge-en_cola { background: #fef3c7; color: #b45309; }
-.badge-en_preparacion { background: #dbeafe; color: #1d4ed8; }
-.badge-listo { background: #dcfce7; color: #15803d; }
+.badge-en_cola { background: #fff3d8; color: #aa7c22; }
+.badge-en_preparacion { background: #e7eefb; color: #4a669b; }
+.badge-listo { background: #e4f5ea; color: #2f8a57; }
 .badge-entregado { background: #f3f4f6; color: #6b7280; }
 
 .comanda-time {
@@ -62,7 +64,7 @@
   align-items: center;
   gap: 6px;
   font-size: 13px;
-  color: #9ca3af;
+  color: #9e907f;
 }
 
 .comanda-items {
@@ -70,8 +72,8 @@
   flex-direction: column;
   gap: 8px;
   padding: 12px 0;
-  border-top: 1px solid #f0ede8;
-  border-bottom: 1px solid #f0ede8;
+  border-top: 1px solid #efe5d7;
+  border-bottom: 1px solid #efe5d7;
 }
 
 .comanda-item-row {
@@ -81,8 +83,8 @@
 }
 
 .item-qty-badge {
-  background: #f0ede8;
-  color: #1a1a1a;
+  background: #f4ecdf;
+  color: #2d241e;
   font-size: 12px;
   font-weight: 700;
   padding: 2px 8px;
@@ -93,22 +95,22 @@
 
 .item-name-text {
   font-size: 14px;
-  color: #374151;
+  color: #4a4037;
 }
 
 .btn-advance {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 10px;
+  border-radius: 14px;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  background: #1a1a1a;
+  background: #2d241e;
   color: #fff;
   transition: background 0.2s;
 }
 
 .btn-advance:hover {
-  background: #333;
+  background: #201914;
 }

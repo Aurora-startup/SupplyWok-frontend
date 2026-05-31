@@ -127,6 +127,10 @@
         "restrictedMode": "Enable restricted mode",
         "password": "Unlock password",
         "callout": "Only the owner can change restricted mode settings."
+      },
+      "messages": {
+        "profileSaved": "Profile settings updated in this frontend session.",
+        "securitySaved": "Security settings updated in this frontend session."
       }
     },
     "subscriptionPage": {
@@ -627,7 +631,32 @@
     "suppliers-page": {
       "kicker": "Supply and Purchasing",
       "title": "Suppliers",
-      "description": "This page is ready to receive the supplier directory view for the first frontend version."
+      "description": "Map supplier coverage against the current inventory catalog and watch low-stock dependencies.",
+      "stats": {
+        "total": "Suppliers",
+        "linked-items": "Linked items",
+        "low-stock": "Low stock items"
+      },
+      "table": {
+        "headers": {
+          "supplier": "Supplier",
+          "linked-items": "Linked items",
+          "categories": "Categories",
+          "low-stock": "Low stock",
+          "coverage": "Coverage"
+        }
+      },
+      "coverage": {
+        "healthy": "Healthy",
+        "watch": "Watch",
+        "critical": "Critical"
+      },
+      "footer": {
+        "showing": "Showing {{ from }}-{{ to }} of {{ total }} suppliers",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "empty": "No suppliers are linked to inventory items yet."
     },
     "form": {
       "title": "Create order",
@@ -705,6 +734,31 @@
   },
   "restaurant-management": {
     "breadcrumb": "RESTAURANT",
+    "kitchen": {
+      "title": "Kitchen tickets",
+      "description": "Real-time communication between dining room and kitchen. Track comanda preparation and delivery.",
+      "new-comanda": "New comanda",
+      "all": "All",
+      "no-comandas": "No comandas found.",
+      "advance-to": "Advance to",
+      "create-title": "Create new comanda",
+      "select-table": "Table",
+      "choose-table": "Select a table...",
+      "dishes": "Dishes",
+      "dish-name": "Dish name",
+      "add-dish": "Add dish",
+      "cancel": "Cancel",
+      "confirm": "Create comanda",
+      "error-no-table": "Please select a table.",
+      "error-no-items": "Add at least one dish.",
+      "error-create-failed": "Failed to create comanda. Try again.",
+      "status": {
+        "EN_COLA": "Pending",
+        "EN_PREPARACION": "In preparation",
+        "LISTO": "Ready",
+        "ENTREGADO": "Delivered"
+      }
+    },
     "tables": {
       "title": "Tables and occupancy",
       "description": "Operational dining view with occupancy, dwell time, and sensor state.",
@@ -793,6 +847,65 @@
       },
       "activeCommands": {
         "label": "Kitchen Commands"
+      }
+    },
+    "dashboardPage": {
+      "kicker": "Operations center",
+      "title": "Main dashboard",
+      "description": "Summarize inventory, sensors, kitchen tickets, and open orders in one place to react quickly.",
+      "actions": {
+        "createOrder": "Create order",
+        "reviewAlerts": "Review alerts"
+      },
+      "metrics": {
+        "inventoryHealth": {
+          "label": "Healthy items",
+          "hint": "{{ count }} products need restocking"
+        },
+        "activeAlerts": {
+          "label": "Active alerts",
+          "hint": "Temperature, stock, and occupancy out of range"
+        },
+        "occupiedTables": {
+          "label": "Occupied tables",
+          "hint": "{{ count }} tables in service right now"
+        },
+        "pendingOrders": {
+          "label": "Pending orders",
+          "hint": "Quick follow-up for priority suppliers"
+        }
+      },
+      "sensor": {
+        "eyebrow": "Sensors",
+        "title": "Operational panel",
+        "link": "View incidents",
+        "range": "Range {{ min }} - {{ max }}",
+        "empty": "There are no sensors loaded in this environment.",
+        "status": {
+          "disconnected": "Disconnected",
+          "outOfRange": "Out of range",
+          "stable": "Stable"
+        }
+      },
+      "kitchen": {
+        "eyebrow": "Kitchen",
+        "title": "Active kitchen tickets",
+        "link": "Open kitchen",
+        "table": "Table {{ number }}",
+        "empty": "There are no active kitchen tickets to display."
+      },
+      "inventory": {
+        "eyebrow": "Inventory",
+        "title": "Low stock products",
+        "link": "Go to inventory",
+        "stockSummary": "{{ current }} available from {{ minimum }} minimum",
+        "empty": "There are no critical products right now."
+      },
+      "orders": {
+        "eyebrow": "Supply",
+        "title": "Recent orders",
+        "link": "Open orders",
+        "empty": "There are no recent orders loaded."
       }
     },
     "reportsPage": {

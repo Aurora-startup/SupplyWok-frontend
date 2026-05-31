@@ -1,43 +1,206 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
+import { Supplier } from '../../../../inventory-management/domain/model/supplier.entity';
+
+interface SupplierDirectoryRow {
+  id: number;
+  name: string;
+  linkedItems: number;
+  categories: string[];
+  lowStockItems: number;
+  coverageLabel: 'healthy' | 'watch' | 'critical';
+}
 
 @Component({
   selector: 'app-suppliers-page',
-  imports: [TranslateModule],
+  imports: [CommonModule, TranslateModule],
   template: `
     <section class="suppliers-page">
-      <span class="suppliers-page__kicker">{{ 'supply-and-purchasing.suppliers-page.kicker' | translate }}</span>
-      <h1>{{ 'supply-and-purchasing.suppliers-page.title' | translate }}</h1>
-      <p>{{ 'supply-and-purchasing.suppliers-page.description' | translate }}</p>
+      <header class="suppliers-page__hero">
+        <span class="suppliers-page__kicker">{{ 'supply-and-purchasing.suppliers-page.kicker' | translate }}</span>
+        <h1 class="suppliers-page__title">{{ 'supply-and-purchasing.suppliers-page.title' | translate }}</h1>
+        <p class="suppliers-page__description">{{ 'supply-and-purchasing.suppliers-page.description' | translate }}</p>
+      </header>
+
+      <div class="suppliers-page__stats">
+        <article class="suppliers-page__stat-card">
+          <span>{{ 'supply-and-purchasing.suppliers-page.stats.total' | translate }}</span>
+          <strong>{{ supplierRows().length }}</strong>
+        </article>
+        <article class="suppliers-page__stat-card">
+          <span>{{ 'supply-and-purchasing.suppliers-page.stats.linked-items' | translate }}</span>
+          <strong>{{ totalLinkedItems() }}</strong>
+        </article>
+        <article class="suppliers-page__stat-card">
+          <span>{{ 'supply-and-purchasing.suppliers-page.stats.low-stock' | translate }}</span>
+          <strong>{{ totalLowStockItems() }}</strong>
+        </article>
+      </div>
+
+      <section class="suppliers-table-card">
+        @if (!supplierRows().length) {
+          <div class="suppliers-table-card__state">
+            {{ 'supply-and-purchasing.suppliers-page.empty' | translate }}
+          </div>
+        } @else {
+          <div class="suppliers-table-card__table-wrap">
+            <table class="suppliers-table">
+              <thead>
+                <tr>
+                  <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.supplier' | translate }}</th>
+                  <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.linked-items' | translate }}</th>
+                  <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.categories' | translate }}</th>
+                  <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.low-stock' | translate }}</th>
+                  <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.coverage' | translate }}</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @for (row of visibleSupplierRows(); track row.id) {
+                  <tr>
+                    <td class="suppliers-table__supplier-cell">{{ row.name }}</td>
+                    <td>{{ row.linkedItems }}</td>
+                    <td>
+                      <div class="suppliers-table__tags">
+                        @for (category of row.categories; track category) {
+                          <span class="suppliers-table__tag">{{ category }}</span>
+                        }
+                      </div>
+                    </td>
+                    <td>{{ row.lowStockItems }}</td>
+                    <td>
+                      <span class="suppliers-table__badge" [class.suppliers-table__badge--healthy]="row.coverageLabel === 'healthy'" [class.suppliers-table__badge--watch]="row.coverageLabel === 'watch'" [class.suppliers-table__badge--critical]="row.coverageLabel === 'critical'">
+                        {{ ('supply-and-purchasing.suppliers-page.coverage.' + row.coverageLabel) | translate }}
+                      </span>
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <footer class="suppliers-table-card__footer">
+            <p>{{ 'supply-and-purchasing.suppliers-page.footer.showing' | translate:{ from: paginationSummary().from, to: paginationSummary().to, total: paginationSummary().total } }}</p>
+            <div class="suppliers-table-card__pagination">
+              <button type="button" [disabled]="!canGoPrevious()" (click)="goToPreviousPage()">
+                {{ 'supply-and-purchasing.suppliers-page.footer.previous' | translate }}
+              </button>
+              <button type="button" class="suppliers-table-card__pagination-next" [disabled]="!canGoNext()" (click)="goToNextPage()">
+                {{ 'supply-and-purchasing.suppliers-page.footer.next' | translate }}
+              </button>
+            </div>
+          </footer>
+        }
+      </section>
     </section>
   `,
   styles: [`
-    .suppliers-page {
-      display: grid;
-      gap: 8px;
-      padding: 24px;
-      border-radius: 18px;
-      background: #fffdf9;
-      box-shadow: 0 14px 34px rgba(45, 36, 30, 0.08);
+    .suppliers-page { display: flex; flex-direction: column; gap: 22px; }
+    .suppliers-page__hero { padding: 12px 6px 0; }
+    .suppliers-page__kicker { display: inline-block; color: #a07832; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .suppliers-page__title { margin: 10px 0 8px; color: #221b2a; font-size: clamp(2.6rem, 4vw, 3.3rem); line-height: 1; letter-spacing: -0.04em; }
+    .suppliers-page__description { color: #5b5247; font-size: 1.03rem; }
+    .suppliers-page__stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .suppliers-page__stat-card { background: #fffdf9; border: 1px solid #eadbca; border-radius: 20px; box-shadow: 0 18px 36px rgba(47, 36, 29, 0.08); padding: 18px 20px; }
+    .suppliers-page__stat-card span { display: block; color: #8b8175; font-size: 0.82rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
+    .suppliers-page__stat-card strong { display: block; margin-top: 10px; color: #2d241e; font-size: 2rem; }
+    .suppliers-table-card { background: #ffffff; border: 1px solid #eadbca; border-radius: 22px; box-shadow: 0 18px 36px rgba(47, 36, 29, 0.1); overflow: hidden; }
+    .suppliers-table-card__state { padding: 24px 20px; color: #7e756b; }
+    .suppliers-table { width: 100%; border-collapse: collapse; }
+    .suppliers-table thead th { padding: 15px 20px; border-bottom: 1px solid #eadbca; color: #85796d; font-size: 0.94rem; font-weight: 700; text-align: left; }
+    .suppliers-table tbody td { padding: 14px 20px; border-bottom: 1px solid #f0e7dc; color: #31272f; vertical-align: middle; }
+    .suppliers-table__supplier-cell { font-size: 1.02rem; font-weight: 700; }
+    .suppliers-table__tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .suppliers-table__tag { display: inline-flex; align-items: center; justify-content: center; min-height: 28px; padding: 0 12px; border-radius: 999px; background: #f2efeb; color: #676057; font-size: 0.82rem; font-weight: 700; }
+    .suppliers-table__badge { display: inline-flex; min-height: 28px; align-items: center; justify-content: center; padding: 0 12px; border-radius: 999px; font-size: 0.82rem; font-weight: 700; }
+    .suppliers-table__badge--healthy { background: #dcfce7; color: #166534; }
+    .suppliers-table__badge--watch { background: #fef3c7; color: #a16207; }
+    .suppliers-table__badge--critical { background: #fee2e2; color: #b91c1c; }
+    .suppliers-table-card__footer { display: flex; justify-content: space-between; gap: 16px; align-items: center; padding: 14px 20px; }
+    .suppliers-table-card__footer p { color: #8b8175; font-size: 0.95rem; }
+    .suppliers-table-card__pagination { display: flex; gap: 8px; }
+    .suppliers-table-card__pagination button { min-height: 36px; padding: 0 14px; border: 1px solid #e6dbcf; border-radius: 12px; background: #ffffff; color: #6d6258; font-weight: 600; }
+    .suppliers-table-card__pagination-next { background: #2d241e !important; color: #ffffff !important; border-color: #2d241e !important; }
+    @media (max-width: 1100px) {
+      .suppliers-page__stats { grid-template-columns: 1fr; }
+      .suppliers-table-card__table-wrap { overflow-x: auto; }
+      .suppliers-table { min-width: 780px; }
     }
-
-    .suppliers-page__kicker {
-      color: #a07832;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      color: #342923;
-    }
-
-    p {
-      margin: 0;
-      color: #65594f;
+    @media (max-width: 700px) {
+      .suppliers-table-card__footer { flex-direction: column; align-items: flex-start; }
     }
   `]
 })
-export class SuppliersPageComponent {}
+export class SuppliersPageComponent {
+  private readonly inventoryStore = inject(InventoryManagementStore);
+  private readonly itemsPerPage = 5;
+  private readonly currentPage = signal(1);
+
+  protected readonly supplierRows = computed<SupplierDirectoryRow[]>(() =>
+    this.inventoryStore.suppliers().map((supplier) => this.buildSupplierRow(supplier))
+  );
+
+  protected readonly totalLinkedItems = computed(() =>
+    this.supplierRows().reduce((sum, row) => sum + row.linkedItems, 0)
+  );
+
+  protected readonly totalLowStockItems = computed(() =>
+    this.supplierRows().reduce((sum, row) => sum + row.lowStockItems, 0)
+  );
+
+  protected readonly totalPages = computed(() =>
+    Math.max(1, Math.ceil(this.supplierRows().length / this.itemsPerPage))
+  );
+
+  protected readonly visibleSupplierRows = computed(() => {
+    const start = (this.currentPage() - 1) * this.itemsPerPage;
+    return this.supplierRows().slice(start, start + this.itemsPerPage);
+  });
+
+  protected readonly paginationSummary = computed(() => {
+    const total = this.supplierRows().length;
+    if (!total) {
+      return { from: 0, to: 0, total: 0 };
+    }
+
+    const from = (this.currentPage() - 1) * this.itemsPerPage + 1;
+    const to = Math.min(this.currentPage() * this.itemsPerPage, total);
+    return { from, to, total };
+  });
+
+  protected readonly canGoPrevious = computed(() => this.currentPage() > 1);
+  protected readonly canGoNext = computed(() => this.currentPage() < this.totalPages());
+
+  protected goToPreviousPage(): void {
+    if (this.canGoPrevious()) {
+      this.currentPage.update((page) => page - 1);
+    }
+  }
+
+  protected goToNextPage(): void {
+    if (this.canGoNext()) {
+      this.currentPage.update((page) => page + 1);
+    }
+  }
+
+  private buildSupplierRow(supplier: Supplier): SupplierDirectoryRow {
+    const relatedItems = this.inventoryStore.inventoryItems().filter((item) => item.idSupplier === supplier.id);
+    const categories = [...new Set(
+      relatedItems
+        .map((item) => item.category?.name ?? this.inventoryStore.getCategoryName(item.idCategory))
+        .filter((value) => Boolean(value) && value !== 'None')
+    )];
+    const lowStockItems = relatedItems.filter((item) => item.currentStock <= item.minimumStockLevel).length;
+
+    return {
+      id: supplier.id,
+      name: supplier.name,
+      linkedItems: relatedItems.length,
+      categories: categories.length ? categories : ['General'],
+      lowStockItems,
+      coverageLabel: lowStockItems === 0 ? 'healthy' : lowStockItems >= 3 ? 'critical' : 'watch'
+    };
+  }
+}
