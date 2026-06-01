@@ -873,11 +873,16 @@
         "pendingOrders": {
           "label": "Pending orders",
           "hint": "Quick follow-up for priority suppliers"
+        },
+        "kitchenCommands": {
+          "label": "Kitchen commands",
+          "hint": "Fast follow-up on kitchen flow"
         }
       },
       "sensor": {
         "eyebrow": "Sensors",
         "title": "Operational panel",
+        "subtitle": "Kitchen, storage, and occupancy readings with recent events.",
         "link": "View incidents",
         "range": "Range {{ min }} - {{ max }}",
         "empty": "There are no sensors loaded in this environment.",
@@ -892,20 +897,40 @@
         "title": "Active kitchen tickets",
         "link": "Open kitchen",
         "table": "Table {{ number }}",
-        "empty": "There are no active kitchen tickets to display."
+        "ticketCount": "{{ count }} items",
+        "empty": "There are no active kitchen tickets to display.",
+        "actions": {
+          "startPreparation": "Start preparation",
+          "markReady": "Mark as ready",
+          "markDelivered": "Mark as delivered"
+        }
       },
       "inventory": {
         "eyebrow": "Inventory",
-        "title": "Low stock products",
         "link": "Go to inventory",
+        "caption": "{{ count }} product(s) below minimum stock level",
         "stockSummary": "{{ current }} available from {{ minimum }} minimum",
-        "empty": "There are no critical products right now."
+        "empty": "There are no critical products right now.",
+        "columns": {
+          "product": "Product",
+          "currentStock": "Current stock",
+          "status": "Status"
+        },
+        "footer": "View inventory"
       },
       "orders": {
         "eyebrow": "Supply",
         "title": "Recent orders",
         "link": "Open orders",
-        "empty": "There are no recent orders loaded."
+        "caption": "{{ count }} orders loaded in this context",
+        "empty": "There are no recent orders loaded.",
+        "columns": {
+          "id": "ID",
+          "supplier": "Supplier",
+          "status": "Status",
+          "date": "Date"
+        },
+        "footer": "View order history"
       }
     },
     "reportsPage": {

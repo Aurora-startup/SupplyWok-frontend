@@ -377,11 +377,16 @@
         "pendingOrders": {
           "label": "Pedidos pendientes",
           "hint": "Seguimiento rapido a proveedores prioritarios"
+        },
+        "kitchenCommands": {
+          "label": "Comandas activas",
+          "hint": "Seguimiento rapido del pase a cocina"
         }
       },
       "sensor": {
         "eyebrow": "Sensores",
         "title": "Panel operativo",
+        "subtitle": "Lecturas de cocina, almacenamiento y ocupacion con eventos recientes.",
         "link": "Ver incidencias",
         "range": "Rango {{ min }} - {{ max }}",
         "empty": "No hay sensores cargados en este entorno.",
@@ -396,20 +401,40 @@
         "title": "Comandas activas",
         "link": "Abrir cocina",
         "table": "Mesa {{ number }}",
-        "empty": "No hay comandas activas para mostrar."
+        "ticketCount": "{{ count }} items",
+        "empty": "No hay comandas activas para mostrar.",
+        "actions": {
+          "startPreparation": "Iniciar preparacion",
+          "markReady": "Marcar como listo",
+          "markDelivered": "Marcar como entregado"
+        }
       },
       "inventory": {
         "eyebrow": "Inventario",
-        "title": "Productos con bajo stock",
         "link": "Ir a inventario",
+        "caption": "{{ count }} producto(s) por debajo del stock minimo",
         "stockSummary": "{{ current }} disponibles de {{ minimum }} minimos",
-        "empty": "No hay productos criticos por ahora."
+        "empty": "No hay productos criticos por ahora.",
+        "columns": {
+          "product": "Producto",
+          "currentStock": "Stock actual",
+          "status": "Estado"
+        },
+        "footer": "Ver inventario"
       },
       "orders": {
         "eyebrow": "Abastecimiento",
         "title": "Pedidos recientes",
         "link": "Abrir pedidos",
-        "empty": "No hay pedidos recientes cargados."
+        "caption": "{{ count }} pedidos cargados en este contexto",
+        "empty": "No hay pedidos recientes cargados.",
+        "columns": {
+          "id": "ID",
+          "supplier": "Proveedor",
+          "status": "Estado",
+          "date": "Fecha"
+        },
+        "footer": "Ver historial de pedidos"
       }
     },
     "reportsPage": {
