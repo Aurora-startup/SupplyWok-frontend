@@ -11,11 +11,14 @@ export class PurchaseOrderAssembler implements BaseAssembler<
   toEntityFromResource(resource: PurchaseOrderResource): PurchaseOrder {
     return new PurchaseOrder({
       id: resource.id ?? null,
-      supplierId: resource.supplierId,
-      supplierName: resource.supplierName,
-      orderDate: resource.orderDate,
-      priority: resource.priority,
-      status: resource.status,
+      code: resource.code ?? '',
+      supplierId: resource.supplierId ?? null,
+      supplierName: resource.supplierName ?? '',
+      restaurantName: resource.restaurantName ?? '',
+      orderDate: resource.orderDate ?? '',
+      estimatedDate: resource.estimatedDate ?? '',
+      priority: resource.priority ?? '',
+      status: resource.status ?? '',
       items: Array.isArray(resource.items)
         ? resource.items.map((item) => new OrderItem({
             id: item.id ?? null,
@@ -32,9 +35,12 @@ export class PurchaseOrderAssembler implements BaseAssembler<
   toResourceFromEntity(entity: PurchaseOrder): PurchaseOrderResource {
     return {
       id: entity.id,
+      code: entity.code,
       supplierId: entity.supplierId,
       supplierName: entity.supplierName,
+      restaurantName: entity.restaurantName,
       orderDate: entity.orderDate,
+      estimatedDate: entity.estimatedDate,
       priority: entity.priority,
       status: entity.status,
       items: entity.items.map((item) => this.toItemResource(item))
@@ -42,7 +48,7 @@ export class PurchaseOrderAssembler implements BaseAssembler<
   }
 
   toEntitiesFromResponse(response: PurchaseOrderResponse): PurchaseOrder[] {
-    const resources = Array.isArray(response.purchaseOrders) ? response.purchaseOrders : [];
+    const resources = response.purchaseOrders ?? response['purchase-orders'] ?? [];
     return resources.map((resource) => this.toEntityFromResource(resource));
   }
 

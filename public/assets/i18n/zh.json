@@ -227,6 +227,65 @@
         "next": "Next"
       },
       "empty": "No suppliers are linked to inventory items yet."
+    },
+    "form": {
+      "title": "Create order",
+      "fields": {
+        "supplier": "Supplier",
+        "order-date": "Order date",
+        "estimated-date": "Estimated date",
+        "priority": "Priority",
+        "product": "Product",
+        "product-placeholder": "Example: Jasmine rice",
+        "quantity": "Qty.",
+        "unit": "Unit",
+        "price": "Price"
+      },
+      "actions": {
+        "add-line": "Add line",
+        "create-order": "Create order"
+      }
+    },
+    "table": {
+      "title": "Order tracking",
+      "search-placeholder": "Search by supplier, status, or code",
+      "columns": {
+        "code": "Code",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "detail": "Detail"
+      },
+      "footer": {
+        "showing": "Showing {{ filtered }} of {{ total }}"
+      }
+    },
+    "detail": {
+      "kicker": "Order detail",
+      "meta": {
+        "status": "Status",
+        "priority": "Priority",
+        "date": "Date",
+        "total": "Total"
+      },
+      "items": {
+        "product": "Product",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "subtotal": "Subtotal"
+      }
+    },
+    "validation": {
+      "supplier-required": "Supplier is required.",
+      "order-date-required": "Order date is required.",
+      "estimated-date-required": "Estimated date is required.",
+      "priority-required": "Priority is required.",
+      "items-required": "Add at least one product line.",
+      "product-name-required": "Product name is required.",
+      "quantity-invalid": "Quantity must be a valid number greater than zero.",
+      "unit-required": "Unit is required.",
+      "unit-price-invalid": "Price must be a valid number greater than zero."
     }
   },
   "restaurantManagement": {

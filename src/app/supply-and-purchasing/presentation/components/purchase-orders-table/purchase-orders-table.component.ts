@@ -29,11 +29,13 @@ export class PurchaseOrdersTableComponent {
       const supplierName = String(purchaseOrder.supplierName ?? '').toLowerCase();
       const priority = String(purchaseOrder.priority ?? '').toLowerCase();
       const status = String(purchaseOrder.status ?? '').toLowerCase();
+      const code = String(purchaseOrder.code ?? '').toLowerCase();
       const id = String(purchaseOrder.id ?? '').toLowerCase();
 
       return supplierName.includes(normalizedSearchValue)
         || priority.includes(normalizedSearchValue)
         || status.includes(normalizedSearchValue)
+        || code.includes(normalizedSearchValue)
         || id.includes(normalizedSearchValue);
     });
   }
@@ -67,8 +69,8 @@ export class PurchaseOrdersTableComponent {
     return 'purchase-orders-table__badge--secondary';
   }
 
-  protected formatCode(id: number | string | null): string {
-    return `PO-${String(id ?? '').padStart(5, '0')}`;
+  protected formatCode(purchaseOrder: PurchaseOrder): string {
+    return purchaseOrder.code || `PO-${String(purchaseOrder.id ?? '').padStart(5, '0')}`;
   }
 
   protected calculateOrderTotal(items: OrderItem[]): number {

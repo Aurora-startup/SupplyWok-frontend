@@ -662,6 +662,7 @@
       "title": "Create order",
       "fields": {
         "supplier": "Supplier",
+        "order-date": "Order date",
         "estimated-date": "Estimated date",
         "priority": "Priority",
         "product": "Product",
@@ -723,7 +724,8 @@
     },
     "validation": {
       "supplier-required": "Supplier is required.",
-      "order-date-required": "Estimated date is required.",
+      "order-date-required": "Order date is required.",
+      "estimated-date-required": "Estimated date is required.",
       "priority-required": "Priority is required.",
       "items-required": "Add at least one product line.",
       "product-name-required": "Product name is required.",

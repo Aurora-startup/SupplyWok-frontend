@@ -94,6 +94,10 @@ export class PurchaseOrderStore {
       nextValidationErrors['orderDate'] = this.translate.instant('supply-and-purchasing.validation.order-date-required');
     }
 
+    if (!String(purchaseOrder.estimatedDate ?? '').trim()) {
+      nextValidationErrors['estimatedDate'] = this.translate.instant('supply-and-purchasing.validation.estimated-date-required');
+    }
+
     if (!String(purchaseOrder.priority ?? '').trim()) {
       nextValidationErrors['priority'] = this.translate.instant('supply-and-purchasing.validation.priority-required');
     }

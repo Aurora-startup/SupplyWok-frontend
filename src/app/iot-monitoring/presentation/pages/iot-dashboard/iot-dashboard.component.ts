@@ -202,7 +202,7 @@ export class IotDashboardComponent implements OnInit {
   }
 
   protected formatOrderCode(order: PurchaseOrder): string {
-    return `#PO-${String(order.id ?? '').padStart(4, '0')}`;
+    return order.code ? `#${order.code}` : `#PO-${String(order.id ?? '').padStart(4, '0')}`;
   }
 
   protected getInventoryStatusTone(item: InventoryItem): DashboardTone {
@@ -397,27 +397,36 @@ export class IotDashboardComponent implements OnInit {
       this.purchaseOrders = [
         new PurchaseOrder({
           id: 24521,
+          code: 'PO-24521',
           supplierId: 201,
           supplierName: 'Golden Wok Produce',
+          restaurantName: 'Gran Dragon Chifa',
           orderDate: '2026-05-13',
+          estimatedDate: '2026-05-15',
           priority: 'Medium',
           status: 'Pending',
           items: []
         }),
         new PurchaseOrder({
           id: 30343,
+          code: 'PO-30343',
           supplierId: 201,
           supplierName: 'Golden Wok Produce',
+          restaurantName: 'Gran Dragon Chifa',
           orderDate: '2026-05-13',
+          estimatedDate: '2026-05-15',
           priority: 'Medium',
           status: 'Pending',
           items: []
         }),
         new PurchaseOrder({
           id: 24021,
+          code: 'PO-24021',
           supplierId: 201,
           supplierName: 'Golden Wok Produce',
+          restaurantName: 'Gran Dragon Chifa',
           orderDate: '2026-05-09',
+          estimatedDate: '2026-05-11',
           priority: 'High',
           status: 'Pending',
           items: []

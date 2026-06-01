@@ -240,6 +240,7 @@
       "title": "Crear pedido",
       "fields": {
         "supplier": "Proveedor",
+        "order-date": "Fecha de pedido",
         "estimated-date": "Fecha estimada",
         "priority": "Prioridad",
         "product": "Producto",
@@ -285,7 +286,8 @@
     },
     "validation": {
       "supplier-required": "El proveedor es obligatorio.",
-      "order-date-required": "La fecha estimada es obligatoria.",
+      "order-date-required": "La fecha del pedido es obligatoria.",
+      "estimated-date-required": "La fecha estimada es obligatoria.",
       "priority-required": "La prioridad es obligatoria.",
       "items-required": "Agrega al menos una linea de producto.",
       "product-name-required": "El nombre del producto es obligatorio.",
