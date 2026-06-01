@@ -1,0 +1,204 @@
+<section class="dashboard-page">
+  <header class="dashboard-page__hero">
+    <div>
+      <h1 class="dashboard-page__title">Kitchen Dashboard</h1>
+      <p class="dashboard-page__description">Real-time supply chain and floor monitoring.</p>
+    </div>
+  </header>
+
+  <div class="dashboard-page__metrics">
+    <article class="metric-card">
+      <span class="metric-card__label">LOW STOCK ITEMS</span>
+      <strong class="metric-card__value">{{ highlightedInventory.length }}</strong>
+      <p class="metric-card__hint">Urgent</p>
+    </article>
+
+    <article class="metric-card">
+      <span class="metric-card__label">PENDING ORDERS</span>
+      <strong class="metric-card__value">{{ pendingOrdersCount }}</strong>
+      <p class="metric-card__hint">Open to suppliers</p>
+    </article>
+
+    <article class="metric-card">
+      <span class="metric-card__label">TEMP. ALERTS</span>
+      <strong class="metric-card__value">{{ activeAlertsCount }}</strong>
+      <p class="metric-card__hint">Sensor attention</p>
+    </article>
+
+    <article class="metric-card">
+      <span class="metric-card__label">ACTIVE TABLES</span>
+      <strong class="metric-card__value">{{ occupiedTableRate }}</strong>
+      <p class="metric-card__hint">Occupancy rate</p>
+    </article>
+
+    <article class="metric-card">
+      <span class="metric-card__label">KITCHEN COMMANDS</span>
+      <strong class="metric-card__value">{{ activeKitchenTicketsCount }}</strong>
+      <p class="metric-card__hint">Live kitchen flow</p>
+    </article>
+  </div>
+
+  <div class="dashboard-page__grid">
+    <article class="dashboard-card dashboard-card--sensor-panel">
+      <div class="dashboard-card__header">
+        <div>
+          <h2 class="dashboard-card__title">IoT panel ready for real sensors</h2>
+          <p class="dashboard-card__support">Kitchen, storage, and occupancy readings with thresholds and recent events.</p>
+        </div>
+      </div>
+
+      <div class="sensor-highlight-grid">
+        @for (sensor of highlightedSensors; track sensor.id) {
+          <article class="sensor-panel">
+            <div class="sensor-panel__header">
+              <strong>{{ getSensorDisplayName(sensor) }}</strong>
+            </div>
+
+            <div class="sensor-panel__value">{{ sensor.lastValue }}</div>
+
+            <p class="sensor-panel__range">
+              Optimal range: {{ sensor.minValue }}-{{ sensor.maxValue }}
+            </p>
+          </article>
+        }
+      </div>
+
+      <div class="event-feed">
+        @for (alert of recentAlerts; track alert.id) {
+          <article class="event-feed__item">
+            <div>
+              <strong>{{ formatAlertTitle(alert) }}</strong>
+              <p>{{ formatAlertMessage(alert) }}</p>
+            </div>
+            <span>{{ formatDate(alert.timestamp.toISOString()) }}</span>
+          </article>
+        }
+
+        @if (!recentAlerts.length) {
+          <p class="dashboard-card__empty">No recent sensor events in this environment.</p>
+        }
+      </div>
+    </article>
+
+    <article class="dashboard-card dashboard-card--kitchen">
+      <div class="dashboard-card__header">
+        <div>
+          <h2 class="dashboard-card__title">Kitchen Tickets</h2>
+        </div>
+      </div>
+
+      <div class="ticket-stack">
+        @for (comanda of highlightedComandas; track comanda.id) {
+          <article class="ticket-entry">
+            <div class="ticket-entry__header">
+              <div>
+                <strong>{{ getKitchenCode(comanda) }}</strong>
+                <p>Table {{ comanda.tableNumber || '--' }}</p>
+              </div>
+
+              <span class="status-pill" [class]="'status-pill status-pill--' + getKitchenStatusTone(comanda)">
+                {{ getKitchenStatusKey(comanda) }}
+              </span>
+            </div>
+
+            <div class="ticket-entry__items">
+              @for (item of comanda.items; track item.id) {
+                <div class="ticket-entry__item-row">
+                  <span>{{ item.dishName }}</span>
+                  <strong>x{{ item.quantity }}</strong>
+                </div>
+              }
+            </div>
+
+            <div class="ticket-entry__footer">
+              <div class="ticket-entry__meta">
+                <span>{{ formatDate(comanda.createdAt) }}</span>
+                <span>{{ getKitchenItemCount(comanda) }} items</span>
+              </div>
+
+              @if (getKitchenActionKey(comanda); as actionText) {
+                <button type="button" class="ticket-entry__action" (click)="advanceComanda(comanda)">
+                  {{ actionText }}
+                </button>
+              }
+            </div>
+          </article>
+        }
+
+        @if (!highlightedComandas.length) {
+          <p class="dashboard-card__empty">No active kitchen tickets to display.</p>
+        }
+      </div>
+
+      <a href="/restaurant/kitchen" class="dashboard-card__footer-link">See All Kitchen Tickets</a>
+    </article>
+
+    <article class="dashboard-card dashboard-card--inventory">
+      <div class="dashboard-card__header">
+        <div>
+          <h2 class="dashboard-card__title">Below minimum</h2>
+          <p class="dashboard-card__support">{{ highlightedInventory.length }} product(s) below minimum stock level</p>
+        </div>
+      </div>
+
+      <div class="summary-table">
+        <div class="summary-table__head">
+          <span>PRODUCT</span>
+          <span>CURRENT STOCK</span>
+          <span>STATUS</span>
+        </div>
+
+        @for (item of highlightedInventory; track item.id) {
+          <div class="summary-table__row">
+            <strong>{{ item.name }}</strong>
+            <span>{{ item.currentStock }} {{ getUnitLabel(item) }}</span>
+            <span class="status-pill" [class]="'status-pill status-pill--' + getInventoryStatusTone(item)">
+              {{ getInventoryStatusKey(item) }}
+            </span>
+          </div>
+        }
+
+        @if (!highlightedInventory.length) {
+          <p class="dashboard-card__empty">No products below minimum stock level.</p>
+        }
+      </div>
+
+      <a href="/restaurant/inventory" class="dashboard-card__footer-action">SORT ALL</a>
+    </article>
+
+    <article class="dashboard-card dashboard-card--orders">
+      <div class="dashboard-card__header">
+        <div>
+          <h2 class="dashboard-card__title">Orders</h2>
+          <p class="dashboard-card__support">{{ highlightedOrders.length }} orders loaded in this context</p>
+        </div>
+      </div>
+
+      <div class="summary-table">
+        <div class="summary-table__head">
+          <span>ID</span>
+          <span>SUPPLIER</span>
+          <span>STATUS</span>
+          <span>DATE</span>
+        </div>
+
+        @for (order of highlightedOrders; track order.id) {
+          <div class="summary-table__row summary-table__row--orders">
+            <strong>{{ formatOrderCode(order) }}</strong>
+            <span>{{ order.supplierName }}</span>
+            <span class="status-pill" [class]="'status-pill status-pill--' + getOrderStatusTone(order)">
+              {{ getOrderStatusLabel(order) }}
+            </span>
+            <span>{{ order.orderDate }}</span>
+          </div>
+        }
+
+        @if (!highlightedOrders.length) {
+          <p class="dashboard-card__empty">There are no recent orders loaded.</p>
+        }
+      </div>
+
+      <a href="/restaurant/orders" class="dashboard-card__footer-action">View order history</a>
+    </article>
+  </div>
+</section>
