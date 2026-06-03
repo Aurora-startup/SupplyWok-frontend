@@ -1,1 +1,8 @@
-<p>temp-alert-card works!</p>
+<app-iot-stat-card
+  iconSrc="assets/images/icons/iot/iot-temp-alert-icon.svg"
+  [value]="store.outOfRangeTemperatureCount()"
+  label="iot.stat-cards.temp-alerts"
+  [badgeLabel]="store.outOfRangeTemperatureCount() > 0 ? 'iot.stat-cards.alert' : ''"
+  [badgeSeverity]="'alert'"
+  [showBadge]="store.outOfRangeTemperatureCount() > 0"
+/>

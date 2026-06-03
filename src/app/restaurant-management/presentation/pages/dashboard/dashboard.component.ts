@@ -1,31 +1,31 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { InventoryManagementApi } from '../../../../inventory-management/infrastructure/inventory-management-api';
 import { InventoryItem } from '../../../../inventory-management/domain/model/inventory-item.entity';
 import { InventoryStatus } from '../../../../inventory-management/domain/enums/inventory-status.enum';
 import { UnitOfMeasure } from '../../../../inventory-management/domain/enums/unit-of-measure.enum';
-import { IotMonitoringApi } from '../../../infrastructure/iot-monitoring-api';
-import { Alert } from '../../../domain/model/alert.entity';
-import { Sensor } from '../../../domain/model/sensor.entity';
-import { PurchaseOrderApi } from '../../../../supply-and-purchasing/infrastructure/purchase-order-api';
+import { InventoryManagementApi } from '../../../../inventory-management/infrastructure/inventory-management-api';
+import { Alert } from '../../../../iot-monitoring/domain/model/alert.entity';
+import { Sensor } from '../../../../iot-monitoring/domain/model/sensor.entity';
+import { IotMonitoringApi } from '../../../../iot-monitoring/infrastructure/iot-monitoring-api';
 import { PurchaseOrder } from '../../../../supply-and-purchasing/domain/model/purchase-order.entity';
-import { ComandaApi } from '../../../../restaurant-management/infrastructure/comanda-api';
-import { TableApi } from '../../../../restaurant-management/infrastructure/table-api';
-import { Comanda } from '../../../../restaurant-management/domain/model/comanda.entity';
-import { COMANDA_STATUS_ORDER, ComandaStatus } from '../../../../restaurant-management/domain/enums/comanda-status.enum';
-import { Table } from '../../../../restaurant-management/domain/model/table.entity';
-import { TableStatus } from '../../../../restaurant-management/domain/enums/table-status.enum';
+import { PurchaseOrderApi } from '../../../../supply-and-purchasing/infrastructure/purchase-order-api';
+import { COMANDA_STATUS_ORDER, ComandaStatus } from '../../../domain/enums/comanda-status.enum';
+import { TableStatus } from '../../../domain/enums/table-status.enum';
+import { Comanda } from '../../../domain/model/comanda.entity';
+import { Table } from '../../../domain/model/table.entity';
+import { ComandaApi } from '../../../infrastructure/comanda-api';
+import { TableApi } from '../../../infrastructure/table-api';
 
 type DashboardTone = 'healthy' | 'warning' | 'critical' | 'muted';
 
 @Component({
-  selector: 'app-iot-dashboard',
+  selector: 'app-restaurant-dashboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './iot-dashboard.component.html',
-  styleUrl: './iot-dashboard.component.css'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class IotDashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit {
   private readonly inventoryApi = inject(InventoryManagementApi);
   private readonly monitoringApi = inject(IotMonitoringApi);
   private readonly purchaseApi = inject(PurchaseOrderApi);
@@ -94,14 +94,10 @@ export class IotDashboardComponent implements OnInit {
   }
 
   protected formatDate(value: string): string {
-    if (!value) {
-      return '--';
-    }
+    if (!value) return '--';
 
     const parsedDate = new Date(value);
-    if (Number.isNaN(parsedDate.getTime())) {
-      return value;
-    }
+    if (Number.isNaN(parsedDate.getTime())) return value;
 
     return new Intl.DateTimeFormat('es-PE', {
       month: 'short',
@@ -112,19 +108,13 @@ export class IotDashboardComponent implements OnInit {
   }
 
   protected getSensorTone(sensor: Sensor): DashboardTone {
-    if (!sensor.enabled) {
-      return 'muted';
-    }
-
+    if (!sensor.enabled) return 'muted';
     const isOutOfRange = sensor.lastValue < sensor.minValue || sensor.lastValue > sensor.maxValue;
     return isOutOfRange ? 'critical' : 'healthy';
   }
 
   protected getSensorStatusKey(sensor: Sensor): string {
-    if (!sensor.enabled) {
-      return 'Disconnected';
-    }
-
+    if (!sensor.enabled) return 'Disconnected';
     const isOutOfRange = sensor.lastValue < sensor.minValue || sensor.lastValue > sensor.maxValue;
     return isOutOfRange ? 'Out of range' : 'Stable';
   }
@@ -157,19 +147,15 @@ export class IotDashboardComponent implements OnInit {
 
   protected getKitchenActionKey(comanda: Comanda): string | null {
     const nextStatus = this.getNextStatus(comanda.status);
-
     if (nextStatus === ComandaStatus.EN_PREPARACION) return 'Start Preparation';
     if (nextStatus === ComandaStatus.LISTO) return 'Mark as Ready';
     if (nextStatus === ComandaStatus.ENTREGADO) return 'Mark as Delivered';
-
     return null;
   }
 
   protected advanceComanda(comanda: Comanda): void {
     const nextStatus = this.getNextStatus(comanda.status);
-    if (!nextStatus) {
-      return;
-    }
+    if (!nextStatus) return;
 
     const updated = new Comanda({
       id: comanda.id,
@@ -451,9 +437,7 @@ export class IotDashboardComponent implements OnInit {
   }
 
   protected getStockLevelPercentage(item: InventoryItem): number {
-    if (item.minimumStockLevel <= 0) {
-      return 100;
-    }
+    if (item.minimumStockLevel <= 0) return 100;
 
     const percentage = Math.round((item.currentStock / item.minimumStockLevel) * 100);
     return Math.max(8, Math.min(100, percentage));

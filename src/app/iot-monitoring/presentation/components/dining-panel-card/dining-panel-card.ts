@@ -5,16 +5,8 @@ import { IotStore } from '../../../application/iot-store';
 @Component({
   selector: 'app-dining-panel-card',
   imports: [PanelItemCard],
-  template: `
-    <app-panel-item-card
-      iconSrc="assets/images/icons/iot/iot-dining-icon.svg"
-      title="iot.panel.dining-room"
-      [value]="store.occupiedTablePercentage()"
-      unit="%"
-      [progressPercent]="store.occupiedTablePercentage() ?? 0"
-      subtitle="iot.panel.occupancy-rate"
-    />
-  `,
+  templateUrl: './dining-panel-card.html',
+  styleUrl: './dining-panel-card.css'
 })
 export class DiningPanelCard {
   protected readonly store = inject(IotStore);

@@ -1,0 +1,19 @@
+<div class="alerts-popup-container" *ngIf="isOpen">
+  <div class="popup-header">
+    <span class="popup-title">{{ 'iot.alerts.notifications' | translate }}</span>
+    <span class="popup-count" *ngIf="store.topCriticalAlerts().length > 0">
+      {{ store.topCriticalAlerts().length }}
+    </span>
+  </div>
+
+  <div class="popup-content">
+    <app-alert-item
+      *ngFor="let alert of store.topCriticalAlerts()"
+      [alert]="alert">
+    </app-alert-item>
+
+    <div class="empty-state" *ngIf="store.topCriticalAlerts().length === 0">
+      {{ 'iot.alerts.no-active-alerts' | translate }}
+    </div>
+  </div>
+</div>

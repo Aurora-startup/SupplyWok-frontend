@@ -1,0 +1,82 @@
+<section class="suppliers-page">
+  <header class="suppliers-page__hero">
+    <span class="suppliers-page__kicker">{{ 'supply-and-purchasing.suppliers-page.kicker' | translate }}</span>
+    <h1 class="suppliers-page__title">{{ 'supply-and-purchasing.suppliers-page.title' | translate }}</h1>
+    <p class="suppliers-page__description">{{ 'supply-and-purchasing.suppliers-page.description' | translate }}</p>
+  </header>
+
+  <div class="suppliers-page__stats">
+    <article class="suppliers-page__stat-card">
+      <span>{{ 'supply-and-purchasing.suppliers-page.stats.total' | translate }}</span>
+      <strong>{{ supplierRows().length }}</strong>
+    </article>
+    <article class="suppliers-page__stat-card">
+      <span>{{ 'supply-and-purchasing.suppliers-page.stats.linked-items' | translate }}</span>
+      <strong>{{ totalLinkedItems() }}</strong>
+    </article>
+    <article class="suppliers-page__stat-card">
+      <span>{{ 'supply-and-purchasing.suppliers-page.stats.low-stock' | translate }}</span>
+      <strong>{{ totalLowStockItems() }}</strong>
+    </article>
+  </div>
+
+  <section class="suppliers-table-card">
+    @if (!supplierRows().length) {
+      <div class="suppliers-table-card__state">
+        {{ 'supply-and-purchasing.suppliers-page.empty' | translate }}
+      </div>
+    } @else {
+      <div class="suppliers-table-card__table-wrap">
+        <table class="suppliers-table">
+          <thead>
+            <tr>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.supplier' | translate }}</th>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.linked-items' | translate }}</th>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.categories' | translate }}</th>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.low-stock' | translate }}</th>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.coverage' | translate }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (row of visibleSupplierRows(); track row.id) {
+              <tr>
+                <td class="suppliers-table__supplier-cell">{{ row.name }}</td>
+                <td>{{ row.linkedItems }}</td>
+                <td>
+                  <div class="suppliers-table__tags">
+                    @for (category of row.categories; track category) {
+                      <span class="suppliers-table__tag">{{ category }}</span>
+                    }
+                  </div>
+                </td>
+                <td>{{ row.lowStockItems }}</td>
+                <td>
+                  <span
+                    class="suppliers-table__badge"
+                    [class.suppliers-table__badge--healthy]="row.coverageLabel === 'healthy'"
+                    [class.suppliers-table__badge--watch]="row.coverageLabel === 'watch'"
+                    [class.suppliers-table__badge--critical]="row.coverageLabel === 'critical'">
+                    {{ ('supply-and-purchasing.suppliers-page.coverage.' + row.coverageLabel) | translate }}
+                  </span>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <footer class="suppliers-table-card__footer">
+        <p>{{ 'supply-and-purchasing.suppliers-page.footer.showing' | translate:{ from: paginationSummary().from, to: paginationSummary().to, total: paginationSummary().total } }}</p>
+        <div class="suppliers-table-card__pagination">
+          <button type="button" [disabled]="!canGoPrevious()" (click)="goToPreviousPage()">
+            {{ 'supply-and-purchasing.suppliers-page.footer.previous' | translate }}
+          </button>
+          <button type="button" class="suppliers-table-card__pagination-next" [disabled]="!canGoNext()" (click)="goToNextPage()">
+            {{ 'supply-and-purchasing.suppliers-page.footer.next' | translate }}
+          </button>
+        </div>
+      </footer>
+    }
+  </section>
+</section>

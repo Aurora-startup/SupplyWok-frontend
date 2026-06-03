@@ -9,16 +9,8 @@ import { IotStore } from '../../../application/iot-store';
 @Component({
   selector: 'app-low-stock-card',
   imports: [IotStatCard],
-  template: `
-    <app-iot-stat-card
-      iconSrc="assets/images/icons/iot/iot-low-stock-icon.svg"
-      [value]="store.lowStockStorageCount()"
-      label="iot.stat-cards.low-stock-items"
-      [badgeLabel]="store.lowStockStorageCount() > 0 ? 'iot.stat-cards.urgent' : ''"
-      [badgeSeverity]="'urgent'"
-      [showBadge]="store.lowStockStorageCount() > 0"
-    />
-  `,
+  templateUrl: './low-stock-card.html',
+  styleUrl: './low-stock-card.css'
 })
 export class LowStockCard {
   protected readonly store = inject(IotStore);

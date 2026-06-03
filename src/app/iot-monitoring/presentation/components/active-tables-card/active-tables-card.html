@@ -1,1 +1,8 @@
-<p>active-tables-card works!</p>
+<app-iot-stat-card
+  iconSrc="assets/images/icons/iot/iot-dining-icon.svg"
+  [value]="activeTableCount()"
+  label="iot.stat-cards.active-tables"
+  [badgeLabel]="(activeTableCount() ?? 0) > 0 ? 'iot.stat-cards.alert' : ''"
+  [badgeSeverity]="'alert'"
+  [showBadge]="(activeTableCount() ?? 0) > 0"
+/>

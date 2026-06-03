@@ -9,16 +9,8 @@ import { IotStore } from '../../../application/iot-store';
 @Component({
   selector: 'app-active-tables-card',
   imports: [IotStatCard],
-  template: `
-    <app-iot-stat-card
-      iconSrc="assets/images/icons/iot/iot-dining-icon.svg"
-      [value]="activeTableCount()"
-      label="iot.stat-cards.active-tables"
-      [badgeLabel]="(activeTableCount() ?? 0) > 0 ? 'iot.stat-cards.alert' : ''"
-      [badgeSeverity]="'alert'"
-      [showBadge]="(activeTableCount() ?? 0) > 0"
-    />
-  `,
+  templateUrl: './active-tables-card.html',
+  styleUrl: './active-tables-card.css'
 })
 export class ActiveTablesCard {
   protected readonly store = inject(IotStore);
