@@ -7,7 +7,7 @@ import { InventoryManagementApi } from '../../../../inventory-management/infrast
 import { Alert } from '../../../../iot-monitoring/domain/model/alert.entity';
 import { Sensor } from '../../../../iot-monitoring/domain/model/sensor.entity';
 import { IotMonitoringApi } from '../../../../iot-monitoring/infrastructure/iot-monitoring-api';
-import { PurchaseOrder } from '../../../../supply-and-purchasing/domain/model/purchase-order.entity';
+import { Order } from '../../../../supply-and-purchasing/domain/model/order.entity';
 import { PurchaseOrderApi } from '../../../../supply-and-purchasing/infrastructure/purchase-order-api';
 import { COMANDA_STATUS_ORDER, ComandaStatus } from '../../../domain/enums/comanda-status.enum';
 import { TableStatus } from '../../../domain/enums/table-status.enum';
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
   protected highlightedSensors: Sensor[] = [];
   protected recentAlerts: Alert[] = [];
   protected highlightedInventory: InventoryItem[] = [];
-  protected highlightedOrders: PurchaseOrder[] = [];
+  protected highlightedOrders: Order[] = [];
   protected highlightedComandas: Comanda[] = [];
 
   protected inventoryHealth = 0;
@@ -46,7 +46,7 @@ export class DashboardComponent implements OnInit {
   protected activeKitchenTicketsCount = 0;
 
   private inventoryItems: InventoryItem[] = [];
-  private purchaseOrders: PurchaseOrder[] = [];
+  private purchaseOrders: Order[] = [];
   private comandas: Comanda[] = [];
   private tables: Table[] = [];
 
@@ -176,18 +176,18 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  protected getOrderStatusTone(order: PurchaseOrder): DashboardTone {
+  protected getOrderStatusTone(order: Order): DashboardTone {
     if (order.status === 'Delivered') return 'healthy';
     if (order.status === 'In Preparation') return 'warning';
     if (order.status === 'Pending') return 'critical';
     return 'muted';
   }
 
-  protected getOrderStatusLabel(order: PurchaseOrder): string {
+  protected getOrderStatusLabel(order: Order): string {
     return order.status;
   }
 
-  protected formatOrderCode(order: PurchaseOrder): string {
+  protected formatOrderCode(order: Order): string {
     return order.code ? `#${order.code}` : `#PO-${String(order.id ?? '').padStart(4, '0')}`;
   }
 
@@ -381,7 +381,7 @@ export class DashboardComponent implements OnInit {
 
     if (!this.highlightedOrders.length) {
       this.purchaseOrders = [
-        new PurchaseOrder({
+        new Order({
           id: 24521,
           code: 'PO-24521',
           supplierId: 201,
@@ -393,7 +393,7 @@ export class DashboardComponent implements OnInit {
           status: 'Pending',
           items: []
         }),
-        new PurchaseOrder({
+        new Order({
           id: 30343,
           code: 'PO-30343',
           supplierId: 201,
@@ -405,7 +405,7 @@ export class DashboardComponent implements OnInit {
           status: 'Pending',
           items: []
         }),
-        new PurchaseOrder({
+        new Order({
           id: 24021,
           code: 'PO-24021',
           supplierId: 201,

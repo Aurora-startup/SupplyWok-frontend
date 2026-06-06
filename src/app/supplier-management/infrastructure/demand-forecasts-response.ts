@@ -1,5 +1,5 @@
 import { BaseResource, BaseResponse } from '../../shared/infrastructure/base-response';
-import { ClientForecast, ForecastPoint } from '../domain/model/demand-forecast.entity';
+import { ClientForecast, ForecastPoint } from '../../analytics/domain/model/demand-forecast.entity';
 
 export interface DemandForecastResource extends BaseResource {
   aggregate?: ForecastPoint[];

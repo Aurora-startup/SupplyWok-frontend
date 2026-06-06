@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { PurchaseOrder } from '../../../domain/model/purchase-order.entity';
+import { Order } from '../../../domain/model/order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 import { PurchaseOrderStore } from '../../../application/purchase-order.store';
 
@@ -112,7 +112,7 @@ export class PurchaseOrderFormPanelComponent {
       this.store.clearValidationScope(this.draftLineErrorScope());
     }
 
-    const purchaseOrder = new PurchaseOrder({
+    const purchaseOrder = new Order({
       code: this.buildPurchaseOrderCode(),
       supplierId: this.form.supplierId,
       supplierName: this.form.supplierName,

@@ -1,15 +1,15 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { OrderItem } from '../domain/model/order-item.entity';
-import { PurchaseOrder } from '../domain/model/purchase-order.entity';
+import { Order } from '../domain/model/order.entity';
 import { PurchaseOrderItemResource, PurchaseOrderResource, PurchaseOrderResponse } from './purchase-order-response';
 
 export class PurchaseOrderAssembler implements BaseAssembler<
-  PurchaseOrder,
+  Order,
   PurchaseOrderResource,
   PurchaseOrderResponse
 > {
-  toEntityFromResource(resource: PurchaseOrderResource): PurchaseOrder {
-    return new PurchaseOrder({
+  toEntityFromResource(resource: PurchaseOrderResource): Order {
+    return new Order({
       id: resource.id ?? null,
       code: resource.code ?? '',
       supplierId: resource.supplierId ?? null,
@@ -32,7 +32,7 @@ export class PurchaseOrderAssembler implements BaseAssembler<
     });
   }
 
-  toResourceFromEntity(entity: PurchaseOrder): PurchaseOrderResource {
+  toResourceFromEntity(entity: Order): PurchaseOrderResource {
     return {
       id: entity.id,
       code: entity.code,
@@ -47,7 +47,7 @@ export class PurchaseOrderAssembler implements BaseAssembler<
     };
   }
 
-  toEntitiesFromResponse(response: PurchaseOrderResponse): PurchaseOrder[] {
+  toEntitiesFromResponse(response: PurchaseOrderResponse): Order[] {
     const resources = response.purchaseOrders ?? response['purchase-orders'] ?? [];
     return resources.map((resource) => this.toEntityFromResource(resource));
   }

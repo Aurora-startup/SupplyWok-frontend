@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { BaseApiEndpoint } from '../../shared/infrastructure/base-api-endpoint';
-import { Order } from '../domain/model/order.entity';
+import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
 import { OrderAssembler } from './order-assembler';
 import { OrderResource, OrdersResponse } from './orders-response';
 

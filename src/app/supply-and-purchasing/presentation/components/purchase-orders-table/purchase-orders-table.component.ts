@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { PurchaseOrder } from '../../../domain/model/purchase-order.entity';
+import { Order } from '../../../domain/model/order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 
 @Component({
@@ -12,13 +12,13 @@ import { OrderItem } from '../../../domain/model/order-item.entity';
   styleUrl: './purchase-orders-table.component.css'
 })
 export class PurchaseOrdersTableComponent {
-  @Input({ required: true }) purchaseOrders: PurchaseOrder[] = [];
+  @Input({ required: true }) purchaseOrders: Order[] = [];
   @Input() loading = false;
 
   protected searchValue = '';
-  protected selectedPurchaseOrder: PurchaseOrder | null = null;
+  protected selectedPurchaseOrder: Order | null = null;
 
-  protected get filteredPurchaseOrders(): PurchaseOrder[] {
+  protected get filteredPurchaseOrders(): Order[] {
     const normalizedSearchValue = this.searchValue.trim().toLowerCase();
 
     if (!normalizedSearchValue) {
@@ -69,7 +69,7 @@ export class PurchaseOrdersTableComponent {
     return 'purchase-orders-table__badge--secondary';
   }
 
-  protected formatCode(purchaseOrder: PurchaseOrder): string {
+  protected formatCode(purchaseOrder: Order): string {
     return purchaseOrder.code || `PO-${String(purchaseOrder.id ?? '').padStart(5, '0')}`;
   }
 
@@ -85,7 +85,7 @@ export class PurchaseOrdersTableComponent {
     return Number.isFinite(value) ? value.toFixed(2) : '0.00';
   }
 
-  protected openPurchaseOrderDetail(purchaseOrder: PurchaseOrder): void {
+  protected openPurchaseOrderDetail(purchaseOrder: Order): void {
     this.selectedPurchaseOrder = purchaseOrder;
   }
 

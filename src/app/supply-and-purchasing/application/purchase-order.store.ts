@@ -1,6 +1,6 @@
 import { Injectable, computed, signal, inject } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
-import { PurchaseOrder } from '../domain/model/purchase-order.entity';
+import { Order } from '../domain/model/order.entity';
 import { OrderItem } from '../domain/model/order-item.entity';
 import { PurchaseOrderApi } from '../infrastructure/purchase-order-api';
 
@@ -13,7 +13,7 @@ export class PurchaseOrderStore {
   private readonly purchaseOrderApi = inject(PurchaseOrderApi);
   private readonly translate = inject(TranslateService);
 
-  private readonly purchaseOrdersSignal = signal<PurchaseOrder[]>([]);
+  private readonly purchaseOrdersSignal = signal<Order[]>([]);
   private readonly errorsSignal = signal<string[]>([]);
   private readonly validationErrorsSignal = signal<ValidationErrors>({});
   private readonly purchaseOrdersLoadedSignal = signal(false);
@@ -83,7 +83,7 @@ export class PurchaseOrderStore {
     return true;
   }
 
-  validatePurchaseOrder(purchaseOrder: PurchaseOrder): boolean {
+  validatePurchaseOrder(purchaseOrder: Order): boolean {
     const nextValidationErrors: ValidationErrors = {};
 
     if (!String(purchaseOrder.supplierId ?? '').trim()) {
@@ -129,7 +129,7 @@ export class PurchaseOrderStore {
     this.orderCreatedSignal.set(false);
   }
 
-  addPurchaseOrder(purchaseOrder: PurchaseOrder): void {
+  addPurchaseOrder(purchaseOrder: Order): void {
     this.clearValidationScope('draftLine');
 
     if (!this.validatePurchaseOrder(purchaseOrder)) {

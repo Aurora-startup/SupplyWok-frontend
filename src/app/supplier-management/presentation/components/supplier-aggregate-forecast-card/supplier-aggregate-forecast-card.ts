@@ -1,7 +1,7 @@
 import { Component, computed, input } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
 import { CardModule } from 'primeng/card';
-import { ForecastPoint } from '../../../domain/model/demand-forecast.entity';
+import { ForecastPoint } from '../../../../analytics/domain/model/demand-forecast.entity';
 
 @Component({
   selector: 'app-supplier-aggregate-forecast-card',

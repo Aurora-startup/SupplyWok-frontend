@@ -1,5 +1,6 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
-import { Order, SupplierOrderItem } from '../domain/model/order.entity';
+import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
+import { OrderItem } from '../../supply-and-purchasing/domain/model/order-item.entity';
 import { OrderResource, OrdersResponse, SupplierOrderItemResource } from './orders-response';
 
 export class OrderAssembler implements BaseAssembler<Order, OrderResource, OrdersResponse> {
@@ -10,8 +11,8 @@ export class OrderAssembler implements BaseAssembler<Order, OrderResource, Order
       supplierId: resource.supplierId ?? null,
       supplierName: resource.supplierName ?? '',
       restaurantName: resource.restaurantName ?? '',
-      orderDate: resource.orderDate ?? null,
-      estimatedDate: resource.estimatedDate ?? null,
+      orderDate: resource.orderDate ?? '',
+      estimatedDate: resource.estimatedDate ?? '',
       priority: resource.priority ?? '',
       status: resource.status ?? '',
       items: (resource.items ?? []).map((item) => this.toItemEntity(item))
@@ -38,18 +39,18 @@ export class OrderAssembler implements BaseAssembler<Order, OrderResource, Order
     return resources.map((resource) => this.toEntityFromResource(resource));
   }
 
-  private toItemEntity(item: SupplierOrderItemResource): SupplierOrderItem {
-    return {
+  private toItemEntity(item: SupplierOrderItemResource): OrderItem {
+    return new OrderItem({
       id: item.id ?? null,
       inventoryItemId: item.inventoryItemId ?? null,
       productName: item.productName,
       quantity: Number(item.quantity),
       unitPrice: Number(item.unitPrice),
       unitType: item.unitType
-    };
+    });
   }
 
-  private toItemResource(item: SupplierOrderItem): SupplierOrderItemResource {
+  private toItemResource(item: OrderItem): SupplierOrderItemResource {
     return { ...item };
   }
 }

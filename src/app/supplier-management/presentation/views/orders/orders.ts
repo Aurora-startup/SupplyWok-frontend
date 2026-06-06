@@ -11,7 +11,8 @@ import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { map } from 'rxjs/operators';
-import { Order, SupplierOrderItem } from '../../../domain/model/order.entity';
+import { Order } from '../../../../supply-and-purchasing/domain/model/order.entity';
+import { OrderItem } from '../../../../supply-and-purchasing/domain/model/order-item.entity';
 import { SupplierManagementStore } from '../../../application/supplier-management-store';
 
 @Component({
@@ -73,7 +74,7 @@ export class Orders implements OnInit {
     return 'info';
   }
 
-  getItemSubtotal(item: SupplierOrderItem): number {
+  getItemSubtotal(item: OrderItem): number {
     return Number(item.quantity) * Number(item.unitPrice);
   }
 
