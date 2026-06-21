@@ -7,8 +7,17 @@ import { InventoryItemsList } from '../../components/inventory-items-list/invent
   standalone: true,
   imports: [InventoryHeader, InventoryItemsList],
   template: `
-    <app-inventory-header />
-    <app-inventory-items-list />
-  `
+    <section class="inventory-page">
+      <app-inventory-header />
+      <app-inventory-items-list />
+    </section>
+  `,
+  styles: [`
+    .inventory-page {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+  `]
 })
 export class InventoryPageComponent {}

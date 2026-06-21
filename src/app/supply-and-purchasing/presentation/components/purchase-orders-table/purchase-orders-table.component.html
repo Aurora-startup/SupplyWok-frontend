@@ -38,7 +38,7 @@
       @for (purchaseOrder of filteredPurchaseOrders; track purchaseOrder.id) {
         <div class="purchase-orders-table__row">
           <div class="purchase-orders-table__code-cell">
-            <strong>{{ formatCode(purchaseOrder.id) }}</strong>
+            <strong>{{ formatCode(purchaseOrder) }}</strong>
             <span>{{ purchaseOrder.supplierName }}</span>
           </div>
 
@@ -76,7 +76,7 @@
         <div class="purchase-orders-table__detail-header">
           <div>
             <span class="purchase-orders-table__detail-kicker">{{ 'supply-and-purchasing.detail.kicker' | translate }}</span>
-            <h3>{{ formatCode(selectedPurchaseOrder.id) }}</h3>
+            <h3>{{ formatCode(selectedPurchaseOrder) }}</h3>
             <p>{{ selectedPurchaseOrder.supplierName }}</p>
           </div>
 

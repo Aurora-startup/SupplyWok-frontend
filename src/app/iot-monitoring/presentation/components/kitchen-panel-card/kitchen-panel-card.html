@@ -1,0 +1,9 @@
+<app-panel-item-card
+  iconSrc="assets/images/icons/iot/iot-kitchen-icon.svg"
+  title="iot.panel.kitchen"
+  [value]="store.averageKitchenTemperature()"
+  unit="°C"
+  [progressPercent]="getProgress()"
+  subtitle="iot.panel.optimal-range"
+  [subtitleParams]="{ min: 20, max: 26 }"
+/>

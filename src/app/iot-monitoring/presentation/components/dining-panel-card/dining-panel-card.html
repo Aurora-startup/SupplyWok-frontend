@@ -1,0 +1,8 @@
+<app-panel-item-card
+  iconSrc="assets/images/icons/iot/iot-dining-icon.svg"
+  title="iot.panel.dining-room"
+  [value]="store.occupiedTablePercentage()"
+  unit="%"
+  [progressPercent]="store.occupiedTablePercentage() ?? 0"
+  subtitle="iot.panel.occupancy-rate"
+/>

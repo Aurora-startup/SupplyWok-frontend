@@ -1,0 +1,36 @@
+<section class="forecast-page">
+  <header class="forecast-page__header">
+    <p>{{ 'supplier-management.forecast.breadcrumb' | translate }}</p>
+    <h1>{{ 'supplier-management.forecast.title' | translate }}</h1>
+    <p class="forecast-page__subtitle">{{ 'supplier-management.forecast.subtitle' | translate }}</p>
+  </header>
+
+  <section class="forecast-page__charts">
+    <p-card>
+      <h2 class="forecast-page__card-title">{{ 'supplier-management.forecast.aggregate-title' | translate }}</h2>
+      <div class="forecast-page__chart">
+        <p-chart type="line" [data]="aggregateChartData()" [options]="chartOptions" />
+      </div>
+      <p class="forecast-page__summary">
+        {{ 'supplier-management.forecast.chart-summary' | translate: { from: aggregateFirstValue(), to: aggregateLastValue() } }}
+      </p>
+    </p-card>
+    <p-card>
+      <h2 class="forecast-page__card-title">{{ 'supplier-management.forecast.clients-title' | translate }}</h2>
+      <div class="forecast-page__chart">
+        <p-chart type="bar" [data]="clientChartData()" [options]="chartOptions" />
+      </div>
+      <p class="forecast-page__summary">{{ 'supplier-management.forecast.top-client-summary' | translate: { value: topClientValue() } }}</p>
+    </p-card>
+  </section>
+
+  <section class="forecast-page__insights">
+    @for (client of clientSeries().slice(0, 2); track client.clientId) {
+      <p-card>
+        <h2 class="forecast-page__insight-title">{{ client.clientName }}</h2>
+        <p class="forecast-page__trend">{{ 'supplier-management.forecast.trend.' + client.trend | translate }}</p>
+        <p class="forecast-page__insight-summary">{{ ('supplier-management.forecast.summaries.client-' + client.clientId) | translate }}</p>
+      </p-card>
+    }
+  </section>
+</section>

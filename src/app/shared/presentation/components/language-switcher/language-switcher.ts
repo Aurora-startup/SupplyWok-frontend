@@ -23,7 +23,7 @@ export class LanguageSwitcher {
    */
   constructor() {
     this.translate = inject(TranslateService);
-    this.currentLang = this.translate.getCurrentLang();
+    this.currentLang = this.translate.getCurrentLang() || 'en';
   }
 
   /**

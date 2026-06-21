@@ -1,0 +1,30 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .mat-button-toggle-group {
+  border: 1px solid var(--sw-border);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--sw-surface);
+  box-shadow: 0 10px 20px rgba(60, 40, 10, 0.06);
+}
+
+:host ::ng-deep .mat-button-toggle {
+  background: transparent;
+  color: var(--sw-text-muted);
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+:host ::ng-deep .mat-button-toggle-checked {
+  background: #fff4d9;
+  color: var(--sw-text);
+}
+
+:host ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+  line-height: 2.2rem;
+  padding: 0 0.95rem;
+}

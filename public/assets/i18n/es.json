@@ -16,19 +16,117 @@
   "shared": {
     "sidebar": {
       "restaurant": "Restaurante",
+      "supplier": "Proveedor",
       "current-plan": "Plan actual:",
       "dashboard": "Dashboard",
       "inventory": "Inventario",
       "orders": "Pedidos",
       "kitchen-tickets": "Comandas",
       "suppliers": "Proveedores",
+      "tables-and-occupancy": "Mesas y ocupación",
+      "alerts": "Alertas",
+      "reports": "Reportes",
+      "configuration": "Configuración",
+      "subscription": "Suscripción",
+      "clients": "Mis Clientes",
+      "forecast": "Pronóstico de Demanda",
+      "catalog": "Catálogo de Productos",
+      "delivery": "Planificación de Entregas"
+    },
+    "titles": {
+      "dashboard": "Dashboard",
+      "inventory": "Inventario",
+      "orders": "Pedidos",
+      "create-order": "Crear pedido",
+      "suppliers": "Proveedores",
+      "kitchen-tickets": "Comandas",
+      "tables": "Mesas",
       "alerts": "Alertas",
       "reports": "Reportes"
     },
     "header": {
-      "profile": "Perfil de administrador",
+      "profile": "Perfil",
+      "adminProfile": "Perfil de administrador",
       "settings": "Configuraciones",
+      "help": "Ayuda",
+      "logout": "Cerrar sesion",
       "options": "Opciones"
+    },
+    "configurationPage": {
+      "kicker": "Restaurante",
+      "title": "Configuracion del restaurante",
+      "description": "Perfil operativo, horarios, notificaciones, umbrales y accesos.",
+      "profile": {
+        "title": "Perfil del restaurante",
+        "save": "Guardar",
+        "fields": {
+          "name": "Perfil del restaurante",
+          "hours": "Horario de atencion",
+          "thresholds": "Umbrales minimos de stock",
+          "days": "Dias operativos",
+          "contact": "Contacto de soporte",
+          "email": "Correo",
+          "sms": "SMS"
+        }
+      },
+      "users": {
+        "title": "Lista de usuarios",
+        "status": {
+          "active": "Activo"
+        }
+      },
+      "demo": {
+        "state": "Estado demo"
+      },
+      "lock": {
+        "title": "Modo de bloqueo de empleados",
+        "restrictedMode": "Activar modo restringido",
+        "password": "Clave de desbloqueo",
+        "callout": "Solo el propietario puede cambiar la configuracion del modo restringido."
+      },
+      "messages": {
+        "profileSaved": "Se actualizaron los datos del perfil en esta sesion.",
+        "securitySaved": "Se actualizaron los datos de seguridad en esta sesion."
+      }
+    },
+    "subscriptionPage": {
+      "kicker": "Suscripcion",
+      "title": "Planes disponibles",
+      "description": "Compara capacidad, alcance operativo y beneficios antes de mover el restaurante a un plan superior.",
+      "summary": {
+        "currentPlan": "Plan actual",
+        "users": "Usuarios",
+        "locations": "Sedes",
+        "sensors": "Sensores"
+      },
+      "plans": {
+        "eyebrowCurrent": "Plan actual",
+        "eyebrowAvailable": "Disponible",
+        "actionCurrent": "Plan actual",
+        "actionSelect": "Seleccionar plan",
+        "metaUsers": "{{ count }} usuarios",
+        "metaLocations": "{{ count }} sedes",
+        "metaSensors": "{{ count }} sensores",
+        "premium": {
+          "features": [
+            "Dashboard principal con monitoreo IoT",
+            "Inventario, pedidos y proveedores",
+            "Alertas operativas en tiempo real",
+            "Exportacion de reportes en CSV y PDF"
+          ]
+        },
+        "enterprise": {
+          "features": [
+            "Multi sede y trazabilidad extendida",
+            "Mayor capacidad de sensores y usuarios",
+            "Prioridad para soporte y auditorias",
+            "Escalado avanzado para equipos operativos"
+          ]
+        }
+      },
+      "messages": {
+        "switchSuccess": "La vista ahora refleja el plan {{ plan }}."
+      }
     }
   },
   "inventory": {
@@ -111,12 +209,38 @@
     "suppliers-page": {
       "kicker": "Abastecimiento y compras",
       "title": "Proveedores",
-      "description": "Esta pagina queda lista para recibir el directorio de proveedores de la primera version."
+      "description": "Relaciona la cobertura de proveedores con el catalogo actual de inventario y vigila dependencias con bajo stock.",
+      "stats": {
+        "total": "Proveedores",
+        "linked-items": "Items vinculados",
+        "low-stock": "Items con bajo stock"
+      },
+      "table": {
+        "headers": {
+          "supplier": "Proveedor",
+          "linked-items": "Items vinculados",
+          "categories": "Categorias",
+          "low-stock": "Bajo stock",
+          "coverage": "Cobertura"
+        }
+      },
+      "coverage": {
+        "healthy": "Saludable",
+        "watch": "Vigilar",
+        "critical": "Critico"
+      },
+      "footer": {
+        "showing": "Mostrando {{ from }}-{{ to }} de {{ total }} proveedores",
+        "previous": "Anterior",
+        "next": "Siguiente"
+      },
+      "empty": "Aun no hay proveedores vinculados a items del inventario."
     },
     "form": {
       "title": "Crear pedido",
       "fields": {
         "supplier": "Proveedor",
+        "order-date": "Fecha de pedido",
         "estimated-date": "Fecha estimada",
         "priority": "Prioridad",
         "product": "Producto",
@@ -162,7 +286,8 @@
     },
     "validation": {
       "supplier-required": "El proveedor es obligatorio.",
-      "order-date-required": "La fecha estimada es obligatoria.",
+      "order-date-required": "La fecha del pedido es obligatoria.",
+      "estimated-date-required": "La fecha estimada es obligatoria.",
       "priority-required": "La prioridad es obligatoria.",
       "items-required": "Agrega al menos una linea de producto.",
       "product-name-required": "El nombre del producto es obligatorio.",
@@ -226,6 +351,111 @@
         "EN_PREPARACION": "En Preparación",
         "LISTO": "Listo",
         "ENTREGADO": "Entregado"
+      }
+    }
+  },
+  "restaurantManagement": {
+    "dashboardPage": {
+      "kicker": "Centro operativo",
+      "title": "Dashboard principal",
+      "description": "Resume inventario, sensores, comandas y pedidos abiertos en una sola vista para reaccionar rapido.",
+      "actions": {
+        "createOrder": "Crear pedido",
+        "reviewAlerts": "Revisar alertas"
+      },
+      "metrics": {
+        "inventoryHealth": {
+          "label": "Items saludables",
+          "hint": "{{ count }} productos requieren reposicion"
+        },
+        "activeAlerts": {
+          "label": "Alertas activas",
+          "hint": "Temperatura, stock y ocupacion fuera de rango"
+        },
+        "occupiedTables": {
+          "label": "Mesas ocupadas",
+          "hint": "{{ count }} mesas en servicio ahora"
+        },
+        "pendingOrders": {
+          "label": "Pedidos pendientes",
+          "hint": "Seguimiento rapido a proveedores prioritarios"
+        },
+        "kitchenCommands": {
+          "label": "Comandas activas",
+          "hint": "Seguimiento rapido del pase a cocina"
+        }
+      },
+      "sensor": {
+        "eyebrow": "Sensores",
+        "title": "Panel operativo",
+        "subtitle": "Lecturas de cocina, almacenamiento y ocupacion con eventos recientes.",
+        "link": "Ver incidencias",
+        "range": "Rango {{ min }} - {{ max }}",
+        "empty": "No hay sensores cargados en este entorno.",
+        "status": {
+          "disconnected": "Desconectado",
+          "outOfRange": "Fuera de rango",
+          "stable": "Estable"
+        }
+      },
+      "kitchen": {
+        "eyebrow": "Cocina",
+        "title": "Comandas activas",
+        "link": "Abrir cocina",
+        "table": "Mesa {{ number }}",
+        "ticketCount": "{{ count }} items",
+        "empty": "No hay comandas activas para mostrar.",
+        "actions": {
+          "startPreparation": "Iniciar preparacion",
+          "markReady": "Marcar como listo",
+          "markDelivered": "Marcar como entregado"
+        }
+      },
+      "inventory": {
+        "eyebrow": "Inventario",
+        "link": "Ir a inventario",
+        "caption": "{{ count }} producto(s) por debajo del stock minimo",
+        "stockSummary": "{{ current }} disponibles de {{ minimum }} minimos",
+        "empty": "No hay productos criticos por ahora.",
+        "columns": {
+          "product": "Producto",
+          "currentStock": "Stock actual",
+          "status": "Estado"
+        },
+        "footer": "Ver inventario"
+      },
+      "orders": {
+        "eyebrow": "Abastecimiento",
+        "title": "Pedidos recientes",
+        "link": "Abrir pedidos",
+        "caption": "{{ count }} pedidos cargados en este contexto",
+        "empty": "No hay pedidos recientes cargados.",
+        "columns": {
+          "id": "ID",
+          "supplier": "Proveedor",
+          "status": "Estado",
+          "date": "Fecha"
+        },
+        "footer": "Ver historial de pedidos"
+      }
+    },
+    "reportsPage": {
+      "kicker": "Restaurante",
+      "title": "Reportes",
+      "description": "Evolucion del inventario, consumo, pedidos a proveedores, demanda y eventos termicos.",
+      "actions": {
+        "exportCsv": "Exportar CSV",
+        "exportPdf": "Exportar PDF"
+      },
+      "charts": {
+        "inventoryTitle": "Evolucion del inventario",
+        "consumptionTitle": "Consumo por periodo",
+        "ordersTitle": "Pedidos por proveedor",
+        "tempTitle": "Incidencias de temperatura",
+        "summary": "Resumen:",
+        "summaryDesc": "Resumen del grafico: {{ from }} -> {{ to }}",
+        "summaryValue": "Resumen del grafico: {{ value }}",
+        "month": "Mes"
       }
     }
   },

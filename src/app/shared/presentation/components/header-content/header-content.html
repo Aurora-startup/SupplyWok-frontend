@@ -1,25 +1,38 @@
 <header class="header">
-  <div class="logo">
-    <strong>SupplyWok</strong>
+  <div class="brand-block">
+    <strong class="brand-name">SupplyWok</strong>
+    <span class="brand-context">{{ profileLabelKey() | translate }}</span>
   </div>
 
   <div class="actions">
     <app-language-switcher></app-language-switcher>
 
-    <button class="icon-btn">
-      <i class="pi pi-bell"></i>
-    </button>
-    <button class="icon-btn">
+    <div class="alerts-wrapper">
+      <button type="button" class="icon-btn" (click)="toggleAlerts()">
+        <i class="pi pi-bell"></i>
+      </button>
+      <app-header-alerts-popup [isOpen]="alertsOpen()"></app-header-alerts-popup>
+    </div>
+
+    <a
+      [href]="landingUrl"
+      target="_blank"
+      rel="noreferrer"
+      class="icon-btn icon-link"
+      [attr.aria-label]="'shared.header.help' | translate">
       <i class="pi pi-question-circle"></i>
+    </a>
+
+    <button (click)="menu.toggle($event)" class="profile-btn" type="button">
+      <span class="profile-avatar">
+        <i class="pi pi-user"></i>
+      </span>
+      <span class="profile-copy">
+        <span class="profile-caption">{{ 'shared.header.profile' | translate }}</span>
+        <span class="profile-role">{{ 'shared.header.adminProfile' | translate }}</span>
+      </span>
     </button>
 
-    <!-- Botón del perfil que dispara el menú -->
-    <button (click)="menu.toggle($event)" class="profile-btn">
-      <i class="pi pi-user"></i>
-      <span>{{ 'shared.header.profile'| translate }}</span>
-    </button>
-
-    <!-- El Menú Oculto de PrimeNG -->
     <p-menu #menu [model]="profileItems" [popup]="true" styleClass="premium-menu"></p-menu>
   </div>
 </header>

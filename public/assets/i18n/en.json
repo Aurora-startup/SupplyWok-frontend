@@ -43,6 +43,7 @@
     "sidebar": {
       "restaurant": "Restaurant",
       "current-plan": "Current plan:",
+      "supplier": "Supplier",
       "dashboard": "Dashboard",
       "inventory": "Inventory",
       "orders": "Orders",
@@ -52,13 +53,506 @@
       "alerts": "Alerts",
       "reports": "Reports",
       "configuration": "Configuration",
-      "subscription": "Subscription"
+      "subscription": "Subscription",
+      "clients": "My Clients",
+      "forecast": "Demand Forecast",
+      "catalog": "Product Catalog",
+      "delivery": "Delivery Planning"
     },
     "header": {
-      "profile": "Admin Profile",
+      "options": "Options",
+      "help": "Help",
+      "profile": "Profile",
+      "adminProfile": "Admin profile",
       "settings": "Settings",
-      "logout": "Logout",
-      "options": "Options"
+      "logout": "Logout"
+    },
+    "titles": {
+      "dashboard": "Dashboard",
+      "inventory": "Inventory",
+      "orders": "Orders",
+      "create-order": "Create Order",
+      "suppliers": "Suppliers",
+      "kitchen-tickets": "Kitchen Tickets",
+      "tables": "Tables",
+      "alerts": "Alerts",
+      "reports": "Reports",
+      "configuration": "Configuration",
+      "subscription": "Subscription",
+      "dish-menu": "Dish Menu",
+      "create-kitchen-order": "Create Kitchen Order",
+      "tables-and-occupancy": "Tables and Occupancy",
+      "login": "Log in",
+      "register": "Register",
+      "not-found": "Page Not Found"
+    },
+    "placeholder": {
+      "kicker": "Frontend first version",
+      "description": "This module is reserved and can be completed in the next sprint tasks.",
+      "dashboardTitle": "Kitchen Dashboard",
+      "dashboardDesc": "Real-time supply chain and floor monitoring."
+    },
+    "errors": {
+      "pageNotFoundTitle": "Page not found",
+      "pageNotFoundDesc": "The requested route does not exist in the current frontend version."
+    },
+    "configurationPage": {
+      "kicker": "Restaurant",
+      "title": "Restaurant settings",
+      "description": "Operational profile, hours, notifications, thresholds, and access.",
+      "profile": {
+        "title": "Restaurant profile",
+        "save": "Save",
+        "fields": {
+          "name": "Restaurant profile",
+          "hours": "Operating hours",
+          "thresholds": "Minimum stock thresholds",
+          "days": "Operating days",
+          "contact": "Support contact",
+          "email": "Email",
+          "sms": "SMS"
+        }
+      },
+      "users": {
+        "title": "User list",
+        "status": {
+          "active": "Active"
+        }
+      },
+      "demo": {
+        "state": "Demo state"
+      },
+      "lock": {
+        "title": "Employee lock mode",
+        "restrictedMode": "Enable restricted mode",
+        "password": "Unlock password",
+        "callout": "Only the owner can change restricted mode settings."
+      },
+      "messages": {
+        "profileSaved": "Profile settings updated in this frontend session.",
+        "securitySaved": "Security settings updated in this frontend session."
+      }
+    },
+    "subscriptionPage": {
+      "kicker": "Subscription",
+      "title": "Available plans",
+      "description": "Compare capacity, operational scope, and benefits before moving the restaurant to a higher plan.",
+      "summary": {
+        "currentPlan": "Current plan",
+        "users": "Users",
+        "locations": "Locations",
+        "sensors": "Sensors"
+      },
+      "plans": {
+        "eyebrowCurrent": "Current plan",
+        "eyebrowAvailable": "Available",
+        "actionCurrent": "Current plan",
+        "actionSelect": "Select plan",
+        "metaUsers": "{{ count }} users",
+        "metaLocations": "{{ count }} locations",
+        "metaSensors": "{{ count }} sensors",
+        "premium": {
+          "features": [
+            "Main dashboard with IoT monitoring",
+            "Inventory, orders, and suppliers",
+            "Real-time operational alerts",
+            "Report export in CSV and PDF"
+          ]
+        },
+        "enterprise": {
+          "features": [
+            "Multi-location and extended traceability",
+            "Greater sensor and user capacity",
+            "Priority for support and audits",
+            "Advanced scaling for operational teams"
+          ]
+        }
+      },
+      "messages": {
+        "switchSuccess": "The view now reflects the {{ plan }} plan. Connect it to the payment flow when the commercial module is ready."
+      }
+    }
+  },
+  "supplier-management": {
+    "orders": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Purchase orders",
+      "subtitle": "Track restaurant orders and delivery commitments.",
+      "search": "Search",
+      "stats": {
+        "total": "Total orders",
+        "pending": "Pending",
+        "in-transit": "In transit",
+        "delivered": "Delivered"
+      },
+      "filters": {
+        "status": "Status",
+        "all": "All statuses",
+        "confirmed": "Confirmed",
+        "pending": "Pending",
+        "in-transit": "In transit",
+        "delivered": "Delivered",
+        "delayed": "Delayed"
+      },
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "columns": {
+        "code": "Order",
+        "restaurant": "Restaurant",
+        "order-date": "Order date",
+        "delivery-date": "Estimated delivery",
+        "priority": "Priority",
+        "status": "Status",
+        "items": "Items",
+        "actions": "Actions"
+      },
+      "actions": {
+        "confirm": "Confirm",
+        "mark-in-transit": "Mark in transit",
+        "mark-delivered": "Mark delivered",
+        "view": "View details"
+      },
+      "details": {
+        "title": "Order details",
+        "order-date": "Order date",
+        "delivery-date": "Estimated delivery",
+        "priority": "Priority",
+        "supplier": "Supplier",
+        "close": "Close",
+        "columns": {
+          "product": "Product",
+          "quantity": "Quantity",
+          "unit": "Unit",
+          "unit-price": "Unit price",
+          "subtotal": "Subtotal"
+        }
+      },
+      "empty": "No orders match your search.",
+      "visible-count": "Showing {{ visible }} of {{ total }} total orders"
+    },
+    "clients": {
+      "breadcrumb": "SUPPLIER",
+      "title": "My clients",
+      "subtitle": "Purchase frequency, average ticket, and demand momentum by restaurant.",
+      "search": "Search",
+      "filters": {
+        "status": "Status",
+        "all": "All statuses",
+        "active": "Active"
+      },
+      "columns": {
+        "client": "My clients",
+        "district": "District",
+        "frequency": "Frequency",
+        "ticket": "Ticket",
+        "demand": "Demand projection",
+        "status": "Status",
+        "last-order-date": "Last order date"
+      },
+      "empty": "No clients match your search.",
+      "visible-count": "Showing {{ visible }} of {{ total }} total items"
+    },
+    "forecast": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Demand forecast",
+      "subtitle": "Combine aggregate demand and client-level forecasts for supply planning.",
+      "aggregate-title": "Aggregate view",
+      "clients-title": "By client",
+      "chart-summary": "Text summary for the chart: {{ from }} -> {{ to }}",
+      "top-client-summary": "Text summary for the chart: {{ value }}",
+      "empty": "No forecast data available.",
+      "trend": {
+        "upward": "Upward",
+        "stable": "Stable",
+        "watch": "Watch"
+      },
+      "summaries": {
+        "client-1": "Seafood and greens demand trending higher before weekends.",
+        "client-2": "Keep standard restock cadence; lunch traffic is stable.",
+        "client-3": "Demand remains moderate with steady weekly orders.",
+        "client-4": "Projected demand is steady with no urgent restock signal."
+      }
+    },
+    "delivery": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Delivery planning",
+      "subtitle": "Plan grouped deliveries by date and route sequence for nearby restaurants.",
+      "filters": {
+        "date": "Date",
+        "all-dates": "All dates",
+        "status": "Status",
+        "all-statuses": "All statuses"
+      },
+      "stats": {
+        "routes": "Routes",
+        "stops": "Stops",
+        "orders": "Orders"
+      },
+      "status": {
+        "planned": "Planned",
+        "in-progress": "In progress",
+        "completed": "Completed"
+      },
+      "stop-orders": "{{ count }} order(s)",
+      "empty": "No delivery routes match your filters."
+    },
+    "alerts": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier alerts",
+      "description": "Monitor urgent changes, delays, and signals shared by clients.",
+      "search-label": "Search",
+      "search-placeholder": "Search alerts...",
+      "severity-label": "Severity",
+      "severity-placeholder": "Filter by Severity",
+      "severity": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
+      "status": {
+        "open": "Open",
+        "acknowledged": "Acknowledged"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERITY",
+          "detail": "ALERT DETAIL",
+          "source": "SOURCE",
+          "date": "DATE",
+          "status": "STATUS",
+          "actions": "ACTIONS"
+        },
+        "actions": {
+          "view-details": "VIEW DETAILS",
+          "acknowledge": "ACKNOWLEDGE"
+        },
+        "footer": "Showing {{ first }} to {{ last }} of {{ total }} supplier alerts"
+      },
+      "dialog": {
+        "header": "Alert details",
+        "meta": {
+          "date": "Date",
+          "status": "Status"
+        },
+        "actions": {
+          "close": "Close",
+          "acknowledge": "Acknowledge"
+        }
+      },
+      "empty": "No alerts match your search.",
+      "notification-title": "Supplier Notification",
+      "messages": {
+        "rush-reorder": "Rush reorder request",
+        "route-congestion": "Route congestion detected",
+        "client-stock-alert-received": "Client stock alert received",
+        "delayed-delivery-on-route-lima-centro-am": "Delayed delivery on route Lima Centro AM",
+        "new-urgent-order-from-ming-garden": "New urgent order from Ming Garden"
+      }
+    },
+    "catalog": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Product catalog",
+      "subtitle": "Manage offer, price, unit, and delivery conditions.",
+      "add": "Add",
+      "search": "Search",
+      "columns": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "unit": "Unit",
+        "delivery-conditions": "Delivery conditions",
+        "actions": "Actions"
+      },
+      "actions": {
+        "edit": "Edit",
+        "delete": "Delete"
+      },
+      "form": {
+        "product": "Product",
+        "category": "Category",
+        "price": "Price",
+        "unit": "Unit",
+        "delivery-conditions": "Delivery conditions",
+        "cancel": "Cancel",
+        "add": "Add",
+        "save": "Save"
+      },
+      "delete-dialog": {
+        "title": "Delete product",
+        "message": "Are you sure you want to delete {{ product }} from the catalog?",
+        "confirm": "Delete"
+      },
+      "empty": "No products in the catalog yet."
+    },
+    "settings": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier settings",
+      "subtitle": "Commercial profile, zones, contacts, and operating preferences.",
+      "profile": {
+        "title": "Supplier profile",
+        "supplier-name": "Supplier profile",
+        "support-contact": "Support contact",
+        "email": "Email",
+        "sms": "SMS",
+        "save": "Save",
+        "saving": "Saving...",
+        "saved": "Settings saved."
+      },
+      "zones": {
+        "title": "Service zones",
+        "active": "Active",
+        "add-placeholder": "Add service zone",
+        "remove": "Remove zone"
+      }
+    },
+    "subscription": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier subscription",
+      "subtitle": "Commercial capacity, limits, and enterprise features.",
+      "active": "Active plan",
+      "summary": {
+        "current-plan": {
+          "label": "Current plan",
+          "value": "Enterprise"
+        },
+        "users": {
+          "label": "Users",
+          "value": "Unlimited users"
+        },
+        "locations": {
+          "label": "Locations",
+          "value": "Multi-location"
+        },
+        "sensors": {
+          "label": "Sensors",
+          "value": "Unlimited sensors"
+        }
+      },
+      "plans": {
+        "premium": {
+          "name": "Premium",
+          "features": [
+            "Core dashboards",
+            "IoT monitoring",
+            "Email support"
+          ]
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "features": [
+            "Advanced analytics",
+            "Multi-location",
+            "Route optimization",
+            "Priority support"
+          ]
+        }
+      }
+    },
+    "dashboard": {
+      "breadcrumb": "SUPPLIER",
+      "title": "Supplier dashboard",
+      "subtitle": "Incoming orders, logistics load, clients, and demand outlook.",
+      "loading": "Loading dashboard data...",
+      "stats": {
+        "orders-received": "Orders received",
+        "scheduled-deliveries": "Scheduled deliveries",
+        "demand-outlook": "Demand outlook",
+        "urgent-requests": "Urgent requests",
+        "alert-badge": "Alert"
+      },
+      "routes": {
+        "title": "Today's active routes",
+        "schedule": "{{ stops }} Stops · {{ departure }} - {{ arrival }}",
+        "date": "{{ date }}",
+        "empty": "No active routes available."
+      },
+      "aggregate": {
+        "title": "Aggregate view",
+        "summary": "Text summary for the chart: {{ from }} -> {{ to }}",
+        "empty": "No forecast data available."
+      },
+      "priority": {
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      }
+    }
+  },
+  "inventoryManagement": {
+    "page": {
+      "kicker": "Restaurant",
+      "title": "Inventory",
+      "description": "Manage stock levels, minimums and movements.",
+      "actions": {
+        "add": "Add supply"
+      }
+    },
+    "metrics": {
+      "items": "Items",
+      "totalStock": "Total stock",
+      "critical": "Critical items",
+      "movements": "Movements"
+    },
+    "table": {
+      "title": "Inventory",
+      "search": "Search",
+      "searchPlaceholder": "Search product name, category or supplier...",
+      "category": "Category",
+      "allCategories": "All categories",
+      "filterUnit": "Filter by unit",
+      "minimum": "MIN",
+      "empty": "No inventory items match your search.",
+      "error": "Unable to load inventory items.",
+      "unassignedSupplier": "Unassigned supplier",
+      "columns": {
+        "product": "Product",
+        "stock": "Stock",
+        "stockLevels": "Stock levels",
+        "unit": "Unit",
+        "restaurant": "Restaurant",
+        "category": "Category",
+        "supplier": "Supplier",
+        "actions": "Actions"
+      },
+      "actions": {
+        "add": "Add",
+        "edit": "Edit item",
+        "delete": "Delete item"
+      },
+      "pagination": {
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "footer": {
+        "showing": "Showing {{ visible }} of {{ total }} total items"
+      }
+    },
+    "belowMinimum": {
+      "title": "Below minimum",
+      "caption": "{{ count }} product(s) below minimum stock level",
+      "empty": "No products below minimum stock level.",
+      "columns": {
+        "product": "PRODUCT",
+        "currentStock": "CURRENT STOCK",
+        "status": "STATUS"
+      },
+      "actions": {
+        "sortAll": "SORT ALL"
+      }
+    },
+    "stockStatus": {
+      "critical": "Critical",
+      "warning": "Low",
+      "healthy": "Healthy"
+    },
+    "units": {
+      "kilograms": "Kilograms",
+      "liters": "Liters",
+      "units": "Units",
+      "grams": "Grams"
     }
   },
   "inventory": {
@@ -137,12 +631,38 @@
     "suppliers-page": {
       "kicker": "Supply and Purchasing",
       "title": "Suppliers",
-      "description": "This page is ready to receive the supplier directory view for the first frontend version."
+      "description": "Map supplier coverage against the current inventory catalog and watch low-stock dependencies.",
+      "stats": {
+        "total": "Suppliers",
+        "linked-items": "Linked items",
+        "low-stock": "Low stock items"
+      },
+      "table": {
+        "headers": {
+          "supplier": "Supplier",
+          "linked-items": "Linked items",
+          "categories": "Categories",
+          "low-stock": "Low stock",
+          "coverage": "Coverage"
+        }
+      },
+      "coverage": {
+        "healthy": "Healthy",
+        "watch": "Watch",
+        "critical": "Critical"
+      },
+      "footer": {
+        "showing": "Showing {{ from }}-{{ to }} of {{ total }} suppliers",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "empty": "No suppliers are linked to inventory items yet."
     },
     "form": {
       "title": "Create order",
       "fields": {
         "supplier": "Supplier",
+        "order-date": "Order date",
         "estimated-date": "Estimated date",
         "priority": "Priority",
         "product": "Product",
@@ -168,7 +688,23 @@
         "detail": "Detail"
       },
       "footer": {
-        "showing": "Showing {filtered} of {total}"
+        "showing": "Showing {{ filtered }} of {{ total }}"
+      }
+    },
+    "summary-card": {
+      "title": "Orders",
+      "caption": "{{ count }} orders loaded in this context",
+      "loading": "Loading orders...",
+      "error": "Unable to load the orders summary.",
+      "empty": "There are no orders yet.",
+      "columns": {
+        "id": "ID",
+        "supplier": "Supplier",
+        "status": "Status",
+        "date": "Date"
+      },
+      "actions": {
+        "view-history": "View order history"
       }
     },
     "detail": {
@@ -188,7 +724,8 @@
     },
     "validation": {
       "supplier-required": "Supplier is required.",
-      "order-date-required": "Estimated date is required.",
+      "order-date-required": "Order date is required.",
+      "estimated-date-required": "Estimated date is required.",
       "priority-required": "Priority is required.",
       "items-required": "Add at least one product line.",
       "product-name-required": "Product name is required.",
@@ -199,6 +736,31 @@
   },
   "restaurant-management": {
     "breadcrumb": "RESTAURANT",
+    "kitchen": {
+      "title": "Kitchen tickets",
+      "description": "Real-time communication between dining room and kitchen. Track comanda preparation and delivery.",
+      "new-comanda": "New comanda",
+      "all": "All",
+      "no-comandas": "No comandas found.",
+      "advance-to": "Advance to",
+      "create-title": "Create new comanda",
+      "select-table": "Table",
+      "choose-table": "Select a table...",
+      "dishes": "Dishes",
+      "dish-name": "Dish name",
+      "add-dish": "Add dish",
+      "cancel": "Cancel",
+      "confirm": "Create comanda",
+      "error-no-table": "Please select a table.",
+      "error-no-items": "Add at least one dish.",
+      "error-create-failed": "Failed to create comanda. Try again.",
+      "status": {
+        "EN_COLA": "Pending",
+        "EN_PREPARACION": "In preparation",
+        "LISTO": "Ready",
+        "ENTREGADO": "Delivered"
+      }
+    },
     "tables": {
       "title": "Tables and occupancy",
       "description": "Operational dining view with occupancy, dwell time, and sensor state.",
@@ -228,6 +790,27 @@
         "active": "Active",
         "idle": "Idle"
       }
+    }
+  },
+  "restaurantManagement": {
+    "dishMenuPage": {
+      "kicker": "Menu",
+      "title": "Dish Menu",
+      "description": "Browse all available dishes. Click on a dish to add it to a new order.",
+      "searchPlaceholder": "Search dishes...",
+      "addToOrder": "Add to Order",
+      "price": "Price",
+      "outstanding": "Featured",
+      "noDishes": "No dishes available",
+      "category": "Category",
+      "categories": {
+        "rice": "Rice",
+        "noodles": "Noodles",
+        "soups": "Soups",
+        "special_dishes": "Special Dishes",
+        "desserts": "Desserts",
+        "drinks": "Drinks"
+      }
     },
     "kitchen": {
       "title": "Kitchen tickets",
@@ -248,10 +831,127 @@
       "error-no-items": "Add at least one dish.",
       "error-create-failed": "Failed to create comanda. Try again.",
       "status": {
-        "EN_COLA": "In Queue",
-        "EN_PREPARACION": "In Preparation",
-        "LISTO": "Ready",
-        "ENTREGADO": "Delivered"
+        "pending": "Pending",
+        "in_preparation": "In Preparation",
+        "ready": "Ready",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      },
+      "serviceType": {
+        "table_service": "Table Service",
+        "to_take_home": "To Take Home"
+      }
+    },
+    "dashboard": {
+      "kitchenTickets": {
+        "title": "Kitchen Tickets",
+        "seeAll": "See All Kitchen Tickets"
+      },
+      "activeCommands": {
+        "label": "Kitchen Commands"
+      }
+    },
+    "dashboardPage": {
+      "kicker": "Operations center",
+      "title": "Main dashboard",
+      "description": "Summarize inventory, sensors, kitchen tickets, and open orders in one place to react quickly.",
+      "actions": {
+        "createOrder": "Create order",
+        "reviewAlerts": "Review alerts"
+      },
+      "metrics": {
+        "inventoryHealth": {
+          "label": "Healthy items",
+          "hint": "{{ count }} products need restocking"
+        },
+        "activeAlerts": {
+          "label": "Active alerts",
+          "hint": "Temperature, stock, and occupancy out of range"
+        },
+        "occupiedTables": {
+          "label": "Occupied tables",
+          "hint": "{{ count }} tables in service right now"
+        },
+        "pendingOrders": {
+          "label": "Pending orders",
+          "hint": "Quick follow-up for priority suppliers"
+        },
+        "kitchenCommands": {
+          "label": "Kitchen commands",
+          "hint": "Fast follow-up on kitchen flow"
+        }
+      },
+      "sensor": {
+        "eyebrow": "Sensors",
+        "title": "Operational panel",
+        "subtitle": "Kitchen, storage, and occupancy readings with recent events.",
+        "link": "View incidents",
+        "range": "Range {{ min }} - {{ max }}",
+        "empty": "There are no sensors loaded in this environment.",
+        "status": {
+          "disconnected": "Disconnected",
+          "outOfRange": "Out of range",
+          "stable": "Stable"
+        }
+      },
+      "kitchen": {
+        "eyebrow": "Kitchen",
+        "title": "Active kitchen tickets",
+        "link": "Open kitchen",
+        "table": "Table {{ number }}",
+        "ticketCount": "{{ count }} items",
+        "empty": "There are no active kitchen tickets to display.",
+        "actions": {
+          "startPreparation": "Start preparation",
+          "markReady": "Mark as ready",
+          "markDelivered": "Mark as delivered"
+        }
+      },
+      "inventory": {
+        "eyebrow": "Inventory",
+        "link": "Go to inventory",
+        "caption": "{{ count }} product(s) below minimum stock level",
+        "stockSummary": "{{ current }} available from {{ minimum }} minimum",
+        "empty": "There are no critical products right now.",
+        "columns": {
+          "product": "Product",
+          "currentStock": "Current stock",
+          "status": "Status"
+        },
+        "footer": "View inventory"
+      },
+      "orders": {
+        "eyebrow": "Supply",
+        "title": "Recent orders",
+        "link": "Open orders",
+        "caption": "{{ count }} orders loaded in this context",
+        "empty": "There are no recent orders loaded.",
+        "columns": {
+          "id": "ID",
+          "supplier": "Supplier",
+          "status": "Status",
+          "date": "Date"
+        },
+        "footer": "View order history"
+      }
+    },
+    "reportsPage": {
+      "kicker": "Restaurant",
+      "title": "Reports",
+      "description": "Inventory evolution, consumption, supplier orders, demand, and thermal events.",
+      "actions": {
+        "exportCsv": "Export CSV",
+        "exportPdf": "Export PDF"
+      },
+      "charts": {
+        "inventoryTitle": "Inventory evolution",
+        "consumptionTitle": "Consumption by period",
+        "ordersTitle": "Orders by supplier",
+        "tempTitle": "Temperature incidents",
+        "summary": "Text summary:",
+        "summaryDesc": "Text summary for the chart: {{ from }} -> {{ to }}",
+        "summaryValue": "Text summary for the chart: {{ value }}",
+        "month": "Month"
       }
     }
   },

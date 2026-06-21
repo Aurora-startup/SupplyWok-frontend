@@ -1,0 +1,61 @@
+<section class="settings-page">
+  <header class="settings-page__header">
+    <p>{{ 'supplier-management.settings.breadcrumb' | translate }}</p>
+    <h1>{{ 'supplier-management.settings.title' | translate }}</h1>
+    <p class="settings-page__subtitle">{{ 'supplier-management.settings.subtitle' | translate }}</p>
+  </header>
+
+  <section class="settings-page__grid">
+    <p-card styleClass="settings-page__card">
+      <h2 class="settings-page__card-title">{{ 'supplier-management.settings.profile.title' | translate }}</h2>
+      <form class="settings-page__form" (ngSubmit)="save()">
+        <label>
+          <span class="settings-page__field-label">{{ 'supplier-management.settings.profile.supplier-name' | translate }}</span>
+          <input pInputText name="supplierName" [(ngModel)]="formModel.supplierName">
+        </label>
+        <label>
+          <span class="settings-page__field-label">{{ 'supplier-management.settings.profile.support-contact' | translate }}</span>
+          <input pInputText name="supportContact" [(ngModel)]="formModel.supportContact">
+        </label>
+
+        <div class="settings-page__actions-row">
+          <div class="settings-page__toggles">
+            <label class="settings-page__toggle-item">
+              <span>{{ 'supplier-management.settings.profile.email' | translate }}</span>
+              <p-toggleSwitch name="email" [(ngModel)]="formModel.notifications.email" />
+            </label>
+            <label class="settings-page__toggle-item">
+              <span>{{ 'supplier-management.settings.profile.sms' | translate }}</span>
+              <p-toggleSwitch name="sms" [(ngModel)]="formModel.notifications.sms" />
+            </label>
+          </div>
+          <p-button type="submit" [label]="'supplier-management.settings.profile.save' | translate" [loading]="store.loading()" />
+        </div>
+      </form>
+    </p-card>
+
+    <p-card styleClass="settings-page__card">
+      <h2 class="settings-page__card-title">{{ 'supplier-management.settings.zones.title' | translate }}</h2>
+      <div class="settings-page__zone-chip-list">
+        @for (zone of formModel.serviceZones; track zone) {
+          <button type="button" class="settings-page__zone-chip" (click)="removeZone(zone)">
+            <span>{{ zone }}</span>
+            <i class="pi pi-times"></i>
+          </button>
+        }
+      </div>
+      <div class="settings-page__zone-form">
+        <input pInputText [(ngModel)]="zoneDraft" [placeholder]="'supplier-management.settings.zones.add-placeholder' | translate">
+        <p-button icon="pi pi-plus" (onClick)="addZone()" />
+      </div>
+      <ul class="settings-page__contacts">
+        @for (contact of formModel.contacts; track contact.name) {
+          <li>
+            <strong>{{ contact.name }}</strong>
+            <span class="settings-page__status-badge">{{ 'supplier-management.settings.zones.active' | translate }}</span>
+          </li>
+        }
+      </ul>
+    </p-card>
+  </section>
+</section>

@@ -9,6 +9,7 @@ import { SelectModule } from 'primeng/select';
 import { CheckboxModule } from 'primeng/checkbox';
 import { IamStore } from '../../../application/iam.store';
 import { User, UserRole, SubscriptionTier } from '../../../domain/model/user.entity';
+import { resolveHomeRoute } from '../../routing/home-route';
 
 @Component({
   selector: 'app-register-form',
@@ -62,7 +63,7 @@ export class RegisterFormComponent {
         this.errorMessage = error;
       }
       if (this.iamStore.isAuthenticated()) {
-        this.router.navigate(['/dashboard']);
+        void this.router.navigateByUrl(resolveHomeRoute(this.iamStore.currentUserRole()));
       }
     });
   }

@@ -1,5 +1,4 @@
 import { Component, input } from '@angular/core';
-import { NgClass, NgIf, NgStyle } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 
 /**
@@ -8,7 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
  */
 @Component({
   selector: 'app-panel-item-card',
-  imports: [NgClass, NgIf, NgStyle, TranslateModule],
+  imports: [TranslateModule],
   templateUrl: './panel-item-card.html',
   styleUrl: './panel-item-card.css',
 })

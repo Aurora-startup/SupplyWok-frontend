@@ -26,7 +26,7 @@
     </label>
 
     <label class="purchase-order-form-panel__field">
-      <span>{{ 'supply-and-purchasing.form.fields.estimated-date' | translate }}</span>
+      <span>{{ 'supply-and-purchasing.form.fields.order-date' | translate }}</span>
       <input
         [(ngModel)]="form.orderDate"
         name="orderDate"
@@ -36,6 +36,20 @@
       />
       @if (getFieldError('orderDate')) {
         <small class="purchase-order-form-panel__error">{{ getFieldError('orderDate') }}</small>
+      }
+    </label>
+
+    <label class="purchase-order-form-panel__field">
+      <span>{{ 'supply-and-purchasing.form.fields.estimated-date' | translate }}</span>
+      <input
+        [(ngModel)]="form.estimatedDate"
+        name="estimatedDate"
+        type="date"
+        class="purchase-order-form-panel__input"
+        [class.purchase-order-form-panel__input--invalid]="getFieldError('estimatedDate')"
+      />
+      @if (getFieldError('estimatedDate')) {
+        <small class="purchase-order-form-panel__error">{{ getFieldError('estimatedDate') }}</small>
       }
     </label>
 

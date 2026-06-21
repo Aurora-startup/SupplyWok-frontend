@@ -1,11 +1,12 @@
 import { Component, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { IamStore } from '../../../application/iam.store';
+import { resolveHomeRoute } from '../../routing/home-route';
 
 @Component({
   selector: 'app-login-form',
@@ -29,6 +30,7 @@ export class LoginFormComponent {
   submitted = false;
 
   constructor(
+    private route: ActivatedRoute,
     private router: Router,
     private iamStore: IamStore,
     private translate: TranslateService
@@ -40,7 +42,8 @@ export class LoginFormComponent {
         this.errorMessage = error;
       }
       if (this.iamStore.isAuthenticated()) {
-        this.router.navigate(['/dashboard']);
+        const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo');
+        void this.router.navigateByUrl(redirectTo || resolveHomeRoute(this.iamStore.currentUserRole()));
       }
     });
   }

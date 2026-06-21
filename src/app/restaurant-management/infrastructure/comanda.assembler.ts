@@ -2,7 +2,7 @@ import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Comanda, ComandaItem } from '../domain/model/comanda.entity';
 import { ComandaItemResource, ComandaResource, ComandaResponse } from './comanda-response';
 
-export class ComandaAssembler extends BaseAssembler<Comanda, ComandaResource, ComandaResponse> {
+export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource, ComandaResponse> {
 
   /**
    * Converts a ComandaResponse to an array of Comanda entities.

@@ -9,16 +9,8 @@ import { IotStore } from '../../../application/iot-store';
 @Component({
   selector: 'app-temp-alert-card',
   imports: [IotStatCard],
-  template: `
-    <app-iot-stat-card
-      iconSrc="assets/images/icons/iot/iot-temp-alert-icon.svg"
-      [value]="store.outOfRangeTemperatureCount()"
-      label="iot.stat-cards.temp-alerts"
-      [badgeLabel]="store.outOfRangeTemperatureCount() > 0 ? 'iot.stat-cards.alert' : ''"
-      [badgeSeverity]="'alert'"
-      [showBadge]="store.outOfRangeTemperatureCount() > 0"
-    />
-  `,
+  templateUrl: './temp-alert-card.html',
+  styleUrl: './temp-alert-card.css'
 })
 export class TempAlertCard {
   protected readonly store = inject(IotStore);

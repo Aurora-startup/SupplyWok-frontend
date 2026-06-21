@@ -1,0 +1,145 @@
+<section class="alerts-page">
+  <header class="alerts-page__header">
+    <p>{{ 'supplier-management.alerts.breadcrumb' | translate }}</p>
+    <h1>{{ 'supplier-management.alerts.title' | translate }}</h1>
+    <p class="alerts-page__subtitle">{{ 'supplier-management.alerts.description' | translate }}</p>
+  </header>
+
+  <section class="alerts-page__filters">
+    <label>
+      <span>{{ 'supplier-management.alerts.search-label' | translate }}</span>
+      <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input pInputText type="search" [(ngModel)]="searchQuery" [placeholder]="'supplier-management.alerts.search-placeholder' | translate">
+      </span>
+    </label>
+    <label>
+      <span>{{ 'supplier-management.alerts.severity-label' | translate }}</span>
+      <p-select [options]="severityOptions" optionValue="value" [(ngModel)]="severityFilter" [placeholder]="'supplier-management.alerts.severity-placeholder' | translate">
+        <ng-template pTemplate="selectedItem" let-option>
+          {{ option?.labelKey | translate }}
+        </ng-template>
+        <ng-template pTemplate="item" let-option>
+          {{ option.labelKey | translate }}
+        </ng-template>
+      </p-select>
+    </label>
+  </section>
+
+  <section class="alerts-page__table-shell">
+  <p-table [value]="filteredAlerts" [paginator]="true" [rows]="4" responsiveLayout="scroll" styleClass="alerts-page__table">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>{{ 'supplier-management.alerts.table.columns.severity' | translate }} <span class="alerts-page__sort">↑↓</span></th>
+        <th>{{ 'supplier-management.alerts.table.columns.detail' | translate }}</th>
+        <th>{{ 'supplier-management.alerts.table.columns.date' | translate }} <span class="alerts-page__sort">↑↓</span></th>
+        <th>{{ 'supplier-management.alerts.table.columns.status' | translate }} <span class="alerts-page__sort">↑↓</span></th>
+        <th>{{ 'supplier-management.alerts.table.columns.actions' | translate }}</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-alert>
+      <tr>
+        <td>
+          <div class="alerts-page__severity-cell">
+            <span class="alerts-page__severity-dot" [ngClass]="'alerts-page__severity-dot--' + alert.severity"></span>
+            <span>{{ 'supplier-management.alerts.severity.' + alert.severity | translate }}</span>
+          </div>
+        </td>
+        <td class="alerts-page__detail">
+          {{ (alert.detail === 'Rush reorder request'
+            ? 'supplier-management.alerts.messages.rush-reorder'
+            : alert.detail === 'Route congestion detected'
+              ? 'supplier-management.alerts.messages.route-congestion'
+              : alert.detail === 'Client stock alert received'
+                ? 'supplier-management.alerts.messages.client-stock-alert-received'
+                : alert.detail === 'Delayed delivery on route Lima Centro AM'
+                  ? 'supplier-management.alerts.messages.delayed-delivery-on-route-lima-centro-am'
+                  : 'supplier-management.alerts.messages.new-urgent-order-from-ming-garden') | translate }}
+        </td>
+        <td>{{ formatAlertDate(alert.date) }}</td>
+        <td>
+          <span
+            class="alerts-page__status-badge"
+            [ngClass]="alert.status === 'acknowledged' ? 'alerts-page__status-badge--ack' : 'alerts-page__status-badge--open'"
+          >
+            {{ alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate) }}
+          </span>
+        </td>
+        <td>
+          <div class="alerts-page__actions">
+            <button type="button" class="alerts-page__action-link" (click)="openDetails(alert)">
+              {{ 'supplier-management.alerts.table.actions.view-details' | translate }}
+            </button>
+            @if (alert.status !== 'acknowledged') {
+              <button type="button" class="alerts-page__action-link" (click)="acknowledge(alert)">
+                {{ 'supplier-management.alerts.table.actions.acknowledge' | translate }}
+              </button>
+            }
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr><td colspan="5">{{ 'supplier-management.alerts.empty' | translate }}</td></tr>
+    </ng-template>
+  </p-table>
+  </section>
+
+  <p-dialog
+    [visible]="!!selectedAlert()"
+    [modal]="true"
+    [dismissableMask]="true"
+    styleClass="alerts-dialog"
+    (onHide)="closeDetails()"
+  >
+    @if (selectedAlert(); as alert) {
+      <div class="alerts-dialog__body">
+        <div class="alerts-dialog__topbar">
+          <h3>{{ 'supplier-management.alerts.dialog.header' | translate }}</h3>
+          <button type="button" class="alerts-dialog__close" (click)="closeDetails()">
+            <i class="pi pi-times"></i>
+          </button>
+        </div>
+
+        <div class="alerts-dialog__severity-row">
+          <span class="alerts-dialog__severity">{{ 'supplier-management.alerts.severity.' + alert.severity | translate }}</span>
+          <span
+            class="alerts-page__status-badge"
+            [ngClass]="alert.status === 'acknowledged' ? 'alerts-page__status-badge--ack' : 'alerts-page__status-badge--open'"
+          >
+            {{ alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate) }}
+          </span>
+        </div>
+
+        <p class="alerts-dialog__detail">
+          {{ (alert.detail === 'Rush reorder request'
+            ? 'supplier-management.alerts.messages.rush-reorder'
+            : alert.detail === 'Route congestion detected'
+              ? 'supplier-management.alerts.messages.route-congestion'
+              : alert.detail === 'Client stock alert received'
+                ? 'supplier-management.alerts.messages.client-stock-alert-received'
+                : alert.detail === 'Delayed delivery on route Lima Centro AM'
+                  ? 'supplier-management.alerts.messages.delayed-delivery-on-route-lima-centro-am'
+                  : 'supplier-management.alerts.messages.new-urgent-order-from-ming-garden') | translate }}
+        </p>
+
+        <div class="alerts-dialog__meta">
+          <div class="alerts-dialog__meta-row">
+            <dt>{{ 'supplier-management.alerts.dialog.meta.date' | translate }}:</dt>
+            <dd>{{ formatAlertDate(alert.date) }}</dd>
+          </div>
+          <div class="alerts-dialog__meta-row">
+            <dt>{{ 'supplier-management.alerts.dialog.meta.status' | translate }}:</dt>
+            <dd>{{ alert.status === 'acknowledged' ? ('supplier-management.alerts.status.acknowledged' | translate) : ('supplier-management.alerts.status.open' | translate) }}</dd>
+          </div>
+        </div>
+      </div>
+      <div class="alerts-dialog__actions">
+        <p-button text [label]="'supplier-management.alerts.dialog.actions.close' | translate" (onClick)="closeDetails()" styleClass="alerts-dialog__close-btn" />
+        @if (alert.status !== 'acknowledged') {
+          <p-button [label]="'supplier-management.alerts.dialog.actions.acknowledge' | translate" (onClick)="acknowledge(alert)" styleClass="alerts-dialog__ack-btn" />
+        }
+      </div>
+    }
+  </p-dialog>
+</section>

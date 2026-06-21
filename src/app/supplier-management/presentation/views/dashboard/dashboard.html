@@ -1,0 +1,28 @@
+<section class="dashboard-page">
+  <header class="dashboard-page__header">
+    <p>{{ 'supplier-management.dashboard.breadcrumb' | translate }}</p>
+    <h1>{{ 'supplier-management.dashboard.title' | translate }}</h1>
+    <span>{{ 'supplier-management.dashboard.subtitle' | translate }}</span>
+  </header>
+
+  <section class="dashboard-page__stats">
+    <app-supplier-dashboard-stat-card icon="pi pi-shopping-bag" [value]="store.ordersCount()" [label]="'supplier-management.dashboard.stats.orders-received' | translate" />
+    <app-supplier-dashboard-stat-card icon="pi pi-truck" [value]="store.scheduledDeliveriesCount()" [label]="'supplier-management.dashboard.stats.scheduled-deliveries' | translate" />
+    <app-supplier-dashboard-stat-card icon="pi pi-chart-line" [value]="store.demandOutlook()" [label]="'supplier-management.dashboard.stats.demand-outlook' | translate" />
+    <app-supplier-dashboard-stat-card icon="pi pi-bell" [value]="store.openAlertsCount()" [label]="'supplier-management.dashboard.stats.urgent-requests' | translate" [badge]="'supplier-management.dashboard.stats.alert-badge' | translate" severity="danger" />
+  </section>
+
+  <section class="dashboard-page__panels">
+    <app-supplier-active-routes-panel
+      [title]="'supplier-management.dashboard.routes.title' | translate"
+      [routes]="activeRoutes()"
+      [emptyText]="'supplier-management.dashboard.routes.empty' | translate"
+    />
+    <app-supplier-aggregate-forecast-card
+      [title]="'supplier-management.dashboard.aggregate.title' | translate"
+      [summary]="'supplier-management.dashboard.aggregate.summary' | translate: { from: aggregateFirstValue(), to: aggregateLastValue() }"
+      [series]="aggregateSeries()"
+      [emptyText]="'supplier-management.dashboard.aggregate.empty' | translate"
+    />
+  </section>
+</section>

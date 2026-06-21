@@ -2,7 +2,7 @@ import { Component, computed, effect, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
-import { PurchaseOrder } from '../../../domain/model/purchase-order.entity';
+import { Order } from '../../../domain/model/order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 import { PurchaseOrderStore } from '../../../application/purchase-order.store';
 
@@ -47,7 +47,8 @@ export class PurchaseOrderFormPanelComponent {
   protected readonly form = {
     supplierId: this.supplierOptions[0].id,
     supplierName: this.supplierOptions[0].name,
-    orderDate: '2026-05-22',
+    orderDate: this.formatLocalDate(new Date()),
+    estimatedDate: this.formatLocalDate(this.addDays(new Date(), 2)),
     priority: 'Medium'
   };
 
@@ -111,10 +112,13 @@ export class PurchaseOrderFormPanelComponent {
       this.store.clearValidationScope(this.draftLineErrorScope());
     }
 
-    const purchaseOrder = new PurchaseOrder({
+    const purchaseOrder = new Order({
+      code: this.buildPurchaseOrderCode(),
       supplierId: this.form.supplierId,
       supplierName: this.form.supplierName,
+      restaurantName: 'Gran Dragon Chifa',
       orderDate: this.form.orderDate,
+      estimatedDate: this.form.estimatedDate,
       priority: this.form.priority,
       status: 'Pending',
       items
@@ -141,5 +145,22 @@ export class PurchaseOrderFormPanelComponent {
 
   protected formatPrice(value: number): string {
     return Number.isFinite(value) ? value.toFixed(2) : '0.00';
+  }
+
+  private addDays(date: Date, days: number): Date {
+    const nextDate = new Date(date);
+    nextDate.setDate(nextDate.getDate() + days);
+    return nextDate;
+  }
+
+  private formatLocalDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  private buildPurchaseOrderCode(): string {
+    return `PO-${String(Date.now()).slice(-5)}`;
   }
 }

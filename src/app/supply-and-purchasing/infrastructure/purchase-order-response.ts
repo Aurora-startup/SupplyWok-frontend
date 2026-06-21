@@ -9,14 +9,18 @@ export interface PurchaseOrderItemResource extends BaseResource {
 }
 
 export interface PurchaseOrderResource extends BaseResource {
-  supplierId: number | string | null;
-  supplierName: string;
-  orderDate: string;
-  priority: string;
-  status: string;
-  items: PurchaseOrderItemResource[];
+  code?: string;
+  supplierId?: number | string | null;
+  supplierName?: string;
+  restaurantName?: string;
+  orderDate?: string | null;
+  estimatedDate?: string | null;
+  priority?: string;
+  status?: string;
+  items?: PurchaseOrderItemResource[];
 }
 
 export interface PurchaseOrderResponse extends BaseResponse {
-  purchaseOrders: PurchaseOrderResource[];
+  purchaseOrders?: PurchaseOrderResource[];
+  'purchase-orders'?: PurchaseOrderResource[];
 }

@@ -1,0 +1,45 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep .supplier-stat-card {
+  min-height: 152px;
+  border: 1px solid #efe4d4;
+  border-radius: 8px;
+  background: #fffdf9;
+  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+}
+
+:host ::ng-deep .supplier-stat-card .p-card-body {
+  padding: 22px 24px;
+}
+
+.stat-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stat-card__icon {
+  color: #a97827;
+  font-size: 22px;
+}
+
+.stat-card__value {
+  display: block;
+  margin-top: 14px;
+  color: #241c17;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.stat-card__label {
+  display: block;
+  margin-top: 6px;
+  color: #41352d;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
+}

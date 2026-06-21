@@ -3,13 +3,11 @@ import { Component, input, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { InventoryCategory } from '../../../domain/model/inventory-category.entity';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-inventory-search-bar',
   standalone: true,
-  imports: [MatIconModule, MatSelectModule, MatFormFieldModule, MatInputModule],
+  imports: [MatIconModule, MatSelectModule],
   templateUrl: './search-bar.html',
   styleUrl: './search-bar.css',
 })

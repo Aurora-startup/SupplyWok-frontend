@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { NgClass, NgIf, DatePipe } from '@angular/common';
+import { NgClass, DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
 import { Alert } from '../../../domain/model/alert.entity';
 
@@ -8,7 +8,7 @@ import { Alert } from '../../../domain/model/alert.entity';
  */
 @Component({
   selector: 'app-alert-item',
-  imports: [NgClass, NgIf, DatePipe, TranslateModule],
+  imports: [NgClass, DatePipe, TranslateModule],
   templateUrl: './alert-item.component.html',
   styleUrl: './alert-item.component.css',
 })

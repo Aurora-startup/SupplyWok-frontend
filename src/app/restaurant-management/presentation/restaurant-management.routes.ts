@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { TablesAndOccupancyComponent } from './pages/tables-and-occupancy/tables-and-occupancy.component';
 import { KitchenTicketsComponent } from './pages/kitchen-tickets/kitchen-tickets.component';
 
 export const restaurantManagementRoutes: Routes = [
-  { path: 'tables-and-occupancy', component: TablesAndOccupancyComponent },
-  { path: 'kitchen-tickets', component: KitchenTicketsComponent },
+  { path: 'restaurant/dashboard', component: DashboardComponent },
+  { path: 'restaurant/tables', component: TablesAndOccupancyComponent },
+  { path: 'restaurant/kitchen', component: KitchenTicketsComponent },
 ];

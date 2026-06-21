@@ -1,21 +1,24 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { OrderItem } from '../domain/model/order-item.entity';
-import { PurchaseOrder } from '../domain/model/purchase-order.entity';
+import { Order } from '../domain/model/order.entity';
 import { PurchaseOrderItemResource, PurchaseOrderResource, PurchaseOrderResponse } from './purchase-order-response';
 
-export class PurchaseOrderAssembler extends BaseAssembler<
-  PurchaseOrder,
+export class PurchaseOrderAssembler implements BaseAssembler<
+  Order,
   PurchaseOrderResource,
   PurchaseOrderResponse
 > {
-  toEntityFromResource(resource: PurchaseOrderResource): PurchaseOrder {
-    return new PurchaseOrder({
+  toEntityFromResource(resource: PurchaseOrderResource): Order {
+    return new Order({
       id: resource.id ?? null,
-      supplierId: resource.supplierId,
-      supplierName: resource.supplierName,
-      orderDate: resource.orderDate,
-      priority: resource.priority,
-      status: resource.status,
+      code: resource.code ?? '',
+      supplierId: resource.supplierId ?? null,
+      supplierName: resource.supplierName ?? '',
+      restaurantName: resource.restaurantName ?? '',
+      orderDate: resource.orderDate ?? '',
+      estimatedDate: resource.estimatedDate ?? '',
+      priority: resource.priority ?? '',
+      status: resource.status ?? '',
       items: Array.isArray(resource.items)
         ? resource.items.map((item) => new OrderItem({
             id: item.id ?? null,
@@ -29,20 +32,23 @@ export class PurchaseOrderAssembler extends BaseAssembler<
     });
   }
 
-  toResourceFromEntity(entity: PurchaseOrder): PurchaseOrderResource {
+  toResourceFromEntity(entity: Order): PurchaseOrderResource {
     return {
       id: entity.id,
+      code: entity.code,
       supplierId: entity.supplierId,
       supplierName: entity.supplierName,
+      restaurantName: entity.restaurantName,
       orderDate: entity.orderDate,
+      estimatedDate: entity.estimatedDate,
       priority: entity.priority,
       status: entity.status,
       items: entity.items.map((item) => this.toItemResource(item))
     };
   }
 
-  toEntitiesFromResponse(response: PurchaseOrderResponse): PurchaseOrder[] {
-    const resources = Array.isArray(response.purchaseOrders) ? response.purchaseOrders : [];
+  toEntitiesFromResponse(response: PurchaseOrderResponse): Order[] {
+    const resources = response.purchaseOrders ?? response['purchase-orders'] ?? [];
     return resources.map((resource) => this.toEntityFromResource(resource));
   }
 

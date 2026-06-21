@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
       <span class="not-found-page__kicker">404</span>
       <h1>Page not found</h1>
       <p>The requested route does not exist in this frontend version.</p>
-      <a routerLink="/orders" class="not-found-page__link">Go to orders</a>
+      <a routerLink="/restaurant/orders" class="not-found-page__link">Go to orders</a>
     </section>
   `,
   styles: [`

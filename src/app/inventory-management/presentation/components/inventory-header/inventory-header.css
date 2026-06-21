@@ -1,58 +1,72 @@
-/* inventory-header.component.scss */
 .inventory-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 32px 0 24px;
+  gap: 20px;
+  padding: 8px 6px 0;
 }
 
 .header-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .header-section {
-  font-size: 11px;
+  display: inline-block;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #b5823a;
+  letter-spacing: 0.08em;
+  color: #a07832;
   text-transform: uppercase;
 }
 
 .header-title {
-  font-size: 36px;
+  font-size: clamp(2.6rem, 4vw, 3.3rem);
   font-weight: 700;
-  color: #1a1a1a;
+  color: #221b2a;
   margin: 0;
-  line-height: 1.1;
-  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-family: 'Poppins', system-ui, sans-serif;
 }
 
 .header-subtitle {
-  font-size: 14px;
-  color: #777;
-  margin: 4px 0 0;
+  font-size: 1.03rem;
+  color: #5b5247;
+  margin: 0;
+  max-width: 720px;
 }
 
 .add-btn {
   display: flex;
   align-items: center;
-  gap: 6px;
-  background: #1a1a1a !important;
+  gap: 14px;
+  min-height: 52px;
+  background: #2d241e !important;
   color: #fff !important;
-  border-radius: 8px;
-  padding: 0 20px;
-  height: 44px;
-  font-size: 14px;
-  font-weight: 500;
+  border-radius: 16px;
+  padding: 0 22px;
+  font-size: 1rem;
+  font-weight: 600;
   text-transform: lowercase;
   letter-spacing: 0.01em;
-  margin-top: 8px;
+  box-shadow: 0 10px 24px rgba(45, 36, 30, 0.16);
+  flex-shrink: 0;
+}
 
-  mat-icon {
-    font-size: 18px;
-    width: 18px;
-    height: 18px;
+.add-btn:hover {
+  background: #201914 !important;
+}
+
+.add-btn mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+@media (max-width: 900px) {
+  .inventory-header {
+    flex-direction: column;
   }
 }

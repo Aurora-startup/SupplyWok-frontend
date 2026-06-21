@@ -1,0 +1,10 @@
+<p-card styleClass="supplier-stat-card">
+  <div class="stat-card__header">
+    <i class="pi stat-card__icon" [class]="icon()"></i>
+    @if (badge()) {
+      <p-tag [value]="badge()" [severity]="severity()" />
+    }
+  </div>
+  <strong class="stat-card__value">{{ value() }}</strong>
+  <span class="stat-card__label">{{ label() }}</span>
+</p-card>

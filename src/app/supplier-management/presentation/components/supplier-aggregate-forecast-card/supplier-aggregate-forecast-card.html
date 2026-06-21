@@ -1,0 +1,16 @@
+<p-card styleClass="forecast-card">
+  <ng-template pTemplate="header">
+    <div class="forecast-card__header">
+      <h2><i class="pi pi-chart-line"></i>{{ title() }}</h2>
+    </div>
+  </ng-template>
+
+  @if (series().length) {
+    <div class="forecast-card__chart">
+      <p-chart type="line" [data]="chartData()" [options]="chartOptions" />
+    </div>
+    <p class="forecast-card__summary">{{ summary() }}</p>
+  } @else {
+    <p class="forecast-card__empty">{{ emptyText() }}</p>
+  }
+</p-card>

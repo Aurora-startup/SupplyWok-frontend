@@ -37,11 +37,88 @@
       "phone-invalid": "电话号码无效。",
       "terms-required": "您必须接受条款才能继续。",
       "invalid-credentials": "电子邮件或密码无效。"
+    },
+    "configurationPage": {
+      "kicker": "Restaurant",
+      "title": "Restaurant settings",
+      "description": "Operational profile, hours, notifications, thresholds, and access.",
+      "profile": {
+        "title": "Restaurant profile",
+        "save": "Save",
+        "fields": {
+          "name": "Restaurant profile",
+          "hours": "Operating hours",
+          "thresholds": "Minimum stock thresholds",
+          "days": "Operating days",
+          "contact": "Support contact",
+          "email": "Email",
+          "sms": "SMS"
+        }
+      },
+      "users": {
+        "title": "User list",
+        "status": {
+          "active": "Active"
+        }
+      },
+      "demo": {
+        "state": "Demo state"
+      },
+      "lock": {
+        "title": "Employee lock mode",
+        "restrictedMode": "Enable restricted mode",
+        "password": "Unlock password",
+        "callout": "Only the owner can change restricted mode settings."
+      },
+      "messages": {
+        "profileSaved": "Profile settings updated in this frontend session.",
+        "securitySaved": "Security settings updated in this frontend session."
+      }
+    },
+    "subscriptionPage": {
+      "kicker": "Subscription",
+      "title": "Available plans",
+      "description": "Compare capacity, operational scope, and benefits before moving the restaurant to a higher plan.",
+      "summary": {
+        "currentPlan": "Current plan",
+        "users": "Users",
+        "locations": "Locations",
+        "sensors": "Sensors"
+      },
+      "plans": {
+        "eyebrowCurrent": "Current plan",
+        "eyebrowAvailable": "Available",
+        "actionCurrent": "Current plan",
+        "actionSelect": "Select plan",
+        "metaUsers": "{{ count }} users",
+        "metaLocations": "{{ count }} locations",
+        "metaSensors": "{{ count }} sensors",
+        "premium": {
+          "features": [
+            "Main dashboard with IoT monitoring",
+            "Inventory, orders, and suppliers",
+            "Real-time operational alerts",
+            "Report export in CSV and PDF"
+          ]
+        },
+        "enterprise": {
+          "features": [
+            "Multi-location and extended traceability",
+            "Greater sensor and user capacity",
+            "Priority for support and audits",
+            "Advanced scaling for operational teams"
+          ]
+        }
+      },
+      "messages": {
+        "switchSuccess": "The view now reflects the {{ plan }} plan."
+      }
     }
   },
   "shared": {
     "sidebar": {
       "restaurant": "餐厅",
+      "supplier": "供应商",
       "current-plan": "当前计划:",
       "dashboard": "仪表板",
       "inventory": "库存",
@@ -52,11 +129,17 @@
       "alerts": "警报",
       "reports": "报告",
       "configuration": "配置",
-      "subscription": "订阅"
+      "subscription": "订阅",
+      "clients": "我的客户",
+      "forecast": "需求预测",
+      "catalog": "产品目录",
+      "delivery": "配送规划"
     },
     "header": {
-      "profile": "管理员个人资料",
+      "profile": "个人资料",
+      "adminProfile": "管理员资料",
       "settings": "设置",
+      "help": "帮助",
       "logout": "登出",
       "options": "选项"
     }
@@ -112,6 +195,202 @@
       "text": "您确定要永久删除 {itemName} 吗？",
       "confirm-button": "删除",
       "cancel-button": "取消"
+    }
+  },
+  "supply-and-purchasing": {
+    "suppliers-page": {
+      "kicker": "Supply and Purchasing",
+      "title": "Suppliers",
+      "description": "Map supplier coverage against the current inventory catalog and watch low-stock dependencies.",
+      "stats": {
+        "total": "Suppliers",
+        "linked-items": "Linked items",
+        "low-stock": "Low stock items"
+      },
+      "table": {
+        "headers": {
+          "supplier": "Supplier",
+          "linked-items": "Linked items",
+          "categories": "Categories",
+          "low-stock": "Low stock",
+          "coverage": "Coverage"
+        }
+      },
+      "coverage": {
+        "healthy": "Healthy",
+        "watch": "Watch",
+        "critical": "Critical"
+      },
+      "footer": {
+        "showing": "Showing {{ from }}-{{ to }} of {{ total }} suppliers",
+        "previous": "Previous",
+        "next": "Next"
+      },
+      "empty": "No suppliers are linked to inventory items yet."
+    },
+    "form": {
+      "title": "Create order",
+      "fields": {
+        "supplier": "Supplier",
+        "order-date": "Order date",
+        "estimated-date": "Estimated date",
+        "priority": "Priority",
+        "product": "Product",
+        "product-placeholder": "Example: Jasmine rice",
+        "quantity": "Qty.",
+        "unit": "Unit",
+        "price": "Price"
+      },
+      "actions": {
+        "add-line": "Add line",
+        "create-order": "Create order"
+      }
+    },
+    "table": {
+      "title": "Order tracking",
+      "search-placeholder": "Search by supplier, status, or code",
+      "columns": {
+        "code": "Code",
+        "status": "Status",
+        "actions": "Actions"
+      },
+      "actions": {
+        "detail": "Detail"
+      },
+      "footer": {
+        "showing": "Showing {{ filtered }} of {{ total }}"
+      }
+    },
+    "detail": {
+      "kicker": "Order detail",
+      "meta": {
+        "status": "Status",
+        "priority": "Priority",
+        "date": "Date",
+        "total": "Total"
+      },
+      "items": {
+        "product": "Product",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "subtotal": "Subtotal"
+      }
+    },
+    "validation": {
+      "supplier-required": "Supplier is required.",
+      "order-date-required": "Order date is required.",
+      "estimated-date-required": "Estimated date is required.",
+      "priority-required": "Priority is required.",
+      "items-required": "Add at least one product line.",
+      "product-name-required": "Product name is required.",
+      "quantity-invalid": "Quantity must be a valid number greater than zero.",
+      "unit-required": "Unit is required.",
+      "unit-price-invalid": "Price must be a valid number greater than zero."
+    }
+  },
+  "restaurantManagement": {
+    "dashboardPage": {
+      "kicker": "Operations center",
+      "title": "Main dashboard",
+      "description": "Summarize inventory, sensors, kitchen tickets, and open orders in one place to react quickly.",
+      "actions": {
+        "createOrder": "Create order",
+        "reviewAlerts": "Review alerts"
+      },
+      "metrics": {
+        "inventoryHealth": {
+          "label": "Healthy items",
+          "hint": "{{ count }} products need restocking"
+        },
+        "activeAlerts": {
+          "label": "Active alerts",
+          "hint": "Temperature, stock, and occupancy out of range"
+        },
+        "occupiedTables": {
+          "label": "Occupied tables",
+          "hint": "{{ count }} tables in service right now"
+        },
+        "pendingOrders": {
+          "label": "Pending orders",
+          "hint": "Quick follow-up for priority suppliers"
+        },
+        "kitchenCommands": {
+          "label": "Kitchen commands",
+          "hint": "Fast follow-up on kitchen flow"
+        }
+      },
+      "sensor": {
+        "eyebrow": "Sensors",
+        "title": "Operational panel",
+        "subtitle": "Kitchen, storage, and occupancy readings with recent events.",
+        "link": "View incidents",
+        "range": "Range {{ min }} - {{ max }}",
+        "empty": "There are no sensors loaded in this environment.",
+        "status": {
+          "disconnected": "Disconnected",
+          "outOfRange": "Out of range",
+          "stable": "Stable"
+        }
+      },
+      "kitchen": {
+        "eyebrow": "Kitchen",
+        "title": "Active kitchen tickets",
+        "link": "Open kitchen",
+        "table": "Table {{ number }}",
+        "ticketCount": "{{ count }} items",
+        "empty": "There are no active kitchen tickets to display.",
+        "actions": {
+          "startPreparation": "Start preparation",
+          "markReady": "Mark as ready",
+          "markDelivered": "Mark as delivered"
+        }
+      },
+      "inventory": {
+        "eyebrow": "Inventory",
+        "link": "Go to inventory",
+        "caption": "{{ count }} product(s) below minimum stock level",
+        "stockSummary": "{{ current }} available from {{ minimum }} minimum",
+        "empty": "There are no critical products right now.",
+        "columns": {
+          "product": "Product",
+          "currentStock": "Current stock",
+          "status": "Status"
+        },
+        "footer": "View inventory"
+      },
+      "orders": {
+        "eyebrow": "Supply",
+        "title": "Recent orders",
+        "link": "Open orders",
+        "caption": "{{ count }} orders loaded in this context",
+        "empty": "There are no recent orders loaded.",
+        "columns": {
+          "id": "ID",
+          "supplier": "Supplier",
+          "status": "Status",
+          "date": "Date"
+        },
+        "footer": "View order history"
+      }
+    },
+    "reportsPage": {
+      "kicker": "Restaurant",
+      "title": "Reports",
+      "description": "Inventory evolution, consumption, supplier orders, demand, and thermal events.",
+      "actions": {
+        "exportCsv": "Export CSV",
+        "exportPdf": "Export PDF"
+      },
+      "charts": {
+        "inventoryTitle": "Inventory evolution",
+        "consumptionTitle": "Consumption by period",
+        "ordersTitle": "Orders by supplier",
+        "tempTitle": "Temperature incidents",
+        "summary": "Summary:",
+        "summaryDesc": "Chart summary: {{ from }} -> {{ to }}",
+        "summaryValue": "Chart summary: {{ value }}",
+        "month": "Month"
+      }
     }
   },
   "restaurant-management": {

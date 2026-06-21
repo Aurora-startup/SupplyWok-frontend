@@ -1,43 +1,92 @@
-import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
+import { Supplier } from '../../../../inventory-management/domain/model/supplier.entity';
+
+interface SupplierDirectoryRow {
+  id: number;
+  name: string;
+  linkedItems: number;
+  categories: string[];
+  lowStockItems: number;
+  coverageLabel: 'healthy' | 'watch' | 'critical';
+}
 
 @Component({
   selector: 'app-suppliers-page',
-  imports: [TranslateModule],
-  template: `
-    <section class="suppliers-page">
-      <span class="suppliers-page__kicker">{{ 'supply-and-purchasing.suppliers-page.kicker' | translate }}</span>
-      <h1>{{ 'supply-and-purchasing.suppliers-page.title' | translate }}</h1>
-      <p>{{ 'supply-and-purchasing.suppliers-page.description' | translate }}</p>
-    </section>
-  `,
-  styles: [`
-    .suppliers-page {
-      display: grid;
-      gap: 8px;
-      padding: 24px;
-      border-radius: 18px;
-      background: #fffdf9;
-      box-shadow: 0 14px 34px rgba(45, 36, 30, 0.08);
-    }
-
-    .suppliers-page__kicker {
-      color: #a07832;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      color: #342923;
-    }
-
-    p {
-      margin: 0;
-      color: #65594f;
-    }
-  `]
+  imports: [CommonModule, TranslateModule],
+  templateUrl: './suppliers-page.component.html',
+  styleUrl: './suppliers-page.component.css'
 })
-export class SuppliersPageComponent {}
+export class SuppliersPageComponent {
+  private readonly inventoryStore = inject(InventoryManagementStore);
+  private readonly itemsPerPage = 5;
+  private readonly currentPage = signal(1);
+
+  protected readonly supplierRows = computed<SupplierDirectoryRow[]>(() =>
+    this.inventoryStore.suppliers().map((supplier) => this.buildSupplierRow(supplier))
+  );
+
+  protected readonly totalLinkedItems = computed(() =>
+    this.supplierRows().reduce((sum, row) => sum + row.linkedItems, 0)
+  );
+
+  protected readonly totalLowStockItems = computed(() =>
+    this.supplierRows().reduce((sum, row) => sum + row.lowStockItems, 0)
+  );
+
+  protected readonly totalPages = computed(() =>
+    Math.max(1, Math.ceil(this.supplierRows().length / this.itemsPerPage))
+  );
+
+  protected readonly visibleSupplierRows = computed(() => {
+    const start = (this.currentPage() - 1) * this.itemsPerPage;
+    return this.supplierRows().slice(start, start + this.itemsPerPage);
+  });
+
+  protected readonly paginationSummary = computed(() => {
+    const total = this.supplierRows().length;
+    if (!total) {
+      return { from: 0, to: 0, total: 0 };
+    }
+
+    const from = (this.currentPage() - 1) * this.itemsPerPage + 1;
+    const to = Math.min(this.currentPage() * this.itemsPerPage, total);
+    return { from, to, total };
+  });
+
+  protected readonly canGoPrevious = computed(() => this.currentPage() > 1);
+  protected readonly canGoNext = computed(() => this.currentPage() < this.totalPages());
+
+  protected goToPreviousPage(): void {
+    if (this.canGoPrevious()) {
+      this.currentPage.update((page) => page - 1);
+    }
+  }
+
+  protected goToNextPage(): void {
+    if (this.canGoNext()) {
+      this.currentPage.update((page) => page + 1);
+    }
+  }
+
+  private buildSupplierRow(supplier: Supplier): SupplierDirectoryRow {
+    const relatedItems = this.inventoryStore.inventoryItems().filter((item) => item.idSupplier === supplier.id);
+    const categories = [...new Set(
+      relatedItems
+        .map((item) => item.category?.name ?? this.inventoryStore.getCategoryName(item.idCategory))
+        .filter((value) => Boolean(value) && value !== 'None')
+    )];
+    const lowStockItems = relatedItems.filter((item) => item.currentStock <= item.minimumStockLevel).length;
+
+    return {
+      id: supplier.id,
+      name: supplier.name,
+      linkedItems: relatedItems.length,
+      categories: categories.length ? categories : ['General'],
+      lowStockItems,
+      coverageLabel: lowStockItems === 0 ? 'healthy' : lowStockItems >= 3 ? 'critical' : 'watch'
+    };
+  }
+}
