@@ -5,8 +5,12 @@ export type AppRoleScope = 'restaurant' | 'supplier';
 export function normalizeRole(role: UserRole | string | null | undefined): AppRoleScope | null {
   const normalizedRole = role?.toString().trim().toLowerCase();
 
-  if (normalizedRole === 'restaurant' || normalizedRole === 'supplier') {
-    return normalizedRole;
+  if (normalizedRole === 'restaurant' || normalizedRole === 'role_restaurant') {
+    return 'restaurant';
+  }
+
+  if (normalizedRole === 'supplier' || normalizedRole === 'role_supplier') {
+    return 'supplier';
   }
 
   return null;

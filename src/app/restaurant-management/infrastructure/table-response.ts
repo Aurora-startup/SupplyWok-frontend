@@ -14,7 +14,7 @@ export interface TableResource extends BaseResource {
   number: number;
   capacity: number;
   status: string;
-  zone: string;
-  dwellTime: number;
-  sensorState: string;
+  zone?: string;
+  dwellTime?: number;
+  sensorState?: string;
 }

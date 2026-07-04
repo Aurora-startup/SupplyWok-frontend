@@ -20,9 +20,9 @@ export interface ComandaItemResource extends BaseResource {
  */
 export interface ComandaResource extends BaseResource {
   tableId: number;
-  tableNumber: number;
+  tableNumber?: number;
   items: ComandaItemResource[];
   status: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt?: string;
+  updatedAt?: string;
 }

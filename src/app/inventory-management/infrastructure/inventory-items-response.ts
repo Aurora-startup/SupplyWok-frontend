@@ -4,9 +4,6 @@ import { BaseResource, BaseResponse } from '../../shared/infrastructure/base-res
  * Represents the API response structure for a list of categories.
  */
 export interface InventoryItemsResponse extends BaseResponse {
-  /**
-   * The list of categories returned by the API.
-   */
   inventoryItems: ItemResource[];
 }
 
@@ -18,7 +15,8 @@ export interface ItemResource extends BaseResource {
   name: string;
   currentStock: number;
   minimumStockLevel: number;
-  unitOfMeasure: string;
-  idCategory: number;
-  idSupplier: number;
+  unitOfMeasure: string | null;
+  category?: string | null;
+  idCategory?: number;
+  idSupplier?: number;
 }

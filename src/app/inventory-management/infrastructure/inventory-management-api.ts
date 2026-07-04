@@ -3,11 +3,12 @@ import { InventoryItem } from '../domain/model/inventory-item.entity';
 import { InventoryCategory} from '../domain/model/inventory-category.entity';
 import { Supplier } from '../domain/model/supplier.entity';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map, throwError } from 'rxjs';
 import { InventoryItemsApiEndpoint } from './inventory-items-api-endpoint';
 import { CategoriesApiEndpoint } from './inventory-categories-api-endpoint';
 import { SuppliersApiEndpoint} from './suppliers-api-endpoint';
 import { Injectable } from '@angular/core';
+import { buildCategoryId } from './inventory-item-assembler';
 
 @Injectable({
   providedIn: 'root',
@@ -69,7 +70,23 @@ export class InventoryManagementApi extends BaseApi {
   }
 
   getCategories(): Observable<InventoryCategory[]> {
-    return this.inventoryCategoriesEndpoint.getAll();
+    return this.inventoryItemsEndpoint.getAll().pipe(
+      map((items) =>
+        items
+          .map((item) => item.category)
+          .filter((category): category is InventoryCategory => category !== null)
+          .filter((category, index, categories) =>
+            categories.findIndex((candidate) => candidate.name.toLowerCase() === category.name.toLowerCase()) === index,
+          )
+          .map(
+            (category) =>
+              new InventoryCategory({
+                id: buildCategoryId(category.name),
+                name: category.name,
+              }),
+          ),
+      ),
+    );
   }
 
   /**
@@ -78,7 +95,16 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of the Category object.
    */
   getCategory(id: number): Observable<InventoryCategory> {
-    return this.inventoryCategoriesEndpoint.getById(id);
+    return this.getCategories().pipe(
+      map((categories) => {
+        const category = categories.find((item) => item.id === id);
+        if (!category) {
+          throw new Error('Category not found');
+        }
+
+        return category;
+      }),
+    );
   }
 
   /**
@@ -87,7 +113,7 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of the created Category object.
    */
   createCategory(category: InventoryCategory): Observable<InventoryCategory> {
-    return this.inventoryCategoriesEndpoint.create(category);
+    return throwError(() => new Error('Category management is not supported by the backend yet'));
   }
 
   /**
@@ -96,7 +122,7 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of the updated Category object.
    */
   updateCategory(category: InventoryCategory): Observable<InventoryCategory> {
-    return this.inventoryCategoriesEndpoint.update(category, category.id);
+    return throwError(() => new Error('Category management is not supported by the backend yet'));
   }
 
   /**
@@ -105,7 +131,7 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of void.
    */
   deleteCategory(id: number): Observable<void> {
-    return this.inventoryCategoriesEndpoint.delete(id);
+    return throwError(() => new Error('Category management is not supported by the backend yet'));
   }
 
   getSuppliers(): Observable<Supplier[]> {

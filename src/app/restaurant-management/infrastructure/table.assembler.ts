@@ -1,5 +1,6 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Table } from '../domain/model/table.entity';
+import { SensorState } from '../domain/enums/sensor-state.enum';
 import { TableResource, TableResponse } from './table-response';
 
 export class TableAssembler implements BaseAssembler<Table, TableResource, TableResponse> {
@@ -21,14 +22,16 @@ export class TableAssembler implements BaseAssembler<Table, TableResource, Table
    * @returns The converted Table entity.
    */
   toEntityFromResource(resource: TableResource): Table {
+    const status = resource.status as Table['status'];
+
     return new Table({
       id: resource.id ?? null,
       number: resource.number,
       capacity: resource.capacity,
-      status: resource.status as Table['status'],
-      zone: resource.zone,
-      dwellTime: resource.dwellTime,
-      sensorState: resource.sensorState as Table['sensorState']
+      status,
+      zone: resource.zone ?? '',
+      dwellTime: resource.dwellTime ?? 0,
+      sensorState: (resource.sensorState as Table['sensorState']) ?? (status === 'OCCUPIED' ? SensorState.ACTIVE : SensorState.IDLE)
     });
   }
 
@@ -43,9 +46,6 @@ export class TableAssembler implements BaseAssembler<Table, TableResource, Table
       number: entity.number,
       capacity: entity.capacity,
       status: entity.status,
-      zone: entity.zone,
-      dwellTime: entity.dwellTime,
-      sensorState: entity.sensorState
     };
   }
 }

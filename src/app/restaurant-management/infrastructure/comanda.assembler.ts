@@ -16,20 +16,22 @@ export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource,
   }
 
   toEntityFromResource(resource: ComandaResource): Comanda {
+    const now = new Date().toISOString();
+
     return new Comanda({
       id: resource.id ?? null,
       tableId: resource.tableId,
-      tableNumber: resource.tableNumber,
+      tableNumber: resource.tableNumber ?? 0,
       items: Array.isArray(resource.items)
         ? resource.items.map((item) => new ComandaItem({
-            id: item.id as number ?? 0,
+            id: (item.id as number) ?? 0,
             dishName: item.dishName,
             quantity: item.quantity
           }))
         : [],
       status: resource.status as Comanda['status'],
-      createdAt: resource.createdAt,
-      updatedAt: resource.updatedAt
+      createdAt: resource.createdAt ?? now,
+      updatedAt: resource.updatedAt ?? resource.createdAt ?? now
     });
   }
 
@@ -37,11 +39,8 @@ export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource,
     return {
       id: entity.id,
       tableId: entity.tableId,
-      tableNumber: entity.tableNumber,
       items: entity.items.map((item) => this.toItemResource(item)),
-      status: entity.status,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt
+      status: entity.status
     };
   }
 

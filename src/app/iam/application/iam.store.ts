@@ -1,22 +1,16 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { IamApiService } from '../infrastructure/iam-api.service';
-import { User } from '../domain/model/user.entity';
+import { User, UserRole } from '../domain/model/user.entity';
 
-/**
- * Signal-based store for managing Identity and Access Management state in Angular.
- */
 @Injectable({
   providedIn: 'root',
 })
 export class IamStore {
   private static readonly CURRENT_USER_STORAGE_KEY = 'iam.currentUser';
-  private readonly usersSignal = signal<User[]>([]);
   private readonly currentUserSignal = signal<User | null>(null);
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
 
-  // --- Readonly Signals (Getters) ---
-  readonly users = this.usersSignal.asReadonly();
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
@@ -28,73 +22,39 @@ export class IamStore {
     this.restoreSession();
   }
 
-  /**
-   * Loads all users from the API.
-   */
-  loadUsers(): void {
-    this.loadingSignal.set(true);
-    this.errorSignal.set(null);
-    this.iamApi.getUsers().subscribe({
-      next: users => {
-        this.usersSignal.set(users);
-        this.loadingSignal.set(false);
-      },
-      error: () => {
-        this.errorSignal.set('Failed to load users');
-        this.loadingSignal.set(false);
-      }
-    });
-  }
-
-  /**
-   * Simulates a login process by fetching all users and matching credentials locally.
-   * @param email
-   * @param password
-   */
   login(email: string, password: string): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.iamApi.getUsers().subscribe({
-      next: allUsers => {
-        const user = allUsers.find(u => u.email === email && u.password === password);
-        if (user) {
-          this.setCurrentUser(user);
-        } else {
-          this.errorSignal.set('Invalid email or password');
-        }
+    this.iamApi.signIn({ email, password }).subscribe({
+      next: (user) => {
+        this.setCurrentUser(user);
         this.loadingSignal.set(false);
       },
       error: () => {
-        this.errorSignal.set('Login process failed');
+        this.errorSignal.set('Invalid email or password');
         this.loadingSignal.set(false);
-      }
+      },
     });
   }
 
-  /**
-   * Registers a new user.
-   * @param userData
-   */
-  registerUser(userData: User): void {
+  registerUser(userData: { email: string; password: string; role: UserRole }): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.iamApi.createUser(userData).subscribe({
-      next: newUser => {
-        if (newUser) {
-          this.usersSignal.update(users => [...users, newUser]);
-        }
-        this.loadingSignal.set(false);
-      },
-      error: () => {
-        this.errorSignal.set('Registration failed');
-        this.loadingSignal.set(false);
-      }
-    });
+    this.iamApi
+      .signUp({
+        email: userData.email,
+        password: userData.password,
+        roles: [userData.role === 'Supplier' ? 'ROLE_SUPPLIER' : 'ROLE_RESTAURANT'],
+      })
+      .subscribe({
+        next: () => this.login(userData.email, userData.password),
+        error: () => {
+          this.errorSignal.set('Registration failed');
+          this.loadingSignal.set(false);
+        },
+      });
   }
 
-  /**
-   * Clears the current user session.
-   */
   logout(): void {
     this.setCurrentUser(null);
   }
@@ -110,16 +70,20 @@ export class IamStore {
         return;
       }
 
-      const parsedUser = JSON.parse(rawUser) as User;
+      const parsedUser = JSON.parse(rawUser) as {
+        id: number;
+        email: string;
+        roles?: string[];
+        token?: string | null;
+      };
+
       this.currentUserSignal.set(
-        new User(
-          parsedUser.id,
-          parsedUser.email,
-          parsedUser.phoneNumber,
-          parsedUser.role,
-          parsedUser.subscription,
-          parsedUser.password
-        )
+        new User({
+          id: parsedUser.id,
+          email: parsedUser.email,
+          roles: parsedUser.roles ?? [],
+          token: parsedUser.token ?? null,
+        }),
       );
     } catch {
       window.localStorage.removeItem(IamStore.CURRENT_USER_STORAGE_KEY);

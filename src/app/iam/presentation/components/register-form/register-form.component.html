@@ -41,21 +41,6 @@
     </div>
 
     <div class="field">
-      <label for="phone">{{ 'access.register.phone' | translate }}</label>
-      <input 
-        pInputText 
-        id="phone" 
-        [(ngModel)]="phone" 
-        name="phone"
-        type="text" 
-        [placeholder]="'access.register.phone-example' | translate" 
-        [class.p-invalid]="errors.phone"
-        class="w-full"
-      />
-      <small *ngIf="errors.phone" class="error-msg">{{ 'access.validation.phone-invalid' | translate }}</small>
-    </div>
-
-    <div class="field">
       <label for="role">{{ 'access.register.role' | translate }}</label>
       <p-select 
         id="role" 
@@ -66,22 +51,6 @@
         optionValue="value"
         [placeholder]="'access.register.select-one' | translate" 
         [class.p-invalid]="errors.role"
-        styleClass="w-full"
-        appendTo="body"
-      />
-    </div>
-
-    <div class="field">
-      <label for="subscription">{{ 'access.register.subscription' | translate }}</label>
-      <p-select 
-        id="subscription" 
-        [(ngModel)]="subscription" 
-        name="subscription"
-        [options]="subscriptions" 
-        optionLabel="label" 
-        optionValue="value"
-        [placeholder]="'access.register.select-one' | translate" 
-        [class.p-invalid]="errors.subscription"
         styleClass="w-full"
         appendTo="body"
       />
