@@ -492,6 +492,13 @@
       "search-placeholder": "搜索警报...",
       "severity-label": "严重程度",
       "severity-placeholder": "按严重程度筛选",
+      "severities": {
+        "all": "全部",
+        "critical": "严重",
+        "high": "高",
+        "medium": "中",
+        "low": "低"
+      },
       "table": {
         "columns": {
           "severity": "严重程度",

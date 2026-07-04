@@ -996,6 +996,13 @@
       "search-placeholder": "Search alerts...",
       "severity-label": "Severity",
       "severity-placeholder": "Filter by Severity",
+      "severities": {
+        "all": "All",
+        "critical": "Critical",
+        "high": "High",
+        "medium": "Medium",
+        "low": "Low"
+      },
       "table": {
         "columns": {
           "severity": "SEVERITY",

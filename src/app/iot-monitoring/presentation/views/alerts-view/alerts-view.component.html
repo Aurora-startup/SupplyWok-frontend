@@ -12,9 +12,16 @@
       <div style="display: flex; gap: 12px; align-items: center;">
         <span class="p-input-icon-left" style="position: relative; display: inline-flex; align-items: center;">
           <i class="pi pi-search" style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #9ca3af; z-index: 1;"></i>
-          <input pInputText type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" [placeholder]="'iot.alerts-page.search-placeholder' | translate" style="padding-left: 36px;" />
+          <input pInputText type="text" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)" [placeholder]="'iot.alerts-page.search-placeholder' | translate" style="padding-left: 44px !important;" />
         </span>
-        <p-select [options]="severities" [ngModel]="selectedSeverity()" (ngModelChange)="selectedSeverity.set($event)" optionLabel="label" optionValue="value" [placeholder]="'iot.alerts-page.severity-placeholder' | translate" />
+        <p-select [options]="severities" [ngModel]="selectedSeverity()" (ngModelChange)="selectedSeverity.set($event)" optionValue="value" [placeholder]="'iot.alerts-page.severity-placeholder' | translate" appendTo="body">
+          <ng-template pTemplate="selectedItem" let-option>
+            {{ option?.labelKey | translate }}
+          </ng-template>
+          <ng-template pTemplate="item" let-option>
+            {{ option.labelKey | translate }}
+          </ng-template>
+        </p-select>
       </div>
     </div>
 
@@ -32,7 +39,7 @@
       <ng-template pTemplate="body" let-alert>
         <tr>
           <td>
-            <p-tag [value]="alert.severity" [severity]="getSeveritySeverity(alert.severity)" />
+            <p-tag [value]="'iot.alerts-page.severities.' + alert.severity.toLowerCase() | translate" [severity]="getSeveritySeverity(alert.severity)" />
           </td>
           <td>
             <span class="line-clamp-1">{{ alert.title | translate: alert.messageParams }}</span>
@@ -40,7 +47,7 @@
           <td>{{ alert.source }}</td>
           <td>{{ alert.timestamp | date: 'short' }}</td>
           <td>
-            <p-tag [value]="alert.status" [severity]="getStatusSeverity(alert.status)" />
+            <p-tag [value]="'iot.alerts-page.table.status.' + alert.status.toLowerCase() | translate" [severity]="getStatusSeverity(alert.status)" />
           </td>
           <td style="display: flex; gap: 4px;">
             <p-button icon="pi pi-eye" [rounded]="true" [text]="true" [pTooltip]="'iot.alerts-page.table.actions.view-details' | translate" (onClick)="showDetails(alert)" />

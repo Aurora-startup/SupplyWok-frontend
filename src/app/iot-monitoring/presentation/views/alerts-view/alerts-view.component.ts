@@ -10,7 +10,7 @@ import { TagModule } from 'primeng/tag';
 import { DialogModule } from 'primeng/dialog';
 import { TooltipModule } from 'primeng/tooltip';
 import { IotStore } from '../../../application/iot-store';
-import { Alert, AlertSeverity } from '../../../domain/model/alert.entity';
+import { RestaurantAlert, RestaurantAlertSeverity } from '../../../domain/model/restaurant-alert.entity';
 
 @Component({
   selector: 'app-alerts-view',
@@ -32,17 +32,17 @@ import { Alert, AlertSeverity } from '../../../domain/model/alert.entity';
 })
 export class AlertsViewComponent {
   searchQuery = signal('');
-  selectedSeverity = signal<AlertSeverity | 'All'>('All');
+  selectedSeverity = signal<RestaurantAlertSeverity | 'All'>('All');
   
   displayDialog = false;
-  selectedAlert: Alert | null = null;
+  selectedAlert: RestaurantAlert | null = null;
 
   severities = [
-    { label: 'All', value: 'All' },
-    { label: 'Critical', value: 'Critical' },
-    { label: 'High', value: 'High' },
-    { label: 'Medium', value: 'Medium' },
-    { label: 'Low', value: 'Low' }
+    { labelKey: 'iot.alerts-page.severities.all', value: 'All' },
+    { labelKey: 'iot.alerts-page.severities.critical', value: 'Critical' },
+    { labelKey: 'iot.alerts-page.severities.high', value: 'High' },
+    { labelKey: 'iot.alerts-page.severities.medium', value: 'Medium' },
+    { labelKey: 'iot.alerts-page.severities.low', value: 'Low' }
   ];
 
   filteredAlerts = computed(() => {
@@ -67,7 +67,7 @@ export class AlertsViewComponent {
 
   constructor(public iotStore: IotStore) {}
 
-  getSeveritySeverity(severity: AlertSeverity): "danger" | "warn" | "info" | "secondary" {
+  getSeveritySeverity(severity: RestaurantAlertSeverity): "danger" | "warn" | "info" | "secondary" {
     switch (severity) {
       case 'Critical': return 'danger';
       case 'High': return 'warn';
@@ -86,18 +86,18 @@ export class AlertsViewComponent {
     }
   }
 
-  showDetails(alert: Alert): void {
+  showDetails(alert: RestaurantAlert): void {
     this.selectedAlert = alert;
     this.displayDialog = true;
   }
 
-  acknowledgeAlert(alert: Alert): void {
-    this.iotStore.acknowledgeAlert(alert.id);
+  acknowledgeAlert(alert: RestaurantAlert): void {
+    this.iotStore.acknowledgeRestaurantAlert(alert.id);
   }
 
   acknowledgeSelected(): void {
     if (this.selectedAlert) {
-      this.iotStore.acknowledgeAlert(this.selectedAlert.id);
+      this.iotStore.acknowledgeRestaurantAlert(this.selectedAlert.id);
       this.displayDialog = false;
     }
   }

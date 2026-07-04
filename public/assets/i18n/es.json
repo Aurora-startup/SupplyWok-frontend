@@ -490,6 +490,45 @@
       "low-stock-msg": "{{sensorName}} ha caído a {{lastValue}} unidades (Mínimo: {{minValue}}). Requiere reposición.",
       "high-occupancy-title": "{{sensorName}} alcanzó una alta ocupación",
       "high-occupancy-msg": "Carga concentrada en {{sensorName}} ({{lastValue}}% ocupado)."
+    },
+    "alerts-page": {
+      "kicker": "Restaurante",
+      "title": "Alertas",
+      "description": "Consolida desviaciones de stock, temperatura y entregas con acciones de seguimiento.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar alertas...",
+      "severity-label": "Severidad",
+      "severity-placeholder": "Filtrar por Severidad",
+      "severities": {
+        "all": "Todos",
+        "critical": "Crítico",
+        "high": "Alto",
+        "medium": "Medio",
+        "low": "Bajo"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERIDAD",
+          "detail": "DETALLE ALERTA",
+          "source": "FUENTE",
+          "date": "FECHA",
+          "status": "ESTADO",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "view-details": "VER DETALLES",
+          "acknowledge": "RECONOCER"
+        },
+        "status": {
+          "open": "Abierto",
+          "resolved": "Resuelto",
+          "acknowledged": "Reconocido"
+        },
+        "footer": "Mostrando {{first}} a {{last}} de {{total}} alertas activas"
+      },
+      "dialog": {
+        "header": "Detalles de la Alerta"
+      }
     }
   }
 }

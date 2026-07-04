@@ -48,17 +48,26 @@
 }
 
 /* Dialog */
-:host ::ng-deep .custom-dialog .p-dialog-header {
+::ng-deep .custom-dialog {
+  background: #ffffff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+::ng-deep .custom-dialog .p-dialog-header {
+  background: #ffffff !important;
   border-bottom: 1px solid #f3f4f6;
   padding: 1.5rem;
   border-radius: 16px 16px 0 0;
 }
 
-:host ::ng-deep .custom-dialog .p-dialog-content {
+::ng-deep .custom-dialog .p-dialog-content {
+  background: #ffffff !important;
   padding: 1.5rem;
 }
 
-:host ::ng-deep .custom-dialog .p-dialog-footer {
+::ng-deep .custom-dialog .p-dialog-footer {
+  background: #ffffff !important;
   border-top: 1px solid #f3f4f6;
   padding: 1rem 1.5rem;
   border-radius: 0 0 16px 16px;
@@ -71,3 +80,42 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* Select / Dropdown overrides */
+::ng-deep .p-select, 
+::ng-deep .p-dropdown {
+  background: #ffffff !important;
+  border: 1px solid #ccd8e6 !important;
+  border-radius: 14px !important;
+}
+
+::ng-deep .p-select-panel, 
+::ng-deep .p-select-overlay, 
+::ng-deep .p-dropdown-panel {
+  background: #ffffff !important;
+  border: 1px solid #ccd8e6 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+  padding: 4px 0 !important;
+  z-index: 100000 !important;
+}
+
+::ng-deep .p-select-option, 
+::ng-deep .p-dropdown-item {
+  color: #374151 !important;
+  padding: 10px 14px !important;
+  background: #ffffff !important;
+}
+
+::ng-deep .p-select-option:not(.p-highlight):not(.p-disabled):hover,
+::ng-deep .p-dropdown-item:not(.p-highlight):not(.p-disabled):hover {
+  background: #f4f0e6 !important;
+  color: #111827 !important;
+}
+
+::ng-deep .p-select-option.p-highlight,
+::ng-deep .p-dropdown-item.p-highlight {
+  background: #e9f5ec !important;
+  color: #111827 !important;
+}
+
