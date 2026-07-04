@@ -7,6 +7,6 @@ import { SupplierSubscriptionResource, SupplierSubscriptionsResponse } from './s
 
 export class SupplierSubscriptionsApiEndpoint extends BaseApiEndpoint<SupplierSubscription, SupplierSubscriptionResource, SupplierSubscriptionsResponse, SupplierSubscriptionAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierGetApiBaseUrl}${environment.supplierSubscriptionsEndpointPath}`, new SupplierSubscriptionAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.supplierSubscriptionsEndpointPath}`, new SupplierSubscriptionAssembler());
   }
 }

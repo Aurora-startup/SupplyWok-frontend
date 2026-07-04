@@ -25,7 +25,7 @@ interface AuthenticatedUserResource {
   providedIn: 'root',
 })
 export class IamApiService {
-  private readonly endpoint = `${environment.apiBaseUrl}${environment.authenticationEndpointPath}`;
+  private readonly endpoint = `${environment.supplyWokPlatformBaseUrl}${environment.authenticationEndpointPath}`;
 
   constructor(private http: HttpClient) {}
 

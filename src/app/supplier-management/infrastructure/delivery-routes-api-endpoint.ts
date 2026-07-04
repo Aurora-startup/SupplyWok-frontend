@@ -7,6 +7,6 @@ import { DeliveryRouteResource, DeliveryRoutesResponse } from './delivery-routes
 
 export class DeliveryRoutesApiEndpoint extends BaseApiEndpoint<DeliveryRoute, DeliveryRouteResource, DeliveryRoutesResponse, DeliveryRouteAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierGetApiBaseUrl}${environment.deliveryRoutesEndpointPath}`, new DeliveryRouteAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.deliveryRoutesEndpointPath}`, new DeliveryRouteAssembler());
   }
 }

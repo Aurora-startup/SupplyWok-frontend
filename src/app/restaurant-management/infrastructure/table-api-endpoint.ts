@@ -18,7 +18,7 @@ export class TableApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformApiBaseUrl}${environment.tablesEndpointPath}`,
+      `${environment.supplyWokPlatformBaseUrl}${environment.tablesEndpointPath}`,
       new TableAssembler()
     );
   }

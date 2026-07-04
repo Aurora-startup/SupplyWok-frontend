@@ -9,9 +9,9 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const iamStore = inject(IamStore);
   const router = inject(Router);
   const currentUser = iamStore.currentUser();
-  const isBackendRequest = req.url.startsWith(environment.apiBaseUrl);
+  const isBackendRequest = req.url.startsWith(environment.supplyWokPlatformBaseUrl);
   const isAuthenticationRequest = req.url.startsWith(
-    `${environment.apiBaseUrl}${environment.authenticationEndpointPath}`,
+    `${environment.supplyWokPlatformBaseUrl}${environment.authenticationEndpointPath}`,
   );
 
   const authenticatedRequest =

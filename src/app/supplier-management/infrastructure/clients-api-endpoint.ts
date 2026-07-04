@@ -7,6 +7,6 @@ import { ClientResource, ClientsResponse } from './clients-response';
 
 export class ClientsApiEndpoint extends BaseApiEndpoint<Client, ClientResource, ClientsResponse, ClientAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierGetApiBaseUrl}${environment.supplierClientsEndpointPath}`, new ClientAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.supplierClientsEndpointPath}`, new ClientAssembler());
   }
 }

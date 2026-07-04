@@ -18,7 +18,7 @@ export class SuppliersApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformApiBaseUrl}${environment.platformProviderSuppliersEndpointPath}`,
+      `${environment.supplyWokPlatformBaseUrl}${environment.platformProviderSuppliersEndpointPath}`,
       new SupplierAssembler(),
     );
   }

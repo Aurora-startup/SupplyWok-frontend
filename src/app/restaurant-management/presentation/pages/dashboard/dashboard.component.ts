@@ -4,7 +4,7 @@ import { InventoryItem } from '../../../../inventory-management/domain/model/inv
 import { InventoryStatus } from '../../../../inventory-management/domain/enums/inventory-status.enum';
 import { UnitOfMeasure } from '../../../../inventory-management/domain/enums/unit-of-measure.enum';
 import { InventoryManagementApi } from '../../../../inventory-management/infrastructure/inventory-management-api';
-import { Alert } from '../../../../iot-monitoring/domain/model/alert.entity';
+import { RestaurantAlert } from '../../../../iot-monitoring/domain/model/restaurant-alert.entity';
 import { Sensor } from '../../../../iot-monitoring/domain/model/sensor.entity';
 import { IotMonitoringApi } from '../../../../iot-monitoring/infrastructure/iot-monitoring-api';
 import { Order } from '../../../../supply-and-purchasing/domain/model/order.entity';
@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
   private readonly cdr = inject(ChangeDetectorRef);
 
   protected highlightedSensors: Sensor[] = [];
-  protected recentAlerts: Alert[] = [];
+  protected recentAlerts: RestaurantAlert[] = [];
   protected highlightedInventory: InventoryItem[] = [];
   protected highlightedOrders: Order[] = [];
   protected highlightedComandas: Comanda[] = [];
@@ -54,6 +54,13 @@ export class DashboardComponent implements OnInit {
     this.monitoringApi.getSensors().subscribe({
       next: (sensors) => {
         this.hydrateSensors(sensors);
+        this.cdr.detectChanges();
+      }
+    });
+
+    this.monitoringApi.getRestaurantAlerts().subscribe({
+      next: (alerts) => {
+        this.hydrateAlerts(alerts);
         this.cdr.detectChanges();
       }
     });
@@ -89,8 +96,6 @@ export class DashboardComponent implements OnInit {
         this.cdr.detectChanges();
       }
     });
-
-    window.setTimeout(() => this.seedFallbacksIfNeeded(), 1600);
   }
 
   protected formatDate(value: string): string {
@@ -214,7 +219,7 @@ export class DashboardComponent implements OnInit {
     return sensor.name.replace(/[_-]/g, ' ').toUpperCase();
   }
 
-  protected formatAlertTitle(alert: Alert): string {
+  protected formatAlertTitle(alert: RestaurantAlert): string {
     const titleMap: Record<string, string> = {
       'iot.alerts.cold-storage-breach-title': 'Cold storage warning',
       'iot.alerts.kitchen-temp-breach-title': 'Kitchen temperature warning',
@@ -225,7 +230,7 @@ export class DashboardComponent implements OnInit {
     return titleMap[alert.titleKey] ?? 'Operational alert';
   }
 
-  protected formatAlertMessage(alert: Alert): string {
+  protected formatAlertMessage(alert: RestaurantAlert): string {
     const sensorName = String(alert.messageParams['sensorName'] ?? 'Sensor').toLowerCase();
     const lastValue = alert.messageParams['lastValue'];
     const minValue = alert.messageParams['minValue'];
@@ -252,14 +257,12 @@ export class DashboardComponent implements OnInit {
 
   private hydrateSensors(sensors: Sensor[]): void {
     this.highlightedSensors = sensors.slice(0, 3);
+  }
 
-    const alerts = sensors
-      .map((sensor) => Alert.fromSensor(sensor))
-      .filter((alert): alert is Alert => alert !== null)
-      .sort((left, right) => right.timestamp.getTime() - left.timestamp.getTime());
-
-    this.recentAlerts = alerts.slice(0, 3);
-    this.activeAlertsCount = alerts.length;
+  private hydrateAlerts(alerts: RestaurantAlert[]): void {
+    const sortedAlerts = [...alerts].sort((left, right) => right.timestamp.getTime() - left.timestamp.getTime());
+    this.recentAlerts = sortedAlerts.slice(0, 3);
+    this.activeAlertsCount = sortedAlerts.length;
   }
 
   private hydrateInventory(): void {
@@ -299,141 +302,6 @@ export class DashboardComponent implements OnInit {
   private getNextStatus(current: ComandaStatus): ComandaStatus | null {
     const index = COMANDA_STATUS_ORDER.indexOf(current);
     return index < COMANDA_STATUS_ORDER.length - 1 ? COMANDA_STATUS_ORDER[index + 1] : null;
-  }
-
-  private seedFallbacksIfNeeded(): void {
-    if (!this.highlightedSensors.length) {
-      this.highlightedSensors = [
-        new Sensor({ id: 1, name: 'Kitchen', minValue: 20, maxValue: 26, enabled: true, lastValue: 108.5, type: 'kitchen-temperature' }),
-        new Sensor({ id: 2, name: 'Cold Storage', minValue: 2, maxValue: 8, enabled: true, lastValue: -1.2, type: 'storage-temperature' }),
-        new Sensor({ id: 3, name: 'Dining Room', minValue: 0, maxValue: 100, enabled: true, lastValue: 70, type: 'table-pressure' })
-      ];
-    }
-
-    if (!this.recentAlerts.length) {
-      this.recentAlerts = [
-        new Alert({
-          id: 1,
-          sensorId: 1,
-          titleKey: 'iot.alerts.low-stock-title',
-          messageKey: 'iot.alerts.low-stock-msg',
-          messageParams: { sensorName: 'cleaning supplies', lastValue: 2, minValue: 5 },
-          severity: 'High',
-          status: 'Open',
-          source: 'Inventory',
-          timestamp: new Date('2026-05-13T18:03:00Z')
-        }),
-        new Alert({
-          id: 2,
-          sensorId: 2,
-          titleKey: 'iot.alerts.low-stock-title',
-          messageKey: 'iot.alerts.low-stock-msg',
-          messageParams: { sensorName: 'beverage crates', lastValue: -5, minValue: 0 },
-          severity: 'High',
-          status: 'Open',
-          source: 'Inventory',
-          timestamp: new Date('2026-05-13T18:03:00Z')
-        }),
-        new Alert({
-          id: 3,
-          sensorId: 3,
-          titleKey: 'iot.alerts.high-occupancy-title',
-          messageKey: 'iot.alerts.high-occupancy-msg',
-          messageParams: { sensorName: 'table 7', lastValue: 95 },
-          severity: 'Medium',
-          status: 'Open',
-          source: 'Dining Area',
-          timestamp: new Date('2026-05-13T18:03:00Z')
-        })
-      ];
-      this.activeAlertsCount = this.recentAlerts.length;
-    }
-
-    if (!this.highlightedComandas.length) {
-      this.comandas = [
-        new Comanda({
-          id: 1,
-          tableId: 2,
-          tableNumber: 2,
-          status: ComandaStatus.EN_PREPARACION,
-          createdAt: '2026-05-13T13:09:00Z',
-          updatedAt: '2026-05-13T13:09:00Z',
-          items: [
-            { id: 1, dishName: 'Arroz Chaufa', quantity: 2 },
-            { id: 2, dishName: 'Inca Kola', quantity: 3 }
-          ]
-        }),
-        new Comanda({
-          id: 2,
-          tableId: 0,
-          tableNumber: 0,
-          status: ComandaStatus.LISTO,
-          createdAt: '2026-05-13T13:15:00Z',
-          updatedAt: '2026-05-13T13:15:00Z',
-          items: [
-            { id: 1, dishName: 'Lomo Saltado', quantity: 1 },
-            { id: 2, dishName: 'Coca Cola', quantity: 2 }
-          ]
-        })
-      ];
-      this.hydrateComandas();
-    }
-
-    if (!this.highlightedOrders.length) {
-      this.purchaseOrders = [
-        new Order({
-          id: 24521,
-          code: 'PO-24521',
-          supplierId: 201,
-          supplierName: 'Golden Wok Produce',
-          restaurantName: 'Gran Dragon Chifa',
-          orderDate: '2026-05-13',
-          estimatedDate: '2026-05-15',
-          priority: 'Medium',
-          status: 'Pending',
-          items: []
-        }),
-        new Order({
-          id: 30343,
-          code: 'PO-30343',
-          supplierId: 201,
-          supplierName: 'Golden Wok Produce',
-          restaurantName: 'Gran Dragon Chifa',
-          orderDate: '2026-05-13',
-          estimatedDate: '2026-05-15',
-          priority: 'Medium',
-          status: 'Pending',
-          items: []
-        }),
-        new Order({
-          id: 24021,
-          code: 'PO-24021',
-          supplierId: 201,
-          supplierName: 'Golden Wok Produce',
-          restaurantName: 'Gran Dragon Chifa',
-          orderDate: '2026-05-09',
-          estimatedDate: '2026-05-11',
-          priority: 'High',
-          status: 'Pending',
-          items: []
-        })
-      ];
-      this.hydrateOrders();
-    }
-
-    if (!this.highlightedInventory.length) {
-      this.inventoryItems = [
-        new InventoryItem({ id: 1, name: 'Agua', currentStock: 50, minimumStockLevel: 60, unitOfMeasure: UnitOfMeasure.LTS, idCategory: 1, idSupplier: 1 }),
-        new InventoryItem({ id: 2, name: 'Carne', currentStock: 50, minimumStockLevel: 60, unitOfMeasure: UnitOfMeasure.UNITS, idCategory: 1, idSupplier: 1 })
-      ];
-      this.hydrateInventory();
-    }
-
-    if (this.occupiedTableRate === 0) {
-      this.occupiedTableRate = 70;
-    }
-
-    this.cdr.detectChanges();
   }
 
   protected getStockLevelPercentage(item: InventoryItem): number {

@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Alerts } from './views/alerts/alerts';
 import { Catalog } from './views/catalog/catalog';
 import { Clients } from './views/clients/clients';
 import { Dashboard } from './views/dashboard/dashboard';
@@ -20,8 +19,6 @@ export const supplierManagementRoutes: Routes = [
   { path: 'supplier/catalog', component: Catalog, title: 'Supplier Catalog' },
   { path: 'supplier/catalog/new', component: Catalog, title: 'New Catalog Item' },
   { path: 'supplier/catalog/:itemId/edit', component: Catalog, title: 'Edit Catalog Item' },
-  { path: 'supplier/alerts', component: Alerts, title: 'Supplier Alerts' },
-  { path: 'supplier/alerts/:alertId/view', component: Alerts, title: 'Supplier Alert Detail' },
   { path: 'supplier/configuration', component: Settings, title: 'Supplier Configuration' },
   { path: 'supplier/subscription', component: Subscription, title: 'Supplier Subscription' }
 ];

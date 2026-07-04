@@ -7,7 +7,6 @@ import { Client } from '../domain/model/client.entity';
 import { DeliveryRoute } from '../domain/model/delivery-route.entity';
 import { DemandForecast } from '../../analytics/domain/model/demand-forecast.entity';
 import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
-import { SupplierAlert } from '../domain/model/supplier-alert.entity';
 import { SupplierSettings } from '../domain/model/supplier-settings.entity';
 import { SupplierSubscription } from '../domain/model/supplier-subscription.entity';
 import { PurchaseOrderApiEndpoint } from '../../supply-and-purchasing/infrastructure/purchase-order-api-endpoint';
@@ -57,14 +56,6 @@ export class SupplierManagementApi extends BaseApi {
 
   getDemandForecast(): Observable<DemandForecast> {
     return of(new DemandForecast());
-  }
-
-  getAlerts(): Observable<SupplierAlert[]> {
-    return of([]);
-  }
-
-  updateAlert(alert: SupplierAlert): Observable<SupplierAlert> {
-    return of(alert);
   }
 
   getSupplierSettings(): Observable<SupplierSettings> {

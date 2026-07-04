@@ -14,7 +14,7 @@ export class PurchaseOrderApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformApiBaseUrl}${environment.purchaseOrdersEndpointPath}`,
+      `${environment.supplyWokPlatformBaseUrl}${environment.purchaseOrdersEndpointPath}`,
       new PurchaseOrderAssembler()
     );
   }

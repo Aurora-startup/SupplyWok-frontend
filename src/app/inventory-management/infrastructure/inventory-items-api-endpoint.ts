@@ -18,7 +18,7 @@ export class InventoryItemsApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformProviderApiBaseUrl}${environment.platformProviderInventoryItemsEndpointPath}`,
+      `${environment.supplyWokPlatformBaseUrl}${environment.platformProviderInventoryItemsEndpointPath}`,
       new InventoryItemAssembler(),
     );
   }

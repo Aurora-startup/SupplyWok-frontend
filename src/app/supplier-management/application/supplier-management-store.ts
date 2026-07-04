@@ -6,7 +6,6 @@ import { Client } from '../domain/model/client.entity';
 import { DeliveryRoute } from '../domain/model/delivery-route.entity';
 import { DemandForecast } from '../../analytics/domain/model/demand-forecast.entity';
 import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
-import { SupplierAlert } from '../domain/model/supplier-alert.entity';
 import { SupplierContact, SupplierNotifications, SupplierSettings } from '../domain/model/supplier-settings.entity';
 import { SupplierSubscription } from '../domain/model/supplier-subscription.entity';
 import { SupplierManagementApi } from '../infrastructure/supplier-management-api';
@@ -22,7 +21,6 @@ export class SupplierManagementStore {
   private readonly clientsSignal = signal<Client[]>([]);
   private readonly deliveryRoutesSignal = signal<DeliveryRoute[]>([]);
   private readonly demandForecastSignal = signal<DemandForecast>(new DemandForecast());
-  private readonly alertsSignal = signal<SupplierAlert[]>([]);
   private readonly supplierSettingsSignal = signal<SupplierSettings>(new SupplierSettings());
   private readonly supplierSubscriptionSignal = signal<SupplierSubscription>(new SupplierSubscription());
   private readonly loadingSignal = signal<boolean>(false);
@@ -33,7 +31,6 @@ export class SupplierManagementStore {
   readonly clients = this.clientsSignal.asReadonly();
   readonly deliveryRoutes = this.deliveryRoutesSignal.asReadonly();
   readonly demandForecast = this.demandForecastSignal.asReadonly();
-  readonly alerts = this.alertsSignal.asReadonly();
   readonly supplierSettings = this.supplierSettingsSignal.asReadonly();
   readonly supplierSubscription = this.supplierSubscriptionSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
@@ -43,7 +40,6 @@ export class SupplierManagementStore {
   readonly pendingOrdersCount = computed(() => this.orders().filter((order) => order.status === 'Pending').length);
   readonly inTransitOrdersCount = computed(() => this.orders().filter((order) => order.status === 'In Transit').length);
   readonly deliveredOrdersCount = computed(() => this.orders().filter((order) => order.status === 'Delivered').length);
-  readonly openAlertsCount = computed(() => this.alerts().filter((alert) => alert.status === 'pending').length);
   readonly scheduledDeliveriesCount = computed(() =>
     this.deliveryRoutes().filter((route) => ['planned', 'in-progress'].includes(route.status)).length
   );
@@ -57,7 +53,6 @@ export class SupplierManagementStore {
     this.loadOrders();
     this.loadDeliveryRoutes();
     this.loadDemandForecast();
-    this.loadAlerts();
     this.loadClients();
   }
 
@@ -158,36 +153,6 @@ export class SupplierManagementStore {
       next: (forecast) => this.finishLoading(() => this.demandForecastSignal.set(forecast)),
       error: (error) => this.failLoading(error, 'Failed to load demand forecast')
     });
-  }
-
-  loadAlerts(): void {
-    this.startLoading();
-    this.supplierManagementApi.getAlerts().pipe(retry(2)).subscribe({
-      next: (alerts) => this.finishLoading(() => this.alertsSignal.set(alerts)),
-      error: (error) => this.failLoading(error, 'Failed to load alerts')
-    });
-  }
-
-  acknowledgeAlert(alert: SupplierAlert): void {
-    const updatedAlert = new SupplierAlert({
-      id: alert.id,
-      severity: alert.severity,
-      detail: alert.detail,
-      date: alert.date,
-      status: 'acknowledged'
-    });
-
-    this.startLoading();
-    this.supplierManagementApi.updateAlert(updatedAlert).pipe(retry(2)).subscribe({
-      next: (persistedAlert) => this.finishLoading(() => {
-        this.alertsSignal.update((alerts) => alerts.map((item) => item.id === persistedAlert.id ? persistedAlert : item));
-      }),
-      error: (error) => this.failLoading(error, 'Failed to acknowledge alert')
-    });
-  }
-
-  getAlertById(id: number | string | null | undefined): SupplierAlert | undefined {
-    return this.alerts().find((alert) => String(alert.id) === String(id));
   }
 
   loadSupplierSettings(): void {

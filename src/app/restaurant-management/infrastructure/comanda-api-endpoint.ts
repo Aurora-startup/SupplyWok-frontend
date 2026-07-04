@@ -18,7 +18,7 @@ export class ComandaApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformApiBaseUrl}${environment.comandasEndpointPath}`,
+      `${environment.supplyWokPlatformBaseUrl}${environment.comandasEndpointPath}`,
       new ComandaAssembler()
     );
   }

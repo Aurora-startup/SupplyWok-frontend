@@ -7,6 +7,6 @@ import { OrderResource, OrdersResponse } from './orders-response';
 
 export class OrdersApiEndpoint extends BaseApiEndpoint<Order, OrderResource, OrdersResponse, OrderAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierCrudApiBaseUrl}${environment.purchaseOrdersEndpointPath}`, new OrderAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.purchaseOrdersEndpointPath}`, new OrderAssembler());
   }
 }

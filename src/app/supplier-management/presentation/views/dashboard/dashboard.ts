@@ -1,6 +1,7 @@
 import { Component, OnInit, computed, inject } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { SupplierManagementStore } from '../../../application/supplier-management-store';
+import { IotStore } from '../../../../iot-monitoring/application/iot-store';
 import { SupplierActiveRoutesPanel, SupplierRouteSummary } from '../../components/supplier-active-routes-panel/supplier-active-routes-panel';
 import { SupplierAggregateForecastCard } from '../../components/supplier-aggregate-forecast-card/supplier-aggregate-forecast-card';
 import { SupplierDashboardStatCard } from '../../components/supplier-dashboard-stat-card/supplier-dashboard-stat-card';
@@ -13,6 +14,7 @@ import { SupplierDashboardStatCard } from '../../components/supplier-dashboard-s
 })
 export class Dashboard implements OnInit {
   readonly store = inject(SupplierManagementStore);
+  readonly iotStore = inject(IotStore);
 
   readonly aggregateSeries = computed(() => this.store.demandForecast().aggregate);
   readonly aggregateFirstValue = computed(() => this.aggregateSeries()[0]?.value ?? 0);
@@ -37,5 +39,6 @@ export class Dashboard implements OnInit {
 
   ngOnInit(): void {
     this.store.loadDashboard();
+    this.iotStore.loadSupplierAlerts();
   }
 }

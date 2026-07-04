@@ -7,6 +7,6 @@ import { CatalogItemResource, CatalogItemsResponse } from './catalog-items-respo
 
 export class CatalogItemsApiEndpoint extends BaseApiEndpoint<CatalogItem, CatalogItemResource, CatalogItemsResponse, CatalogItemAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierCrudApiBaseUrl}${environment.catalogItemsEndpointPath}`, new CatalogItemAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.catalogItemsEndpointPath}`, new CatalogItemAssembler());
   }
 }
