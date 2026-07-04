@@ -11,5 +11,15 @@ export const guestGuard: CanActivateFn = () => {
     return true;
   }
 
-  return router.createUrlTree([resolveHomeRoute(iamStore.currentUserRole())]);
+  const homeRoute = resolveHomeRoute(iamStore.currentUserRole());
+  if (!homeRoute) {
+    if (iamStore.loading()) {
+      return true;
+    }
+
+    iamStore.logout();
+    return true;
+  }
+
+  return router.createUrlTree([homeRoute]);
 };

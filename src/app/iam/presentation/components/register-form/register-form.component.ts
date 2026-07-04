@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { SelectModule } from 'primeng/select';
 import { CheckboxModule } from 'primeng/checkbox';
 import { IamStore } from '../../../application/iam.store';
+import { SignUpCommand } from '../../../domain/model/sign-up.command';
 import { UserRole } from '../../../domain/model/user.entity';
 import { resolveHomeRoute } from '../../routing/home-route';
 
@@ -55,8 +56,15 @@ export class RegisterFormComponent {
       if (error) {
         this.errorMessage = error;
       }
-      if (this.iamStore.isAuthenticated()) {
-        void this.router.navigateByUrl(resolveHomeRoute(this.iamStore.currentUserRole()));
+      if (this.iamStore.isAuthenticated() && !this.loading) {
+        const homeRoute = resolveHomeRoute(this.iamStore.currentUserRole());
+        if (!homeRoute) {
+          this.iamStore.logout();
+          void this.router.navigateByUrl('/login');
+          return;
+        }
+
+        void this.router.navigateByUrl(homeRoute);
       }
     });
   }
@@ -84,10 +92,12 @@ export class RegisterFormComponent {
     }
     this.errorMessage = '';
 
-    this.iamStore.registerUser({
-      email: this.email,
-      password: this.password,
-      role: this.role!,
-    });
+    this.iamStore.signUp(
+      new SignUpCommand({
+        email: this.email,
+        password: this.password,
+        role: this.role!,
+      }),
+    );
   }
 }

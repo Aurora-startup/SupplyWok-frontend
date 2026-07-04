@@ -14,7 +14,7 @@ export const environment = {
   platformProviderCategoriesEndpointPath: '/supplies',
   platformProviderUnitsOfMeasureEndpointPath: '/unitsOfMeasure',
 
-  platformProviderUsersEndpointPath: '/authentication',
+  platformProviderUsersEndpointPath: '/users',
   platformProviderSensorsEndpointPath: '/sensors',
 
   supplierAlertsEndpointPath: '/supplier/alerts',

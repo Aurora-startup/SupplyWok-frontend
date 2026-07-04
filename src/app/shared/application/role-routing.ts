@@ -16,12 +16,23 @@ export function normalizeRole(role: UserRole | string | null | undefined): AppRo
   return null;
 }
 
-export function getHomeByRole(role: UserRole | string | null | undefined): string {
-  return normalizeRole(role) === 'supplier' ? '/supplier/dashboard' : '/restaurant/dashboard';
+export function getHomeByRole(role: UserRole | string | null | undefined): string | null {
+  const normalizedRole = normalizeRole(role);
+
+  if (normalizedRole === 'supplier') {
+    return '/supplier/dashboard';
+  }
+
+  if (normalizedRole === 'restaurant') {
+    return '/restaurant/dashboard';
+  }
+
+  return null;
 }
 
-export function getScopedPathByRole(role: UserRole | string | null | undefined, section: string): string {
-  return `/${normalizeRole(role) ?? 'restaurant'}/${section}`;
+export function getScopedPathByRole(role: UserRole | string | null | undefined, section: string): string | null {
+  const normalizedRole = normalizeRole(role);
+  return normalizedRole ? `/${normalizedRole}/${section}` : null;
 }
 
 export function getRoleFromPath(path: string): AppRoleScope | null {

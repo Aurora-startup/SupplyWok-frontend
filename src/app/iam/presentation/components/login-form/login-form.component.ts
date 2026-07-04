@@ -6,6 +6,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { IamStore } from '../../../application/iam.store';
+import { SignInCommand } from '../../../domain/model/sign-in.command';
 import { resolveHomeRoute } from '../../routing/home-route';
 
 @Component({
@@ -41,9 +42,17 @@ export class LoginFormComponent {
       if (error) {
         this.errorMessage = error;
       }
-      if (this.iamStore.isAuthenticated()) {
+      if (this.iamStore.isAuthenticated() && !this.loading) {
         const redirectTo = this.route.snapshot.queryParamMap.get('redirectTo');
-        void this.router.navigateByUrl(redirectTo || resolveHomeRoute(this.iamStore.currentUserRole()));
+        const homeRoute = resolveHomeRoute(this.iamStore.currentUserRole());
+
+        if (!homeRoute) {
+          this.iamStore.logout();
+          void this.router.navigateByUrl('/login');
+          return;
+        }
+
+        void this.router.navigateByUrl(redirectTo || homeRoute);
       }
     });
   }
@@ -61,6 +70,11 @@ export class LoginFormComponent {
       return;
     }
     this.errorMessage = '';
-    this.iamStore.login(this.email, this.password);
+    this.iamStore.signIn(
+      new SignInCommand({
+        email: this.email,
+        password: this.password,
+      }),
+    );
   }
 }
