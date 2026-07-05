@@ -65,9 +65,11 @@
         <td>
           <div class="catalog-page__actions">
             <button type="button" class="catalog-page__action-link catalog-page__action-link--edit" (click)="openEditForm(item)">
+              <span class="pi pi-pencil" aria-hidden="true"></span>
               {{ 'supplier-management.catalog.actions.edit' | translate }}
             </button>
             <button type="button" class="catalog-page__action-link catalog-page__action-link--delete" (click)="openDeleteDialog(item)">
+              <span class="pi pi-trash" aria-hidden="true"></span>
               {{ 'supplier-management.catalog.actions.delete' | translate }}
             </button>
           </div>

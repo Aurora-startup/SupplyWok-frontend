@@ -41,8 +41,13 @@
           <tbody>
             @for (row of visibleSupplierRows(); track row.id) {
               <tr>
-                <td class="suppliers-table__supplier-cell">{{ row.name }}</td>
-                <td>{{ row.linkedItems }}</td>
+                <td>
+                  <div class="suppliers-table__supplier-cell">
+                    <span class="suppliers-table__supplier-avatar">{{ row.name.charAt(0) }}</span>
+                    <span>{{ row.name }}</span>
+                  </div>
+                </td>
+                <td><span class="suppliers-table__number">{{ row.linkedItems }}</span></td>
                 <td>
                   <div class="suppliers-table__tags">
                     @for (category of row.categories; track category) {
@@ -50,7 +55,7 @@
                     }
                   </div>
                 </td>
-                <td>{{ row.lowStockItems }}</td>
+                <td><span class="suppliers-table__number">{{ row.lowStockItems }}</span></td>
                 <td>
                   <span
                     class="suppliers-table__badge"
