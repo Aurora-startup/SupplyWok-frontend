@@ -1,7 +1,7 @@
 import { BaseResource, BaseResponse } from '../../shared/infrastructure/base-response';
 
 export interface SuppliersResponse extends BaseResponse {
-  categories: SupplierResource[];
+  suppliers: SupplierResource[];
 }
 
 export interface SupplierResource extends BaseResource {

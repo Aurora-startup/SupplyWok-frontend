@@ -1,22 +1,20 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { IamApiService } from '../infrastructure/iam-api.service';
-import { User } from '../domain/model/user.entity';
+import { Router } from '@angular/router';
+import { IamApi } from '../infrastructure/iam-api';
+import { SignInCommand } from '../domain/model/sign-in.command';
+import { SignUpCommand } from '../domain/model/sign-up.command';
+import { User, UserRole } from '../domain/model/user.entity';
+import { normalizeRole } from '../../shared/application/role-routing';
 
-/**
- * Signal-based store for managing Identity and Access Management state in Angular.
- */
 @Injectable({
   providedIn: 'root',
 })
 export class IamStore {
   private static readonly CURRENT_USER_STORAGE_KEY = 'iam.currentUser';
-  private readonly usersSignal = signal<User[]>([]);
   private readonly currentUserSignal = signal<User | null>(null);
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
 
-  // --- Readonly Signals (Getters) ---
-  readonly users = this.usersSignal.asReadonly();
   readonly currentUser = this.currentUserSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
@@ -24,79 +22,74 @@ export class IamStore {
   readonly isAuthenticated = computed(() => this.currentUserSignal() !== null);
   readonly currentUserRole = computed(() => this.currentUserSignal()?.role || null);
 
-  constructor(private iamApi: IamApiService) {
+  constructor(
+    private iamApi: IamApi,
+    private router: Router,
+  ) {
     this.restoreSession();
   }
 
-  /**
-   * Loads all users from the API.
-   */
-  loadUsers(): void {
+  signIn(command: SignInCommand): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
-    this.iamApi.getUsers().subscribe({
-      next: users => {
-        this.usersSignal.set(users);
-        this.loadingSignal.set(false);
+    this.iamApi.signIn(command).subscribe({
+      next: (user) => {
+        this.setCurrentUser(user);
+        this.ensureResolvedRole(user, {
+          onSuccess: (resolvedUser) => {
+            this.setCurrentUser(resolvedUser);
+            this.loadingSignal.set(false);
+          },
+          onFailure: () => {
+            this.errorSignal.set('Unable to resolve user role');
+            this.clearCurrentUser();
+            this.loadingSignal.set(false);
+          },
+        });
       },
       error: () => {
-        this.errorSignal.set('Failed to load users');
+        this.errorSignal.set('Invalid email or password');
         this.loadingSignal.set(false);
-      }
+      },
     });
   }
 
-  /**
-   * Simulates a login process by fetching all users and matching credentials locally.
-   * @param email
-   * @param password
-   */
+  signUp(command: SignUpCommand): void {
+    this.loadingSignal.set(true);
+    this.errorSignal.set(null);
+    this.iamApi
+      .signUp(command)
+      .subscribe({
+        next: () =>
+          this.signIn(
+            new SignInCommand({
+              email: command.email,
+              password: command.password,
+            }),
+          ),
+        error: () => {
+          this.errorSignal.set('Registration failed');
+          this.loadingSignal.set(false);
+        },
+      });
+  }
+
+  signOut(): void {
+    this.loadingSignal.set(false);
+    this.errorSignal.set(null);
+    this.clearCurrentUser();
+  }
+
   login(email: string, password: string): void {
-    this.loadingSignal.set(true);
-    this.errorSignal.set(null);
-    this.iamApi.getUsers().subscribe({
-      next: allUsers => {
-        const user = allUsers.find(u => u.email === email && u.password === password);
-        if (user) {
-          this.setCurrentUser(user);
-        } else {
-          this.errorSignal.set('Invalid email or password');
-        }
-        this.loadingSignal.set(false);
-      },
-      error: () => {
-        this.errorSignal.set('Login process failed');
-        this.loadingSignal.set(false);
-      }
-    });
+    this.signIn(new SignInCommand({ email, password }));
   }
 
-  /**
-   * Registers a new user.
-   * @param userData
-   */
-  registerUser(userData: User): void {
-    this.loadingSignal.set(true);
-    this.errorSignal.set(null);
-    this.iamApi.createUser(userData).subscribe({
-      next: newUser => {
-        if (newUser) {
-          this.usersSignal.update(users => [...users, newUser]);
-        }
-        this.loadingSignal.set(false);
-      },
-      error: () => {
-        this.errorSignal.set('Registration failed');
-        this.loadingSignal.set(false);
-      }
-    });
+  registerUser(userData: { email: string; password: string; role: UserRole }): void {
+    this.signUp(new SignUpCommand(userData));
   }
 
-  /**
-   * Clears the current user session.
-   */
   logout(): void {
-    this.setCurrentUser(null);
+    this.signOut();
   }
 
   private restoreSession(): void {
@@ -110,17 +103,35 @@ export class IamStore {
         return;
       }
 
-      const parsedUser = JSON.parse(rawUser) as User;
-      this.currentUserSignal.set(
-        new User(
-          parsedUser.id,
-          parsedUser.email,
-          parsedUser.phoneNumber,
-          parsedUser.role,
-          parsedUser.subscription,
-          parsedUser.password
-        )
-      );
+      const parsedUser = JSON.parse(rawUser) as {
+        id: number;
+        email: string;
+        roles?: string[];
+        token?: string | null;
+      };
+
+      const restoredUser = new User({
+        id: parsedUser.id,
+        email: parsedUser.email,
+        roles: parsedUser.roles ?? [],
+        token: parsedUser.token ?? null,
+      });
+
+      this.setCurrentUser(restoredUser);
+      if (!this.hasValidRole(restoredUser)) {
+        this.loadingSignal.set(true);
+        this.ensureResolvedRole(restoredUser, {
+          onSuccess: (resolvedUser) => {
+            this.setCurrentUser(resolvedUser);
+            this.loadingSignal.set(false);
+          },
+          onFailure: () => {
+            this.clearCurrentUser();
+            this.loadingSignal.set(false);
+            void this.router.navigateByUrl('/login');
+          },
+        });
+      }
     } catch {
       window.localStorage.removeItem(IamStore.CURRENT_USER_STORAGE_KEY);
     }
@@ -139,5 +150,42 @@ export class IamStore {
     }
 
     window.localStorage.removeItem(IamStore.CURRENT_USER_STORAGE_KEY);
+  }
+
+  private clearCurrentUser(): void {
+    this.setCurrentUser(null);
+  }
+
+  private ensureResolvedRole(
+    user: User,
+    callbacks: {
+      onSuccess: (user: User) => void;
+      onFailure: () => void;
+    },
+  ): void {
+    if (this.hasValidRole(user)) {
+      callbacks.onSuccess(user);
+      return;
+    }
+
+    this.iamApi.getUserById(user.id).subscribe({
+      next: (resolvedUser) => {
+        callbacks.onSuccess(
+          new User({
+            id: resolvedUser.id,
+            email: resolvedUser.email,
+            roles: resolvedUser.roles,
+            token: user.token,
+          }),
+        );
+      },
+      error: () => {
+        callbacks.onFailure();
+      },
+    });
+  }
+
+  private hasValidRole(user: User | null): boolean {
+    return normalizeRole(user?.role) !== null;
   }
 }

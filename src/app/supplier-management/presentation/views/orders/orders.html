@@ -27,7 +27,7 @@
     </p-select>
   </section>
 
-  <p-table [value]="filteredOrders" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="p-datatable-sm">
+  <p-table [value]="filteredOrders" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="orders-page__table">
     <ng-template pTemplate="header">
       <tr>
         <th>{{ 'supplier-management.orders.columns.code' | translate }}</th>
@@ -89,7 +89,7 @@
         <span>{{ 'supplier-management.orders.details.priority' | translate }} <strong>{{ ('supplier-management.orders.priority.' + (order.priority === 'High' ? 'high' : order.priority === 'Medium' ? 'medium' : 'low')) | translate }}</strong></span>
         <span>{{ 'supplier-management.orders.details.supplier' | translate }} <strong>{{ order.supplierName }}</strong></span>
       </section>
-      <p-table [value]="order.items" responsiveLayout="scroll" styleClass="p-datatable-sm">
+      <p-table [value]="order.items" responsiveLayout="scroll" styleClass="orders-dialog__table">
         <ng-template pTemplate="header">
           <tr>
             <th>{{ 'supplier-management.orders.details.columns.product' | translate }}</th>

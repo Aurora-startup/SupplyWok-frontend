@@ -33,15 +33,15 @@
 
 .dashboard-page__stats {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   margin-bottom: 34px;
 }
 
 .dashboard-page__panels {
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 32px;
+  gap: 24px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(360px, 0.8fr);
 }
 
 @media (max-width: 1180px) {
@@ -50,6 +50,12 @@
   }
 
   .dashboard-page__panels {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .dashboard-page__stats {
     grid-template-columns: 1fr;
   }
 }

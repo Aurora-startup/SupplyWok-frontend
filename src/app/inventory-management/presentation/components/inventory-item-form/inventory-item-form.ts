@@ -44,7 +44,6 @@ export class InventoryItemForm {
     }),
 
     idSupplier: new FormControl<number | null>(null, {
-      validators: [Validators.required],
     }),
 
     unitOfMeasure: new FormControl<UnitOfMeasure | null>(null, {
@@ -105,6 +104,8 @@ export class InventoryItemForm {
       idSupplier: this.form.value.idSupplier ?? 0,
 
       unitOfMeasure: this.form.value.unitOfMeasure!,
+      category: this.store.inventoryCategories().find((category) => category.id === (this.form.value.idCategory ?? 0)) ?? null,
+      supplier: this.store.suppliers().find((supplier) => supplier.id === (this.form.value.idSupplier ?? 0)) ?? null,
     });
 
     if (this.isEdit) {

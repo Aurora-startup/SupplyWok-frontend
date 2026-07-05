@@ -5,6 +5,10 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Sensor } from '../domain/model/sensor.entity';
 import { SensorApiEndpoint } from './sensor-api-endpoint';
+import { RestaurantAlertsApiEndpoint } from './restaurant-alerts-api-endpoint';
+import { RestaurantAlert } from '../domain/model/restaurant-alert.entity';
+import { SupplierAlert } from '../domain/model/supplier-alert.entity';
+import { SupplierAlertsApiEndpoint } from './supplier-alerts-api-endpoint';
 
 /**
  * Facade class for IoT Monitoring and Sensor operations.
@@ -15,6 +19,8 @@ import { SensorApiEndpoint } from './sensor-api-endpoint';
 })
 export class IotMonitoringApi extends BaseApi {
   private readonly sensorApiEndpoint: SensorApiEndpoint;
+  private readonly restaurantAlertsApiEndpoint: RestaurantAlertsApiEndpoint;
+  private readonly supplierAlertsApiEndpoint: SupplierAlertsApiEndpoint;
 
   /**
    * Initializes the API facade.
@@ -23,6 +29,8 @@ export class IotMonitoringApi extends BaseApi {
   constructor(http: HttpClient) {
     super(http);
     this.sensorApiEndpoint = new SensorApiEndpoint(http);
+    this.restaurantAlertsApiEndpoint = new RestaurantAlertsApiEndpoint(http);
+    this.supplierAlertsApiEndpoint = new SupplierAlertsApiEndpoint(http);
   }
 
   /**
@@ -110,5 +118,39 @@ export class IotMonitoringApi extends BaseApi {
    */
   updateSensor(sensor: Sensor): Observable<Sensor> {
     return this.sensorApiEndpoint.update(sensor, sensor.id);
+  }
+
+  /**
+   * Retrieves all restaurant alerts.
+   * @returns An Observable of RestaurantAlert array.
+   */
+  getRestaurantAlerts(): Observable<RestaurantAlert[]> {
+    return this.restaurantAlertsApiEndpoint.getAll();
+  }
+
+  /**
+   * Updates an existing restaurant alert's information.
+   * @param alert The RestaurantAlert with updated values.
+   * @returns Observable of the updated RestaurantAlert.
+   */
+  updateRestaurantAlert(alert: RestaurantAlert): Observable<RestaurantAlert> {
+    return this.restaurantAlertsApiEndpoint.update(alert, alert.id);
+  }
+
+  /**
+   * Retrieves all supplier alerts.
+   * @returns An Observable of SupplierAlert array.
+   */
+  getSupplierAlerts(): Observable<SupplierAlert[]> {
+    return this.supplierAlertsApiEndpoint.getAll();
+  }
+
+  /**
+   * Updates an existing supplier alert's information.
+   * @param alert The SupplierAlert with updated values.
+   * @returns Observable of the updated SupplierAlert.
+   */
+  updateSupplierAlert(alert: SupplierAlert): Observable<SupplierAlert> {
+    return this.supplierAlertsApiEndpoint.update(alert, String(alert.id));
   }
 }

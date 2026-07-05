@@ -1,7 +1,7 @@
 import { Component, input } from '@angular/core';
 import { NgClass, DatePipe } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
-import { Alert } from '../../../domain/model/alert.entity';
+import { RestaurantAlert } from '../../../domain/model/restaurant-alert.entity';
 
 /**
  * A reusable component to render a single alert item row.
@@ -14,5 +14,5 @@ import { Alert } from '../../../domain/model/alert.entity';
 })
 export class AlertItemComponent {
   /** The alert domain entity to render */
-  readonly alert = input.required<Alert>();
+  readonly alert = input.required<RestaurantAlert>();
 }

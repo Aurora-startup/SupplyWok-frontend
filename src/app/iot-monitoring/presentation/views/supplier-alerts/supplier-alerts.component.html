@@ -15,7 +15,7 @@
     </label>
     <label>
       <span>{{ 'supplier-management.alerts.severity-label' | translate }}</span>
-      <p-select [options]="severityOptions" optionValue="value" [(ngModel)]="severityFilter" [placeholder]="'supplier-management.alerts.severity-placeholder' | translate">
+      <p-select [options]="severityOptions" optionValue="value" [(ngModel)]="severityFilter" [placeholder]="'supplier-management.alerts.severity-placeholder' | translate" appendTo="body">
         <ng-template pTemplate="selectedItem" let-option>
           {{ option?.labelKey | translate }}
         </ng-template>

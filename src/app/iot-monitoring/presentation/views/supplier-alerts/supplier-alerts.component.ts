@@ -11,17 +11,17 @@ import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { map } from 'rxjs/operators';
-import { SupplierManagementStore } from '../../../application/supplier-management-store';
+import { IotStore } from '../../../application/iot-store';
 import { SupplierAlert } from '../../../domain/model/supplier-alert.entity';
 
 @Component({
-  selector: 'app-alerts',
+  selector: 'app-supplier-alerts',
   imports: [CommonModule, FormsModule, TranslateModule, TableModule, ButtonModule, InputTextModule, SelectModule, TagModule, DialogModule],
-  templateUrl: './alerts.html',
-  styleUrl: './alerts.css',
+  templateUrl: './supplier-alerts.component.html',
+  styleUrl: './supplier-alerts.component.css',
 })
-export class Alerts implements OnInit {
-  readonly store = inject(SupplierManagementStore);
+export class SupplierAlertsComponent implements OnInit {
+  readonly store = inject(IotStore);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly alertId = toSignal(this.route.paramMap.pipe(map((params) => params.get('alertId'))), { initialValue: null });
@@ -35,11 +35,11 @@ export class Alerts implements OnInit {
     { labelKey: 'supplier-management.alerts.severity.medium', value: 'medium' },
     { labelKey: 'supplier-management.alerts.severity.low', value: 'low' }
   ];
-  readonly selectedAlert = computed(() => this.store.getAlertById(this.alertId()));
+  readonly selectedAlert = computed(() => this.store.getSupplierAlertById(this.alertId()));
 
   get filteredAlerts(): SupplierAlert[] {
     const query = this.searchQuery.trim().toLowerCase();
-    return this.store.alerts().filter((alert) => {
+    return this.store.supplierAlerts().filter((alert) => {
       const matchesSeverity = this.severityFilter === 'all' || alert.severity === this.severityFilter;
       const matchesQuery = !query || [alert.detail, alert.severity, alert.status, alert.date]
         .some((value) => String(value ?? '').toLowerCase().includes(query));
@@ -48,7 +48,7 @@ export class Alerts implements OnInit {
   }
 
   ngOnInit(): void {
-    this.store.loadAlerts();
+    this.store.loadSupplierAlerts();
   }
 
   openDetails(alert: SupplierAlert): void {
@@ -60,7 +60,7 @@ export class Alerts implements OnInit {
   }
 
   acknowledge(alert: SupplierAlert): void {
-    this.store.acknowledgeAlert(alert);
+    this.store.acknowledgeSupplierAlert(alert);
   }
 
   getSeverity(severity: string): 'success' | 'info' | 'warn' | 'danger' | 'secondary' {

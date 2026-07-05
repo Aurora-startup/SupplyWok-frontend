@@ -284,9 +284,9 @@ export class InventoryManagementStore {
       .pipe(takeUntilDestroyed())
       .subscribe({
         next: (inventoryItems) => {
-          console.log(inventoryItems);
-
           this.inventoryItemsSignal.set(inventoryItems);
+          this.assignCategoriesToItems();
+          this.assignSuppliersToItems();
 
           this.loadingSignal.set(false);
         },
@@ -308,6 +308,7 @@ export class InventoryManagementStore {
       .subscribe({
         next: (categories) => {
           this.inventoryCategoriesSignal.set(categories);
+          this.assignCategoriesToItems();
           this.loadingSignal.set(false);
         },
         error: (err) => {

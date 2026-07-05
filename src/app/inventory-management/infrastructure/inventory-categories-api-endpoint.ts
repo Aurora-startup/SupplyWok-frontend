@@ -18,7 +18,7 @@ export class CategoriesApiEndpoint extends BaseApiEndpoint<
   constructor(http: HttpClient) {
     super(
       http,
-      `${environment.platformProviderApiBaseUrl}${environment.platformProviderCategoriesEndpointPath}`,
+      `${environment.supplyWokPlatformBaseUrl}${environment.platformProviderCategoriesEndpointPath}`,
       new InventoryCategoryAssembler(),
     );
   }

@@ -30,8 +30,7 @@
       "subscription": "Suscripción",
       "clients": "Mis Clientes",
       "forecast": "Pronóstico de Demanda",
-      "catalog": "Catálogo de Productos",
-      "delivery": "Planificación de Entregas"
+      "catalog": "Catálogo de Productos"
     },
     "titles": {
       "dashboard": "Dashboard",
@@ -296,6 +295,59 @@
       "unit-price-invalid": "El precio debe ser un numero valido mayor que cero."
     }
   },
+  "supplier-management": {
+    "orders": {
+      "filters": {
+        "confirmed": "Confirmado",
+        "pending": "Pendiente",
+        "in-transit": "En tránsito",
+        "delivered": "Entregado",
+        "delayed": "Retrasado"
+      },
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      }
+    },
+    "dashboard": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Dashboard del proveedor",
+      "subtitle": "Pedidos entrantes, demanda de clientes y señales urgentes de abastecimiento.",
+      "loading": "Cargando datos del dashboard...",
+      "stats": {
+        "orders-received": "Pedidos recibidos",
+        "demand-outlook": "Proyección de demanda",
+        "urgent-requests": "Solicitudes urgentes",
+        "alert-badge": "Alerta"
+      },
+      "aggregate": {
+        "title": "Vista agregada",
+        "summary": "Resumen del gráfico: {{ from }} -> {{ to }}",
+        "empty": "No hay datos de pronóstico disponibles."
+      },
+      "orders": {
+        "eyebrow": "Pedidos",
+        "title": "Pedidos prioritarios",
+        "caption": "{{ count }} pedidos cargados en este contexto",
+        "view-all": "Ver todos",
+        "pending": "Pendientes",
+        "confirmed": "Confirmados",
+        "in-transit": "En tránsito",
+        "date": "Fecha",
+        "priority": "Prioridad",
+        "items": "Items",
+        "total": "Total",
+        "untitled": "Pedido sin código",
+        "empty": "Aún no hay pedidos para este proveedor."
+      },
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      }
+    }
+  },
   "restaurant-management": {
     "breadcrumb": "RESTAURANTE",
     "tables": {
@@ -490,6 +542,45 @@
       "low-stock-msg": "{{sensorName}} ha caído a {{lastValue}} unidades (Mínimo: {{minValue}}). Requiere reposición.",
       "high-occupancy-title": "{{sensorName}} alcanzó una alta ocupación",
       "high-occupancy-msg": "Carga concentrada en {{sensorName}} ({{lastValue}}% ocupado)."
+    },
+    "alerts-page": {
+      "kicker": "Restaurante",
+      "title": "Alertas",
+      "description": "Consolida desviaciones de stock, temperatura y entregas con acciones de seguimiento.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar alertas...",
+      "severity-label": "Severidad",
+      "severity-placeholder": "Filtrar por Severidad",
+      "severities": {
+        "all": "Todos",
+        "critical": "Crítico",
+        "high": "Alto",
+        "medium": "Medio",
+        "low": "Bajo"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERIDAD",
+          "detail": "DETALLE ALERTA",
+          "source": "FUENTE",
+          "date": "FECHA",
+          "status": "ESTADO",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "view-details": "VER DETALLES",
+          "acknowledge": "RECONOCER"
+        },
+        "status": {
+          "open": "Abierto",
+          "resolved": "Resuelto",
+          "acknowledged": "Reconocido"
+        },
+        "footer": "Mostrando {{first}} a {{last}} de {{total}} alertas activas"
+      },
+      "dialog": {
+        "header": "Detalles de la Alerta"
+      }
     }
   }
 }

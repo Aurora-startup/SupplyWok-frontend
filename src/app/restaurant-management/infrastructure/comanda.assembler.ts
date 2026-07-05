@@ -1,6 +1,38 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
+import { ComandaStatus } from '../domain/enums/comanda-status.enum';
 import { Comanda, ComandaItem } from '../domain/model/comanda.entity';
 import { ComandaItemResource, ComandaResource, ComandaResponse } from './comanda-response';
+
+export function toDomainComandaStatus(status: string | null | undefined): ComandaStatus {
+  switch (status) {
+    case 'OPEN':
+    case 'SENT_TO_KITCHEN':
+      return ComandaStatus.EN_COLA;
+    case 'IN_PREPARATION':
+      return ComandaStatus.EN_PREPARACION;
+    case 'SERVED':
+      return ComandaStatus.LISTO;
+    case 'CLOSED':
+      return ComandaStatus.ENTREGADO;
+    default:
+      return ComandaStatus.EN_COLA;
+  }
+}
+
+export function toBackendComandaStatus(status: ComandaStatus | string): string {
+  switch (status) {
+    case ComandaStatus.EN_COLA:
+      return 'OPEN';
+    case ComandaStatus.EN_PREPARACION:
+      return 'IN_PREPARATION';
+    case ComandaStatus.LISTO:
+      return 'SERVED';
+    case ComandaStatus.ENTREGADO:
+      return 'CLOSED';
+    default:
+      return String(status);
+  }
+}
 
 export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource, ComandaResponse> {
 
@@ -16,20 +48,22 @@ export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource,
   }
 
   toEntityFromResource(resource: ComandaResource): Comanda {
+    const now = new Date().toISOString();
+
     return new Comanda({
       id: resource.id ?? null,
       tableId: resource.tableId,
-      tableNumber: resource.tableNumber,
+      tableNumber: resource.tableNumber ?? 0,
       items: Array.isArray(resource.items)
         ? resource.items.map((item) => new ComandaItem({
-            id: item.id as number ?? 0,
-            dishName: item.dishName,
+            id: (item.id as number) ?? 0,
+            dishName: item.dishName ?? item.productName ?? '',
             quantity: item.quantity
           }))
         : [],
-      status: resource.status as Comanda['status'],
-      createdAt: resource.createdAt,
-      updatedAt: resource.updatedAt
+      status: toDomainComandaStatus(resource.status),
+      createdAt: resource.createdAt ?? now,
+      updatedAt: resource.updatedAt ?? resource.createdAt ?? now
     });
   }
 
@@ -37,11 +71,8 @@ export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource,
     return {
       id: entity.id,
       tableId: entity.tableId,
-      tableNumber: entity.tableNumber,
       items: entity.items.map((item) => this.toItemResource(item)),
-      status: entity.status,
-      createdAt: entity.createdAt,
-      updatedAt: entity.updatedAt
+      status: toBackendComandaStatus(entity.status)
     };
   }
 
@@ -49,6 +80,7 @@ export class ComandaAssembler implements BaseAssembler<Comanda, ComandaResource,
     return {
       id: item.id,
       dishName: item.dishName,
+      productName: item.dishName,
       quantity: item.quantity
     };
   }

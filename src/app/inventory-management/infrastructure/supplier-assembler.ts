@@ -3,22 +3,12 @@ import { Supplier } from '../domain/model/supplier.entity';
 import { SuppliersResponse, SupplierResource } from './suppliers-response';
 
 export class SupplierAssembler implements BaseAssembler<Supplier, SupplierResource, SuppliersResponse> {
-  /**
-   * Converts a CategoriesResponse to an array of Category entities.
-   * @param response - The API response containing categories.
-   * @returns An array of Category entities.
-   */
   toEntitiesFromResponse(response: SuppliersResponse): Supplier[] {
-    return response.categories.map((resource) =>
+    return response.suppliers.map((resource) =>
       this.toEntityFromResource(resource as SupplierResource),
     );
   }
 
-  /**
-   * Converts a CategoryResource to a Category entity.
-   * @param resource - The resource to convert.
-   * @returns The converted Category entity.
-   */
   toEntityFromResource(resource: SupplierResource): Supplier {
     return new Supplier({
       id: resource.id,
@@ -26,11 +16,6 @@ export class SupplierAssembler implements BaseAssembler<Supplier, SupplierResour
     });
   }
 
-  /**
-   * Converts a Category entity to a CategoryResource.
-   * @param entity - The entity to convert.
-   * @returns The converted CategoryResource.
-   */
   toResourceFromEntity(entity: Supplier): SupplierResource {
     return {
       id: entity.id,

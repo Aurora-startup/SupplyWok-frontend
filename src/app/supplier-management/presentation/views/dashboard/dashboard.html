@@ -7,16 +7,16 @@
 
   <section class="dashboard-page__stats">
     <app-supplier-dashboard-stat-card icon="pi pi-shopping-bag" [value]="store.ordersCount()" [label]="'supplier-management.dashboard.stats.orders-received' | translate" />
-    <app-supplier-dashboard-stat-card icon="pi pi-truck" [value]="store.scheduledDeliveriesCount()" [label]="'supplier-management.dashboard.stats.scheduled-deliveries' | translate" />
     <app-supplier-dashboard-stat-card icon="pi pi-chart-line" [value]="store.demandOutlook()" [label]="'supplier-management.dashboard.stats.demand-outlook' | translate" />
-    <app-supplier-dashboard-stat-card icon="pi pi-bell" [value]="store.openAlertsCount()" [label]="'supplier-management.dashboard.stats.urgent-requests' | translate" [badge]="'supplier-management.dashboard.stats.alert-badge' | translate" severity="danger" />
+    <app-supplier-dashboard-stat-card icon="pi pi-bell" [value]="iotStore.openSupplierAlertsCount()" [label]="'supplier-management.dashboard.stats.urgent-requests' | translate" [badge]="'supplier-management.dashboard.stats.alert-badge' | translate" severity="danger" />
   </section>
 
   <section class="dashboard-page__panels">
-    <app-supplier-active-routes-panel
-      [title]="'supplier-management.dashboard.routes.title' | translate"
-      [routes]="activeRoutes()"
-      [emptyText]="'supplier-management.dashboard.routes.empty' | translate"
+    <app-supplier-orders-card
+      [title]="'supplier-management.dashboard.orders.title' | translate"
+      [caption]="'supplier-management.dashboard.orders.caption' | translate: { count: store.ordersCount() }"
+      [orders]="store.orders()"
+      [emptyText]="'supplier-management.dashboard.orders.empty' | translate"
     />
     <app-supplier-aggregate-forecast-card
       [title]="'supplier-management.dashboard.aggregate.title' | translate"

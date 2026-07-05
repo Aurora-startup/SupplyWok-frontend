@@ -16,8 +16,27 @@ export const authGuard: CanActivateFn = (_route, state) => {
   const currentRole = normalizeRole(iamStore.currentUserRole());
   const requiredRole = getRoleFromPath(state.url);
 
-  if (currentRole && requiredRole && currentRole !== requiredRole) {
-    return router.createUrlTree([getHomeByRole(iamStore.currentUserRole())]);
+  if (!currentRole) {
+    if (iamStore.loading()) {
+      return true;
+    }
+
+    iamStore.logout();
+    return router.createUrlTree(['/login'], {
+      queryParams: { redirectTo: state.url }
+    });
+  }
+
+  if (requiredRole && currentRole !== requiredRole) {
+    const homeRoute = getHomeByRole(iamStore.currentUserRole());
+    if (!homeRoute) {
+      iamStore.logout();
+      return router.createUrlTree(['/login'], {
+        queryParams: { redirectTo: state.url }
+      });
+    }
+
+    return router.createUrlTree([homeRoute]);
   }
 
   return true;

@@ -7,6 +7,6 @@ import { SupplierSettingsResource, SupplierSettingsResponse } from './supplier-s
 
 export class SupplierSettingsApiEndpoint extends BaseApiEndpoint<SupplierSettings, SupplierSettingsResource, SupplierSettingsResponse, SupplierSettingsAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierGetApiBaseUrl}${environment.supplierSettingsEndpointPath}`, new SupplierSettingsAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.supplierSettingsEndpointPath}`, new SupplierSettingsAssembler());
   }
 }

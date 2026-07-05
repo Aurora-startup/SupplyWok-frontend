@@ -1,0 +1,68 @@
+<p-card styleClass="supplier-orders-card">
+  <ng-template pTemplate="header">
+    <header class="orders-card__header">
+      <div>
+        <p>{{ 'supplier-management.dashboard.orders.eyebrow' | translate }}</p>
+        <h2><i class="pi pi-receipt"></i>{{ title() }}</h2>
+      </div>
+      <a routerLink="/supplier/orders" class="orders-card__link">
+        {{ 'supplier-management.dashboard.orders.view-all' | translate }}
+        <i class="pi pi-arrow-right"></i>
+      </a>
+    </header>
+  </ng-template>
+
+  <p class="orders-card__caption">{{ caption() }}</p>
+
+  <section class="orders-card__summary">
+    <article>
+      <span>{{ 'supplier-management.dashboard.orders.pending' | translate }}</span>
+      <strong>{{ pendingCount() }}</strong>
+    </article>
+    <article>
+      <span>{{ 'supplier-management.dashboard.orders.confirmed' | translate }}</span>
+      <strong>{{ confirmedCount() }}</strong>
+    </article>
+    <article>
+      <span>{{ 'supplier-management.dashboard.orders.in-transit' | translate }}</span>
+      <strong>{{ inTransitCount() }}</strong>
+    </article>
+  </section>
+
+  @if (visibleOrders().length) {
+    <div class="orders-card__list">
+      @for (order of visibleOrders(); track order.id ?? order.code) {
+        <article class="orders-card__item">
+          <div class="orders-card__item-main">
+            <div>
+              <strong>{{ order.code || ('supplier-management.dashboard.orders.untitled' | translate) }}</strong>
+              <span>{{ order.restaurantName }}</span>
+            </div>
+            <p-tag [value]="getStatusLabelKey(order.status) | translate" [severity]="getStatusSeverity(order.status)" />
+          </div>
+
+          <dl class="orders-card__meta">
+            <div>
+              <dt>{{ 'supplier-management.dashboard.orders.date' | translate }}</dt>
+              <dd>{{ order.orderDate | date: 'MMM d' }}</dd>
+            </div>
+            <div>
+              <dt>{{ 'supplier-management.dashboard.orders.priority' | translate }}</dt>
+              <dd>{{ getPriorityLabelKey(order.priority) | translate }}</dd>
+            </div>
+            <div>
+              <dt>{{ 'supplier-management.dashboard.orders.items' | translate }}</dt>
+              <dd>{{ order.items.length }}</dd>
+            </div>
+            <div>
+              <dt>{{ 'supplier-management.dashboard.orders.total' | translate }}</dt>
+              <dd>{{ getOrderTotal(order) | currency }}</dd>
+            </div>
+          </dl>
+        </article>
+      }
+    </div>
+  } @else {
+    <p class="orders-card__empty">{{ emptyText() }}</p>
+  }
+</p-card>

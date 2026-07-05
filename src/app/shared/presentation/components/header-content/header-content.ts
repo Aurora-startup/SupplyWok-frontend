@@ -49,7 +49,17 @@ export class HeaderContent {
             {
               label: translations['shared.header.settings'] || 'Settings',
               icon: 'pi pi-cog',
-              command: () => void this.router.navigateByUrl(getScopedPathByRole(this.iamStore.currentUserRole(), 'configuration'))
+              command: () => {
+                const configurationPath = getScopedPathByRole(this.iamStore.currentUserRole(), 'configuration');
+
+                if (!configurationPath) {
+                  this.iamStore.logout();
+                  void this.router.navigateByUrl('/login');
+                  return;
+                }
+
+                void this.router.navigateByUrl(configurationPath);
+              }
             },
             {
               label: translations['shared.header.logout'] || 'Logout',

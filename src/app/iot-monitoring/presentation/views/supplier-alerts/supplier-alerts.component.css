@@ -233,7 +233,7 @@
 :host ::ng-deep .alerts-page__filters .p-inputtext {
   color: #667b96;
   font-size: 2.1rem;
-  padding-left: 3rem;
+  padding-left: 4.5rem !important;
 }
 
 :host ::ng-deep .alerts-page__filters .p-select-label {
@@ -282,11 +282,8 @@
   color: #2f6b58;
 }
 
-:host ::ng-deep .alerts-dialog {
-  width: 29rem;
-}
-
-:host ::ng-deep .alerts-dialog .p-dialog {
+::ng-deep .alerts-dialog {
+  width: 29rem !important;
   background: #fff !important;
   border: 1px solid #dfe6ee !important;
   border-radius: 14px !important;
@@ -294,17 +291,17 @@
   overflow: hidden;
 }
 
-:host ::ng-deep .alerts-dialog .p-dialog-header {
-  display: none;
+::ng-deep .alerts-dialog .p-dialog-header {
+  display: none !important;
 }
 
-:host ::ng-deep .alerts-dialog .p-dialog-content {
+::ng-deep .alerts-dialog .p-dialog-content {
   background: #fff !important;
-  padding: 1.5rem 1.55rem 1.1rem;
+  padding: 1.5rem 1.55rem 1.1rem !important;
 }
 
-:host ::ng-deep .alerts-dialog .p-dialog-footer {
-  display: none;
+::ng-deep .alerts-dialog .p-dialog-footer {
+  display: none !important;
 }
 
 :host ::ng-deep .alerts-dialog__close-btn .p-button {

@@ -7,6 +7,6 @@ import { DemandForecastResource, DemandForecastsResponse } from './demand-foreca
 
 export class DemandForecastsApiEndpoint extends BaseApiEndpoint<DemandForecast, DemandForecastResource, DemandForecastsResponse, DemandForecastAssembler> {
   constructor(http: HttpClient) {
-    super(http, `${environment.supplierGetApiBaseUrl}${environment.demandForecastsEndpointPath}`, new DemandForecastAssembler());
+    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.demandForecastsEndpointPath}`, new DemandForecastAssembler());
   }
 }

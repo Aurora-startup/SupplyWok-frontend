@@ -2,6 +2,42 @@ import {BaseAssembler} from '../../shared/infrastructure/base-assembler';
 import {Sensor} from '../domain/model/sensor.entity';
 import {SensorResource, SensorResponse} from './sensor-response';
 
+function toBackendSensorType(type: string | null | undefined): string {
+  switch ((type ?? '').trim().toLowerCase()) {
+    case 'kitchen-temperature':
+    case 'storage-temperature':
+    case 'temperature':
+      return 'Temperature';
+    case 'humidity':
+      return 'Humidity';
+    case 'table-pressure':
+    case 'storage-pressure':
+    case 'weight':
+      return 'Weight';
+    default:
+      return type || 'Temperature';
+  }
+}
+
+function toDomainSensorType(resource: SensorResource): string {
+  const type = toBackendSensorType(resource.type);
+  const name = resource.name.toLowerCase();
+
+  if (type === 'Temperature') {
+    return name.includes('storage') || name.includes('almacen') || name.includes('almacén')
+      ? 'storage-temperature'
+      : 'kitchen-temperature';
+  }
+
+  if (type === 'Weight') {
+    return name.includes('storage') || name.includes('almacen') || name.includes('almacén')
+      ? 'storage-pressure'
+      : 'table-pressure';
+  }
+
+  return type.toLowerCase();
+}
+
 /**
  * Assembler class responsible for transforming data between the Infrastructure layer (DTOs)
  * and the Domain layer (Entities). This decoupling allows API changes without breaking
@@ -30,7 +66,7 @@ export class SensorAssembler implements BaseAssembler<Sensor, SensorResource, Se
       maxValue: resource.maxValue,
       enabled: resource.enabled,
       lastValue: resource.lastValue,
-      type: resource.type,
+      type: toDomainSensorType(resource),
     });
   }
 
@@ -47,7 +83,7 @@ export class SensorAssembler implements BaseAssembler<Sensor, SensorResource, Se
       maxValue: entity.maxValue,
       enabled: entity.enabled,
       lastValue: entity.lastValue,
-      type: entity.type,
+      type: toBackendSensorType(entity.type),
     } as SensorResource;
   }
 }
