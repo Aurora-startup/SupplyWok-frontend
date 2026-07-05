@@ -132,8 +132,7 @@
       "subscription": "订阅",
       "clients": "我的客户",
       "forecast": "需求预测",
-      "catalog": "产品目录",
-      "delivery": "配送规划"
+      "catalog": "产品目录"
     },
     "header": {
       "profile": "个人资料",
@@ -286,6 +285,59 @@
       "quantity-invalid": "Quantity must be a valid number greater than zero.",
       "unit-required": "Unit is required.",
       "unit-price-invalid": "Price must be a valid number greater than zero."
+    }
+  },
+  "supplier-management": {
+    "orders": {
+      "filters": {
+        "confirmed": "已确认",
+        "pending": "待处理",
+        "in-transit": "运输中",
+        "delivered": "已交付",
+        "delayed": "延迟"
+      },
+      "priority": {
+        "high": "高",
+        "medium": "中",
+        "low": "低"
+      }
+    },
+    "dashboard": {
+      "breadcrumb": "供应商",
+      "title": "供应商仪表板",
+      "subtitle": "入站订单、客户需求和紧急供应信号。",
+      "loading": "正在加载仪表板数据...",
+      "stats": {
+        "orders-received": "收到的订单",
+        "demand-outlook": "需求展望",
+        "urgent-requests": "紧急请求",
+        "alert-badge": "警报"
+      },
+      "aggregate": {
+        "title": "汇总视图",
+        "summary": "图表摘要：{{ from }} -> {{ to }}",
+        "empty": "暂无预测数据。"
+      },
+      "orders": {
+        "eyebrow": "订单",
+        "title": "优先订单",
+        "caption": "此上下文中加载了 {{ count }} 个订单",
+        "view-all": "查看全部",
+        "pending": "待处理",
+        "confirmed": "已确认",
+        "in-transit": "运输中",
+        "date": "日期",
+        "priority": "优先级",
+        "items": "项目",
+        "total": "总计",
+        "untitled": "无编号订单",
+        "empty": "目前没有供应商订单。"
+      },
+      "priority": {
+        "high": "高",
+        "medium": "中",
+        "low": "低"
+      }
     }
   },
   "restaurantManagement": {

@@ -3,7 +3,6 @@ import { computed, inject, signal } from '@angular/core';
 import { retry } from 'rxjs';
 import { CatalogItem } from '../domain/model/catalog-item.entity';
 import { Client } from '../domain/model/client.entity';
-import { DeliveryRoute } from '../domain/model/delivery-route.entity';
 import { DemandForecast } from '../../analytics/domain/model/demand-forecast.entity';
 import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
 import { SupplierContact, SupplierNotifications, SupplierSettings } from '../domain/model/supplier-settings.entity';
@@ -19,7 +18,6 @@ export class SupplierManagementStore {
   private readonly ordersSignal = signal<Order[]>([]);
   private readonly catalogItemsSignal = signal<CatalogItem[]>([]);
   private readonly clientsSignal = signal<Client[]>([]);
-  private readonly deliveryRoutesSignal = signal<DeliveryRoute[]>([]);
   private readonly demandForecastSignal = signal<DemandForecast>(new DemandForecast());
   private readonly supplierSettingsSignal = signal<SupplierSettings>(new SupplierSettings());
   private readonly supplierSubscriptionSignal = signal<SupplierSubscription>(new SupplierSubscription());
@@ -29,7 +27,6 @@ export class SupplierManagementStore {
   readonly orders = this.ordersSignal.asReadonly();
   readonly catalogItems = this.catalogItemsSignal.asReadonly();
   readonly clients = this.clientsSignal.asReadonly();
-  readonly deliveryRoutes = this.deliveryRoutesSignal.asReadonly();
   readonly demandForecast = this.demandForecastSignal.asReadonly();
   readonly supplierSettings = this.supplierSettingsSignal.asReadonly();
   readonly supplierSubscription = this.supplierSubscriptionSignal.asReadonly();
@@ -40,9 +37,6 @@ export class SupplierManagementStore {
   readonly pendingOrdersCount = computed(() => this.orders().filter((order) => order.status === 'Pending').length);
   readonly inTransitOrdersCount = computed(() => this.orders().filter((order) => order.status === 'In Transit').length);
   readonly deliveredOrdersCount = computed(() => this.orders().filter((order) => order.status === 'Delivered').length);
-  readonly scheduledDeliveriesCount = computed(() =>
-    this.deliveryRoutes().filter((route) => ['planned', 'in-progress'].includes(route.status)).length
-  );
   readonly demandOutlook = computed(() => {
     if (!this.clients().length) return '+0%';
     const total = this.clients().reduce((sum, client) => sum + client.demandProjectionPercent, 0);
@@ -51,7 +45,6 @@ export class SupplierManagementStore {
 
   loadDashboard(): void {
     this.loadOrders();
-    this.loadDeliveryRoutes();
     this.loadDemandForecast();
     this.loadClients();
   }
@@ -136,14 +129,6 @@ export class SupplierManagementStore {
     this.supplierManagementApi.getClients().pipe(retry(2)).subscribe({
       next: (clients) => this.finishLoading(() => this.clientsSignal.set(clients)),
       error: (error) => this.failLoading(error, 'Failed to load clients')
-    });
-  }
-
-  loadDeliveryRoutes(): void {
-    this.startLoading();
-    this.supplierManagementApi.getDeliveryRoutes().pipe(retry(2)).subscribe({
-      next: (routes) => this.finishLoading(() => this.deliveryRoutesSignal.set(routes)),
-      error: (error) => this.failLoading(error, 'Failed to load delivery routes')
     });
   }
 

@@ -30,8 +30,7 @@
       "subscription": "Suscripción",
       "clients": "Mis Clientes",
       "forecast": "Pronóstico de Demanda",
-      "catalog": "Catálogo de Productos",
-      "delivery": "Planificación de Entregas"
+      "catalog": "Catálogo de Productos"
     },
     "titles": {
       "dashboard": "Dashboard",
@@ -294,6 +293,59 @@
       "quantity-invalid": "La cantidad debe ser un numero valido mayor que cero.",
       "unit-required": "La unidad es obligatoria.",
       "unit-price-invalid": "El precio debe ser un numero valido mayor que cero."
+    }
+  },
+  "supplier-management": {
+    "orders": {
+      "filters": {
+        "confirmed": "Confirmado",
+        "pending": "Pendiente",
+        "in-transit": "En tránsito",
+        "delivered": "Entregado",
+        "delayed": "Retrasado"
+      },
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      }
+    },
+    "dashboard": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Dashboard del proveedor",
+      "subtitle": "Pedidos entrantes, demanda de clientes y señales urgentes de abastecimiento.",
+      "loading": "Cargando datos del dashboard...",
+      "stats": {
+        "orders-received": "Pedidos recibidos",
+        "demand-outlook": "Proyección de demanda",
+        "urgent-requests": "Solicitudes urgentes",
+        "alert-badge": "Alerta"
+      },
+      "aggregate": {
+        "title": "Vista agregada",
+        "summary": "Resumen del gráfico: {{ from }} -> {{ to }}",
+        "empty": "No hay datos de pronóstico disponibles."
+      },
+      "orders": {
+        "eyebrow": "Pedidos",
+        "title": "Pedidos prioritarios",
+        "caption": "{{ count }} pedidos cargados en este contexto",
+        "view-all": "Ver todos",
+        "pending": "Pendientes",
+        "confirmed": "Confirmados",
+        "in-transit": "En tránsito",
+        "date": "Fecha",
+        "priority": "Prioridad",
+        "items": "Items",
+        "total": "Total",
+        "untitled": "Pedido sin código",
+        "empty": "Aún no hay pedidos para este proveedor."
+      },
+      "priority": {
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      }
     }
   },
   "restaurant-management": {

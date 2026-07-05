@@ -5,7 +5,6 @@ import { environment } from '../../../environments/environment';
 import { BaseApi } from '../../shared/infrastructure/base-api';
 import { CatalogItem } from '../domain/model/catalog-item.entity';
 import { Client } from '../domain/model/client.entity';
-import { DeliveryRoute } from '../domain/model/delivery-route.entity';
 import { DemandForecast } from '../../analytics/domain/model/demand-forecast.entity';
 import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
 import { SupplierSettings } from '../domain/model/supplier-settings.entity';
@@ -56,10 +55,6 @@ export class SupplierManagementApi extends BaseApi {
 
   getClients(): Observable<Client[]> {
     return this.clientsEndpoint.getAll();
-  }
-
-  getDeliveryRoutes(): Observable<DeliveryRoute[]> {
-    return of([]);
   }
 
   getDemandForecast(): Observable<DemandForecast> {

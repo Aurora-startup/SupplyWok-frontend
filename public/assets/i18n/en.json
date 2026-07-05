@@ -56,8 +56,7 @@
       "subscription": "Subscription",
       "clients": "My Clients",
       "forecast": "Demand Forecast",
-      "catalog": "Product Catalog",
-      "delivery": "Delivery Planning"
+      "catalog": "Product Catalog"
     },
     "header": {
       "options": "Options",
@@ -276,29 +275,6 @@
         "client-4": "Projected demand is steady with no urgent restock signal."
       }
     },
-    "delivery": {
-      "breadcrumb": "SUPPLIER",
-      "title": "Delivery planning",
-      "subtitle": "Plan grouped deliveries by date and route sequence for nearby restaurants.",
-      "filters": {
-        "date": "Date",
-        "all-dates": "All dates",
-        "status": "Status",
-        "all-statuses": "All statuses"
-      },
-      "stats": {
-        "routes": "Routes",
-        "stops": "Stops",
-        "orders": "Orders"
-      },
-      "status": {
-        "planned": "Planned",
-        "in-progress": "In progress",
-        "completed": "Completed"
-      },
-      "stop-orders": "{{ count }} order(s)",
-      "empty": "No delivery routes match your filters."
-    },
     "alerts": {
       "breadcrumb": "SUPPLIER",
       "title": "Supplier alerts",
@@ -454,25 +430,33 @@
     "dashboard": {
       "breadcrumb": "SUPPLIER",
       "title": "Supplier dashboard",
-      "subtitle": "Incoming orders, logistics load, clients, and demand outlook.",
+      "subtitle": "Incoming orders, client demand, and urgent supply signals.",
       "loading": "Loading dashboard data...",
       "stats": {
         "orders-received": "Orders received",
-        "scheduled-deliveries": "Scheduled deliveries",
         "demand-outlook": "Demand outlook",
         "urgent-requests": "Urgent requests",
         "alert-badge": "Alert"
-      },
-      "routes": {
-        "title": "Today's active routes",
-        "schedule": "{{ stops }} Stops · {{ departure }} - {{ arrival }}",
-        "date": "{{ date }}",
-        "empty": "No active routes available."
       },
       "aggregate": {
         "title": "Aggregate view",
         "summary": "Text summary for the chart: {{ from }} -> {{ to }}",
         "empty": "No forecast data available."
+      },
+      "orders": {
+        "eyebrow": "Orders",
+        "title": "Priority orders",
+        "caption": "{{ count }} orders loaded in this context",
+        "view-all": "View all",
+        "pending": "Pending",
+        "confirmed": "Confirmed",
+        "in-transit": "In transit",
+        "date": "Date",
+        "priority": "Priority",
+        "items": "Items",
+        "total": "Total",
+        "untitled": "Order without code",
+        "empty": "There are no supplier orders yet."
       },
       "priority": {
         "high": "High",

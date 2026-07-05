@@ -24,7 +24,6 @@ export const environment = {
   supplierPortalSupplierId: 1,
   catalogItemsEndpointPath: '/catalog-items',
   demandForecastsEndpointPath: '/demand-forecasts',
-  deliveryRoutesEndpointPath: '/delivery-routes',
   supplierSettingsEndpointPath: '/supplier-settings',
   supplierSubscriptionsEndpointPath: '/supplier-subscriptions',
   // end supplier apis endpoints
