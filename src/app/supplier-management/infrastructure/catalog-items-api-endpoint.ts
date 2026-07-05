@@ -6,7 +6,11 @@ import { CatalogItemAssembler } from './catalog-item-assembler';
 import { CatalogItemResource, CatalogItemsResponse } from './catalog-items-response';
 
 export class CatalogItemsApiEndpoint extends BaseApiEndpoint<CatalogItem, CatalogItemResource, CatalogItemsResponse, CatalogItemAssembler> {
-  constructor(http: HttpClient) {
-    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.catalogItemsEndpointPath}`, new CatalogItemAssembler());
+  constructor(http: HttpClient, supplierId: number | string) {
+    super(
+      http,
+      `${environment.supplyWokPlatformBaseUrl}${environment.suppliersEndpointPath}/${supplierId}${environment.catalogItemsEndpointPath}`,
+      new CatalogItemAssembler()
+    );
   }
 }

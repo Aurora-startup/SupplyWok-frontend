@@ -1,7 +1,18 @@
 import { BaseAssembler } from '../../shared/infrastructure/base-assembler';
 import { Table } from '../domain/model/table.entity';
 import { SensorState } from '../domain/enums/sensor-state.enum';
+import { TableStatus } from '../domain/enums/table-status.enum';
 import { TableResource, TableResponse } from './table-response';
+
+export function toDomainTableStatus(status: string | null | undefined): TableStatus {
+  return status === 'AVAILABLE'
+    ? TableStatus.FREE
+    : (status as TableStatus) ?? TableStatus.FREE;
+}
+
+export function toBackendTableStatus(status: TableStatus | string): string {
+  return status === TableStatus.FREE ? 'AVAILABLE' : status;
+}
 
 export class TableAssembler implements BaseAssembler<Table, TableResource, TableResponse> {
 
@@ -22,7 +33,7 @@ export class TableAssembler implements BaseAssembler<Table, TableResource, Table
    * @returns The converted Table entity.
    */
   toEntityFromResource(resource: TableResource): Table {
-    const status = resource.status as Table['status'];
+    const status = toDomainTableStatus(resource.status);
 
     return new Table({
       id: resource.id ?? null,
@@ -45,7 +56,7 @@ export class TableAssembler implements BaseAssembler<Table, TableResource, Table
       id: entity.id,
       number: entity.number,
       capacity: entity.capacity,
-      status: entity.status,
+      status: toBackendTableStatus(entity.status),
     };
   }
 }

@@ -97,6 +97,16 @@
   justify-content: flex-end;
 }
 
+.catalog-page__error {
+  background: #fde7e4;
+  border: 1px solid #f2c4bd;
+  border-radius: 8px;
+  color: var(--sw-danger);
+  font-weight: 700;
+  margin: 0;
+  padding: 12px 14px;
+}
+
 .catalog-page__actions,
 .catalog-page__dialog-actions {
   align-items: center;
@@ -161,7 +171,8 @@
 
 :host ::ng-deep .catalog-page__filters .p-inputtext,
 :host ::ng-deep .catalog-page__form .p-inputtext,
-:host ::ng-deep .catalog-page__form .p-inputnumber-input {
+:host ::ng-deep .catalog-page__form .p-inputnumber-input,
+:host ::ng-deep .catalog-page__form .p-select {
   width: 100%;
 }
 

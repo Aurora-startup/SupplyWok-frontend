@@ -15,8 +15,9 @@
         class="purchase-order-form-panel__select"
         [class.purchase-order-form-panel__select--invalid]="getFieldError('supplierId')"
         (change)="syncSupplierData()"
+        [disabled]="!supplierOptions().length"
       >
-        @for (supplier of supplierOptions; track supplier.id) {
+        @for (supplier of supplierOptions(); track supplier.id) {
           <option [value]="supplier.id">{{ supplier.name }}</option>
         }
       </select>
@@ -151,7 +152,7 @@
     }
 
     <div class="purchase-order-form-panel__footer">
-      <button type="submit" class="purchase-order-form-panel__submit">
+      <button type="submit" class="purchase-order-form-panel__submit" [disabled]="!supplierOptions().length || store.loading()">
         {{ 'supply-and-purchasing.form.actions.create-order' | translate }}
       </button>
     </div>

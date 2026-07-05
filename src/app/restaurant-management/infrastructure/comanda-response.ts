@@ -11,8 +11,10 @@ export interface ComandaResponse extends BaseResponse {
  * Represents the API resource/DTO for a comanda item.
  */
 export interface ComandaItemResource extends BaseResource {
-  dishName: string;
+  dishName?: string;
+  productName?: string;
   quantity: number;
+  notes?: string;
 }
 
 /**

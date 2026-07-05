@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
+import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
 import { map } from 'rxjs/operators';
 import { SupplierManagementStore } from '../../../application/supplier-management-store';
@@ -15,7 +16,7 @@ import { CatalogItem } from '../../../domain/model/catalog-item.entity';
 
 @Component({
   selector: 'app-catalog',
-  imports: [CommonModule, FormsModule, TranslateModule, TableModule, ButtonModule, InputTextModule, InputNumberModule, DialogModule],
+  imports: [CommonModule, FormsModule, TranslateModule, TableModule, ButtonModule, InputTextModule, InputNumberModule, SelectModule, DialogModule],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })
@@ -29,6 +30,11 @@ export class Catalog implements OnInit {
   deleteDialogVisible = false;
   itemToDelete: CatalogItem | null = null;
   formModel = new CatalogItem();
+  readonly unitOptions = [
+    { label: 'KG', value: 'KG' },
+    { label: 'LTR', value: 'LTR' },
+    { label: 'BOX', value: 'BOX' }
+  ];
 
   readonly isFormRoute = computed(() => {
     const path = this.route.snapshot.routeConfig?.path ?? '';
@@ -67,7 +73,7 @@ export class Catalog implements OnInit {
   }
 
   openCreateForm(): void {
-    this.formModel = new CatalogItem();
+    this.formModel = new CatalogItem({ unit: 'KG' });
     void this.router.navigate(['/supplier/catalog/new']);
   }
 
@@ -81,12 +87,20 @@ export class Catalog implements OnInit {
   }
 
   saveForm(): void {
+    this.formModel = new CatalogItem({
+      id: this.formModel.id,
+      name: this.formModel.name.trim(),
+      category: this.formModel.category.trim(),
+      price: Number(this.formModel.price),
+      unit: this.formModel.unit.trim().toUpperCase(),
+      deliveryConditions: this.formModel.deliveryConditions.trim()
+    });
+
     if (this.isEditing()) {
       this.store.updateCatalogItem(this.formModel);
     } else {
       this.store.createCatalogItem(this.formModel);
     }
-    this.cancelForm();
   }
 
   openDeleteDialog(item: CatalogItem): void {

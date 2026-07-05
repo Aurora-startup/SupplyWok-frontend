@@ -6,7 +6,11 @@ import { ClientAssembler } from './client-assembler';
 import { ClientResource, ClientsResponse } from './clients-response';
 
 export class ClientsApiEndpoint extends BaseApiEndpoint<Client, ClientResource, ClientsResponse, ClientAssembler> {
-  constructor(http: HttpClient) {
-    super(http, `${environment.supplyWokPlatformBaseUrl}${environment.supplierClientsEndpointPath}`, new ClientAssembler());
+  constructor(http: HttpClient, supplierId: number | string) {
+    super(
+      http,
+      `${environment.supplyWokPlatformBaseUrl}${environment.suppliersEndpointPath}/${supplierId}${environment.supplierClientsEndpointPath}`,
+      new ClientAssembler()
+    );
   }
 }

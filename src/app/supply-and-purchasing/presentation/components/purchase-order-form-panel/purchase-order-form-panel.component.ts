@@ -5,6 +5,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { Order } from '../../../domain/model/order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 import { PurchaseOrderStore } from '../../../application/purchase-order.store';
+import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
 
 interface SupplierOption {
   id: string;
@@ -19,6 +20,7 @@ interface SupplierOption {
 })
 export class PurchaseOrderFormPanelComponent {
   protected readonly store = inject(PurchaseOrderStore);
+  private readonly inventoryStore = inject(InventoryManagementStore);
 
   constructor() {
     effect(() => {
@@ -28,13 +30,22 @@ export class PurchaseOrderFormPanelComponent {
         this.store.resetOrderCreated();
       }
     });
+
+    effect(() => {
+      const suppliers = this.supplierOptions();
+      if (!this.form.supplierId && suppliers.length) {
+        this.form.supplierId = suppliers[0].id;
+        this.form.supplierName = suppliers[0].name;
+      }
+    });
   }
 
-  protected readonly supplierOptions: SupplierOption[] = [
-    { id: '201', name: 'Golden Wok Produce' },
-    { id: '202', name: 'Andes Cold Chain' },
-    { id: '203', name: 'Orient Pantry Co.' }
-  ];
+  protected readonly supplierOptions = computed<SupplierOption[]>(() =>
+    this.inventoryStore.suppliers().map((supplier) => ({
+      id: String(supplier.id),
+      name: supplier.name,
+    }))
+  );
 
   protected readonly priorityOptions = computed(() => [
     { value: 'High', labelKey: 'supply-and-purchasing.shared.priority.high' },
@@ -45,8 +56,8 @@ export class PurchaseOrderFormPanelComponent {
   protected readonly draftLineErrorScope = signal('draftLine');
 
   protected readonly form = {
-    supplierId: this.supplierOptions[0].id,
-    supplierName: this.supplierOptions[0].name,
+    supplierId: '',
+    supplierName: '',
     orderDate: this.formatLocalDate(new Date()),
     estimatedDate: this.formatLocalDate(this.addDays(new Date(), 2)),
     priority: 'Medium'
@@ -62,7 +73,7 @@ export class PurchaseOrderFormPanelComponent {
   protected orderLines: OrderItem[] = [];
 
   protected syncSupplierData(): void {
-    const selectedSupplier = this.supplierOptions.find((supplier) => supplier.id === this.form.supplierId);
+    const selectedSupplier = this.supplierOptions().find((supplier) => supplier.id === this.form.supplierId);
     this.form.supplierName = selectedSupplier?.name ?? '';
   }
 

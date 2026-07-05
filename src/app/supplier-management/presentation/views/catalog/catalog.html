@@ -9,7 +9,7 @@
   </header>
 
   @if (isFormRoute()) {
-    <form class="catalog-page__form" (ngSubmit)="saveForm()">
+    <form class="catalog-page__form" #catalogForm="ngForm" (ngSubmit)="saveForm()">
       <label>
         <span>{{ 'supplier-management.catalog.form.product' | translate }}</span>
         <input pInputText name="name" [(ngModel)]="formModel.name" required>
@@ -20,21 +20,25 @@
       </label>
       <label>
         <span>{{ 'supplier-management.catalog.form.price' | translate }}</span>
-        <p-inputNumber name="price" [(ngModel)]="formModel.price" mode="decimal" [minFractionDigits]="0" [maxFractionDigits]="2" />
+        <p-inputNumber name="price" [(ngModel)]="formModel.price" mode="decimal" [min]="0.01" [minFractionDigits]="0" [maxFractionDigits]="2" required />
       </label>
       <label>
         <span>{{ 'supplier-management.catalog.form.unit' | translate }}</span>
-        <input pInputText name="unit" [(ngModel)]="formModel.unit" required>
+        <p-select name="unit" [options]="unitOptions" optionLabel="label" optionValue="value" [(ngModel)]="formModel.unit" required />
       </label>
       <label class="catalog-page__form-wide">
         <span>{{ 'supplier-management.catalog.form.delivery-conditions' | translate }}</span>
-        <input pInputText name="deliveryConditions" [(ngModel)]="formModel.deliveryConditions">
+        <input pInputText name="deliveryConditions" [(ngModel)]="formModel.deliveryConditions" required>
       </label>
       <div class="catalog-page__form-actions">
         <p-button type="button" text [label]="'supplier-management.catalog.form.cancel' | translate" (onClick)="cancelForm()" />
-        <p-button type="submit" [label]="submitLabelKey() | translate" />
+        <p-button type="submit" [label]="submitLabelKey() | translate" [disabled]="catalogForm.invalid || store.loading()" />
       </div>
     </form>
+  }
+
+  @if (store.error()) {
+    <p class="catalog-page__error">{{ store.error() }}</p>
   }
 
   <section class="catalog-page__filters">

@@ -17,15 +17,32 @@ export function buildCategoryId(categoryName: string | null | undefined): number
 function normalizeUnitOfMeasure(unitOfMeasure: string | null | undefined): UnitOfMeasure | null {
   const normalizedUnit = unitOfMeasure?.trim().toUpperCase();
 
-  if (
-    normalizedUnit === UnitOfMeasure.KG ||
-    normalizedUnit === UnitOfMeasure.LTS ||
-    normalizedUnit === UnitOfMeasure.UNITS
-  ) {
-    return normalizedUnit as UnitOfMeasure;
+  switch (normalizedUnit) {
+    case 'KILOGRAMS':
+    case UnitOfMeasure.KG:
+      return UnitOfMeasure.KG;
+    case 'LITERS':
+    case UnitOfMeasure.LTS:
+      return UnitOfMeasure.LTS;
+    case 'UNITS':
+    case UnitOfMeasure.UNITS:
+      return UnitOfMeasure.UNITS;
+    default:
+      return null;
   }
+}
 
-  return null;
+function toBackendUnitOfMeasure(unitOfMeasure: UnitOfMeasure | null): string | null {
+  switch (unitOfMeasure) {
+    case UnitOfMeasure.KG:
+      return 'Kilograms';
+    case UnitOfMeasure.LTS:
+      return 'Liters';
+    case UnitOfMeasure.UNITS:
+      return 'Units';
+    default:
+      return null;
+  }
 }
 
 export class InventoryItemAssembler implements BaseAssembler<
@@ -64,7 +81,7 @@ export class InventoryItemAssembler implements BaseAssembler<
       name: entity.name,
       currentStock: entity.currentStock,
       minimumStockLevel: entity.minimumStockLevel,
-      unitOfMeasure: entity.unitOfMeasure,
+      unitOfMeasure: toBackendUnitOfMeasure(entity.unitOfMeasure),
       category: entity.category?.name ?? null,
     } as ItemResource;
   }
