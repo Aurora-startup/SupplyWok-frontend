@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
@@ -30,7 +30,7 @@ import { RestaurantAlert, RestaurantAlertSeverity } from '../../../domain/model/
   templateUrl: './alerts-view.component.html',
   styleUrls: ['./alerts-view.component.css']
 })
-export class AlertsViewComponent {
+export class AlertsViewComponent implements OnInit {
   searchQuery = signal('');
   selectedSeverity = signal<RestaurantAlertSeverity | 'All'>('All');
   
@@ -66,6 +66,10 @@ export class AlertsViewComponent {
   });
 
   constructor(public iotStore: IotStore) {}
+
+  ngOnInit(): void {
+    this.iotStore.loadRestaurantAlerts();
+  }
 
   getSeveritySeverity(severity: RestaurantAlertSeverity): "danger" | "warn" | "info" | "secondary" {
     switch (severity) {

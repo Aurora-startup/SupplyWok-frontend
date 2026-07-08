@@ -86,7 +86,7 @@ export class PurchaseOrderFormPanelComponent {
 
   protected buildOrderItemFromDraft(): OrderItem {
     return new OrderItem({
-      id: Date.now() + Math.floor(Math.random() * 1000),
+      id: null,
       inventoryItemId: null,
       productName: this.draftLine.productName,
       quantity: Number(this.draftLine.quantity || 0),
