@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { InventoryManagementStore } from '../../../application/inventory-management-store';
@@ -46,20 +46,18 @@ export class InventoryItemForm {
       validators: [Validators.required],
     }),
 
-    idSupplier: new FormControl<number | null>(null, {
-    }),
-
     unitOfMeasure: new FormControl<UnitOfMeasure | null>(null, {
       validators: [Validators.required],
     }),
   });
 
   categories = this.store.inventoryCategories;
-  suppliers = this.store.suppliers;
   newCategoryName = new FormControl<string>('', { nonNullable: true });
 
   isEdit = false;
   itemId: number | null = null;
+  private readonly itemIdSignal = signal<number | null>(null);
+  private patchedItemId: number | null = null;
 
   constructor() {
     effect(() => {
@@ -69,24 +67,43 @@ export class InventoryItemForm {
       }
     });
 
+    effect(() => {
+      const itemId = this.itemIdSignal();
+
+      if (!itemId || this.patchedItemId === itemId) {
+        return;
+      }
+
+      const item = this.store.inventoryItems().find((inventoryItem) => inventoryItem.id === itemId);
+
+      if (!item) {
+        return;
+      }
+
+      this.form.patchValue({
+        name: item.name,
+        currentStock: item.currentStock,
+        minimumStockLevel: item.minimumStockLevel,
+        idCategory: item.idCategory,
+        unitOfMeasure: item.unitOfMeasure,
+      });
+      this.patchedItemId = itemId;
+    });
+
     this.route.params.subscribe((params) => {
       this.itemId = params['id'] ? +params['id'] : null;
-
       this.isEdit = !!this.itemId;
+      this.patchedItemId = null;
+      this.itemIdSignal.set(this.itemId);
 
-      if (this.isEdit) {
-        const item = this.store.inventoryItems().find((i) => i.id === this.itemId);
-
-        if (item) {
-          this.form.patchValue({
-            name: item.name,
-            currentStock: item.currentStock,
-            minimumStockLevel: item.minimumStockLevel,
-            idCategory: item.idCategory,
-            idSupplier: item.idSupplier,
-            unitOfMeasure: item.unitOfMeasure,
-          });
-        }
+      if (!this.isEdit) {
+        this.form.reset({
+          name: '',
+          currentStock: 0,
+          minimumStockLevel: 0,
+          idCategory: null,
+          unitOfMeasure: null,
+        });
       }
     });
   }
@@ -105,11 +122,10 @@ export class InventoryItemForm {
 
       idCategory: this.form.value.idCategory ?? 0,
 
-      idSupplier: this.form.value.idSupplier ?? 0,
+      idSupplier: 0,
 
       unitOfMeasure: this.form.value.unitOfMeasure!,
       category: this.store.inventoryCategories().find((category) => category.id === (this.form.value.idCategory ?? 0)) ?? null,
-      supplier: this.store.suppliers().find((supplier) => supplier.id === (this.form.value.idSupplier ?? 0)) ?? null,
     });
 
     if (this.isEdit) {

@@ -15,6 +15,14 @@ import { buildCategoryId } from './inventory-item-assembler';
 })
 export class InventoryManagementApi extends BaseApi {
   private readonly localCategoriesStorageKey = 'supply-wok.inventory.local-categories';
+  private readonly defaultCategories = [
+    new InventoryCategory({ id: buildCategoryId('Grains'), name: 'Grains' }),
+    new InventoryCategory({ id: buildCategoryId('Proteins'), name: 'Proteins' }),
+    new InventoryCategory({ id: buildCategoryId('Vegetables'), name: 'Vegetables' }),
+    new InventoryCategory({ id: buildCategoryId('Sauces'), name: 'Sauces' }),
+    new InventoryCategory({ id: buildCategoryId('Beverages'), name: 'Beverages' }),
+    new InventoryCategory({ id: buildCategoryId('Packaging'), name: 'Packaging' }),
+  ];
   private readonly inventoryItemsEndpoint: InventoryItemsApiEndpoint;
   private readonly inventoryCategoriesEndpoint: CategoriesApiEndpoint;
   private readonly suppliersEndpoint: SuppliersApiEndpoint;
@@ -71,21 +79,7 @@ export class InventoryManagementApi extends BaseApi {
   }
 
   getCategories(): Observable<InventoryCategory[]> {
-    return this.inventoryItemsEndpoint.getAll().pipe(
-      map((items) => this.mergeCategories([
-        ...items
-          .map((item) => item.category)
-          .filter((category): category is InventoryCategory => category !== null)
-          .map(
-            (category) =>
-              new InventoryCategory({
-                id: buildCategoryId(category.name),
-                name: category.name,
-              }),
-          ),
-        ...this.getStoredCategories(),
-      ])),
-    );
+    return of(this.mergeCategories([...this.defaultCategories, ...this.getStoredCategories()]));
   }
 
   /**
@@ -118,7 +112,7 @@ export class InventoryManagementApi extends BaseApi {
       return throwError(() => new Error('Category name is required'));
     }
 
-    const existingCategory = this.getStoredCategories().find(
+    const existingCategory = this.mergeCategories([...this.defaultCategories, ...this.getStoredCategories()]).find(
       (storedCategory) => storedCategory.name.trim().toLowerCase() === normalizedName.toLowerCase(),
     );
 

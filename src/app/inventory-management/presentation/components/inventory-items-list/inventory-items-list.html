@@ -54,35 +54,6 @@
 
   </div>
 
-  <!-- Supplier -->
-
-  <div class="filter-box">
-
-    <div class="filter-label">
-      {{ 'inventory.search-bar.supplier-label' | translate }}
-    </div>
-
-    <mat-select
-      class="custom-select"
-      [placeholder]="'inventory.search-bar.supplier-placeholder' | translate"
-      (selectionChange)="store.selectedSupplier.set($event.value); store.resetPage()">
-
-      <mat-option [value]="null">
-        {{ 'inventory.search-bar.supplier-placeholder' | translate }}
-      </mat-option>
-
-      @for (supplier of store.suppliers(); track supplier.id) {
-
-        <mat-option [value]="supplier.id">
-          {{ supplier.name }}
-        </mat-option>
-
-      }
-
-    </mat-select>
-
-  </div>
-
   <!-- Status -->
 
   <div class="filter-box">
@@ -216,7 +187,7 @@
           <div class="stock-numbers">
 
             <span class="stock-quantity" [class]="getStockClass(item)">
-              {{ item.currentStock }} {{ item.unitOfMeasure.toLowerCase() }}
+              {{ item.currentStock }} {{ formatUnitOfMeasure(item) }}
             </span>
 
             <span class="stock-min">
@@ -253,31 +224,6 @@
         <span class="category-chip">
           {{ store.getCategoryName(item.idCategory) }}
         </span>
-
-      </td>
-
-    </ng-container>
-
-    <!-- Supplier -->
-    <ng-container matColumnDef="supplier">
-
-      <th mat-header-cell *matHeaderCellDef>
-        {{ 'inventory.list.supplier-label' | translate }}
-      </th>
-
-      <td mat-cell *matCellDef="let item">
-
-        <div class="supplier-cell">
-
-          <mat-icon class="supplier-icon">
-            grid_view
-          </mat-icon>
-
-          <span>
-            {{ store.getSupplierName(item.idSupplier) }}
-          </span>
-
-        </div>
 
       </td>
 

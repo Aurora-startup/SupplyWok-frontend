@@ -47,6 +47,7 @@ export class RestaurantManagementStore {
     this.tableApi.getTables().subscribe({
       next: (tables) => {
         this.tables.set(tables);
+        this.resolveComandaTableNumbers();
         this.loading.set(false);
       },
       error: () => {
@@ -144,7 +145,9 @@ export class RestaurantManagementStore {
   }
 
   loadComandas(): void {
-    this.comandaApi.getComandas().subscribe(comandas => this.comandas.set(comandas));
+    this.comandaApi.getComandas().subscribe(comandas => {
+      this.comandas.set(comandas.map((comanda) => this.withResolvedTableNumber(comanda)));
+    });
   }
 
   checkoutTable(table: Table): void {
@@ -183,7 +186,7 @@ export class RestaurantManagementStore {
     });
     this.comandaApi.updateComanda(updated).subscribe(() => {
       this.comandas.update(list =>
-        list.map(c => c.id === comanda.id ? updated : c)
+        list.map(c => c.id === comanda.id ? this.withResolvedTableNumber(updated) : c)
       );
     });
   }
@@ -205,9 +208,28 @@ export class RestaurantManagementStore {
     });
 
     this.comandaApi.createComanda(comanda).subscribe({
-      next: created => this.comandas.update(list => [...list, created]),
+      next: created => this.comandas.update(list => [...list, this.withResolvedTableNumber(created, comanda)]),
     });
     return { success: true };
+  }
+
+  private resolveComandaTableNumbers(): void {
+    this.comandas.update((comandas) => comandas.map((comanda) => this.withResolvedTableNumber(comanda)));
+  }
+
+  private withResolvedTableNumber(comanda: Comanda, fallback?: Comanda): Comanda {
+    const table = this.tables().find((item) => Number(item.id) === Number(comanda.tableId));
+    const tableNumber = table?.number ?? comanda.tableNumber ?? fallback?.tableNumber ?? 0;
+
+    return new Comanda({
+      id: comanda.id,
+      tableId: comanda.tableId,
+      tableNumber,
+      items: comanda.items,
+      status: comanda.status,
+      createdAt: comanda.createdAt,
+      updatedAt: comanda.updatedAt,
+    });
   }
 
   getTableLabel(table: Table): string {

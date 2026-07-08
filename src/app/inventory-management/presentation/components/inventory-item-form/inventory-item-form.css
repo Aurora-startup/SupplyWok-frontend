@@ -2,8 +2,9 @@
 
 :host {
   display: block;
-  background: #f6f4f1;
-  min-height: 100%;
+  background: #eee9df;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  min-height: calc(100vh - 73px);
 }
 
 /* ─────────────────────────────────────────────
@@ -11,8 +12,9 @@
 ───────────────────────────────────────────── */
 .form-page {
   padding: 24px;
-  background: inherit;
-  min-height: calc(100vh - 88px);
+  background: #eee9df;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  min-height: calc(100vh - 73px);
   box-sizing: border-box;
 }
 
@@ -51,7 +53,7 @@
   font-size: 24px;
   font-weight: 700;
   color: #2D241E;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', system-ui, sans-serif;
 }
 
 .form-subtitle {
@@ -106,6 +108,7 @@ mat-form-field {
 
 .category-builder__title {
   color: #2D241E;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 14px;
   font-weight: 700;
 }
@@ -131,10 +134,26 @@ mat-form-field {
   align-items: center;
   border-radius: 10px !important;
   display: inline-flex;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 700;
   gap: 8px;
   height: 56px;
   padding: 0 18px !important;
+}
+
+::ng-deep .mat-mdc-form-field,
+::ng-deep .mat-mdc-input-element,
+::ng-deep .mat-mdc-select,
+::ng-deep .mat-mdc-select-value,
+::ng-deep .mat-mdc-select-placeholder,
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  font-family: 'Montserrat', system-ui, sans-serif !important;
+}
+
+::ng-deep .mat-mdc-button .mdc-button__label,
+::ng-deep .mat-mdc-unelevated-button .mdc-button__label,
+::ng-deep .mat-mdc-outlined-button .mdc-button__label {
+  font-family: 'Poppins', system-ui, sans-serif !important;
 }
 
 /* Outlined field style */
@@ -195,6 +214,7 @@ mat-form-field {
   height: 44px;
   padding: 0 20px;
   border-radius: 10px !important;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 600;
   color: #5f5a54 !important;
 }
@@ -206,6 +226,7 @@ mat-form-field {
   border-radius: 10px !important;
   background: #C21204 !important;
   color: white !important;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 700;
   letter-spacing: 0.02em;
   box-shadow: none !important;

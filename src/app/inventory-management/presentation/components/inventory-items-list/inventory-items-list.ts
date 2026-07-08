@@ -46,7 +46,7 @@ export class InventoryItemsList {
 
   // Agrega estas propiedades y métodos a tu clase InventoryItemsList:
 
-  protected displayedColumns = ['product', 'stockLevels', 'category', 'supplier', 'actions'];
+  protected displayedColumns = ['product', 'stockLevels', 'category', 'actions'];
 
   // Determina el estado del stock: 'good' | 'low' | 'refill'
   protected getStockClass(item: InventoryItem): string {
@@ -59,7 +59,12 @@ export class InventoryItemsList {
   // Porcentaje para la barra (máx 100%, usando 3x el mínimo como "full")
   protected getStockPercent(item: InventoryItem): number {
     const full = item.minimumStockLevel * 3;
+    if (full <= 0) return 100;
     return Math.min((item.currentStock / full) * 100, 100);
+  }
+
+  protected formatUnitOfMeasure(item: InventoryItem): string {
+    return item.unitOfMeasure?.toLowerCase() ?? '';
   }
 
   protected onEdit(item: InventoryItem): void {
@@ -90,8 +95,6 @@ export class InventoryItemsList {
       this.store.addInventoryCategory(category);
     }
 
-    this.store.selectedCategory.set(category.id);
-    this.store.resetPage();
     this.newCategoryName = '';
   }
 

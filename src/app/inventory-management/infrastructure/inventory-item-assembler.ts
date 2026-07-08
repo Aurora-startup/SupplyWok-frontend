@@ -21,6 +21,9 @@ function normalizeUnitOfMeasure(unitOfMeasure: string | null | undefined): UnitO
     case 'KILOGRAMS':
     case UnitOfMeasure.KG:
       return UnitOfMeasure.KG;
+    case 'GRAMS':
+    case UnitOfMeasure.GR:
+      return UnitOfMeasure.GR;
     case 'LITERS':
     case UnitOfMeasure.LTS:
       return UnitOfMeasure.LTS;
@@ -36,6 +39,8 @@ function toBackendUnitOfMeasure(unitOfMeasure: UnitOfMeasure | null): string | n
   switch (unitOfMeasure) {
     case UnitOfMeasure.KG:
       return 'Kilograms';
+    case UnitOfMeasure.GR:
+      return 'Grams';
     case UnitOfMeasure.LTS:
       return 'Liters';
     case UnitOfMeasure.UNITS:
