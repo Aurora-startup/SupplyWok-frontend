@@ -1,77 +1,11 @@
+@import '../../supplier-ui.css';
+
 :host {
   display: block;
-}
-
-.clients-page {
-  color: var(--sw-text);
-  display: flex;
-  flex-direction: column;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  gap: 18px;
-}
-
-.clients-page__header {
-  max-width: 760px;
-}
-
-.clients-page__header p {
-  color: var(--sw-accent);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  margin: 0 0 6px;
-  text-transform: uppercase;
-}
-
-.clients-page__header h1 {
-  color: #342923;
-  font-size: clamp(2rem, 2.2vw, 2.4rem);
-  line-height: 1;
-  margin: 0;
-}
-
-.clients-page__header span {
-  color: #65594f;
-  display: block;
-  line-height: 1.55;
-  margin-top: 8px;
-}
-
-.clients-page__filters {
-  align-items: center;
-  background: var(--sw-surface);
-  border: 1px solid var(--sw-border);
-  border-radius: 8px;
-  display: grid;
-  gap: 12px;
-  grid-template-columns: minmax(240px, 1fr) minmax(180px, 260px);
-  padding: 12px;
-}
-
-.clients-page__filters input,
-.clients-page__filters p-select {
-  width: 100%;
-}
-
-.clients-page__count {
-  color: var(--sw-text-muted);
-  font-size: 0.9rem;
-  margin: -4px 0 0;
-}
-
-:host ::ng-deep .clients-page__table .p-datatable-tbody > tr > td:first-child {
-  color: #2d241e;
-  font-weight: 800;
 }
 
 :host ::ng-deep .clients-page__table .p-datatable-tbody > tr > td:nth-child(5) {
   color: var(--sw-info);
   font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 800;
-}
-
-@media (max-width: 700px) {
-  .clients-page__filters {
-    grid-template-columns: 1fr;
-  }
 }

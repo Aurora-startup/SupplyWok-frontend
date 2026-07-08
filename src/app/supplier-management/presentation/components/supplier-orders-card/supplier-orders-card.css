@@ -4,10 +4,10 @@
 
 :host ::ng-deep .supplier-orders-card {
   min-height: 388px;
-  border: 1px solid #efe4d4;
+  border: 1px solid var(--sw-border);
   border-radius: 8px;
-  background: #fffdf9;
-  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+  background: var(--sw-surface);
+  box-shadow: var(--sw-shadow-soft);
 }
 
 :host ::ng-deep .supplier-orders-card .p-card-body {
@@ -16,7 +16,7 @@
 
 .orders-card__header {
   align-items: center;
-  border-bottom: 1px solid #ece5dc;
+  border-bottom: 1px solid var(--sw-border);
   display: flex;
   gap: 16px;
   justify-content: space-between;
@@ -24,7 +24,7 @@
 }
 
 .orders-card__header p {
-  color: #a97827;
+  color: var(--sw-accent);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -45,7 +45,7 @@
 .orders-card__link {
   align-items: center;
   background: #fff7ec;
-  border: 1px solid #ead8bd;
+  border: 1px solid var(--sw-border-strong);
   border-radius: 8px;
   color: #7d5518;
   display: inline-flex;
@@ -105,7 +105,7 @@
 }
 
 .orders-card__item {
-  border: 1px solid #efe4d4;
+  border: 1px solid var(--sw-border);
   border-radius: 8px;
   padding: 12px;
 }

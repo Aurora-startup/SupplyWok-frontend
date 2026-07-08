@@ -43,6 +43,41 @@ input, button, select, textarea {
   font-family: inherit;
 }
 
+:root {
+  --mdc-filled-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mdc-outlined-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mdc-text-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mdc-protected-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-filled-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-outlined-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-text-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-protected-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-form-field-container-text-font: 'Montserrat', system-ui, sans-serif;
+  --mat-select-trigger-text-font: 'Montserrat', system-ui, sans-serif;
+  --mat-option-label-text-font: 'Montserrat', system-ui, sans-serif;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-menu-item,
+.mat-button-toggle,
+.mdc-button,
+.mdc-button__label {
+  font-family: 'Poppins', system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+.mat-mdc-form-field,
+.mat-mdc-select,
+.mat-mdc-option,
+.mat-mdc-table,
+.mat-mdc-dialog-container {
+  font-family: 'Montserrat', system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
 /* Premium PrimeNG Menu Customization */
 .premium-menu {
   border-radius: 12px !important;

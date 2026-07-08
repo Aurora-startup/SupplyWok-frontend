@@ -20,9 +20,35 @@ export class ProfileApiEndpoint extends BaseApiEndpoint<Profile, ProfileResource
     );
   }
 
+  getByAccountEmail(profileType: AppRoleScope, email: string): Observable<Profile> {
+    return this.http.get<ProfileResource>(`${this.endpointUrl}/${profileType}/accounts/by-email`, {
+      params: { email },
+    }).pipe(
+      map((resource) => this.assembler.toEntityFromResource(resource)),
+      catchError(this.handleError('Failed to fetch profile'))
+    );
+  }
+
+  getAllByType(profileType: AppRoleScope): Observable<Profile[]> {
+    return this.http.get<ProfileResource[]>(`${this.endpointUrl}/${profileType}/accounts`).pipe(
+      map((resources) => resources.map((resource) => this.assembler.toEntityFromResource(resource))),
+      catchError(this.handleError('Failed to fetch profiles'))
+    );
+  }
+
   updateProfile(profile: Profile): Observable<Profile> {
     const resource = this.assembler.toResourceFromEntity(profile);
     return this.http.put<ProfileResource>(`${this.endpointUrl}/${profile.profileType}`, resource).pipe(
+      map((updated) => this.assembler.toEntityFromResource(updated)),
+      catchError(this.handleError('Failed to update profile'))
+    );
+  }
+
+  updateProfileForAccount(profile: Profile, accountEmail: string): Observable<Profile> {
+    const resource = this.assembler.toResourceFromEntity(profile);
+    return this.http.put<ProfileResource>(`${this.endpointUrl}/${profile.profileType}/accounts/by-email`, resource, {
+      params: { email: accountEmail },
+    }).pipe(
       map((updated) => this.assembler.toEntityFromResource(updated)),
       catchError(this.handleError('Failed to update profile'))
     );

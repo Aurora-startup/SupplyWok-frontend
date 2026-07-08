@@ -6,6 +6,11 @@ import { Order } from '../../../domain/model/order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 import { PurchaseOrderStore } from '../../../application/purchase-order.store';
 import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
+import { ProfileApi } from '../../../../profile-management/infrastructure/profile-api';
+import { Profile } from '../../../../profile-management/domain/model/profile.entity';
+import { IamApi } from '../../../../iam/infrastructure/iam-api';
+import { User } from '../../../../iam/domain/model/user.entity';
+import { catchError, forkJoin, of } from 'rxjs';
 
 interface SupplierOption {
   id: string;
@@ -21,8 +26,17 @@ interface SupplierOption {
 export class PurchaseOrderFormPanelComponent {
   protected readonly store = inject(PurchaseOrderStore);
   private readonly inventoryStore = inject(InventoryManagementStore);
+  private readonly profileApi = inject(ProfileApi);
+  private readonly iamApi = inject(IamApi);
+  private readonly supplierProfiles = signal<Profile[]>([]);
 
   constructor() {
+    this.inventoryStore.refreshSuppliers();
+    this.iamApi.getUsers().subscribe({
+      next: (users) => this.loadSupplierProfiles(users.filter((user) => user.roles.includes('ROLE_SUPPLIER'))),
+      error: () => this.supplierProfiles.set([]),
+    });
+
     effect(() => {
       if (this.store.orderCreated()) {
         this.orderLines = [];
@@ -43,7 +57,7 @@ export class PurchaseOrderFormPanelComponent {
   protected readonly supplierOptions = computed<SupplierOption[]>(() =>
     this.inventoryStore.suppliers().map((supplier) => ({
       id: String(supplier.id),
-      name: supplier.name,
+      name: this.resolveSupplierName(supplier.email, supplier.name),
     }))
   );
 
@@ -173,5 +187,34 @@ export class PurchaseOrderFormPanelComponent {
 
   private buildPurchaseOrderCode(): string {
     return `PO-${String(Date.now()).slice(-5)}`;
+  }
+
+  private resolveSupplierName(email: string, fallbackName: string): string {
+    const normalizedEmail = email.trim().toLowerCase();
+    const profile = this.supplierProfiles().find(
+      (supplierProfile) => supplierProfile.email.trim().toLowerCase() === normalizedEmail
+    );
+    return profile?.businessName.trim() || fallbackName;
+  }
+
+  private loadSupplierProfiles(users: User[]): void {
+    if (!users.length) {
+      this.supplierProfiles.set([]);
+      return;
+    }
+
+    forkJoin(
+      users.map((user) =>
+        this.profileApi.getProfileByAccountEmail('supplier', user.email).pipe(
+          catchError(() => of(null))
+        )
+      )
+    ).subscribe((profiles) => {
+      this.supplierProfiles.set(
+        profiles.filter((profile): profile is Profile =>
+          profile !== null && profile.id !== null && profile.profileType === 'supplier'
+        )
+      );
+    });
   }
 }

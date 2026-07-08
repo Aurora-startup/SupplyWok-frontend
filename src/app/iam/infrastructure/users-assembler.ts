@@ -9,4 +9,8 @@ export class UsersAssembler {
   toEntityFromResource(resource: UserResource): User {
     return UserAssembler.toEntityFromResource(resource);
   }
+
+  toEntitiesFromResponse(resources: UserResource[]): User[] {
+    return resources.map((resource) => this.toEntityFromResource(resource));
+  }
 }

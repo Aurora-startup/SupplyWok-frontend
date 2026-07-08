@@ -1,54 +1,31 @@
-<section class="catalog-page">
-  <header class="catalog-page__header">
-    <div>
-      <p>{{ 'supplier-management.catalog.breadcrumb' | translate }}</p>
-      <h1>{{ 'supplier-management.catalog.title' | translate }}</h1>
-      <p class="catalog-page__subtitle">{{ 'supplier-management.catalog.subtitle' | translate }}</p>
+<section class="supplier-page catalog-page">
+  <header class="supplier-page__header">
+    <div class="supplier-page__header-main">
+      <p class="supplier-page__kicker">{{ 'supplier-management.catalog.breadcrumb' | translate }}</p>
+      <h1 class="supplier-page__title">{{ 'supplier-management.catalog.title' | translate }}</h1>
+      <p class="supplier-page__subtitle">{{ 'supplier-management.catalog.subtitle' | translate }}</p>
     </div>
-    <p-button icon="pi pi-plus" [label]="'supplier-management.catalog.add' | translate" styleClass="catalog-page__add-btn" (onClick)="openCreateForm()" />
+    <button type="button" mat-flat-button class="catalog-page__add-button" (click)="openCreateForm()">
+      <mat-icon>add</mat-icon>
+      {{ 'supplier-management.catalog.add' | translate }}
+    </button>
   </header>
 
-  @if (isFormRoute()) {
-    <form class="catalog-page__form" #catalogForm="ngForm" (ngSubmit)="saveForm()">
-      <label>
-        <span>{{ 'supplier-management.catalog.form.product' | translate }}</span>
-        <input pInputText name="name" [(ngModel)]="formModel.name" required>
-      </label>
-      <label>
-        <span>{{ 'supplier-management.catalog.form.category' | translate }}</span>
-        <input pInputText name="category" [(ngModel)]="formModel.category" required>
-      </label>
-      <label>
-        <span>{{ 'supplier-management.catalog.form.price' | translate }}</span>
-        <p-inputNumber name="price" [(ngModel)]="formModel.price" mode="decimal" [min]="0.01" [minFractionDigits]="0" [maxFractionDigits]="2" required />
-      </label>
-      <label>
-        <span>{{ 'supplier-management.catalog.form.unit' | translate }}</span>
-        <p-select name="unit" [options]="unitOptions" optionLabel="label" optionValue="value" [(ngModel)]="formModel.unit" required />
-      </label>
-      <label class="catalog-page__form-wide">
-        <span>{{ 'supplier-management.catalog.form.delivery-conditions' | translate }}</span>
-        <input pInputText name="deliveryConditions" [(ngModel)]="formModel.deliveryConditions" required>
-      </label>
-      <div class="catalog-page__form-actions">
-        <p-button type="button" text [label]="'supplier-management.catalog.form.cancel' | translate" (onClick)="cancelForm()" />
-        <p-button type="submit" [label]="submitLabelKey() | translate" [disabled]="catalogForm.invalid || store.loading()" />
-      </div>
-    </form>
-  }
-
   @if (store.error()) {
-    <p class="catalog-page__error">{{ store.error() }}</p>
+    <p class="supplier-page__error">{{ store.error() }}</p>
   }
 
-  <section class="catalog-page__filters">
-    <label class="catalog-page__search-block">
+  <section class="supplier-page__filters supplier-page__filters--single">
+    <label class="supplier-page__field">
       <span>{{ 'supplier-management.catalog.search' | translate }}</span>
-      <input pInputText type="search" [(ngModel)]="searchQuery">
+      <span class="supplier-page__input-icon">
+        <i class="pi pi-search"></i>
+        <input pInputText type="search" [(ngModel)]="searchQuery">
+      </span>
     </label>
   </section>
 
-  <p-table [value]="filteredCatalogItems" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="catalog-page__table">
+  <p-table [value]="filteredCatalogItems" [paginator]="true" [rows]="8" responsiveLayout="scroll" styleClass="supplier-table catalog-page__table">
     <ng-template pTemplate="header">
       <tr>
         <th>{{ 'supplier-management.catalog.columns.product' | translate }}</th>
@@ -61,20 +38,28 @@
     </ng-template>
     <ng-template pTemplate="body" let-item>
       <tr>
-        <td><strong>{{ item.name }}</strong></td>
+        <td>{{ item.name }}</td>
         <td>{{ item.category }}</td>
-        <td>{{ '$' + item.price }}</td>
-        <td>{{ item.unit }}</td>
+        <td class="catalog-page__price">{{ item.price | currency }}</td>
+        <td><span class="catalog-page__unit">{{ item.unit }}</span></td>
         <td>{{ item.deliveryConditions }}</td>
         <td>
-          <div class="catalog-page__actions">
-            <button type="button" class="catalog-page__action-link catalog-page__action-link--edit" (click)="openEditForm(item)">
+          <div class="supplier-page__actions">
+            <button
+              type="button"
+              class="supplier-page__icon-button supplier-page__icon-button--success"
+              [pTooltip]="'supplier-management.catalog.actions.edit' | translate"
+              (click)="openEditForm(item)"
+            >
               <span class="pi pi-pencil" aria-hidden="true"></span>
-              {{ 'supplier-management.catalog.actions.edit' | translate }}
             </button>
-            <button type="button" class="catalog-page__action-link catalog-page__action-link--delete" (click)="openDeleteDialog(item)">
+            <button
+              type="button"
+              class="supplier-page__icon-button supplier-page__icon-button--danger"
+              [pTooltip]="'supplier-management.catalog.actions.delete' | translate"
+              (click)="openDeleteDialog(item)"
+            >
               <span class="pi pi-trash" aria-hidden="true"></span>
-              {{ 'supplier-management.catalog.actions.delete' | translate }}
             </button>
           </div>
         </td>
@@ -85,18 +70,61 @@
     </ng-template>
   </p-table>
 
-  <p-dialog [visible]="deleteDialogVisible" [modal]="true" [dismissableMask]="true" [showHeader]="false" [draggable]="false"
-    styleClass="catalog-delete-dialog" maskStyleClass="catalog-delete-mask" (onHide)="closeDeleteDialog()">
-    <div class="catalog-delete-dialog__header">
-      <h3>{{ 'supplier-management.catalog.delete-dialog.title' | translate }}</h3>
-      <button type="button" class="catalog-delete-dialog__close" (click)="closeDeleteDialog()">
-        <span class="pi pi-times" aria-hidden="true"></span>
-      </button>
-    </div>
-    <p class="catalog-delete-dialog__message">{{ 'supplier-management.catalog.delete-dialog.message' | translate: { product: itemToDelete?.name } }}</p>
-    <div class="catalog-page__dialog-actions">
-      <p-button text [label]="'supplier-management.catalog.form.cancel' | translate" (onClick)="closeDeleteDialog()" />
-      <p-button severity="danger" [label]="'supplier-management.catalog.delete-dialog.confirm' | translate" (onClick)="confirmDelete()" />
-    </div>
+  <p-dialog
+    [visible]="isFormRoute()"
+    [modal]="true"
+    [dismissableMask]="true"
+    [draggable]="false"
+    styleClass="supplier-dialog"
+    [header]="submitLabelKey() | translate"
+    (onHide)="cancelForm()"
+  >
+    <form id="catalog-form" class="supplier-dialog__form" #catalogForm="ngForm" (ngSubmit)="saveForm()">
+      <label class="supplier-page__field">
+        <span>{{ 'supplier-management.catalog.form.product' | translate }}</span>
+        <input pInputText name="name" [(ngModel)]="formModel.name" required>
+      </label>
+      <label class="supplier-page__field">
+        <span>{{ 'supplier-management.catalog.form.category' | translate }}</span>
+        <input pInputText name="category" [(ngModel)]="formModel.category" required>
+      </label>
+      <label class="supplier-page__field">
+        <span>{{ 'supplier-management.catalog.form.price' | translate }}</span>
+        <p-inputNumber name="price" [(ngModel)]="formModel.price" mode="decimal" [min]="0.01" [minFractionDigits]="0" [maxFractionDigits]="2" required />
+      </label>
+      <label class="supplier-page__field">
+        <span>{{ 'supplier-management.catalog.form.unit' | translate }}</span>
+        <p-select name="unit" [options]="unitOptions" optionLabel="label" optionValue="value" [(ngModel)]="formModel.unit" required appendTo="body" />
+      </label>
+      <label class="supplier-page__field supplier-dialog__wide">
+        <span>{{ 'supplier-management.catalog.form.delivery-conditions' | translate }}</span>
+        <input pInputText name="deliveryConditions" [(ngModel)]="formModel.deliveryConditions" required>
+      </label>
+    </form>
+
+    <ng-template pTemplate="footer">
+      <div class="supplier-dialog__actions">
+        <p-button type="button" text [label]="'supplier-management.catalog.form.cancel' | translate" (onClick)="cancelForm()" />
+        <p-button type="submit" form="catalog-form" [label]="submitLabelKey() | translate" [disabled]="catalogForm.invalid || store.loading()" />
+      </div>
+    </ng-template>
+  </p-dialog>
+
+  <p-dialog
+    [visible]="deleteDialogVisible"
+    [modal]="true"
+    [dismissableMask]="true"
+    [draggable]="false"
+    styleClass="supplier-dialog"
+    [header]="'supplier-management.catalog.delete-dialog.title' | translate"
+    (onHide)="closeDeleteDialog()"
+  >
+    <p class="supplier-page__muted">{{ 'supplier-management.catalog.delete-dialog.message' | translate: { product: itemToDelete?.name } }}</p>
+    <ng-template pTemplate="footer">
+      <div class="supplier-dialog__actions">
+        <p-button text [label]="'supplier-management.catalog.form.cancel' | translate" (onClick)="closeDeleteDialog()" />
+        <p-button severity="danger" [label]="'supplier-management.catalog.delete-dialog.confirm' | translate" (onClick)="confirmDelete()" />
+      </div>
+    </ng-template>
   </p-dialog>
 </section>

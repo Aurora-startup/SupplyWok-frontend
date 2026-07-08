@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { computed, inject, signal } from '@angular/core';
-import { retry } from 'rxjs';
+import { catchError, forkJoin, of, retry } from 'rxjs';
 import { CatalogItem } from '../domain/model/catalog-item.entity';
 import { Client } from '../domain/model/client.entity';
 import { DemandForecast } from '../../analytics/domain/model/demand-forecast.entity';
@@ -123,8 +123,19 @@ export class SupplierManagementStore {
 
   loadClients(): void {
     this.startLoading();
-    this.supplierManagementApi.getClients().pipe(retry(2)).subscribe({
-      next: (clients) => this.finishLoading(() => this.clientsSignal.set(clients)),
+    forkJoin({
+      clients: this.supplierManagementApi.getClients().pipe(
+        retry(2),
+        catchError(() => of([] as Client[]))
+      ),
+      orders: this.supplierManagementApi.getOrders().pipe(
+        retry(2),
+        catchError(() => of(this.orders()))
+      )
+    }).subscribe({
+      next: ({ clients, orders }) => this.finishLoading(() => {
+        this.clientsSignal.set(this.buildSupplierClients(clients, orders));
+      }),
       error: (error) => this.failLoading(error, 'Failed to load clients')
     });
   }
@@ -158,5 +169,54 @@ export class SupplierManagementStore {
   private failLoading(error: unknown, fallback: string): void {
     this.errorSignal.set(error instanceof Error ? error.message : fallback);
     this.loadingSignal.set(false);
+  }
+
+  private buildSupplierClients(clients: Client[], orders: Order[]): Client[] {
+    const ordersByRestaurant = orders.reduce((groups, order) => {
+      const restaurantName = order.restaurantName?.trim();
+      if (!restaurantName) return groups;
+      const key = restaurantName.toLowerCase();
+      groups.set(key, [...(groups.get(key) ?? []), order]);
+      return groups;
+    }, new Map<string, Order[]>());
+
+    const clientKeys = new Set<string>(clients.map((client) => client.name.trim().toLowerCase()).filter(Boolean));
+    const enrichedClients = clients.map((client) => this.enrichClientWithOrders(client, ordersByRestaurant.get(client.name.trim().toLowerCase()) ?? []));
+    const clientsFromOrders = Array.from(ordersByRestaurant.entries())
+      .filter(([key]) => !clientKeys.has(key))
+      .map(([, restaurantOrders]) => this.enrichClientWithOrders(new Client({
+        name: restaurantOrders[0]?.restaurantName ?? '',
+        district: '-',
+        status: 'active'
+      }), restaurantOrders));
+
+    return [...enrichedClients, ...clientsFromOrders]
+      .filter((client) => client.name.trim())
+      .sort((first, second) => first.name.localeCompare(second.name));
+  }
+
+  private enrichClientWithOrders(client: Client, orders: Order[]): Client {
+    if (!orders.length) return client;
+
+    const total = orders.reduce((sum, order) => sum + this.getOrderTotal(order), 0);
+    const latestOrder = orders
+      .map((order) => order.orderDate)
+      .filter(Boolean)
+      .sort((first, second) => new Date(second).getTime() - new Date(first).getTime())[0] ?? client.lastOrderDate;
+
+    return new Client({
+      id: client.id,
+      name: client.name,
+      district: client.district || '-',
+      frequency: `${orders.length} ${orders.length === 1 ? 'order' : 'orders'}`,
+      averageTicket: Math.round((total / orders.length) * 100) / 100,
+      demandProjectionPercent: Math.max(client.demandProjectionPercent, Math.min(99, orders.length * 8)),
+      status: client.status || 'active',
+      lastOrderDate: latestOrder
+    });
+  }
+
+  private getOrderTotal(order: Order): number {
+    return order.items.reduce((sum, item) => sum + Number(item.quantity ?? 0) * Number(item.unitPrice ?? 0), 0);
   }
 }

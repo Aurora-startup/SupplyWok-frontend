@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { IamStore } from '../../../iam/application/iam.store';
@@ -10,7 +11,7 @@ import { Profile } from '../../domain/model/profile.entity';
 
 @Component({
   selector: 'app-profile-settings-page',
-  imports: [CommonModule, FormsModule, TranslateModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, TranslateModule],
   template: `
     <section class="profile-settings-page">
       <header class="profile-settings-page__header">
@@ -22,7 +23,7 @@ import { Profile } from '../../domain/model/profile.entity';
       <form class="profile-settings-card" (ngSubmit)="save()">
         <div class="profile-settings-card__header">
           <h2>{{ translationPrefix() + '.profileTitle' | translate }}</h2>
-          <button type="submit" [disabled]="store.loading()">
+          <button type="submit" mat-flat-button [disabled]="store.loading()">
             {{ (store.loading() ? 'profiles.settings.actions.saving' : 'profiles.settings.actions.save') | translate }}
           </button>
         </div>
@@ -46,7 +47,7 @@ import { Profile } from '../../domain/model/profile.entity';
 
         <label class="profile-field profile-field--full">
           <span>{{ 'profiles.settings.fields.email' | translate }}</span>
-          <input name="email" [(ngModel)]="formModel.email" autocomplete="email" type="email" />
+          <input name="email" [(ngModel)]="formModel.email" autocomplete="email" type="email" readonly />
         </label>
 
         <div class="profile-settings-card__row">
@@ -107,22 +108,22 @@ import { Profile } from '../../domain/model/profile.entity';
     </section>
   `,
   styles: [`
-    .profile-settings-page { display: flex; flex-direction: column; gap: 24px; max-width: 1076px; }
-    .profile-settings-page__header { display: grid; gap: 10px; }
-    .profile-settings-page__kicker { color: #a07832; font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
-    .profile-settings-page__header h1 { margin: 0; color: #281f31; font-size: clamp(3rem, 6vw, 4.3rem); line-height: 1.05; font-weight: 800; }
-    .profile-settings-page__header p { margin: 0; color: #4f463f; font-size: 1.24rem; line-height: 1.35; }
-    .profile-settings-card { display: grid; gap: 22px; padding: 26px; border: 1px solid #dfcdbb; border-radius: 18px; background: #fffdfb; box-shadow: 0 20px 46px rgba(47, 36, 29, 0.1); }
+    .profile-settings-page { display: flex; flex-direction: column; gap: 18px; max-width: 1076px; }
+    .profile-settings-page__header { display: grid; gap: 8px; }
+    .profile-settings-page__kicker { color: #a07832; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    .profile-settings-page__header h1 { margin: 0; color: #342923; font-size: clamp(2rem, 2.2vw, 2.45rem); line-height: 1.05; font-weight: 800; }
+    .profile-settings-page__header p { margin: 0; color: #65594f; font-size: 1rem; line-height: 1.55; }
+    .profile-settings-card { display: grid; gap: 18px; padding: 20px; border: 1px solid #dfcdbb; border-radius: 8px; background: #fffdfb; box-shadow: var(--sw-shadow-soft); }
     .profile-settings-card__header { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-    .profile-settings-card__header h2 { margin: 0; color: #151221; font-size: 1.36rem; font-weight: 800; }
-    .profile-settings-card__header button { min-width: 78px; min-height: 44px; border: none; border-radius: 7px; background: #2d241e; color: #ffffff; font-weight: 800; cursor: pointer; }
+    .profile-settings-card__header h2 { margin: 0; color: #151221; font-size: 1.12rem; font-weight: 800; }
+    .profile-settings-card__header button { min-width: 78px; min-height: 42px; border-radius: 8px; background: #2d241e; color: #ffffff; font-family: 'Poppins', system-ui, sans-serif !important; font-weight: 800; letter-spacing: 0; }
     .profile-settings-card__header button:disabled { background: #9e9996; cursor: wait; }
     .profile-settings-card__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-    .profile-field { display: grid; gap: 12px; color: #57493f; font-size: 1.22rem; }
-    .profile-field input { width: 100%; min-height: 62px; padding: 0 16px; border: 1px solid #dfcdbb; border-radius: 11px; background: #ffffff; color: #332820; font: inherit; outline: none; }
+    .profile-field { display: grid; gap: 8px; color: #57493f; font-size: 0.95rem; font-weight: 500; }
+    .profile-field input { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid #dfcdbb; border-radius: 8px; background: #ffffff; color: #332820; font: inherit; outline: none; }
     .profile-field input:focus { border-color: #b8863c; box-shadow: 0 0 0 3px rgba(184, 134, 60, 0.14); }
     .profile-settings-card__footer { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; padding-top: 8px; }
-    .profile-toggle { display: inline-flex; align-items: center; gap: 10px; color: #3f342d; font-size: 1.18rem; cursor: pointer; }
+    .profile-toggle { display: inline-flex; align-items: center; gap: 10px; color: #3f342d; font-size: 0.95rem; cursor: pointer; }
     .profile-toggle input { position: absolute; opacity: 0; pointer-events: none; }
     .profile-toggle__track { position: relative; width: 34px; height: 22px; border-radius: 999px; background: #d8d4d0; transition: background 0.2s ease; }
     .profile-toggle__track::after { content: ''; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #ffffff; transition: transform 0.2s ease; }
@@ -131,8 +132,8 @@ import { Profile } from '../../domain/model/profile.entity';
     .profile-settings-page__message { margin: 0; padding: 14px 16px; border-radius: 10px; background: #fef4dc; color: #83560c; font-weight: 700; }
     .profile-settings-page__message--error { background: #fff0ed; color: #a32619; }
     @media (max-width: 760px) {
-      .profile-settings-page__header h1 { font-size: 2.7rem; }
-      .profile-settings-page__header p { font-size: 1.04rem; }
+      .profile-settings-page__header h1 { font-size: 2rem; }
+      .profile-settings-page__header p { font-size: 1rem; }
       .profile-settings-card { padding: 20px; }
       .profile-settings-card__row { grid-template-columns: 1fr; }
       .profile-settings-card__header { align-items: flex-start; }
@@ -151,20 +152,33 @@ export class ProfileSettingsPageComponent implements OnInit {
       const profile = this.store.profile();
       if (profile && profile.profileType === this.activeProfileType()) {
         this.formModel = profile.clone();
+        this.ensureAccountEmail();
       }
     });
   }
 
   ngOnInit(): void {
-    this.store.loadProfile(this.activeProfileType());
+    this.store.loadProfile(this.activeProfileType(), this.currentAccountEmail());
   }
 
   protected save(): void {
     this.formModel.profileType = this.activeProfileType();
-    this.store.updateProfile(this.formModel.clone());
+    this.ensureAccountEmail();
+    this.store.updateProfile(this.formModel.clone(), this.currentAccountEmail());
   }
 
   private activeProfileType(): AppRoleScope {
     return getRoleFromPath(this.router.url) ?? normalizeRole(this.iamStore.currentUserRole()) ?? 'restaurant';
+  }
+
+  private currentAccountEmail(): string {
+    return this.iamStore.currentUser()?.email ?? '';
+  }
+
+  private ensureAccountEmail(): void {
+    const accountEmail = this.currentAccountEmail();
+    if (accountEmail) {
+      this.formModel.email = accountEmail;
+    }
   }
 }

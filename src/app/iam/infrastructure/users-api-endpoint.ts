@@ -16,6 +16,12 @@ export class UsersApiEndpoint {
     private readonly assembler: UsersAssembler,
   ) {}
 
+  getAll(): Observable<User[]> {
+    return this.http
+      .get<UserResource[]>(usersApiEndpointUrl)
+      .pipe(map((resources) => this.assembler.toEntitiesFromResponse(resources)));
+  }
+
   getById(userId: number): Observable<User> {
     return this.http
       .get<UserResource>(`${usersApiEndpointUrl}/${userId}`)

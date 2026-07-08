@@ -36,6 +36,10 @@ export class IamApi extends BaseApi {
     return this.signUpEndpoint.signUp(command);
   }
 
+  getUsers(): Observable<User[]> {
+    return this.usersEndpoint.getAll();
+  }
+
   getUserById(userId: number): Observable<User> {
     return this.usersEndpoint.getById(userId);
   }

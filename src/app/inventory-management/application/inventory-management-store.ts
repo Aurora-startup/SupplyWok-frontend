@@ -331,10 +331,9 @@ export class InventoryManagementStore {
       });
   }
 
-  private loadSuppliers(): void {
+  refreshSuppliers(): void {
     this.inventoryManagementApi
       .getSuppliers()
-      .pipe(takeUntilDestroyed())
       .subscribe({
         next: (suppliers) => {
           this.suppliersSignal.set(suppliers);
@@ -343,6 +342,10 @@ export class InventoryManagementStore {
           this.suppliersSignal.set([]);
         },
       });
+  }
+
+  private loadSuppliers(): void {
+    this.refreshSuppliers();
   }
 
   private assignCategoriesToItems(): void {

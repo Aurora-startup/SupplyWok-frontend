@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-.alerts-page__header p {
+.alerts-page__header > p:not(.alerts-page__subtitle) {
   color: var(--sw-accent);
   font-size: 0.72rem;
   font-weight: 800;
@@ -24,9 +24,13 @@
 
 .alerts-page__subtitle {
   color: #65594f;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0;
   line-height: 1.55;
   margin: 0.5rem 0 0;
   max-width: 60ch;
+  text-transform: none;
 }
 
 .alerts-page__filters {

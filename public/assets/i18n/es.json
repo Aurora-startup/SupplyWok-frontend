@@ -11,6 +11,34 @@
       "password-example": "Ingresa tu contrasena",
       "forgot-password": "Olvidaste tu contrasena?",
       "login": "Iniciar sesion"
+    },
+    "register": {
+      "get-started": "Crear cuenta",
+      "phone": "Telefono",
+      "phone-example": "999 666 333",
+      "business-name": "Nombre comercial",
+      "business-name-example": "Distribuidora Fresh Andes",
+      "role": "Rol",
+      "subscription": "Suscripcion",
+      "select-one": "Selecciona uno",
+      "no-plans": "No conoces nuestros planes?",
+      "click-here": "Haz clic aqui",
+      "terms-accept": "Acepto {{terms}} y {{policy}}",
+      "terms": "terminos",
+      "policy": "politica de privacidad",
+      "go-to-pay": "Registrarse"
+    },
+    "languages": {
+      "english": "Ingles (US)",
+      "spanish": "Espanol (ES)",
+      "chinese": "Chino (ZH)"
+    },
+    "validation": {
+      "email-invalid": "Correo electronico invalido.",
+      "password-min": "La contrasena debe tener al menos 8 caracteres.",
+      "phone-invalid": "Telefono invalido.",
+      "terms-required": "Debes aceptar los terminos para continuar.",
+      "invalid-credentials": "Correo o contrasena invalidos."
     }
   },
   "shared": {

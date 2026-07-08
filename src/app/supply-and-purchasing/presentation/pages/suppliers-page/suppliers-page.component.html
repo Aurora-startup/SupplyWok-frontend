@@ -44,7 +44,10 @@
                 <td>
                   <div class="suppliers-table__supplier-cell">
                     <span class="suppliers-table__supplier-avatar">{{ row.name.charAt(0) }}</span>
-                    <span>{{ row.name }}</span>
+                    <span class="suppliers-table__supplier-copy">
+                      <strong>{{ row.name }}</strong>
+                      <small>{{ row.email }}</small>
+                    </span>
                   </div>
                 </td>
                 <td><span class="suppliers-table__number">{{ row.linkedItems }}</span></td>

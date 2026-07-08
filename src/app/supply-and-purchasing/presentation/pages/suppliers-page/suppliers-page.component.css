@@ -131,9 +131,25 @@
   align-items: center;
   color: #2d241e;
   display: flex;
-  font-weight: 800;
   gap: 10px;
   min-width: 190px;
+}
+
+.suppliers-table__supplier-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+}
+
+.suppliers-table__supplier-copy strong {
+  color: #2d241e;
+  font-weight: 800;
+}
+
+.suppliers-table__supplier-copy small {
+  color: var(--sw-text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
 }
 
 .suppliers-table__supplier-avatar {

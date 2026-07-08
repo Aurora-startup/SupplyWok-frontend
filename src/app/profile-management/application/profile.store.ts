@@ -1,5 +1,4 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { retry } from 'rxjs';
 import { AppRoleScope } from '../../shared/application/role-routing';
 import { Profile } from '../domain/model/profile.entity';
 import { ProfileApi } from '../infrastructure/profile-api';
@@ -19,30 +18,38 @@ export class ProfileStore {
   readonly error = this.errorSignal.asReadonly();
   readonly saved = this.savedSignal.asReadonly();
 
-  loadProfile(profileType: AppRoleScope): void {
+  loadProfile(profileType: AppRoleScope, accountEmail?: string | null): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.savedSignal.set(false);
 
-    this.profileApi.getProfile(profileType).pipe(retry(2)).subscribe({
+    const request = accountEmail
+      ? this.profileApi.getProfileByAccountEmail(profileType, accountEmail)
+      : this.profileApi.getProfile(profileType);
+
+    request.subscribe({
       next: (profile) => {
         this.profileSignal.set(profile);
         this.loadingSignal.set(false);
       },
       error: (error) => {
         this.errorSignal.set(error instanceof Error ? error.message : 'Failed to load profile');
-        this.profileSignal.set(new Profile({ profileType }));
+        this.profileSignal.set(new Profile({ profileType, email: accountEmail ?? '' }));
         this.loadingSignal.set(false);
       },
     });
   }
 
-  updateProfile(profile: Profile): void {
+  updateProfile(profile: Profile, accountEmail?: string | null): void {
     this.loadingSignal.set(true);
     this.errorSignal.set(null);
     this.savedSignal.set(false);
 
-    this.profileApi.updateProfile(profile).pipe(retry(2)).subscribe({
+    const request = accountEmail
+      ? this.profileApi.updateProfileForAccount(profile, accountEmail)
+      : this.profileApi.updateProfile(profile);
+
+    request.subscribe({
       next: (updatedProfile) => {
         this.profileSignal.set(updatedProfile);
         this.savedSignal.set(true);
