@@ -11,10 +11,13 @@ import { SensorState } from '../domain/enums/sensor-state.enum';
 export class RestaurantManagementStore {
   readonly tables = signal<Table[]>([]);
   readonly comandas = signal<Comanda[]>([]);
-  readonly totalCapacity = signal(24);
+  readonly loading = signal(false);
+  readonly error = signal<string | null>(null);
+  readonly tableActionCompleted = signal<'created' | 'updated' | 'deleted' | null>(null);
 
   readonly occupiedCount = computed(() => this.tables().filter(t => t.status === TableStatus.OCCUPIED).length);
   readonly freeCount = computed(() => this.tables().filter(t => t.status === TableStatus.FREE).length);
+  readonly totalCapacity = computed(() => this.tables().length);
   readonly occupancyPercent = computed(() => {
     const total = this.totalCapacity();
     return total > 0 ? Math.round((this.occupiedCount() / total) * 100) : 0;
@@ -39,7 +42,105 @@ export class RestaurantManagementStore {
   ) {}
 
   loadTables(): void {
-    this.tableApi.getTables().subscribe(tables => this.tables.set(tables));
+    this.loading.set(true);
+    this.error.set(null);
+    this.tableApi.getTables().subscribe({
+      next: (tables) => {
+        this.tables.set(tables);
+        this.loading.set(false);
+      },
+      error: () => {
+        this.error.set('Failed to load tables');
+        this.loading.set(false);
+      }
+    });
+  }
+
+  createTable(number: number, capacity: number): void {
+    this.loading.set(true);
+    this.error.set(null);
+    this.tableActionCompleted.set(null);
+
+    const table = new Table({
+      number,
+      capacity,
+      status: TableStatus.FREE,
+      sensorState: SensorState.IDLE,
+    });
+
+    this.tableApi.createTable(table).subscribe({
+      next: (createdTable) => {
+        this.tables.update((items) =>
+          [...items, createdTable].sort((first, second) => first.number - second.number)
+        );
+        this.tableActionCompleted.set('created');
+        this.loading.set(false);
+      },
+      error: () => {
+        this.error.set('Failed to create table');
+        this.loading.set(false);
+      }
+    });
+  }
+
+  updateTableDetails(tableId: number | string, number: number, capacity: number): void {
+    const currentTable = this.tables().find((table) => String(table.id) === String(tableId));
+    if (!currentTable) {
+      this.error.set('Failed to update table');
+      return;
+    }
+
+    this.loading.set(true);
+    this.error.set(null);
+    this.tableActionCompleted.set(null);
+
+    const updatedTable = new Table({
+      id: currentTable.id,
+      number,
+      capacity,
+      status: currentTable.status,
+      zone: currentTable.zone,
+      dwellTime: currentTable.dwellTime,
+      sensorState: currentTable.sensorState,
+    });
+
+    this.tableApi.updateTableDetails(updatedTable).subscribe({
+      next: (persistedTable) => {
+        this.tables.update((items) =>
+          items
+            .map((table) => String(table.id) === String(persistedTable.id) ? persistedTable : table)
+            .sort((first, second) => first.number - second.number)
+        );
+        this.tableActionCompleted.set('updated');
+        this.loading.set(false);
+      },
+      error: () => {
+        this.error.set('Failed to update table');
+        this.loading.set(false);
+      }
+    });
+  }
+
+  deleteTable(tableId: number | string): void {
+    this.loading.set(true);
+    this.error.set(null);
+    this.tableActionCompleted.set(null);
+
+    this.tableApi.deleteTable(tableId).subscribe({
+      next: () => {
+        this.tables.update((items) => items.filter((table) => String(table.id) !== String(tableId)));
+        this.tableActionCompleted.set('deleted');
+        this.loading.set(false);
+      },
+      error: () => {
+        this.error.set('Failed to delete table');
+        this.loading.set(false);
+      }
+    });
+  }
+
+  resetTableActionCompleted(): void {
+    this.tableActionCompleted.set(null);
   }
 
   loadComandas(): void {

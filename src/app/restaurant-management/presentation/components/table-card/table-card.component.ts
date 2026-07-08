@@ -15,6 +15,8 @@ export class TableCardComponent {
   @Input({ required: true }) table!: Table;
   @Output() checkout = new EventEmitter<Table>();
   @Output() assignGuest = new EventEmitter<Table>();
+  @Output() edit = new EventEmitter<Table>();
+  @Output() remove = new EventEmitter<Table>();
 
   constructor(private store: RestaurantManagementStore) {}
 

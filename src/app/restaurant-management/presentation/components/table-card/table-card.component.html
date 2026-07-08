@@ -1,4 +1,4 @@
-<div class="table-card" [class.table-card-occupied]="table.status === 'OCCUPIED'">
+<div class="table-card">
   <div class="table-card-header">
     <span class="table-number">{{ label }}</span>
     <span class="table-status-badge"
@@ -36,14 +36,16 @@
   </div>
 
   <div class="table-card-actions">
-    @if (table.status === 'OCCUPIED') {
-      <button class="btn-text">{{ 'restaurant-management.tables.view-details' | translate }}</button>
-      <button class="btn-text btn-checkout" (click)="checkout.emit(table)">{{ 'restaurant-management.tables.checkout' | translate }}</button>
-    } @else if (table.status === 'FREE') {
-      <button class="btn-text">{{ 'restaurant-management.tables.view-details' | translate }}</button>
-      <button class="btn-text btn-assign" (click)="assignGuest.emit(table)">{{ 'restaurant-management.tables.assign-guest' | translate }}</button>
-    } @else {
-      <button class="btn-text">{{ 'restaurant-management.tables.view-details' | translate }}</button>
-    }
+    <div class="table-card-actions__group">
+      @if (table.status === 'OCCUPIED') {
+        <button class="btn-text btn-checkout" (click)="checkout.emit(table)">{{ 'restaurant-management.tables.checkout' | translate }}</button>
+      } @else if (table.status === 'FREE') {
+        <button class="btn-text btn-assign" (click)="assignGuest.emit(table)">{{ 'restaurant-management.tables.assign-guest' | translate }}</button>
+      }
+    </div>
+    <div class="table-card-actions__group">
+      <button class="btn-text" (click)="edit.emit(table)">{{ 'restaurant-management.tables.edit' | translate }}</button>
+      <button class="btn-text btn-danger" (click)="remove.emit(table)">{{ 'restaurant-management.tables.delete' | translate }}</button>
+    </div>
   </div>
 </div>

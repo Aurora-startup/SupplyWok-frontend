@@ -1,8 +1,14 @@
+:host {
+  display: block;
+  font-family: inherit;
+}
+
 .inventory-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
+  font-family: inherit;
   padding: 8px 6px 0;
 }
 
@@ -28,7 +34,7 @@
   margin: 0;
   line-height: 1;
   letter-spacing: -0.04em;
-  font-family: 'Poppins', system-ui, sans-serif;
+  font-family: inherit;
 }
 
 .header-subtitle {
@@ -49,6 +55,7 @@
   padding: 0 22px;
   font-size: 1rem;
   font-weight: 600;
+  font-family: inherit;
   text-transform: lowercase;
   letter-spacing: 0.01em;
   box-shadow: 0 10px 24px rgba(45, 36, 30, 0.16);

@@ -78,6 +78,52 @@
   color: #bbb;
 }
 
+.category-builder-card {
+  align-items: center;
+  background: #fff;
+  border: 1.5px dashed #d7d0c8;
+  border-radius: 12px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 14px 16px;
+}
+
+.category-builder-card__copy {
+  min-width: 0;
+}
+
+.category-builder-card__hint {
+  color: #8c857b;
+  font-size: 12px;
+  line-height: 1.45;
+  margin: 6px 0 0;
+}
+
+.category-builder-card__controls {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  min-width: min(100%, 420px);
+}
+
+.category-builder-card__input {
+  background: #faf8f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  min-height: 42px;
+  padding: 0 12px;
+}
+
+.category-builder-card__button {
+  border-radius: 10px !important;
+  font-weight: 700;
+  min-height: 42px;
+  padding: 0 16px !important;
+  white-space: nowrap;
+}
+
 /* Select */
 
 .custom-select {
@@ -98,6 +144,7 @@
 
 :host {
   display: block;
+  font-family: inherit;
 }
 
 .loading-container {
@@ -110,6 +157,22 @@
   display: block;
   margin-bottom: 16px;
   padding: 8px 16px;
+}
+
+.filters-container,
+.filter-label,
+.custom-select,
+.table-card,
+.product-name,
+.product-id,
+.stock-badge,
+.stock-quantity,
+.stock-min,
+.category-chip,
+.supplier-cell,
+.pagination-info,
+.page-btn {
+  font-family: inherit;
 }
 
 /* ── Table Card ── */
@@ -306,4 +369,29 @@
   &[disabled] {
     opacity: 0.4;
   }
+}
+
+@media (max-width: 900px) {
+  .category-builder-card,
+  .category-builder-card__controls {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .category-builder-card__controls {
+    min-width: 100%;
+  }
+}
+
+::ng-deep .custom-select .mat-mdc-select-value,
+::ng-deep .custom-select .mat-mdc-select-placeholder,
+::ng-deep .custom-select .mat-mdc-select-min-line,
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text,
+::ng-deep .mat-mdc-header-cell,
+::ng-deep .mat-mdc-cell,
+::ng-deep .mat-mdc-icon-button,
+::ng-deep .mat-mdc-button .mdc-button__label,
+::ng-deep .mat-mdc-unelevated-button .mdc-button__label,
+::ng-deep .mat-mdc-outlined-button .mdc-button__label {
+  font-family: inherit !important;
 }

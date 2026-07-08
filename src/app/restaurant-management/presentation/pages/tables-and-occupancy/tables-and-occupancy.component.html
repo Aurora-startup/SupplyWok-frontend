@@ -1,8 +1,15 @@
 <div class="page-container">
   <div class="page-header">
     <span class="page-breadcrumb">{{ 'restaurant-management.breadcrumb' | translate }}</span>
-    <h1 class="page-title">{{ 'restaurant-management.tables.title' | translate }}</h1>
-    <p class="page-description">{{ 'restaurant-management.tables.description' | translate }}</p>
+    <div class="page-header__content">
+      <div>
+        <h1 class="page-title">{{ 'restaurant-management.tables.title' | translate }}</h1>
+        <p class="page-description">{{ 'restaurant-management.tables.description' | translate }}</p>
+      </div>
+      <button type="button" class="page-header__action" (click)="showForm() ? closeForm() : openCreateForm()">
+        {{ (showForm() ? 'restaurant-management.tables.form.cancel' : 'restaurant-management.tables.form.add-table') | translate }}
+      </button>
+    </div>
   </div>
 
   <!-- Summary Cards -->
@@ -12,6 +19,54 @@
     [occupancyPercent]="store.occupancyPercent()"
     [totalCapacity]="store.totalCapacity()"
   />
+
+  @if (showForm()) {
+    <section class="create-table-panel">
+      <div class="create-table-panel__header">
+        <div>
+          <h2>{{ (editingTableId() != null ? 'restaurant-management.tables.form.edit-title' : 'restaurant-management.tables.form.title') | translate }}</h2>
+          <p>{{ 'restaurant-management.tables.form.description' | translate }}</p>
+        </div>
+      </div>
+
+      <div class="create-table-panel__grid">
+        <label class="filter-group">
+          <span class="filter-label">{{ 'restaurant-management.tables.form.number' | translate }}</span>
+          <input
+            type="number"
+            min="1"
+            class="form-input"
+            [value]="formNumber()"
+            (input)="onFormNumberChange($any($event.target).value)"
+          />
+        </label>
+
+        <label class="filter-group">
+          <span class="filter-label">{{ 'restaurant-management.tables.form.capacity' | translate }}</span>
+          <input
+            type="number"
+            min="1"
+            class="form-input"
+            [value]="formCapacity()"
+            (input)="onFormCapacityChange($any($event.target).value)"
+          />
+        </label>
+      </div>
+
+      @if (formError()) {
+        <p class="create-table-panel__error">{{ formError() | translate }}</p>
+      }
+
+      <div class="create-table-panel__actions">
+        <button type="button" class="page-header__action page-header__action--secondary" (click)="closeForm()">
+          {{ 'restaurant-management.tables.form.cancel' | translate }}
+        </button>
+        <button type="button" class="page-header__action" [disabled]="store.loading()" (click)="onSubmitForm()">
+          {{ (editingTableId() != null ? 'restaurant-management.tables.form.update' : 'restaurant-management.tables.form.save') | translate }}
+        </button>
+      </div>
+    </section>
+  }
 
   <!-- Search and Filter -->
   <div class="filters-row">
@@ -56,6 +111,8 @@
         [table]="table"
         (checkout)="onCheckout($event)"
         (assignGuest)="onAssignGuest($event)"
+        (edit)="onEditTable($event)"
+        (remove)="onDeleteTable($event)"
       />
     }
   </div>
@@ -63,6 +120,9 @@
   @if (filteredTables().length === 0) {
     <div class="empty-state">
       <p>{{ 'restaurant-management.tables.no-tables' | translate }}</p>
+      <button type="button" class="page-header__action" (click)="openCreateForm()">
+        {{ 'restaurant-management.tables.form.add-table' | translate }}
+      </button>
     </div>
   }
 </div>

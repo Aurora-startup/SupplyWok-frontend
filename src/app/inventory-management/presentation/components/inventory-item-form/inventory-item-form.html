@@ -84,6 +84,37 @@
 
           </mat-form-field>
 
+          <div class="category-builder full-width">
+            <div class="category-builder__copy">
+              <span class="category-builder__title">
+                {{ 'inventory.item-form.create-category-label' | translate }}
+              </span>
+              <span class="category-builder__hint">
+                {{ 'inventory.item-form.create-category-hint' | translate }}
+              </span>
+            </div>
+
+            <div class="category-builder__controls">
+              <mat-form-field appearance="outline" class="category-builder__field">
+                <mat-label>
+                  {{ 'inventory.item-form.create-category-placeholder' | translate }}
+                </mat-label>
+
+                <input matInput [formControl]="newCategoryName">
+              </mat-form-field>
+
+              <button
+                mat-stroked-button
+                type="button"
+                class="category-builder__button"
+                [disabled]="!canAddCategory()"
+                (click)="addCategory()">
+                <mat-icon>add</mat-icon>
+                {{ 'inventory.item-form.create-category-action' | translate }}
+              </button>
+            </div>
+          </div>
+
           <!-- Supplier -->
           <mat-form-field appearance="outline">
 
@@ -133,7 +164,7 @@
           mat-stroked-button
           type="button"
           class="cancel-btn"
-          routerLink="/">
+          (click)="onCancel()">
 
           {{ 'inventory.item-form.cancel-button' | translate }}
 

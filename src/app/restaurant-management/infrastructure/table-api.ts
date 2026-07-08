@@ -28,6 +28,14 @@ export class TableApi extends BaseApi {
     return this.tablesEndpoint.getById(id);
   }
 
+  createTable(table: Table): Observable<Table> {
+    return this.tablesEndpoint.create(table);
+  }
+
+  updateTableDetails(table: Table): Observable<Table> {
+    return this.tablesEndpoint.updateDetails(table, table.id!);
+  }
+
   /**
    * Updates an existing table.
    * @param table - Table entity to update.
@@ -35,5 +43,9 @@ export class TableApi extends BaseApi {
    */
   updateTable(table: Table): Observable<Table> {
     return this.tablesEndpoint.update(table, table.id!);
+  }
+
+  deleteTable(id: number | string): Observable<void> {
+    return this.tablesEndpoint.delete(id);
   }
 }
