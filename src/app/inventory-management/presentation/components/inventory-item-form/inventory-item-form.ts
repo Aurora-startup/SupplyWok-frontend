@@ -3,17 +3,20 @@ import { FormBuilder, FormControl, ReactiveFormsModule, Validators } from '@angu
 import { ActivatedRoute, Router } from '@angular/router';
 import { InventoryManagementStore } from '../../../application/inventory-management-store';
 import { UnitOfMeasure } from '../../../domain/enums/unit-of-measure.enum';
+import { InventoryCategory } from '../../../domain/model/inventory-category.entity';
 import { InventoryItem } from '../../../domain/model/inventory-item.entity';
+import { buildCategoryId } from '../../../infrastructure/inventory-item-assembler';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
-import { MatInput } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-inventory-items-form',
   standalone: true,
-  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInput, TranslateModule],
+  imports: [ReactiveFormsModule, MatFormFieldModule, MatSelectModule, MatButtonModule, MatInputModule, MatIconModule, TranslateModule],
   templateUrl: './inventory-item-form.html',
   styleUrl: './inventory-item-form.css',
 })
@@ -53,6 +56,7 @@ export class InventoryItemForm {
 
   categories = this.store.inventoryCategories;
   suppliers = this.store.suppliers;
+  newCategoryName = new FormControl<string>('', { nonNullable: true });
 
   isEdit = false;
   itemId: number | null = null;
@@ -113,5 +117,40 @@ export class InventoryItemForm {
     } else {
       this.store.addInventoryItem(inventoryItem);
     }
+  }
+
+  addCategory(): void {
+    const normalizedName = this.newCategoryName.value.trim();
+
+    if (!normalizedName) {
+      return;
+    }
+
+    const existingCategory = this.categories().find(
+      (category) => category.name.trim().toLowerCase() === normalizedName.toLowerCase(),
+    );
+
+    if (existingCategory) {
+      this.form.controls.idCategory.setValue(existingCategory.id);
+      this.newCategoryName.setValue('');
+      return;
+    }
+
+    const category = new InventoryCategory({
+      id: buildCategoryId(normalizedName),
+      name: normalizedName,
+    });
+
+    this.store.addInventoryCategory(category);
+    this.form.controls.idCategory.setValue(category.id);
+    this.newCategoryName.setValue('');
+  }
+
+  canAddCategory(): boolean {
+    return this.newCategoryName.value.trim().length > 0;
+  }
+
+  onCancel(): void {
+    void this.router.navigate(['/restaurant/inventory']);
   }
 }

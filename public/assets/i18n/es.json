@@ -141,6 +141,10 @@
       "search-placeholder": "Buscar productos del inventario",
       "category-label": "Categoría",
       "category-placeholder": "Todas las categorías",
+      "create-category-label": "Nueva categoría",
+      "create-category-placeholder": "Escribe un nombre de categoría",
+      "create-category-action": "Agregar categoría",
+      "create-category-hint": "Se guarda en el frontend y queda disponible al instante para filtros y formularios.",
       "supplier-label": "Proveedor",
       "supplier-placeholder": "Todos los proveedores",
       "status-label": "Estado",
@@ -168,6 +172,10 @@
       "current-stock-label": "Stock actual",
       "minimum-stock-label": "Stock mínimo",
       "category-label": "Categoría",
+      "create-category-label": "Crear categoría",
+      "create-category-placeholder": "Nombre de la categoría",
+      "create-category-action": "Agregar",
+      "create-category-hint": "Si no existe todavía, créala aquí y quedará seleccionada para este producto.",
       "supplier-label": "Proveedor",
       "unit-of-measure-label": "Unidad de medida",
       "save-button": "Guardar",
@@ -346,6 +354,61 @@
         "medium": "Media",
         "low": "Baja"
       }
+    },
+    "alerts": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Alertas de proveedores",
+      "description": "Monitorea cambios urgentes, retrasos y señales compartidas por tus clientes.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar alertas...",
+      "severity-label": "Severidad",
+      "severity-placeholder": "Filtrar por severidad",
+      "severity": {
+        "all": "Todas las severidades",
+        "critical": "Crítica",
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      },
+      "status": {
+        "open": "Abierta",
+        "acknowledged": "Reconocida"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERIDAD",
+          "detail": "DETALLE DE ALERTA",
+          "source": "ORIGEN",
+          "date": "FECHA",
+          "status": "ESTADO",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "view-details": "VER DETALLES",
+          "acknowledge": "RECONOCER"
+        },
+        "footer": "Mostrando {{ first }} a {{ last }} de {{ total }} alertas de proveedor"
+      },
+      "dialog": {
+        "header": "Detalle de alerta",
+        "meta": {
+          "date": "Fecha",
+          "status": "Estado"
+        },
+        "actions": {
+          "close": "Cerrar",
+          "acknowledge": "Reconocer"
+        }
+      },
+      "empty": "No hay alertas que coincidan con tu búsqueda.",
+      "notification-title": "Notificación del proveedor",
+      "messages": {
+        "rush-reorder": "Solicitud urgente de reposición",
+        "route-congestion": "Congestión detectada en la ruta",
+        "client-stock-alert-received": "Se recibió una alerta de stock del cliente",
+        "delayed-delivery-on-route-lima-centro-am": "Entrega retrasada en la ruta Lima Centro AM",
+        "new-urgent-order-from-ming-garden": "Nuevo pedido urgente de Ming Garden"
+      }
     }
   },
   "restaurant-management": {
@@ -368,7 +431,28 @@
       "view-details": "Ver Detalles",
       "checkout": "Liberar",
       "assign-guest": "Asignar Comensal",
+      "edit": "Editar",
+      "delete": "Eliminar",
       "no-tables": "No hay mesas registradas.",
+      "form": {
+        "add-table": "Agregar mesa",
+        "title": "Registrar una nueva mesa",
+        "edit-title": "Editar mesa",
+        "description": "Crea una mesa con su número de servicio y capacidad de asientos.",
+        "number": "Número de mesa",
+        "capacity": "Capacidad de asientos",
+        "save": "Guardar mesa",
+        "update": "Actualizar mesa",
+        "cancel": "Cancelar",
+        "errors": {
+          "invalid-number": "Ingresa un número de mesa válido mayor que cero.",
+          "invalid-capacity": "Ingresa una capacidad válida mayor que cero.",
+          "duplicate-number": "Ese número de mesa ya existe.",
+          "create-failed": "No se pudo crear la mesa. Inténtalo de nuevo.",
+          "update-failed": "No se pudo actualizar la mesa. Inténtalo de nuevo.",
+          "delete-failed": "No se pudo eliminar la mesa. Inténtalo de nuevo."
+        }
+      },
       "status": {
         "OCCUPIED": "Ocupada",
         "FREE": "Libre",

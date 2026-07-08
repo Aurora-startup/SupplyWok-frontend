@@ -118,6 +118,37 @@
 
 </div>
 
+<div class="category-builder-card">
+  <div class="category-builder-card__copy">
+    <div class="filter-label">
+      {{ 'inventory.search-bar.create-category-label' | translate }}
+    </div>
+    <p class="category-builder-card__hint">
+      {{ 'inventory.search-bar.create-category-hint' | translate }}
+    </p>
+  </div>
+
+  <div class="category-builder-card__controls">
+    <input
+      type="text"
+      class="search-input category-builder-card__input"
+      [value]="newCategoryName"
+      [placeholder]="'inventory.search-bar.create-category-placeholder' | translate"
+      (input)="newCategoryName = $any($event.target).value"
+    >
+
+    <button
+      mat-stroked-button
+      type="button"
+      class="category-builder-card__button"
+      [disabled]="!canAddCategory()"
+      (click)="addCategory()"
+    >
+      {{ 'inventory.search-bar.create-category-action' | translate }}
+    </button>
+  </div>
+</div>
+
 @if (store.loading()) {
   <div class="loading-container">
     <mat-spinner diameter="40"></mat-spinner>

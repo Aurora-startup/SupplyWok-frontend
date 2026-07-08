@@ -2,6 +2,8 @@
 
 :host {
   display: block;
+  background: #f6f4f1;
+  min-height: 100%;
 }
 
 /* ─────────────────────────────────────────────
@@ -9,8 +11,8 @@
 ───────────────────────────────────────────── */
 .form-page {
   padding: 24px;
-  background: #f6f4f1;
-  min-height: 100vh;
+  background: inherit;
+  min-height: calc(100vh - 88px);
   box-sizing: border-box;
 }
 
@@ -82,6 +84,57 @@
 ───────────────────────────────────────────── */
 mat-form-field {
   width: 100%;
+}
+
+.category-builder {
+  align-items: flex-start;
+  background: #fcfbfa;
+  border: 1px dashed #ddd6ce;
+  border-radius: 14px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  padding: 16px;
+}
+
+.category-builder__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 280px;
+}
+
+.category-builder__title {
+  color: #2D241E;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.category-builder__hint {
+  color: #8C857B;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.category-builder__controls {
+  align-items: flex-start;
+  display: flex;
+  flex: 1;
+  gap: 12px;
+}
+
+.category-builder__field {
+  flex: 1;
+}
+
+.category-builder__button {
+  align-items: center;
+  border-radius: 10px !important;
+  display: inline-flex;
+  font-weight: 700;
+  gap: 8px;
+  height: 56px;
+  padding: 0 18px !important;
 }
 
 /* Outlined field style */
@@ -185,5 +238,14 @@ mat-form-field {
 
   .form-grid {
     grid-template-columns: 1fr;
+  }
+
+  .category-builder,
+  .category-builder__controls {
+    flex-direction: column;
+  }
+
+  .category-builder__button {
+    width: 100%;
   }
 }

@@ -139,7 +139,8 @@ export class InventoryManagementStore {
       .pipe(retry(2))
       .subscribe({
         next: (createdInventoryItem) => {
-          this.inventoryItemsSignal.update((items) => [...items, createdInventoryItem]);
+          const normalizedItem = this.mergeResolvedItem(createdInventoryItem, inventoryItem);
+          this.inventoryItemsSignal.update((items) => [...items, normalizedItem]);
           this.loadingSignal.set(false);
           this.itemSavedSignal.set(true);
         },
@@ -186,8 +187,9 @@ export class InventoryManagementStore {
       .pipe(retry(2))
       .subscribe({
         next: (inventoryItem) => {
+          const normalizedItem = this.mergeResolvedItem(inventoryItem, updatedInventoryItem);
           this.inventoryItemsSignal.update((items) =>
-            items.map((item) => (item.id === inventoryItem.id ? inventoryItem : item)),
+            items.map((item) => (item.id === normalizedItem.id ? normalizedItem : item)),
           );
           this.loadingSignal.set(false);
           this.itemSavedSignal.set(true);
@@ -365,6 +367,23 @@ export class InventoryManagementStore {
       ? (this.inventoryCategories().find((cat) => cat.id === categoryId) ?? null)
       : null;
     return { ...item, category } as InventoryItem;
+  }
+
+  private mergeResolvedItem(itemFromApi: InventoryItem, fallbackItem: InventoryItem): InventoryItem {
+    const resolvedCategory = itemFromApi.category ?? fallbackItem.category ?? null;
+    const resolvedSupplier = itemFromApi.supplier ?? fallbackItem.supplier ?? null;
+
+    return new InventoryItem({
+      id: itemFromApi.id,
+      name: itemFromApi.name,
+      currentStock: itemFromApi.currentStock,
+      minimumStockLevel: itemFromApi.minimumStockLevel,
+      unitOfMeasure: itemFromApi.unitOfMeasure,
+      idCategory: itemFromApi.idCategory || fallbackItem.idCategory,
+      idSupplier: itemFromApi.idSupplier || fallbackItem.idSupplier,
+      category: resolvedCategory,
+      supplier: resolvedSupplier,
+    });
   }
   /**
    * Formats error messages for user-friendly display.

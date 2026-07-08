@@ -21,6 +21,14 @@ import { SupplierAlert } from '../../../domain/model/supplier-alert.entity';
   styleUrl: './supplier-alerts.component.css',
 })
 export class SupplierAlertsComponent implements OnInit {
+  private readonly detailMessageMap: Record<string, string> = {
+    'rush reorder request': 'supplier-management.alerts.messages.rush-reorder',
+    'route congestion detected': 'supplier-management.alerts.messages.route-congestion',
+    'client stock alert received': 'supplier-management.alerts.messages.client-stock-alert-received',
+    'delayed delivery on route lima centro am': 'supplier-management.alerts.messages.delayed-delivery-on-route-lima-centro-am',
+    'new urgent order from ming garden': 'supplier-management.alerts.messages.new-urgent-order-from-ming-garden'
+  };
+
   readonly store = inject(IotStore);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -30,7 +38,8 @@ export class SupplierAlertsComponent implements OnInit {
   severityFilter = 'all';
 
   readonly severityOptions = [
-    { labelKey: 'supplier-management.orders.filters.all', value: 'all' },
+    { labelKey: 'supplier-management.alerts.severity.all', value: 'all' },
+    { labelKey: 'supplier-management.alerts.severity.critical', value: 'critical' },
     { labelKey: 'supplier-management.alerts.severity.high', value: 'high' },
     { labelKey: 'supplier-management.alerts.severity.medium', value: 'medium' },
     { labelKey: 'supplier-management.alerts.severity.low', value: 'low' }
@@ -64,10 +73,27 @@ export class SupplierAlertsComponent implements OnInit {
   }
 
   getSeverity(severity: string): 'success' | 'info' | 'warn' | 'danger' | 'secondary' {
+    if (severity === 'critical') return 'danger';
     if (severity === 'high') return 'danger';
     if (severity === 'medium') return 'warn';
-    if (severity === 'low') return 'info';
+    if (severity === 'low') return 'success';
     return 'secondary';
+  }
+
+  getSeverityLabelKey(severity: string): string {
+    const normalized = String(severity ?? '').trim().toLowerCase();
+    return `supplier-management.alerts.severity.${normalized || 'low'}`;
+  }
+
+  getStatusLabelKey(status: string): string {
+    return status === 'acknowledged'
+      ? 'supplier-management.alerts.status.acknowledged'
+      : 'supplier-management.alerts.status.open';
+  }
+
+  getDetailMessageKey(detail: string): string {
+    const normalized = String(detail ?? '').trim().toLowerCase();
+    return this.detailMessageMap[normalized] ?? 'supplier-management.alerts.messages.new-urgent-order-from-ming-garden';
   }
 
   formatAlertDate(value: string): string {

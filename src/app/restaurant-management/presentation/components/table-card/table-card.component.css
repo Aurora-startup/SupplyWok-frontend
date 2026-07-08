@@ -1,22 +1,12 @@
 .table-card {
   background: var(--sw-surface);
-  border-radius: 18px;
+  border-radius: 12px;
   padding: 20px;
   border: 1px solid var(--sw-border);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: box-shadow 0.2s, transform 0.2s;
-  box-shadow: var(--sw-shadow);
-}
-
-.table-card:hover {
-  box-shadow: 0 16px 28px rgba(45, 36, 30, 0.12);
-  transform: translateY(-2px);
-}
-
-.table-card-occupied {
-  border-left: 4px solid #b77d29;
+  box-shadow: var(--sw-shadow-soft);
 }
 
 .table-card-header {
@@ -107,23 +97,32 @@
 .table-card-actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  gap: 12px;
   padding-top: 10px;
   border-top: 1px solid #efe5d7;
 }
 
+.table-card-actions__group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .btn-text {
-  background: none;
-  border: none;
+  min-height: 34px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #d9d1c7;
+  background: #ffffff;
   cursor: pointer;
   font-size: 13px;
   font-weight: 600;
-  color: #6f655d;
-  padding: 4px 0;
-  transition: color 0.2s;
+  color: #544a42;
+  transition: border-color 0.2s, color 0.2s;
 }
 
-.btn-text:hover { color: #2d241e; }
+.btn-text:hover { color: #2d241e; border-color: #bdb4aa; }
 .btn-checkout { color: #b14f34; }
-.btn-checkout:hover { color: #903b24; }
 .btn-assign { color: #2f8a57; }
-.btn-assign:hover { color: #216941; }
+.btn-danger { color: #b14f34; }

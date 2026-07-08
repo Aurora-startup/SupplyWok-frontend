@@ -25,6 +25,26 @@ export class TableApiEndpoint extends BaseApiEndpoint<
     );
   }
 
+  override create(entity: Table): Observable<Table> {
+    return this.http.post<TableResource>(this.endpointUrl, {
+      number: entity.number,
+      capacity: entity.capacity,
+    }).pipe(
+      map((created) => this.assembler.toEntityFromResource(created)),
+      catchError(this.handleError('Failed to create table'))
+    );
+  }
+
+  updateDetails(entity: Table, id: number | string): Observable<Table> {
+    return this.http.put<TableResource>(`${this.endpointUrl}/${id}`, {
+      number: entity.number,
+      capacity: entity.capacity,
+    }).pipe(
+      map((updated) => this.assembler.toEntityFromResource(updated)),
+      catchError(this.handleError('Failed to update table'))
+    );
+  }
+
   override update(entity: Table, id: number | string): Observable<Table> {
     return this.http.put<TableResource>(`${this.endpointUrl}/${id}/status`, {
       status: toBackendTableStatus(entity.status),

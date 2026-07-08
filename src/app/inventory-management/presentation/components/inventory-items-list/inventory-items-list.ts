@@ -6,6 +6,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatError } from '@angular/material/form-field';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import { InventoryItem } from '../../../domain/model/inventory-item.entity';
+import { InventoryCategory } from '../../../domain/model/inventory-category.entity';
+import { buildCategoryId } from '../../../infrastructure/inventory-item-assembler';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -38,6 +40,7 @@ export class InventoryItemsList {
   readonly store = inject(InventoryManagementStore);
   protected router = inject(Router);
   protected readonly min = Math.min;
+  protected newCategoryName = '';
 
   // inventory-items-list.ts — métodos helper que necesitas agregar al componente
 
@@ -60,11 +63,39 @@ export class InventoryItemsList {
   }
 
   protected onEdit(item: InventoryItem): void {
-    // TODO: abrir dialog de edición
-   // console.log('Edit', item);
+    void this.router.navigate(['/restaurant/inventory', item.id, 'edit']);
   }
 
   deleteInventoryItem(id: number) {
     this.store.deleteInventoryItem(id);
+  }
+
+  protected addCategory(): void {
+    const normalizedName = this.newCategoryName.trim();
+
+    if (!normalizedName) {
+      return;
+    }
+
+    const existingCategory = this.store.inventoryCategories().find(
+      (category) => category.name.trim().toLowerCase() === normalizedName.toLowerCase(),
+    );
+
+    const category = existingCategory ?? new InventoryCategory({
+      id: buildCategoryId(normalizedName),
+      name: normalizedName,
+    });
+
+    if (!existingCategory) {
+      this.store.addInventoryCategory(category);
+    }
+
+    this.store.selectedCategory.set(category.id);
+    this.store.resetPage();
+    this.newCategoryName = '';
+  }
+
+  protected canAddCategory(): boolean {
+    return this.newCategoryName.trim().length > 0;
   }
 }
