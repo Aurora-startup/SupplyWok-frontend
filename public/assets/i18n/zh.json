@@ -55,12 +55,6 @@
           "sms": "SMS"
         }
       },
-      "users": {
-        "title": "User list",
-        "status": {
-          "active": "Active"
-        }
-      },
       "demo": {
         "state": "Demo state"
       },
@@ -141,6 +135,48 @@
       "help": "帮助",
       "logout": "登出",
       "options": "选项"
+    }
+  },
+  "profiles": {
+    "settings": {
+      "restaurant": {
+        "kicker": "餐厅",
+        "title": "餐厅设置",
+        "description": "运营资料、通知、联系信息和访问设置。",
+        "profileTitle": "餐厅资料",
+        "fields": {
+          "businessName": "餐厅资料"
+        }
+      },
+      "supplier": {
+        "kicker": "供应商",
+        "title": "供应商设置",
+        "description": "商业资料、通知、联系信息和访问设置。",
+        "profileTitle": "供应商资料",
+        "fields": {
+          "businessName": "供应商资料"
+        }
+      },
+      "fields": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "电子邮件",
+        "street": "街道",
+        "district": "区",
+        "city": "城市",
+        "country": "国家",
+        "supportContact": "支持联系人",
+        "emailNotifications": "电子邮件",
+        "smsNotifications": "短信"
+      },
+      "actions": {
+        "save": "保存",
+        "saving": "保存中"
+      },
+      "messages": {
+        "saved": "资料设置已保存。",
+        "error": "无法保存资料设置。"
+      }
     }
   },
   "inventory": {

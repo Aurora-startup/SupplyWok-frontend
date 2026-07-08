@@ -112,12 +112,6 @@
           "sms": "SMS"
         }
       },
-      "users": {
-        "title": "User list",
-        "status": {
-          "active": "Active"
-        }
-      },
       "demo": {
         "state": "Demo state"
       },
@@ -539,6 +533,48 @@
       "liters": "Liters",
       "units": "Units",
       "grams": "Grams"
+    }
+  },
+  "profiles": {
+    "settings": {
+      "restaurant": {
+        "kicker": "Restaurant",
+        "title": "Restaurant settings",
+        "description": "Operational profile, notifications, contact details, and access.",
+        "profileTitle": "Restaurant profile",
+        "fields": {
+          "businessName": "Restaurant profile"
+        }
+      },
+      "supplier": {
+        "kicker": "Supplier",
+        "title": "Supplier settings",
+        "description": "Commercial profile, notifications, contact details, and access.",
+        "profileTitle": "Supplier profile",
+        "fields": {
+          "businessName": "Supplier profile"
+        }
+      },
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "street": "Street",
+        "district": "District",
+        "city": "City",
+        "country": "Country",
+        "supportContact": "Support contact",
+        "emailNotifications": "Email",
+        "smsNotifications": "SMS"
+      },
+      "actions": {
+        "save": "Save",
+        "saving": "Saving"
+      },
+      "messages": {
+        "saved": "Profile settings saved.",
+        "error": "Profile settings could not be saved."
+      }
     }
   },
   "inventory": {

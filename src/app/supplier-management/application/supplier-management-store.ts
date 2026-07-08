@@ -5,7 +5,6 @@ import { CatalogItem } from '../domain/model/catalog-item.entity';
 import { Client } from '../domain/model/client.entity';
 import { DemandForecast } from '../../analytics/domain/model/demand-forecast.entity';
 import { Order } from '../../supply-and-purchasing/domain/model/order.entity';
-import { SupplierContact, SupplierNotifications, SupplierSettings } from '../domain/model/supplier-settings.entity';
 import { SupplierSubscription } from '../domain/model/supplier-subscription.entity';
 import { SupplierManagementApi } from '../infrastructure/supplier-management-api';
 
@@ -19,7 +18,6 @@ export class SupplierManagementStore {
   private readonly catalogItemsSignal = signal<CatalogItem[]>([]);
   private readonly clientsSignal = signal<Client[]>([]);
   private readonly demandForecastSignal = signal<DemandForecast>(new DemandForecast());
-  private readonly supplierSettingsSignal = signal<SupplierSettings>(new SupplierSettings());
   private readonly supplierSubscriptionSignal = signal<SupplierSubscription>(new SupplierSubscription());
   private readonly loadingSignal = signal<boolean>(false);
   private readonly errorSignal = signal<string | null>(null);
@@ -28,7 +26,6 @@ export class SupplierManagementStore {
   readonly catalogItems = this.catalogItemsSignal.asReadonly();
   readonly clients = this.clientsSignal.asReadonly();
   readonly demandForecast = this.demandForecastSignal.asReadonly();
-  readonly supplierSettings = this.supplierSettingsSignal.asReadonly();
   readonly supplierSubscription = this.supplierSubscriptionSignal.asReadonly();
   readonly loading = this.loadingSignal.asReadonly();
   readonly error = this.errorSignal.asReadonly();
@@ -137,29 +134,6 @@ export class SupplierManagementStore {
     this.supplierManagementApi.getDemandForecast().pipe(retry(2)).subscribe({
       next: (forecast) => this.finishLoading(() => this.demandForecastSignal.set(forecast)),
       error: (error) => this.failLoading(error, 'Failed to load demand forecast')
-    });
-  }
-
-  loadSupplierSettings(): void {
-    this.startLoading();
-    this.supplierManagementApi.getSupplierSettings().pipe(retry(2)).subscribe({
-      next: (settings) => this.finishLoading(() => this.supplierSettingsSignal.set(settings)),
-      error: (error) => this.failLoading(error, 'Failed to load supplier settings')
-    });
-  }
-
-  updateSupplierSettings(settings: {
-    id: number | string | null;
-    supplierName: string;
-    supportContact: string;
-    notifications: SupplierNotifications;
-    serviceZones: string[];
-    contacts: SupplierContact[];
-  }): void {
-    this.startLoading();
-    this.supplierManagementApi.updateSupplierSettings(new SupplierSettings(settings)).pipe(retry(2)).subscribe({
-      next: (persistedSettings) => this.finishLoading(() => this.supplierSettingsSignal.set(persistedSettings)),
-      error: (error) => this.failLoading(error, 'Failed to update supplier settings')
     });
   }
 

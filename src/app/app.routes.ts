@@ -10,8 +10,8 @@ import { supplierManagementRoutes } from './supplier-management/presentation/sup
 import { authGuard } from './iam/presentation/guards/auth.guard';
 import { guestGuard } from './iam/presentation/guards/guest.guard';
 import { ReportsPageComponent } from './shared/presentation/views/reports-page.component';
-import { ConfigurationPageComponent } from './shared/presentation/views/configuration-page.component';
 import { SubscriptionPageComponent } from './shared/presentation/views/subscription-page.component';
+import { ProfileSettingsPageComponent } from './profile-management/presentation/views/profile-settings-page.component';
 
 const placeholderRoutes: Routes = [
   {
@@ -21,7 +21,7 @@ const placeholderRoutes: Routes = [
   },
   {
     path: 'restaurant/configuration',
-    component: ConfigurationPageComponent,
+    component: ProfileSettingsPageComponent,
     title: 'Configuration'
   },
   {

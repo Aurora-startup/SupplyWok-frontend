@@ -7,6 +7,7 @@
   flex-direction: column;
   gap: 12px;
   box-shadow: var(--sw-shadow-soft);
+  min-width: 0;
 }
 
 .table-card-header {
@@ -20,6 +21,8 @@
   font-size: 20px;
   font-weight: 700;
   color: #2d241e;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .table-status-badge {
@@ -39,6 +42,7 @@
 .table-info {
   font-size: 13px;
   color: #8d8073;
+  overflow-wrap: anywhere;
 }
 
 .table-card-details {
@@ -64,6 +68,7 @@
 .detail-label {
   font-size: 13px;
   color: #6f655d;
+  min-width: 0;
 }
 
 .detail-value {
@@ -95,34 +100,60 @@
 .sensor-idle .sensor-dot { background: #2f8a57; }
 
 .table-card-actions {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(112px, 1fr) auto;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   padding-top: 10px;
   border-top: 1px solid #efe5d7;
 }
 
 .table-card-actions__group {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 8px;
+  min-width: 0;
+}
+
+.table-card-actions__group:last-child {
+  justify-content: flex-end;
 }
 
 .btn-text {
   min-height: 34px;
-  padding: 0 10px;
+  padding: 0 12px;
   border-radius: 8px;
   border: 1px solid #d9d1c7;
   background: #ffffff;
   cursor: pointer;
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 13px;
   font-weight: 600;
+  line-height: 1;
   color: #544a42;
   transition: border-color 0.2s, color 0.2s;
+  white-space: nowrap;
 }
 
 .btn-text:hover { color: #2d241e; border-color: #bdb4aa; }
 .btn-checkout { color: #b14f34; }
-.btn-assign { color: #2f8a57; }
+.btn-assign {
+  color: #2f8a57;
+  min-width: 112px;
+}
 .btn-danger { color: #b14f34; }
+
+@media (max-width: 380px) {
+  .table-card-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .table-card-actions__group,
+  .table-card-actions__group:last-child {
+    justify-content: stretch;
+  }
+
+  .btn-text {
+    flex: 1;
+  }
+}

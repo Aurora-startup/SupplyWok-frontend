@@ -68,12 +68,6 @@
           "sms": "SMS"
         }
       },
-      "users": {
-        "title": "Lista de usuarios",
-        "status": {
-          "active": "Activo"
-        }
-      },
       "demo": {
         "state": "Estado demo"
       },
@@ -125,6 +119,48 @@
       },
       "messages": {
         "switchSuccess": "La vista ahora refleja el plan {{ plan }}."
+      }
+    }
+  },
+  "profiles": {
+    "settings": {
+      "restaurant": {
+        "kicker": "Restaurante",
+        "title": "Configuracion del restaurante",
+        "description": "Perfil operativo, notificaciones, datos de contacto y acceso.",
+        "profileTitle": "Perfil del restaurante",
+        "fields": {
+          "businessName": "Perfil del restaurante"
+        }
+      },
+      "supplier": {
+        "kicker": "Proveedor",
+        "title": "Configuracion del proveedor",
+        "description": "Perfil comercial, notificaciones, datos de contacto y acceso.",
+        "profileTitle": "Perfil del proveedor",
+        "fields": {
+          "businessName": "Perfil del proveedor"
+        }
+      },
+      "fields": {
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "email": "Correo",
+        "street": "Calle",
+        "district": "Distrito",
+        "city": "Ciudad",
+        "country": "Pais",
+        "supportContact": "Contacto de soporte",
+        "emailNotifications": "Correo",
+        "smsNotifications": "SMS"
+      },
+      "actions": {
+        "save": "Guardar",
+        "saving": "Guardando"
+      },
+      "messages": {
+        "saved": "Configuracion del perfil guardada.",
+        "error": "No se pudo guardar la configuracion del perfil."
       }
     }
   },
