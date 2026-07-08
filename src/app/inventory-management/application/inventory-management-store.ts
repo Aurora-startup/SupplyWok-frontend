@@ -10,6 +10,15 @@ import { retry } from 'rxjs';
   providedIn: 'root',
 })
 export class InventoryManagementStore {
+  private readonly defaultCategoryTranslationKeys: Record<string, string> = {
+    grains: 'inventory.categories.grains',
+    proteins: 'inventory.categories.proteins',
+    vegetables: 'inventory.categories.vegetables',
+    sauces: 'inventory.categories.sauces',
+    beverages: 'inventory.categories.beverages',
+    packaging: 'inventory.categories.packaging',
+  };
+
   private readonly inventoryItemsSignal = signal<InventoryItem[]>([]);
   private readonly inventoryCategoriesSignal = signal<InventoryCategory[]>([]);
   private readonly suppliersSignal = signal<Supplier[]>([]);
@@ -99,6 +108,16 @@ export class InventoryManagementStore {
   getCategoryName(id: number | null | undefined): string {
     if (!id) return 'None';
     return this.inventoryCategories().find((c) => c.id === id)?.name ?? 'None';
+  }
+
+  getCategoryById(id: number | null | undefined): InventoryCategory | null {
+    if (!id) return null;
+    return this.inventoryCategories().find((category) => category.id === id) ?? null;
+  }
+
+  getCategoryTranslationKey(category: InventoryCategory | null | undefined): string | null {
+    const normalizedName = category?.name.trim().toLowerCase();
+    return normalizedName ? (this.defaultCategoryTranslationKeys[normalizedName] ?? null) : null;
   }
 
   getInventoryCategoryById(id: number | null | undefined): Signal<InventoryCategory | undefined> {

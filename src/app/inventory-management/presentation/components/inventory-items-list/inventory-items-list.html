@@ -45,7 +45,11 @@
       @for (category of store.inventoryCategories(); track category.id) {
 
         <mat-option [value]="category.id">
-          {{ category.name }}
+          @if (store.getCategoryTranslationKey(category); as categoryKey) {
+            {{ categoryKey | translate }}
+          } @else {
+            {{ category.name }}
+          }
         </mat-option>
 
       }
@@ -222,7 +226,15 @@
       <td mat-cell *matCellDef="let item">
 
         <span class="category-chip">
-          {{ store.getCategoryName(item.idCategory) }}
+          @if (store.getCategoryById(item.idCategory); as category) {
+            @if (store.getCategoryTranslationKey(category); as categoryKey) {
+              {{ categoryKey | translate }}
+            } @else {
+              {{ category.name }}
+            }
+          } @else {
+            {{ 'inventory.categories.none' | translate }}
+          }
         </span>
 
       </td>

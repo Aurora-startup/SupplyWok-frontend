@@ -562,6 +562,15 @@
       "status-label": "Status",
       "status-placeholder": "All status"
     },
+    "categories": {
+      "grains": "Grains",
+      "proteins": "Proteins",
+      "vegetables": "Vegetables",
+      "sauces": "Sauces",
+      "beverages": "Beverages",
+      "packaging": "Packaging",
+      "none": "No category"
+    },
     "list": {
       "product-label": "Product",
       "stock-levels-label": "Stock levels",

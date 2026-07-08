@@ -75,7 +75,11 @@
               @for (category of categories(); track category.id) {
 
                 <mat-option [value]="category.id">
-                  {{ category.name }}
+                  @if (store.getCategoryTranslationKey(category); as categoryKey) {
+                    {{ categoryKey | translate }}
+                  } @else {
+                    {{ category.name }}
+                  }
                 </mat-option>
 
               }

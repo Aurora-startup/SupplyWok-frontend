@@ -24,7 +24,7 @@ export class InventoryItemForm {
   private fb = inject(FormBuilder);
   private route = inject(ActivatedRoute);
   private router = inject(Router);
-  private store = inject(InventoryManagementStore);
+  protected store = inject(InventoryManagementStore);
 
   form = this.fb.group({
     name: new FormControl<string>('', {

@@ -151,6 +151,16 @@
       "status-placeholder": "Todos los estados"
     },
 
+    "categories": {
+      "grains": "Granos",
+      "proteins": "Proteínas",
+      "vegetables": "Vegetales",
+      "sauces": "Salsas",
+      "beverages": "Bebidas",
+      "packaging": "Empaques",
+      "none": "Sin categoría"
+    },
+
     "list": {
       "product-label": "Producto",
       "stock-levels-label": "Niveles de stock",

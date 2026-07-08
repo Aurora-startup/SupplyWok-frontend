@@ -162,6 +162,16 @@
       "status-placeholder": "所有状态"
     },
 
+    "categories": {
+      "grains": "谷物",
+      "proteins": "蛋白质",
+      "vegetables": "蔬菜",
+      "sauces": "酱料",
+      "beverages": "饮料",
+      "packaging": "包装",
+      "none": "未分类"
+    },
+
     "list": {
       "product-label": "商品",
       "stock-levels-label": "库存水平",
