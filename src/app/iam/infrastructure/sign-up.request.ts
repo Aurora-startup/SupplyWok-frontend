@@ -4,5 +4,5 @@
 export interface SignUpRequest {
   email: string;
   password: string;
-  roles: string[];
+  role: string;
 }

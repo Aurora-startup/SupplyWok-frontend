@@ -684,7 +684,9 @@
           "linked-items": "Linked items",
           "categories": "Categories",
           "low-stock": "Low stock",
-          "coverage": "Coverage"
+          "coverage": "Coverage",
+          "street": "Street",
+          "support-contact": "Support Contact"
         }
       },
       "coverage": {
@@ -720,6 +722,7 @@
     "table": {
       "title": "Order tracking",
       "search-placeholder": "Search by supplier, status, or code",
+      "loading": "Loading orders...",
       "columns": {
         "code": "Code",
         "status": "Status",
@@ -905,12 +908,54 @@
       }
     },
     "dashboard": {
+      "title": "Kitchen Dashboard",
+      "description": "Real-time supply chain and floor monitoring.",
+      "metrics": {
+        "lowStock": "LOW STOCK ITEMS",
+        "lowStockHint": "Urgent",
+        "pendingOrders": "PENDING ORDERS",
+        "pendingOrdersHint": "Open to suppliers",
+        "tempAlerts": "TEMP. ALERTS",
+        "tempAlertsHint": "Sensor attention",
+        "activeTables": "ACTIVE TABLES",
+        "activeTablesHint": "Occupancy rate",
+        "kitchenCommands": "KITCHEN COMMANDS",
+        "kitchenCommandsHint": "Live kitchen flow"
+      },
+      "iotPanel": {
+        "title": "IoT panel ready for real sensors",
+        "support": "Kitchen, storage, and occupancy readings with thresholds and recent events.",
+        "optimalRange": "Optimal range:",
+        "empty": "No recent sensor events in this environment."
+      },
       "kitchenTickets": {
         "title": "Kitchen Tickets",
-        "seeAll": "See All Kitchen Tickets"
+        "seeAll": "See All Kitchen Tickets",
+        "table": "Table",
+        "items": "items",
+        "empty": "No active kitchen tickets to display."
       },
       "activeCommands": {
         "label": "Kitchen Commands"
+      },
+      "inventory": {
+        "title": "Below minimum",
+        "support": "product(s) below minimum stock level",
+        "product": "PRODUCT",
+        "currentStock": "CURRENT STOCK",
+        "status": "STATUS",
+        "empty": "No products below minimum stock level.",
+        "sortAll": "SORT ALL"
+      },
+      "orders": {
+        "title": "Orders",
+        "support": "orders loaded in this context",
+        "id": "ID",
+        "supplier": "SUPPLIER",
+        "status": "STATUS",
+        "date": "DATE",
+        "empty": "There are no recent orders loaded.",
+        "viewHistory": "View order history"
       }
     },
     "dashboardPage": {
@@ -1054,6 +1099,9 @@
       "kicker": "Restaurant",
       "title": "Alerts",
       "description": "Consolidate stock, temperature, and delivery deviations with follow-up actions.",
+      "header": {
+        "sensors-btn": "Sensors"
+      },
       "search-label": "Search",
       "search-placeholder": "Search alerts...",
       "severity-label": "Severity",
@@ -1095,6 +1143,55 @@
         "actions": {
           "close": "Close",
           "acknowledge": "Acknowledge"
+        }
+      }
+    },
+    "sensors-page": {
+      "kicker": "Restaurant",
+      "title": "Sensors",
+      "description": "Monitor and configure the thresholds for physical IoT hardware.",
+      "search-label": "Search",
+      "search-placeholder": "Search sensors...",
+      "type-label": "Type",
+      "type-placeholder": "Filter by Type",
+      "no-sensors": "There are no sensors loaded in this environment.",
+      "header": {
+        "back-btn": "Back to Alerts",
+        "create-btn": "Create Sensor"
+      },
+      "types": {
+        "all": "All",
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "weight": "Weight"
+      },
+      "table": {
+        "unassigned": "Unassigned",
+        "columns": {
+          "name": "NAME",
+          "assignment": "ASSIGNMENT",
+          "type": "TYPE",
+          "min-value": "MIN VALUE",
+          "max-value": "MAX VALUE",
+          "actions": "ACTIONS"
+        },
+        "actions": {
+          "edit": "EDIT SENSOR"
+        }
+      },
+      "dialog": {
+        "header": "Edit Sensor Details",
+        "header-create": "Create New Sensor",
+        "fields": {
+          "name": "Sensor Name",
+          "assignment": "Assignment / Location",
+          "type": "Sensor Type",
+          "min-value": "Minimum Threshold",
+          "max-value": "Maximum Threshold"
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "save": "Save Changes"
         }
       }
     }

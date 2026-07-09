@@ -1,0 +1,188 @@
+<section class="sensors-page">
+  <header class="sensors-page__header">
+    <div>
+      <p class="sensors-page__kicker">{{ 'iot.sensors-page.kicker' | translate }}</p>
+      <h1>{{ 'iot.sensors-page.title' | translate }}</h1>
+      <p class="sensors-page__subtitle">{{ 'iot.sensors-page.description' | translate }}</p>
+    </div>
+    <div class="sensors-page__header-actions">
+      <p-button 
+        [label]="'iot.sensors-page.header.create-btn' | translate"
+        icon="pi pi-plus"
+        severity="danger"
+        (onClick)="showCreateDialog()"
+      />
+      <p-button 
+        [label]="'iot.sensors-page.header.back-btn' | translate"
+        icon="pi pi-arrow-left"
+        severity="secondary"
+        styleClass="p-button-outlined p-button-secondary"
+        (onClick)="goBack()"
+      />
+    </div>
+  </header>
+
+  <section class="sensors-page__filters">
+    <label class="sensors-page__field">
+      <span class="sensors-page__field-label">{{ 'iot.sensors-page.search-label' | translate }}</span>
+      <span class="sensors-page__input-shell">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          [ngModel]="searchQuery()"
+          (ngModelChange)="searchQuery.set($event)"
+          [placeholder]="'iot.sensors-page.search-placeholder' | translate"
+        />
+      </span>
+    </label>
+
+    <label class="sensors-page__field">
+      <span class="sensors-page__field-label">{{ 'iot.sensors-page.type-label' | translate }}</span>
+      <p-select
+        class="sensors-page__select"
+        [options]="types"
+        [ngModel]="selectedType()"
+        (ngModelChange)="selectedType.set($event)"
+        optionValue="value"
+        [placeholder]="'iot.sensors-page.type-placeholder' | translate"
+        appendTo="body"
+      >
+        <ng-template pTemplate="selectedItem" let-option>
+          {{ option?.labelKey | translate }}
+        </ng-template>
+        <ng-template pTemplate="item" let-option>
+          {{ option.labelKey | translate }}
+        </ng-template>
+      </p-select>
+    </label>
+  </section>
+
+  <section class="sensors-page__table-shell">
+    <p-table
+      [value]="filteredSensors()"
+      [paginator]="true"
+      [rows]="8"
+      responsiveLayout="scroll"
+      styleClass="sensors-page__table"
+      [rowHover]="true"
+    >
+      <ng-template pTemplate="header">
+        <tr>
+          <th>{{ 'iot.sensors-page.table.columns.name' | translate }}</th>
+          <th>{{ 'iot.sensors-page.table.columns.type' | translate }}</th>
+          <th>{{ 'iot.sensors-page.table.columns.min-value' | translate }}</th>
+          <th>{{ 'iot.sensors-page.table.columns.max-value' | translate }}</th>
+          <th>{{ 'iot.sensors-page.table.columns.actions' | translate }}</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-sensor>
+        <tr>
+          <td class="sensors-page__name">{{ sensor.name }}</td>
+          <td>
+            <span class="sensors-page__type-badge">
+              {{ 'iot.sensors-page.types.' + getDisplayType(sensor.type).toLowerCase() | translate }}
+            </span>
+          </td>
+          <td class="sensors-page__value">{{ sensor.minValue }}</td>
+          <td class="sensors-page__value">{{ sensor.maxValue }}</td>
+          <td>
+            <div class="sensors-page__actions">
+              <button
+                type="button"
+                class="sensors-page__icon-button"
+                [pTooltip]="'iot.sensors-page.table.actions.edit' | translate"
+                (click)="showEditDialog(sensor)"
+              >
+                <i class="pi pi-pencil"></i>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="5">
+            <div class="sensors-page__empty">
+              {{ 'iot.sensors-page.no-sensors' | translate }}
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
+
+  <p-dialog
+    [(visible)]="displayDialog"
+    [modal]="true"
+    styleClass="sensors-dialog"
+    [header]="(isEditMode ? 'iot.sensors-page.dialog.header' : 'iot.sensors-page.dialog.header-create') | translate"
+  >
+    <div class="sensors-dialog__body">
+      <div class="sensors-dialog__field">
+        <label for="edit-name">{{ 'iot.sensors-page.dialog.fields.name' | translate }}</label>
+        <input 
+          pInputText 
+          id="edit-name" 
+          [(ngModel)]="editForm.name" 
+          class="w-full"
+        />
+      </div>
+
+      <div class="sensors-dialog__field">
+        <label>{{ 'iot.sensors-page.dialog.fields.type' | translate }}</label>
+        <p-select
+          class="w-full"
+          [options]="editTypes"
+          [(ngModel)]="editForm.type"
+          optionValue="value"
+          appendTo="body"
+        >
+          <ng-template pTemplate="selectedItem" let-option>
+            {{ option?.labelKey | translate }}
+          </ng-template>
+          <ng-template pTemplate="item" let-option>
+            {{ option.labelKey | translate }}
+          </ng-template>
+        </p-select>
+      </div>
+
+      <div class="sensors-dialog__row">
+        <div class="sensors-dialog__field">
+          <label for="edit-min">{{ 'iot.sensors-page.dialog.fields.min-value' | translate }}</label>
+          <input 
+            pInputText 
+            type="number" 
+            id="edit-min" 
+            [(ngModel)]="editForm.minValue" 
+            class="w-full"
+          />
+        </div>
+        <div class="sensors-dialog__field">
+          <label for="edit-max">{{ 'iot.sensors-page.dialog.fields.max-value' | translate }}</label>
+          <input 
+            pInputText 
+            type="number" 
+            id="edit-max" 
+            [(ngModel)]="editForm.maxValue" 
+            class="w-full"
+          />
+        </div>
+      </div>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <div class="sensors-dialog__actions">
+        <p-button [label]="'iot.sensors-page.dialog.actions.cancel' | translate" [text]="true" (onClick)="displayDialog = false" />
+        <p-button
+          [label]="'iot.sensors-page.dialog.actions.save' | translate"
+          icon="pi pi-check"
+          severity="success"
+          (onClick)="saveSensor()"
+        />
+      </div>
+    </ng-template>
+  </p-dialog>
+</section>

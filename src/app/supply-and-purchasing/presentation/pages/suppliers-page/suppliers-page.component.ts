@@ -1,22 +1,19 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
-import { IamApi } from '../../../../iam/infrastructure/iam-api';
-import { User } from '../../../../iam/domain/model/user.entity';
 import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
 import { Supplier } from '../../../../inventory-management/domain/model/supplier.entity';
 import { ProfileApi } from '../../../../profile-management/infrastructure/profile-api';
 import { Profile } from '../../../../profile-management/domain/model/profile.entity';
-import { catchError, forkJoin, of } from 'rxjs';
 
 interface SupplierDirectoryRow {
   id: number | string;
   name: string;
   email: string;
-  linkedItems: number;
   categories: string[];
   lowStockItems: number;
-  coverageLabel: 'healthy' | 'watch' | 'critical';
+  street: string;
+  supportContact: string;
 }
 
 @Component({
@@ -27,23 +24,17 @@ interface SupplierDirectoryRow {
 })
 export class SuppliersPageComponent implements OnInit {
   private readonly inventoryStore = inject(InventoryManagementStore);
-  private readonly iamApi = inject(IamApi);
   private readonly profileApi = inject(ProfileApi);
   private readonly itemsPerPage = 5;
   private readonly currentPage = signal(1);
-  private readonly supplierUsers = signal<User[]>([]);
   private readonly supplierProfiles = signal<Profile[]>([]);
 
   protected readonly supplierRows = computed<SupplierDirectoryRow[]>(() =>
     this.buildSupplierRows()
   );
 
-  protected readonly totalLinkedItems = computed(() =>
-    this.supplierRows().reduce((sum, row) => sum + row.linkedItems, 0)
-  );
-
   protected readonly totalLowStockItems = computed(() =>
-    this.supplierRows().reduce((sum, row) => sum + row.lowStockItems, 0)
+    this.inventoryStore.inventoryItems().filter((item) => item.currentStock <= item.minimumStockLevel).length
   );
 
   protected readonly totalPages = computed(() =>
@@ -72,15 +63,12 @@ export class SuppliersPageComponent implements OnInit {
   ngOnInit(): void {
     this.inventoryStore.refreshSuppliers();
 
-    this.iamApi.getUsers().subscribe({
-      next: (users) => {
-        const supplierUsers = users.filter((user) => user.roles.includes('ROLE_SUPPLIER'));
-        this.supplierUsers.set(supplierUsers);
-        this.loadSupplierProfiles(supplierUsers);
+    this.profileApi.getProfilesByType('supplier').subscribe({
+      next: (profiles) => {
+        this.supplierProfiles.set(profiles);
         this.currentPage.set(1);
       },
       error: () => {
-        this.supplierUsers.set([]);
         this.supplierProfiles.set([]);
       }
     });
@@ -104,30 +92,25 @@ export class SuppliersPageComponent implements OnInit {
         .filter((supplier) => supplier.email.trim())
         .map((supplier) => [supplier.email.trim().toLowerCase(), supplier])
     );
-    const profilesByEmail = new Map(
-      this.supplierProfiles()
-        .filter((profile) => profile.email.trim())
-        .map((profile) => [profile.email.trim().toLowerCase(), profile])
-    );
-    const rowsFromUsers = this.supplierUsers().map((user) => {
-      const userEmail = user.email.trim().toLowerCase();
-      const supplier = suppliersByEmail.get(userEmail);
-      const profile = profilesByEmail.get(userEmail);
-      const displayName = this.getSupplierDisplayName(user.email, profile, supplier?.name);
+    const rowsFromProfiles = this.supplierProfiles().map((profile) => {
+      const profileEmail = profile.email.trim().toLowerCase();
+      const supplier = suppliersByEmail.get(profileEmail);
+      const displayName = this.getSupplierDisplayName(profile.email, profile, supplier?.name);
       return this.buildSupplierRow(
         new Supplier({
-          id: supplier?.id ?? (`user-${user.id}` as unknown as number),
+          id: supplier?.id ?? (`profile-${profile.id}` as unknown as number),
           name: displayName,
-          email: supplier?.email || user.email
+          email: supplier?.email || profile.email
         }),
-        user.email
+        profile,
+        profile.email
       );
     });
 
-    return rowsFromUsers.sort((first, second) => first.name.localeCompare(second.name));
+    return rowsFromProfiles.sort((first, second) => first.name.localeCompare(second.name));
   }
 
-  private buildSupplierRow(supplier: Supplier, email = supplier.email): SupplierDirectoryRow {
+  private buildSupplierRow(supplier: Supplier, profile: Profile, email = supplier.email): SupplierDirectoryRow {
     const relatedItems = this.inventoryStore.inventoryItems().filter((item) => item.idSupplier === supplier.id);
     const categories = [...new Set(
       relatedItems
@@ -140,10 +123,10 @@ export class SuppliersPageComponent implements OnInit {
       id: supplier.id,
       name: supplier.name,
       email,
-      linkedItems: relatedItems.length,
       categories: categories.length ? categories : ['General'],
       lowStockItems,
-      coverageLabel: lowStockItems === 0 ? 'healthy' : lowStockItems >= 3 ? 'critical' : 'watch'
+      street: profile.street || '-',
+      supportContact: profile.supportContact || '-'
     };
   }
 
@@ -157,26 +140,5 @@ export class SuppliersPageComponent implements OnInit {
     }
 
     return email.split('@')[0] || email;
-  }
-
-  private loadSupplierProfiles(users: User[]): void {
-    if (!users.length) {
-      this.supplierProfiles.set([]);
-      return;
-    }
-
-    forkJoin(
-      users.map((user) =>
-        this.profileApi.getProfileByAccountEmail('supplier', user.email).pipe(
-          catchError(() => of(null))
-        )
-      )
-    ).subscribe((profiles) => {
-      this.supplierProfiles.set(
-        profiles.filter((profile): profile is Profile =>
-          profile !== null && profile.id !== null && profile.profileType === 'supplier'
-        )
-      );
-    });
   }
 }

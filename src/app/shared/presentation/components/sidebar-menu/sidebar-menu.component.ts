@@ -50,7 +50,6 @@ export class SidebarMenuComponent {
     { id: 'suppliers', path: '/restaurant/suppliers', i18nKey: 'shared.sidebar.suppliers', iconOff: '/assets/images/icons/suppliers-icon.svg', iconOn: '/assets/images/icons/suppliers-on-icon.svg', exact: true },
     { id: 'tables-and-occupancy', path: '/restaurant/tables', i18nKey: 'shared.sidebar.tables-and-occupancy', iconOff: '/assets/images/icons/tables-and-occupancy-icon.svg', iconOn: '/assets/images/icons/tables-and-occupancy-on-icon.svg', exact: true },
     { id: 'alerts', path: '/restaurant/alerts', i18nKey: 'shared.sidebar.alerts', iconOff: '/assets/images/icons/alerts-icon.svg', iconOn: '/assets/images/icons/alerts-on-icon.svg', exact: true },
-    { id: 'reports', path: '/restaurant/reports', i18nKey: 'shared.sidebar.reports', iconOff: '/assets/images/icons/reports-icon.svg', iconOn: '/assets/images/icons/reports-on-icon.svg', exact: true },
     { id: 'configuration', path: '/restaurant/configuration', i18nKey: 'shared.sidebar.configuration', iconOff: '/assets/images/icons/configuration-icon.svg', iconOn: '/assets/images/icons/configuration-on-icon.svg', exact: true },
     { id: 'subscription', path: '/restaurant/subscription', i18nKey: 'shared.sidebar.subscription', iconOff: '/assets/images/icons/subscripcion-icon.svg', iconOn: '/assets/images/icons/subscription-on-icon.svg', exact: true }
   ];

@@ -1,6 +1,7 @@
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -31,6 +32,7 @@ import { RestaurantAlert, RestaurantAlertSeverity } from '../../../domain/model/
   styleUrls: ['./alerts-view.component.css']
 })
 export class AlertsViewComponent implements OnInit {
+  private readonly router = inject(Router);
   searchQuery = signal('');
   selectedSeverity = signal<RestaurantAlertSeverity | 'All'>('All');
   
@@ -104,5 +106,9 @@ export class AlertsViewComponent implements OnInit {
       this.iotStore.acknowledgeRestaurantAlert(this.selectedAlert.id);
       this.displayDialog = false;
     }
+  }
+
+  goToSensors(): void {
+    void this.router.navigateByUrl('/restaurant/sensors');
   }
 }

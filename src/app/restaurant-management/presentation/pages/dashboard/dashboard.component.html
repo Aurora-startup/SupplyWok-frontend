@@ -1,40 +1,40 @@
 <section class="dashboard-page">
   <header class="dashboard-page__hero">
     <div>
-      <h1 class="dashboard-page__title">Kitchen Dashboard</h1>
-      <p class="dashboard-page__description">Real-time supply chain and floor monitoring.</p>
+      <h1 class="dashboard-page__title">{{ 'restaurantManagement.dashboard.title' | translate }}</h1>
+      <p class="dashboard-page__description">{{ 'restaurantManagement.dashboard.description' | translate }}</p>
     </div>
   </header>
 
   <div class="dashboard-page__metrics">
     <article class="metric-card">
-      <span class="metric-card__label">LOW STOCK ITEMS</span>
+      <span class="metric-card__label">{{ 'restaurantManagement.dashboard.metrics.lowStock' | translate }}</span>
       <strong class="metric-card__value">{{ highlightedInventory.length }}</strong>
-      <p class="metric-card__hint">Urgent</p>
+      <p class="metric-card__hint">{{ 'restaurantManagement.dashboard.metrics.lowStockHint' | translate }}</p>
     </article>
 
     <article class="metric-card">
-      <span class="metric-card__label">PENDING ORDERS</span>
+      <span class="metric-card__label">{{ 'restaurantManagement.dashboard.metrics.pendingOrders' | translate }}</span>
       <strong class="metric-card__value">{{ pendingOrdersCount }}</strong>
-      <p class="metric-card__hint">Open to suppliers</p>
+      <p class="metric-card__hint">{{ 'restaurantManagement.dashboard.metrics.pendingOrdersHint' | translate }}</p>
     </article>
 
     <article class="metric-card">
-      <span class="metric-card__label">TEMP. ALERTS</span>
+      <span class="metric-card__label">{{ 'restaurantManagement.dashboard.metrics.tempAlerts' | translate }}</span>
       <strong class="metric-card__value">{{ activeAlertsCount }}</strong>
-      <p class="metric-card__hint">Sensor attention</p>
+      <p class="metric-card__hint">{{ 'restaurantManagement.dashboard.metrics.tempAlertsHint' | translate }}</p>
     </article>
 
     <article class="metric-card">
-      <span class="metric-card__label">ACTIVE TABLES</span>
+      <span class="metric-card__label">{{ 'restaurantManagement.dashboard.metrics.activeTables' | translate }}</span>
       <strong class="metric-card__value">{{ occupiedTableRate }}</strong>
-      <p class="metric-card__hint">Occupancy rate</p>
+      <p class="metric-card__hint">{{ 'restaurantManagement.dashboard.metrics.activeTablesHint' | translate }}</p>
     </article>
 
     <article class="metric-card">
-      <span class="metric-card__label">KITCHEN COMMANDS</span>
+      <span class="metric-card__label">{{ 'restaurantManagement.dashboard.metrics.kitchenCommands' | translate }}</span>
       <strong class="metric-card__value">{{ activeKitchenTicketsCount }}</strong>
-      <p class="metric-card__hint">Live kitchen flow</p>
+      <p class="metric-card__hint">{{ 'restaurantManagement.dashboard.metrics.kitchenCommandsHint' | translate }}</p>
     </article>
   </div>
 
@@ -42,8 +42,8 @@
     <article class="dashboard-card dashboard-card--sensor-panel">
       <div class="dashboard-card__header">
         <div>
-          <h2 class="dashboard-card__title">IoT panel ready for real sensors</h2>
-          <p class="dashboard-card__support">Kitchen, storage, and occupancy readings with thresholds and recent events.</p>
+          <h2 class="dashboard-card__title">{{ 'restaurantManagement.dashboard.iotPanel.title' | translate }}</h2>
+          <p class="dashboard-card__support">{{ 'restaurantManagement.dashboard.iotPanel.support' | translate }}</p>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
             <div class="sensor-panel__value">{{ sensor.lastValue }}</div>
 
             <p class="sensor-panel__range">
-              Optimal range: {{ sensor.minValue }}-{{ sensor.maxValue }}
+              {{ 'restaurantManagement.dashboard.iotPanel.optimalRange' | translate }} {{ sensor.minValue }}-{{ sensor.maxValue }}
             </p>
           </article>
         }
@@ -75,7 +75,7 @@
         }
 
         @if (!recentAlerts.length) {
-          <p class="dashboard-card__empty">No recent sensor events in this environment.</p>
+          <p class="dashboard-card__empty">{{ 'restaurantManagement.dashboard.iotPanel.empty' | translate }}</p>
         }
       </div>
     </article>
@@ -83,7 +83,7 @@
     <article class="dashboard-card dashboard-card--kitchen">
       <div class="dashboard-card__header">
         <div>
-          <h2 class="dashboard-card__title">Kitchen Tickets</h2>
+          <h2 class="dashboard-card__title">{{ 'restaurantManagement.dashboard.kitchenTickets.title' | translate }}</h2>
         </div>
       </div>
 
@@ -93,7 +93,7 @@
             <div class="ticket-entry__header">
               <div>
                 <strong>{{ getKitchenCode(comanda) }}</strong>
-                <p>Table {{ comanda.tableNumber || '--' }}</p>
+                <p>{{ 'restaurantManagement.dashboard.kitchenTickets.table' | translate }} {{ comanda.tableNumber || '--' }}</p>
               </div>
 
               <span class="status-pill" [class]="'status-pill status-pill--' + getKitchenStatusTone(comanda)">
@@ -113,7 +113,7 @@
             <div class="ticket-entry__footer">
               <div class="ticket-entry__meta">
                 <span>{{ formatDate(comanda.createdAt) }}</span>
-                <span>{{ getKitchenItemCount(comanda) }} items</span>
+                <span>{{ getKitchenItemCount(comanda) }} {{ 'restaurantManagement.dashboard.kitchenTickets.items' | translate }}</span>
               </div>
 
               @if (getKitchenActionKey(comanda); as actionText) {
@@ -126,26 +126,26 @@
         }
 
         @if (!highlightedComandas.length) {
-          <p class="dashboard-card__empty">No active kitchen tickets to display.</p>
+          <p class="dashboard-card__empty">{{ 'restaurantManagement.dashboard.kitchenTickets.empty' | translate }}</p>
         }
       </div>
 
-      <a href="/restaurant/kitchen" class="dashboard-card__footer-link">See All Kitchen Tickets</a>
+      <a href="/restaurant/kitchen" class="dashboard-card__footer-link">{{ 'restaurantManagement.dashboard.kitchenTickets.seeAll' | translate }}</a>
     </article>
 
     <article class="dashboard-card dashboard-card--inventory">
       <div class="dashboard-card__header">
         <div>
-          <h2 class="dashboard-card__title">Below minimum</h2>
-          <p class="dashboard-card__support">{{ highlightedInventory.length }} product(s) below minimum stock level</p>
+          <h2 class="dashboard-card__title">{{ 'restaurantManagement.dashboard.inventory.title' | translate }}</h2>
+          <p class="dashboard-card__support">{{ highlightedInventory.length }} {{ 'restaurantManagement.dashboard.inventory.support' | translate }}</p>
         </div>
       </div>
 
       <div class="summary-table">
         <div class="summary-table__head">
-          <span>PRODUCT</span>
-          <span>CURRENT STOCK</span>
-          <span>STATUS</span>
+          <span>{{ 'restaurantManagement.dashboard.inventory.product' | translate }}</span>
+          <span>{{ 'restaurantManagement.dashboard.inventory.currentStock' | translate }}</span>
+          <span>{{ 'restaurantManagement.dashboard.inventory.status' | translate }}</span>
         </div>
 
         @for (item of highlightedInventory; track item.id) {
@@ -159,27 +159,27 @@
         }
 
         @if (!highlightedInventory.length) {
-          <p class="dashboard-card__empty">No products below minimum stock level.</p>
+          <p class="dashboard-card__empty">{{ 'restaurantManagement.dashboard.inventory.empty' | translate }}</p>
         }
       </div>
 
-      <a href="/restaurant/inventory" class="dashboard-card__footer-action">SORT ALL</a>
+      <a href="/restaurant/inventory" class="dashboard-card__footer-action">{{ 'restaurantManagement.dashboard.inventory.sortAll' | translate }}</a>
     </article>
 
     <article class="dashboard-card dashboard-card--orders">
       <div class="dashboard-card__header">
         <div>
-          <h2 class="dashboard-card__title">Orders</h2>
-          <p class="dashboard-card__support">{{ highlightedOrders.length }} orders loaded in this context</p>
+          <h2 class="dashboard-card__title">{{ 'restaurantManagement.dashboard.orders.title' | translate }}</h2>
+          <p class="dashboard-card__support">{{ highlightedOrders.length }} {{ 'restaurantManagement.dashboard.orders.support' | translate }}</p>
         </div>
       </div>
 
       <div class="summary-table">
         <div class="summary-table__head">
-          <span>ID</span>
-          <span>SUPPLIER</span>
-          <span>STATUS</span>
-          <span>DATE</span>
+          <span>{{ 'restaurantManagement.dashboard.orders.id' | translate }}</span>
+          <span>{{ 'restaurantManagement.dashboard.orders.supplier' | translate }}</span>
+          <span>{{ 'restaurantManagement.dashboard.orders.status' | translate }}</span>
+          <span>{{ 'restaurantManagement.dashboard.orders.date' | translate }}</span>
         </div>
 
         @for (order of highlightedOrders; track order.id) {
@@ -194,11 +194,11 @@
         }
 
         @if (!highlightedOrders.length) {
-          <p class="dashboard-card__empty">There are no recent orders loaded.</p>
+          <p class="dashboard-card__empty">{{ 'restaurantManagement.dashboard.orders.empty' | translate }}</p>
         }
       </div>
 
-      <a href="/restaurant/orders" class="dashboard-card__footer-action">View order history</a>
+      <a href="/restaurant/orders" class="dashboard-card__footer-action">{{ 'restaurantManagement.dashboard.orders.viewHistory' | translate }}</a>
     </article>
   </div>
 </section>

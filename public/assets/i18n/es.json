@@ -302,7 +302,9 @@
           "linked-items": "Items vinculados",
           "categories": "Categorias",
           "low-stock": "Bajo stock",
-          "coverage": "Cobertura"
+          "coverage": "Cobertura",
+          "street": "Calle",
+          "support-contact": "Contacto de Soporte"
         }
       },
       "coverage": {
@@ -338,6 +340,7 @@
     "table": {
       "title": "Seguimiento de pedidos",
       "search-placeholder": "Buscar por proveedor, estado o codigo",
+      "loading": "Cargando pedidos...",
       "columns": {
         "code": "Codigo",
         "status": "Estado",
@@ -645,8 +648,58 @@
           "supplier": "Proveedor",
           "status": "Estado",
           "date": "Fecha"
-        },
-        "footer": "Ver historial de pedidos"
+        }
+      }
+    },
+    "dashboard": {
+      "title": "Panel de Cocina",
+      "description": "Supervisión en tiempo real de la cadena de suministro y sala.",
+      "metrics": {
+        "lowStock": "ARTÍCULOS BAJO STOCK",
+        "lowStockHint": "Urgente",
+        "pendingOrders": "PEDIDOS PENDIENTES",
+        "pendingOrdersHint": "Abierto a proveedores",
+        "tempAlerts": "ALERTAS TEMP.",
+        "tempAlertsHint": "Atención de sensores",
+        "activeTables": "MESAS ACTIVAS",
+        "activeTablesHint": "Tasa de ocupación",
+        "kitchenCommands": "COMANDAS ACTIVAS",
+        "kitchenCommandsHint": "Flujo en vivo de cocina"
+      },
+      "iotPanel": {
+        "title": "Panel de IoT listo para sensores reales",
+        "support": "Lecturas de cocina, almacenamiento y ocupación con umbrales y eventos recientes.",
+        "optimalRange": "Rango óptimo:",
+        "empty": "No hay eventos de sensor recientes en este entorno."
+      },
+      "kitchenTickets": {
+        "title": "Tickets de Cocina",
+        "seeAll": "Ver todos los tickets de cocina",
+        "table": "Mesa",
+        "items": "artículos",
+        "empty": "No hay tickets de cocina activos para mostrar."
+      },
+      "activeCommands": {
+        "label": "Comandas de cocina"
+      },
+      "inventory": {
+        "title": "Por debajo del mínimo",
+        "support": "producto(s) por debajo del nivel de stock mínimo",
+        "product": "PRODUCTO",
+        "currentStock": "STOCK ACTUAL",
+        "status": "ESTADO",
+        "empty": "No hay productos por debajo del nivel de stock mínimo.",
+        "sortAll": "ORDENAR TODO"
+      },
+      "orders": {
+        "title": "Pedidos",
+        "support": "pedidos cargados en este contexto",
+        "id": "ID",
+        "supplier": "PROVEEDOR",
+        "status": "ESTADO",
+        "date": "FECHA",
+        "empty": "No hay pedidos recientes cargados.",
+        "viewHistory": "Ver historial de pedidos"
       }
     },
     "reportsPage": {
@@ -705,6 +758,9 @@
       "kicker": "Restaurante",
       "title": "Alertas",
       "description": "Consolida desviaciones de stock, temperatura y entregas con acciones de seguimiento.",
+      "header": {
+        "sensors-btn": "Sensores"
+      },
       "search-label": "Buscar",
       "search-placeholder": "Buscar alertas...",
       "severity-label": "Severidad",
@@ -738,6 +794,55 @@
       },
       "dialog": {
         "header": "Detalles de la Alerta"
+      }
+    },
+    "sensors-page": {
+      "kicker": "Restaurante",
+      "title": "Sensores",
+      "description": "Supervisa y configura los umbrales del hardware físico de IoT.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar sensores...",
+      "type-label": "Tipo",
+      "type-placeholder": "Filtrar por Tipo",
+      "no-sensors": "No hay sensores cargados en este entorno.",
+      "header": {
+        "back-btn": "Volver a Alertas",
+        "create-btn": "Crear Sensor"
+      },
+      "types": {
+        "all": "Todos",
+        "temperature": "Temperatura",
+        "humidity": "Humedad",
+        "weight": "Peso"
+      },
+      "table": {
+        "unassigned": "Sin Asignar",
+        "columns": {
+          "name": "NOMBRE",
+          "assignment": "ASIGNACIÓN",
+          "type": "TIPO",
+          "min-value": "VALOR MÍN",
+          "max-value": "VALOR MÁX",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "edit": "EDITAR SENSOR"
+        }
+      },
+      "dialog": {
+        "header": "Editar Detalles del Sensor",
+        "header-create": "Crear Nuevo Sensor",
+        "fields": {
+          "name": "Nombre del Sensor",
+          "assignment": "Asignación / Ubicación",
+          "type": "Tipo de Sensor",
+          "min-value": "Umbral Mínimo",
+          "max-value": "Umbral Máximo"
+        },
+        "actions": {
+          "cancel": "Cancelar",
+          "save": "Guardar Cambios"
+        }
       }
     }
   }

@@ -5,6 +5,13 @@
       <h1>{{ 'iot.alerts-page.title' | translate }}</h1>
       <p class="alerts-page__subtitle">{{ 'iot.alerts-page.description' | translate }}</p>
     </div>
+    <div class="alerts-page__header-actions">
+      <p-button
+        [label]="'iot.alerts-page.header.sensors-btn' | translate"
+        severity="danger"
+        (onClick)="goToSensors()"
+      />
+    </div>
   </header>
 
   <section class="alerts-page__filters">

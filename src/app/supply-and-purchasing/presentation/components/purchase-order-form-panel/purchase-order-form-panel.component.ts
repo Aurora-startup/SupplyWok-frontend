@@ -8,9 +8,6 @@ import { PurchaseOrderStore } from '../../../application/purchase-order.store';
 import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
 import { ProfileApi } from '../../../../profile-management/infrastructure/profile-api';
 import { Profile } from '../../../../profile-management/domain/model/profile.entity';
-import { IamApi } from '../../../../iam/infrastructure/iam-api';
-import { User } from '../../../../iam/domain/model/user.entity';
-import { catchError, forkJoin, of } from 'rxjs';
 
 interface SupplierOption {
   id: string;
@@ -27,13 +24,12 @@ export class PurchaseOrderFormPanelComponent {
   protected readonly store = inject(PurchaseOrderStore);
   private readonly inventoryStore = inject(InventoryManagementStore);
   private readonly profileApi = inject(ProfileApi);
-  private readonly iamApi = inject(IamApi);
   private readonly supplierProfiles = signal<Profile[]>([]);
 
   constructor() {
     this.inventoryStore.refreshSuppliers();
-    this.iamApi.getUsers().subscribe({
-      next: (users) => this.loadSupplierProfiles(users.filter((user) => user.roles.includes('ROLE_SUPPLIER'))),
+    this.profileApi.getProfilesByType('supplier').subscribe({
+      next: (profiles) => this.supplierProfiles.set(profiles),
       error: () => this.supplierProfiles.set([]),
     });
 
@@ -197,24 +193,4 @@ export class PurchaseOrderFormPanelComponent {
     return profile?.businessName.trim() || fallbackName;
   }
 
-  private loadSupplierProfiles(users: User[]): void {
-    if (!users.length) {
-      this.supplierProfiles.set([]);
-      return;
-    }
-
-    forkJoin(
-      users.map((user) =>
-        this.profileApi.getProfileByAccountEmail('supplier', user.email).pipe(
-          catchError(() => of(null))
-        )
-      )
-    ).subscribe((profiles) => {
-      this.supplierProfiles.set(
-        profiles.filter((profile): profile is Profile =>
-          profile !== null && profile.id !== null && profile.profileType === 'supplier'
-        )
-      );
-    });
-  }
 }

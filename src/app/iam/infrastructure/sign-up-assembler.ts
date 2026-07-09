@@ -12,7 +12,7 @@ export class SignUpAssembler {
     return {
       email: command.email,
       password: command.password,
-      roles: [command.role === 'Supplier' ? 'ROLE_SUPPLIER' : 'ROLE_RESTAURANT'],
+      role: command.role === 'Supplier' ? 'SUPPLIER' : 'RESTAURANT',
     };
   }
 
