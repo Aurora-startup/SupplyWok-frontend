@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
 
-  supplyWokPlatformBaseUrl: 'http://localhost:8095/api/v1',
+  supplyWokPlatformBaseUrl: 'https://supplywok-backend.onrender.com/api/v1',
   authenticationEndpointPath: '/authentication',
   authenticationSignInEndpointPath: '/sign-in',
   authenticationSignUpEndpointPath: '/sign-up',
