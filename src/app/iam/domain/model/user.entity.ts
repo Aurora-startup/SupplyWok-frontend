@@ -28,11 +28,13 @@ export class User {
   }
 
   get role(): UserRole | null {
-    if (this.roles.includes('ROLE_SUPPLIER')) {
+    const roleString = (r: any) => (typeof r === 'string' ? r : (r?.name || r?.authority || String(r))).toUpperCase();
+
+    if (this.roles.some(r => roleString(r) === 'ROLE_SUPPLIER' || roleString(r) === 'SUPPLIER')) {
       return 'Supplier';
     }
 
-    if (this.roles.includes('ROLE_RESTAURANT')) {
+    if (this.roles.some(r => roleString(r) === 'ROLE_RESTAURANT' || roleString(r) === 'RESTAURANT')) {
       return 'Restaurant';
     }
 

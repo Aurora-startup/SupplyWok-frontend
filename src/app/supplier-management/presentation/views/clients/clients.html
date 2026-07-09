@@ -1,26 +1,38 @@
-<section class="clients-page">
-  <header class="clients-page__header">
-    <p>{{ 'supplier-management.clients.breadcrumb' | translate }}</p>
-    <h1>{{ 'supplier-management.clients.title' | translate }}</h1>
-    <span>{{ 'supplier-management.clients.subtitle' | translate }}</span>
+<section class="supplier-page clients-page">
+  <header class="supplier-page__header">
+    <div class="supplier-page__header-main">
+      <p class="supplier-page__kicker">{{ 'supplier-management.clients.breadcrumb' | translate }}</p>
+      <h1 class="supplier-page__title">{{ 'supplier-management.clients.title' | translate }}</h1>
+      <span class="supplier-page__subtitle">{{ 'supplier-management.clients.subtitle' | translate }}</span>
+    </div>
   </header>
 
-  <section class="clients-page__filters">
-    <span class="p-input-icon-left">
-      <i class="pi pi-search"></i>
-      <input pInputText type="search" [(ngModel)]="searchQuery" [placeholder]="'supplier-management.clients.search' | translate">
-    </span>
-    <p-select [options]="statusOptions" optionValue="value" [(ngModel)]="statusFilter">
-      <ng-template pTemplate="selectedItem" let-option>
-        {{ option?.labelKey | translate }}
-      </ng-template>
-      <ng-template pTemplate="item" let-option>
-        {{ option.labelKey | translate }}
-      </ng-template>
-    </p-select>
+  <section class="supplier-page__filters">
+    <label class="supplier-page__field">
+      <span>{{ 'supplier-management.clients.search' | translate }}</span>
+      <span class="supplier-page__input-icon">
+        <i class="pi pi-search"></i>
+        <input pInputText type="search" [(ngModel)]="searchQuery">
+      </span>
+    </label>
+    <label class="supplier-page__field">
+      <span>{{ 'supplier-management.clients.columns.status' | translate }}</span>
+      <p-select [options]="statusOptions" optionValue="value" [(ngModel)]="statusFilter" appendTo="body">
+        <ng-template pTemplate="selectedItem" let-option>
+          {{ option?.labelKey | translate }}
+        </ng-template>
+        <ng-template pTemplate="item" let-option>
+          {{ option.labelKey | translate }}
+        </ng-template>
+      </p-select>
+    </label>
   </section>
 
-  <p-table [value]="filteredClients" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="clients-page__table">
+  @if (store.error()) {
+    <p class="supplier-page__error">{{ store.error() }}</p>
+  }
+
+  <p-table [value]="filteredClients" [paginator]="true" [rows]="6" responsiveLayout="scroll" styleClass="supplier-table clients-page__table">
     <ng-template pTemplate="header">
       <tr>
         <th>{{ 'supplier-management.clients.columns.client' | translate }}</th>
@@ -48,7 +60,7 @@
     </ng-template>
   </p-table>
 
-  <p class="clients-page__count">
+  <p class="supplier-page__count">
     {{ 'supplier-management.clients.visible-count' | translate: { visible: filteredClients.length, total: store.clients().length } }}
   </p>
 </section>

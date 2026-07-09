@@ -9,19 +9,15 @@ import { RegisterComponent } from './iam/presentation/views/register/register.co
 import { supplierManagementRoutes } from './supplier-management/presentation/supplier-management.routes';
 import { authGuard } from './iam/presentation/guards/auth.guard';
 import { guestGuard } from './iam/presentation/guards/guest.guard';
-import { ReportsPageComponent } from './shared/presentation/views/reports-page.component';
-import { ConfigurationPageComponent } from './shared/presentation/views/configuration-page.component';
+
 import { SubscriptionPageComponent } from './shared/presentation/views/subscription-page.component';
+import { ProfileSettingsPageComponent } from './profile-management/presentation/views/profile-settings-page.component';
 
 const placeholderRoutes: Routes = [
-  {
-    path: 'restaurant/reports',
-    component: ReportsPageComponent,
-    title: 'Reports'
-  },
+
   {
     path: 'restaurant/configuration',
-    component: ConfigurationPageComponent,
+    component: ProfileSettingsPageComponent,
     title: 'Configuration'
   },
   {
@@ -35,7 +31,7 @@ const legacyRedirectRoutes: Routes = [
   { path: 'restaurant', pathMatch: 'full', redirectTo: 'restaurant/dashboard' },
   { path: 'dashboard', pathMatch: 'full', redirectTo: 'restaurant/dashboard' },
   { path: 'alerts', pathMatch: 'full', redirectTo: 'restaurant/alerts' },
-  { path: 'reports', pathMatch: 'full', redirectTo: 'restaurant/reports' },
+
   { path: 'configuration', pathMatch: 'full', redirectTo: 'restaurant/configuration' },
   { path: 'subscription', pathMatch: 'full', redirectTo: 'restaurant/subscription' },
   { path: 'inventory', pathMatch: 'full', redirectTo: 'restaurant/inventory' },

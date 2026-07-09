@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 import { InventoryItem } from '../../../../inventory-management/domain/model/inventory-item.entity';
 import { InventoryStatus } from '../../../../inventory-management/domain/enums/inventory-status.enum';
 import { UnitOfMeasure } from '../../../../inventory-management/domain/enums/unit-of-measure.enum';
@@ -21,7 +22,7 @@ type DashboardTone = 'healthy' | 'warning' | 'critical' | 'muted';
 @Component({
   selector: 'app-restaurant-dashboard',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, TranslateModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

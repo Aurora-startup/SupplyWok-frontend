@@ -1,87 +1,8 @@
+@import '../../supplier-ui.css';
+@import '../../supplier-dialog.css';
+
 :host {
   display: block;
-}
-
-.orders-page {
-  color: var(--sw-text);
-  display: flex;
-  flex-direction: column;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  gap: 18px;
-}
-
-.orders-page__header {
-  max-width: 760px;
-}
-
-.orders-page__header p {
-  color: var(--sw-accent);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  margin: 0 0 6px;
-  text-transform: uppercase;
-}
-
-.orders-page__header h1 {
-  color: #342923;
-  font-size: clamp(2rem, 2.2vw, 2.4rem);
-  line-height: 1;
-  margin: 0;
-}
-
-.orders-page__header span {
-  color: #65594f;
-  display: block;
-  line-height: 1.55;
-  margin-top: 8px;
-}
-
-.orders-page__stats {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.orders-page__stats article {
-  background: var(--sw-surface);
-  border: 1px solid var(--sw-border);
-  border-radius: 8px;
-  box-shadow: var(--sw-shadow-soft);
-  padding: 16px;
-}
-
-.orders-page__stats span {
-  color: var(--sw-text-muted);
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.orders-page__stats strong {
-  color: #2d241e;
-  display: block;
-  font-size: 1.55rem;
-  line-height: 1;
-  margin-top: 8px;
-}
-
-.orders-page__filters {
-  align-items: center;
-  background: var(--sw-surface);
-  border: 1px solid var(--sw-border);
-  border-radius: 8px;
-  display: grid;
-  gap: 12px;
-  grid-template-columns: minmax(240px, 1fr) minmax(180px, 260px);
-  padding: 12px;
-}
-
-.orders-page__filters input,
-.orders-page__filters p-select {
-  width: 100%;
 }
 
 .orders-page__actions {
@@ -89,12 +10,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-}
-
-.orders-page__count {
-  color: var(--sw-text-muted);
-  font-size: 0.9rem;
-  margin: -4px 0 0;
 }
 
 .orders-dialog__meta {
@@ -129,7 +44,6 @@
   text-align: right;
 }
 
-:host ::ng-deep .orders-page__table .p-datatable-tbody > tr > td:first-child,
 :host ::ng-deep .orders-dialog__table .p-datatable-tbody > tr > td:first-child {
   color: #2d241e;
   font-weight: 800;
@@ -149,16 +63,7 @@
   background: #fffaf2 !important;
 }
 
-@media (max-width: 980px) {
-  .orders-page__stats,
-  .orders-dialog__meta {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
 @media (max-width: 700px) {
-  .orders-page__stats,
-  .orders-page__filters,
   .orders-dialog__meta {
     grid-template-columns: 1fr;
   }

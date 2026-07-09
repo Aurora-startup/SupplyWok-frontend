@@ -1,3 +1,10 @@
+.search-bar-card,
+.search-group,
+.search-input,
+.category-select {
+  font-family: 'Montserrat', system-ui, sans-serif;
+}
+
 .search-bar-card {
   display: flex;
   align-items: center;
@@ -19,9 +26,10 @@
 }
 
 .search-label {
+  font-family: 'Poppins', system-ui, sans-serif;
   font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
+  font-weight: 800;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: #a07832;
 }
@@ -47,8 +55,9 @@
   outline: none;
   background: transparent;
   color: #4b3d34;
-  font: inherit;
+  font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 14px;
+  font-weight: 500;
 }
 
 .search-input::placeholder {
@@ -59,6 +68,7 @@
   width: 100%;
   color: #4b3d34;
   font-size: 14px;
+  font-weight: 500;
 }
 
 ::ng-deep .category-select .mat-mdc-select-trigger {
@@ -67,7 +77,9 @@
 
 ::ng-deep .category-select .mat-mdc-select-value-text,
 ::ng-deep .category-select .mat-mdc-select-placeholder {
+  font-family: 'Montserrat', system-ui, sans-serif !important;
   font-size: 14px;
+  font-weight: 500;
 }
 
 ::ng-deep .category-select .mat-mdc-select-value-text {
@@ -85,7 +97,7 @@
 .search-divider {
   align-self: stretch;
   width: 1px;
-  background: linear-gradient(180deg, transparent 0%, #eadfce 18%, #eadfce 82%, transparent 100%);
+  background: #eadfce;
 }
 
 @media (max-width: 780px) {

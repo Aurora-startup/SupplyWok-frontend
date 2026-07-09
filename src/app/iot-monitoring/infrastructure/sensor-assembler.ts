@@ -66,7 +66,7 @@ export class SensorAssembler implements BaseAssembler<Sensor, SensorResource, Se
       maxValue: resource.maxValue,
       enabled: resource.enabled,
       lastValue: resource.lastValue,
-      type: toDomainSensorType(resource),
+      type: toDomainSensorType(resource)
     });
   }
 
@@ -76,14 +76,17 @@ export class SensorAssembler implements BaseAssembler<Sensor, SensorResource, Se
    * @returns A SensorResource DTO.
    */
   toResourceFromEntity(entity: Sensor): SensorResource {
-    return {
-      id: entity.id,
+    const resource: any = {
       name: entity.name,
       minValue: entity.minValue,
       maxValue: entity.maxValue,
       enabled: entity.enabled,
       lastValue: entity.lastValue,
-      type: toBackendSensorType(entity.type),
-    } as SensorResource;
+      type: toBackendSensorType(entity.type)
+    };
+    if (entity.id) {
+      resource.id = entity.id;
+    }
+    return resource as SensorResource;
   }
 }

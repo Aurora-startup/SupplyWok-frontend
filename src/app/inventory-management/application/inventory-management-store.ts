@@ -10,6 +10,15 @@ import { retry } from 'rxjs';
   providedIn: 'root',
 })
 export class InventoryManagementStore {
+  private readonly defaultCategoryTranslationKeys: Record<string, string> = {
+    grains: 'inventory.categories.grains',
+    proteins: 'inventory.categories.proteins',
+    vegetables: 'inventory.categories.vegetables',
+    sauces: 'inventory.categories.sauces',
+    beverages: 'inventory.categories.beverages',
+    packaging: 'inventory.categories.packaging',
+  };
+
   private readonly inventoryItemsSignal = signal<InventoryItem[]>([]);
   private readonly inventoryCategoriesSignal = signal<InventoryCategory[]>([]);
   private readonly suppliersSignal = signal<Supplier[]>([]);
@@ -51,8 +60,6 @@ export class InventoryManagementStore {
 
   readonly selectedCategory = signal<number | null>(null);
 
-  readonly selectedSupplier = signal<number | null>(null);
-
   readonly selectedStatus = signal<string>('ALL');
 
   readonly filteredItems = computed(() => {
@@ -64,15 +71,11 @@ export class InventoryManagementStore {
       const matchesCategory =
         !this.selectedCategory() || item.idCategory === this.selectedCategory();
 
-      // SUPPLIER
-      const matchesSupplier =
-        !this.selectedSupplier() || item.idSupplier === this.selectedSupplier();
-
       // STATUS
       const matchesStatus =
         this.selectedStatus() === 'ALL' || item.status === this.selectedStatus();
 
-      return matchesSearch && matchesCategory && matchesSupplier && matchesStatus;
+      return matchesSearch && matchesCategory && matchesStatus;
     });
   });
 
@@ -107,9 +110,14 @@ export class InventoryManagementStore {
     return this.inventoryCategories().find((c) => c.id === id)?.name ?? 'None';
   }
 
-  getSupplierName(id: number | null | undefined): string {
-    if (!id) return 'None';
-    return this.suppliers().find((s) => s.id === id)?.name ?? 'None';
+  getCategoryById(id: number | null | undefined): InventoryCategory | null {
+    if (!id) return null;
+    return this.inventoryCategories().find((category) => category.id === id) ?? null;
+  }
+
+  getCategoryTranslationKey(category: InventoryCategory | null | undefined): string | null {
+    const normalizedName = category?.name.trim().toLowerCase();
+    return normalizedName ? (this.defaultCategoryTranslationKeys[normalizedName] ?? null) : null;
   }
 
   getInventoryCategoryById(id: number | null | undefined): Signal<InventoryCategory | undefined> {
@@ -139,7 +147,9 @@ export class InventoryManagementStore {
       .pipe(retry(2))
       .subscribe({
         next: (createdInventoryItem) => {
-          this.inventoryItemsSignal.update((items) => [...items, createdInventoryItem]);
+          const normalizedItem = this.mergeResolvedItem(createdInventoryItem, inventoryItem);
+          this.inventoryItemsSignal.update((items) => [...items, normalizedItem]);
+          this.syncCategoriesFromItems(this.inventoryItemsSignal());
           this.loadingSignal.set(false);
           this.itemSavedSignal.set(true);
         },
@@ -160,7 +170,7 @@ export class InventoryManagementStore {
       .pipe(retry(2))
       .subscribe({
         next: (createdInventoryItem) => {
-          this.inventoryCategoriesSignal.update((items) => [...items, createdInventoryItem]);
+          this.inventoryCategoriesSignal.update((items) => this.mergeCategories([...items, createdInventoryItem]));
 
           this.loadingSignal.set(false);
         },
@@ -186,9 +196,11 @@ export class InventoryManagementStore {
       .pipe(retry(2))
       .subscribe({
         next: (inventoryItem) => {
+          const normalizedItem = this.mergeResolvedItem(inventoryItem, updatedInventoryItem);
           this.inventoryItemsSignal.update((items) =>
-            items.map((item) => (item.id === inventoryItem.id ? inventoryItem : item)),
+            items.map((item) => (item.id === normalizedItem.id ? normalizedItem : item)),
           );
+          this.syncCategoriesFromItems(this.inventoryItemsSignal());
           this.loadingSignal.set(false);
           this.itemSavedSignal.set(true);
         },
@@ -238,6 +250,7 @@ export class InventoryManagementStore {
       .subscribe({
         next: () => {
           this.inventoryItemsSignal.update((items) => items.filter((item) => item.id !== id));
+          this.syncCategoriesFromItems(this.inventoryItemsSignal());
 
           this.loadingSignal.set(false);
         },
@@ -285,8 +298,8 @@ export class InventoryManagementStore {
       .subscribe({
         next: (inventoryItems) => {
           this.inventoryItemsSignal.set(inventoryItems);
+          this.syncCategoriesFromItems(inventoryItems);
           this.assignCategoriesToItems();
-          this.assignSuppliersToItems();
 
           this.loadingSignal.set(false);
         },
@@ -318,39 +331,21 @@ export class InventoryManagementStore {
       });
   }
 
-  private loadSuppliers(): void {
-    this.loadingSignal.set(true);
-    this.errorSignal.set(null);
+  refreshSuppliers(): void {
     this.inventoryManagementApi
       .getSuppliers()
-      .pipe(takeUntilDestroyed())
       .subscribe({
         next: (suppliers) => {
           this.suppliersSignal.set(suppliers);
-          this.loadingSignal.set(false);
-          this.assignSuppliersToItems();
         },
-        error: (err) => {
-          this.errorSignal.set(this.formatError(err, 'Failed to load suppliers'));
-          this.loadingSignal.set(false);
+        error: () => {
+          this.suppliersSignal.set([]);
         },
       });
   }
 
-  private assignSuppliersToItems(): void {
-    this.inventoryItemsSignal.update((items) =>
-      items.map((item) => this.assignSupplierToItem(item)),
-    );
-  }
-
-  private assignSupplierToItem(item: InventoryItem): InventoryItem {
-    const supplierId = item.idSupplier ?? 0;
-
-    const supplier = supplierId
-      ? (this.suppliers().find((s) => s.id === supplierId) ?? null)
-      : null;
-
-    return { ...item, supplier } as InventoryItem;
+  private loadSuppliers(): void {
+    this.refreshSuppliers();
   }
 
   private assignCategoriesToItems(): void {
@@ -359,12 +354,87 @@ export class InventoryManagementStore {
     );
   }
 
+  private syncCategoriesFromItems(items: InventoryItem[]): void {
+    const existingCategories = this.inventoryCategories();
+    const categoriesFromItems = items
+      .map((item) => item.category)
+      .filter((category): category is InventoryCategory => category !== null);
+
+    const mergedCategories = [...existingCategories];
+
+    for (const category of categoriesFromItems) {
+      const alreadyExists = mergedCategories.some(
+        (existingCategory) => existingCategory.name.trim().toLowerCase() === category.name.trim().toLowerCase(),
+      );
+
+      if (!alreadyExists) {
+        mergedCategories.push(category);
+      }
+    }
+
+    this.inventoryCategoriesSignal.set(this.mergeCategories(mergedCategories));
+  }
+
+  private mergeCategories(categories: InventoryCategory[]): InventoryCategory[] {
+    return categories.reduce<InventoryCategory[]>((mergedCategories, category) => {
+      const normalizedName = category.name.trim();
+
+      if (!normalizedName) {
+        return mergedCategories;
+      }
+
+      const alreadyExists = mergedCategories.some(
+        (existingCategory) => existingCategory.name.trim().toLowerCase() === normalizedName.toLowerCase(),
+      );
+
+      if (!alreadyExists) {
+        mergedCategories.push(category);
+      }
+
+      return mergedCategories;
+    }, []);
+  }
+
   private assignCategoryToItem(item: InventoryItem): InventoryItem {
     const categoryId = item.idCategory ?? 0;
     const category = categoryId
       ? (this.inventoryCategories().find((cat) => cat.id === categoryId) ?? null)
       : null;
-    return { ...item, category } as InventoryItem;
+    return this.cloneItemWithCategory(item, category);
+  }
+
+  private mergeResolvedItem(itemFromApi: InventoryItem, fallbackItem: InventoryItem): InventoryItem {
+    const resolvedCategory = itemFromApi.category ?? fallbackItem.category ?? null;
+
+    return this.cloneItemWithCategory(
+      new InventoryItem({
+        id: itemFromApi.id,
+        name: itemFromApi.name,
+        currentStock: itemFromApi.currentStock,
+        minimumStockLevel: itemFromApi.minimumStockLevel,
+        unitOfMeasure: itemFromApi.unitOfMeasure,
+        idCategory: itemFromApi.idCategory || fallbackItem.idCategory,
+        idSupplier: 0,
+        category: resolvedCategory,
+      }),
+      resolvedCategory,
+    );
+  }
+
+  private cloneItemWithCategory(
+    item: InventoryItem,
+    category: InventoryCategory | null,
+  ): InventoryItem {
+    return new InventoryItem({
+      id: item.id,
+      name: item.name,
+      currentStock: item.currentStock,
+      minimumStockLevel: item.minimumStockLevel,
+      unitOfMeasure: item.unitOfMeasure,
+      idCategory: item.idCategory,
+      idSupplier: 0,
+      category,
+    });
   }
   /**
    * Formats error messages for user-friendly display.

@@ -28,9 +28,9 @@ export class Forecast implements OnInit {
     datasets: [
       {
         data: this.aggregateSeries().map((point) => point.value),
-        borderColor: '#a97827',
-        backgroundColor: 'rgba(169, 120, 39, 0.18)',
-        pointBackgroundColor: '#a97827',
+        borderColor: '#bd852a',
+        backgroundColor: 'rgba(189, 133, 42, 0.16)',
+        pointBackgroundColor: '#bd852a',
         borderWidth: 2,
         fill: true,
         tension: 0.32
@@ -42,7 +42,7 @@ export class Forecast implements OnInit {
     datasets: [
       {
         data: this.clientSeries().map((client) => client.value),
-        backgroundColor: ['#c71910', '#e9bd22', '#a97827', '#25212a'],
+        backgroundColor: ['#bd852a', '#16875b', '#2563a9', '#c43d32'],
         borderRadius: 4
       }
     ]

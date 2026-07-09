@@ -31,9 +31,9 @@ export class LanguageSelectorComponent {
     this.selectedLanguage = this.languages.find(lang => lang.code === currentLang) || this.languages[0];
   }
 
-  onLanguageChange(event: any): void {
-    if (event.value) {
-      this.translate.use(event.value.code);
+  onLanguageChange(selected: Language): void {
+    if (selected && selected.code) {
+      this.translate.use(selected.code);
     }
   }
 }

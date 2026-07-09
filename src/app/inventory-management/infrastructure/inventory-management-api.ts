@@ -3,7 +3,7 @@ import { InventoryItem } from '../domain/model/inventory-item.entity';
 import { InventoryCategory} from '../domain/model/inventory-category.entity';
 import { Supplier } from '../domain/model/supplier.entity';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map, throwError } from 'rxjs';
+import { Observable, map, of, throwError } from 'rxjs';
 import { InventoryItemsApiEndpoint } from './inventory-items-api-endpoint';
 import { CategoriesApiEndpoint } from './inventory-categories-api-endpoint';
 import { SuppliersApiEndpoint} from './suppliers-api-endpoint';
@@ -14,6 +14,15 @@ import { buildCategoryId } from './inventory-item-assembler';
   providedIn: 'root',
 })
 export class InventoryManagementApi extends BaseApi {
+  private readonly localCategoriesStorageKey = 'supply-wok.inventory.local-categories';
+  private readonly defaultCategories = [
+    new InventoryCategory({ id: buildCategoryId('Grains'), name: 'Grains' }),
+    new InventoryCategory({ id: buildCategoryId('Proteins'), name: 'Proteins' }),
+    new InventoryCategory({ id: buildCategoryId('Vegetables'), name: 'Vegetables' }),
+    new InventoryCategory({ id: buildCategoryId('Sauces'), name: 'Sauces' }),
+    new InventoryCategory({ id: buildCategoryId('Beverages'), name: 'Beverages' }),
+    new InventoryCategory({ id: buildCategoryId('Packaging'), name: 'Packaging' }),
+  ];
   private readonly inventoryItemsEndpoint: InventoryItemsApiEndpoint;
   private readonly inventoryCategoriesEndpoint: CategoriesApiEndpoint;
   private readonly suppliersEndpoint: SuppliersApiEndpoint;
@@ -70,23 +79,7 @@ export class InventoryManagementApi extends BaseApi {
   }
 
   getCategories(): Observable<InventoryCategory[]> {
-    return this.inventoryItemsEndpoint.getAll().pipe(
-      map((items) =>
-        items
-          .map((item) => item.category)
-          .filter((category): category is InventoryCategory => category !== null)
-          .filter((category, index, categories) =>
-            categories.findIndex((candidate) => candidate.name.toLowerCase() === category.name.toLowerCase()) === index,
-          )
-          .map(
-            (category) =>
-              new InventoryCategory({
-                id: buildCategoryId(category.name),
-                name: category.name,
-              }),
-          ),
-      ),
-    );
+    return of(this.mergeCategories([...this.defaultCategories, ...this.getStoredCategories()]));
   }
 
   /**
@@ -113,7 +106,27 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of the created Category object.
    */
   createCategory(category: InventoryCategory): Observable<InventoryCategory> {
-    return throwError(() => new Error('Category management is not supported by the backend yet'));
+    const normalizedName = category.name.trim();
+
+    if (!normalizedName) {
+      return throwError(() => new Error('Category name is required'));
+    }
+
+    const existingCategory = this.mergeCategories([...this.defaultCategories, ...this.getStoredCategories()]).find(
+      (storedCategory) => storedCategory.name.trim().toLowerCase() === normalizedName.toLowerCase(),
+    );
+
+    if (existingCategory) {
+      return of(existingCategory);
+    }
+
+    const createdCategory = new InventoryCategory({
+      id: category.id || buildCategoryId(normalizedName),
+      name: normalizedName,
+    });
+
+    this.persistStoredCategories([...this.getStoredCategories(), createdCategory]);
+    return of(createdCategory);
   }
 
   /**
@@ -122,7 +135,23 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of the updated Category object.
    */
   updateCategory(category: InventoryCategory): Observable<InventoryCategory> {
-    return throwError(() => new Error('Category management is not supported by the backend yet'));
+    const normalizedName = category.name.trim();
+
+    if (!normalizedName) {
+      return throwError(() => new Error('Category name is required'));
+    }
+
+    const updatedCategory = new InventoryCategory({
+      id: category.id,
+      name: normalizedName,
+    });
+
+    const nextCategories = this.getStoredCategories().map((storedCategory) =>
+      storedCategory.id === category.id ? updatedCategory : storedCategory,
+    );
+
+    this.persistStoredCategories(nextCategories);
+    return of(updatedCategory);
   }
 
   /**
@@ -131,12 +160,66 @@ export class InventoryManagementApi extends BaseApi {
    * @returns An Observable of void.
    */
   deleteCategory(id: number): Observable<void> {
-    return throwError(() => new Error('Category management is not supported by the backend yet'));
+    this.persistStoredCategories(this.getStoredCategories().filter((category) => category.id !== id));
+    return of(void 0);
   }
 
   getSuppliers(): Observable<Supplier[]> {
     return this.suppliersEndpoint.getAll();
   }
 
+  private getStoredCategories(): InventoryCategory[] {
+    const storedValue = localStorage.getItem(this.localCategoriesStorageKey);
+
+    if (!storedValue) {
+      return [];
+    }
+
+    try {
+      const categories = JSON.parse(storedValue) as Array<{ id: number; name: string }>;
+
+      return categories
+        .filter((category) => category && typeof category.id === 'number' && typeof category.name === 'string')
+        .map((category) => new InventoryCategory(category));
+    } catch {
+      return [];
+    }
+  }
+
+  private persistStoredCategories(categories: InventoryCategory[]): void {
+    const payload = this.mergeCategories(categories).map((category) => ({
+      id: category.id,
+      name: category.name,
+    }));
+
+    localStorage.setItem(this.localCategoriesStorageKey, JSON.stringify(payload));
+  }
+
+  private mergeCategories(categories: InventoryCategory[]): InventoryCategory[] {
+    return categories.reduce<InventoryCategory[]>((accumulator, category) => {
+      const normalizedName = category.name.trim();
+
+      if (!normalizedName) {
+        return accumulator;
+      }
+
+      const alreadyExists = accumulator.some(
+        (existingCategory) => existingCategory.name.trim().toLowerCase() === normalizedName.toLowerCase(),
+      );
+
+      if (alreadyExists) {
+        return accumulator;
+      }
+
+      accumulator.push(
+        new InventoryCategory({
+          id: category.id || buildCategoryId(normalizedName),
+          name: normalizedName,
+        }),
+      );
+
+      return accumulator;
+    }, []);
+  }
 
 }

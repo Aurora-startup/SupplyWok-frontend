@@ -43,6 +43,41 @@ input, button, select, textarea {
   font-family: inherit;
 }
 
+:root {
+  --mdc-filled-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mdc-outlined-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mdc-text-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mdc-protected-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-filled-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-outlined-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-text-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-protected-button-label-text-font: 'Poppins', system-ui, sans-serif;
+  --mat-form-field-container-text-font: 'Montserrat', system-ui, sans-serif;
+  --mat-select-trigger-text-font: 'Montserrat', system-ui, sans-serif;
+  --mat-option-label-text-font: 'Montserrat', system-ui, sans-serif;
+}
+
+.mat-mdc-button,
+.mat-mdc-raised-button,
+.mat-mdc-unelevated-button,
+.mat-mdc-outlined-button,
+.mat-mdc-menu-item,
+.mat-button-toggle,
+.mdc-button,
+.mdc-button__label {
+  font-family: 'Poppins', system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
+.mat-mdc-form-field,
+.mat-mdc-select,
+.mat-mdc-option,
+.mat-mdc-table,
+.mat-mdc-dialog-container {
+  font-family: 'Montserrat', system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+}
+
 /* Premium PrimeNG Menu Customization */
 .premium-menu {
   border-radius: 12px !important;
@@ -265,6 +300,8 @@ input, button, select, textarea {
   font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 600 !important;
   min-height: 40px;
+  padding: 0.5rem 1rem !important;
+  gap: 0.5rem;
   transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
 }
 
@@ -288,10 +325,18 @@ input, button, select, textarea {
   background: var(--sw-surface) !important;
 }
 
-.p-button.p-button-danger,
-.p-button-danger .p-button {
+.p-button.p-button-danger:not(.p-button-text):not(.p-button-outlined),
+.p-button-danger .p-button:not(.p-button-text):not(.p-button-outlined) {
   background: var(--sw-danger) !important;
   border-color: var(--sw-danger) !important;
+  color: #ffffff !important;
+}
+
+.p-button.p-button-danger:not(.p-button-text):not(.p-button-outlined):enabled:hover,
+.p-button-danger .p-button:not(.p-button-text):not(.p-button-outlined):enabled:hover {
+  background: #a82e25 !important;
+  border-color: #a82e25 !important;
+  color: #ffffff !important;
 }
 
 .p-dialog .p-dialog-header,

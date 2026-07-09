@@ -1,0 +1,49 @@
+.supplier-dialog__form {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.supplier-dialog__wide {
+  grid-column: 1 / -1;
+}
+
+.supplier-dialog__actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  margin-top: 18px;
+}
+
+:host ::ng-deep .supplier-dialog {
+  border-radius: 8px !important;
+  box-shadow: var(--sw-shadow) !important;
+  overflow: hidden;
+  width: min(620px, calc(100vw - 32px)) !important;
+}
+
+:host ::ng-deep .supplier-dialog .p-dialog-header {
+  border-bottom: 1px solid var(--sw-border);
+  padding: 18px 20px;
+}
+
+:host ::ng-deep .supplier-dialog .p-dialog-content {
+  padding: 20px !important;
+}
+
+:host ::ng-deep .supplier-dialog .p-dialog-footer {
+  border-top: 1px solid var(--sw-border);
+  padding: 14px 20px !important;
+}
+
+@media (max-width: 700px) {
+  .supplier-dialog__actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .supplier-dialog__form {
+    grid-template-columns: 1fr;
+  }
+}

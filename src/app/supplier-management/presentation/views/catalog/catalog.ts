@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, computed, effect, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { TranslateModule } from '@ngx-translate/core';
@@ -10,13 +12,14 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextModule } from 'primeng/inputtext';
 import { SelectModule } from 'primeng/select';
 import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
 import { map } from 'rxjs/operators';
 import { SupplierManagementStore } from '../../../application/supplier-management-store';
 import { CatalogItem } from '../../../domain/model/catalog-item.entity';
 
 @Component({
   selector: 'app-catalog',
-  imports: [CommonModule, FormsModule, TranslateModule, TableModule, ButtonModule, InputTextModule, InputNumberModule, SelectModule, DialogModule],
+  imports: [CommonModule, FormsModule, MatButtonModule, MatIconModule, TranslateModule, TableModule, ButtonModule, InputTextModule, InputNumberModule, SelectModule, DialogModule, TooltipModule],
   templateUrl: './catalog.html',
   styleUrl: './catalog.css',
 })

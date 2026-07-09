@@ -4,10 +4,10 @@
 
 :host ::ng-deep .forecast-card {
   min-height: 388px;
-  border: 1px solid #efe4d4;
+  border: 1px solid var(--sw-border);
   border-radius: 8px;
-  background: #fffdf9;
-  box-shadow: 0 16px 34px rgba(58, 42, 20, 0.08);
+  background: var(--sw-surface);
+  box-shadow: var(--sw-shadow-soft);
 }
 
 :host ::ng-deep .forecast-card .p-card-body {
@@ -15,7 +15,7 @@
 }
 
 .forecast-card__header {
-  border-bottom: 1px solid #ece5dc;
+  border-bottom: 1px solid var(--sw-border);
   padding: 10px 18px;
 }
 
@@ -24,7 +24,7 @@
   align-items: center;
   gap: 8px;
   margin: 0;
-  color: #4b5768;
+  color: var(--sw-text);
   font-size: 18px;
 }
 

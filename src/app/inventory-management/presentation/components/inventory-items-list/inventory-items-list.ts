@@ -6,6 +6,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatError } from '@angular/material/form-field';
 import {MatProgressSpinner} from '@angular/material/progress-spinner';
 import { InventoryItem } from '../../../domain/model/inventory-item.entity';
+import { InventoryCategory } from '../../../domain/model/inventory-category.entity';
+import { buildCategoryId } from '../../../infrastructure/inventory-item-assembler';
 import { MatIconModule } from '@angular/material/icon';
 import { MatOption } from '@angular/material/core';
 import { MatSelect } from '@angular/material/select';
@@ -38,12 +40,13 @@ export class InventoryItemsList {
   readonly store = inject(InventoryManagementStore);
   protected router = inject(Router);
   protected readonly min = Math.min;
+  protected newCategoryName = '';
 
   // inventory-items-list.ts — métodos helper que necesitas agregar al componente
 
   // Agrega estas propiedades y métodos a tu clase InventoryItemsList:
 
-  protected displayedColumns = ['product', 'stockLevels', 'category', 'supplier', 'actions'];
+  protected displayedColumns = ['product', 'stockLevels', 'category', 'actions'];
 
   // Determina el estado del stock: 'good' | 'low' | 'refill'
   protected getStockClass(item: InventoryItem): string {
@@ -56,15 +59,46 @@ export class InventoryItemsList {
   // Porcentaje para la barra (máx 100%, usando 3x el mínimo como "full")
   protected getStockPercent(item: InventoryItem): number {
     const full = item.minimumStockLevel * 3;
+    if (full <= 0) return 100;
     return Math.min((item.currentStock / full) * 100, 100);
   }
 
+  protected formatUnitOfMeasure(item: InventoryItem): string {
+    return item.unitOfMeasure?.toLowerCase() ?? '';
+  }
+
   protected onEdit(item: InventoryItem): void {
-    // TODO: abrir dialog de edición
-   // console.log('Edit', item);
+    void this.router.navigate(['/restaurant/inventory', item.id, 'edit']);
   }
 
   deleteInventoryItem(id: number) {
     this.store.deleteInventoryItem(id);
+  }
+
+  protected addCategory(): void {
+    const normalizedName = this.newCategoryName.trim();
+
+    if (!normalizedName) {
+      return;
+    }
+
+    const existingCategory = this.store.inventoryCategories().find(
+      (category) => category.name.trim().toLowerCase() === normalizedName.toLowerCase(),
+    );
+
+    const category = existingCategory ?? new InventoryCategory({
+      id: buildCategoryId(normalizedName),
+      name: normalizedName,
+    });
+
+    if (!existingCategory) {
+      this.store.addInventoryCategory(category);
+    }
+
+    this.newCategoryName = '';
+  }
+
+  protected canAddCategory(): boolean {
+    return this.newCategoryName.trim().length > 0;
   }
 }

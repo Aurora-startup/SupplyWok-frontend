@@ -16,6 +16,8 @@
       "get-started": "开始使用",
       "phone": "电话号码",
       "phone-example": "999 666 333",
+      "business-name": "商业名称",
+      "business-name-example": "Distribuidora Fresh Andes",
       "role": "角色",
       "subscription": "订阅",
       "select-one": "请选择",
@@ -53,12 +55,6 @@
           "contact": "Support contact",
           "email": "Email",
           "sms": "SMS"
-        }
-      },
-      "users": {
-        "title": "User list",
-        "status": {
-          "active": "Active"
         }
       },
       "demo": {
@@ -143,6 +139,48 @@
       "options": "选项"
     }
   },
+  "profiles": {
+    "settings": {
+      "restaurant": {
+        "kicker": "餐厅",
+        "title": "餐厅设置",
+        "description": "运营资料、通知、联系信息和访问设置。",
+        "profileTitle": "餐厅资料",
+        "fields": {
+          "businessName": "餐厅资料"
+        }
+      },
+      "supplier": {
+        "kicker": "供应商",
+        "title": "供应商设置",
+        "description": "商业资料、通知、联系信息和访问设置。",
+        "profileTitle": "供应商资料",
+        "fields": {
+          "businessName": "供应商资料"
+        }
+      },
+      "fields": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "电子邮件",
+        "street": "街道",
+        "district": "区",
+        "city": "城市",
+        "country": "国家",
+        "supportContact": "支持联系人",
+        "emailNotifications": "电子邮件",
+        "smsNotifications": "短信"
+      },
+      "actions": {
+        "save": "保存",
+        "saving": "保存中"
+      },
+      "messages": {
+        "saved": "资料设置已保存。",
+        "error": "无法保存资料设置。"
+      }
+    }
+  },
   "inventory": {
     "header": {
       "section": "餐厅",
@@ -160,6 +198,16 @@
       "supplier-placeholder": "所有供应商",
       "status-label": "状态",
       "status-placeholder": "所有状态"
+    },
+
+    "categories": {
+      "grains": "谷物",
+      "proteins": "蛋白质",
+      "vegetables": "蔬菜",
+      "sauces": "酱料",
+      "beverages": "饮料",
+      "packaging": "包装",
+      "none": "未分类"
     },
 
     "list": {
@@ -198,34 +246,36 @@
   },
   "supply-and-purchasing": {
     "suppliers-page": {
-      "kicker": "Supply and Purchasing",
-      "title": "Suppliers",
-      "description": "Map supplier coverage against the current inventory catalog and watch low-stock dependencies.",
+      "kicker": "供应和采购",
+      "title": "供应商",
+      "description": "将供应商覆盖范围与当前库存目录对应，并监控低库存依赖项。",
       "stats": {
-        "total": "Suppliers",
-        "linked-items": "Linked items",
-        "low-stock": "Low stock items"
+        "total": "供应商",
+        "linked-items": "关联物品",
+        "low-stock": "低库存物品"
       },
       "table": {
         "headers": {
-          "supplier": "Supplier",
-          "linked-items": "Linked items",
-          "categories": "Categories",
-          "low-stock": "Low stock",
-          "coverage": "Coverage"
+          "supplier": "供应商",
+          "linked-items": "关联物品",
+          "categories": "类别",
+          "low-stock": "低库存",
+          "coverage": "覆盖范围",
+          "street": "街道",
+          "support-contact": "支持联系人"
         }
       },
       "coverage": {
-        "healthy": "Healthy",
-        "watch": "Watch",
-        "critical": "Critical"
+        "healthy": "健康",
+        "watch": "监控",
+        "critical": "严重"
       },
       "footer": {
-        "showing": "Showing {{ from }}-{{ to }} of {{ total }} suppliers",
-        "previous": "Previous",
-        "next": "Next"
+        "showing": "显示第 {{ from }}-{{ to }} 个，共 {{ total }} 个供应商",
+        "previous": "上一页",
+        "next": "下一页"
       },
-      "empty": "No suppliers are linked to inventory items yet."
+      "empty": "尚无供应商链接到库存物品。"
     },
     "form": {
       "title": "Create order",
@@ -248,6 +298,7 @@
     "table": {
       "title": "Order tracking",
       "search-placeholder": "Search by supplier, status, or code",
+      "loading": "订单加载中...",
       "columns": {
         "code": "Code",
         "status": "Status",
@@ -421,8 +472,58 @@
           "supplier": "Supplier",
           "status": "Status",
           "date": "Date"
-        },
-        "footer": "View order history"
+        }
+      }
+    },
+    "dashboard": {
+      "title": "厨房仪表板",
+      "description": "实时供应链和楼层监控。",
+      "metrics": {
+        "lowStock": "低库存项目",
+        "lowStockHint": "紧急",
+        "pendingOrders": "待处理订单",
+        "pendingOrdersHint": "向供应商开放",
+        "tempAlerts": "温度警报",
+        "tempAlertsHint": "传感器关注",
+        "activeTables": "活动桌台",
+        "activeTablesHint": "占用率",
+        "kitchenCommands": "厨房指令",
+        "kitchenCommandsHint": "实时厨房流程"
+      },
+      "iotPanel": {
+        "title": "适用于真实传感器的物联网面板",
+        "support": "包含阈值和最近事件的厨房、存储和占用读取。",
+        "optimalRange": "最佳范围：",
+        "empty": "此环境中没有最近的传感器事件。"
+      },
+      "kitchenTickets": {
+        "title": "厨房工单",
+        "seeAll": "查看所有厨房工单",
+        "table": "桌台",
+        "items": "项目",
+        "empty": "没有可显示的活动厨房工单。"
+      },
+      "activeCommands": {
+        "label": "厨房指令"
+      },
+      "inventory": {
+        "title": "低于最小值",
+        "support": "个产品低于最低库存水平",
+        "product": "产品",
+        "currentStock": "当前库存",
+        "status": "状态",
+        "empty": "没有低于最低库存水平的产品。",
+        "sortAll": "整理全部"
+      },
+      "orders": {
+        "title": "订单",
+        "support": "个订单加载于此上下文中",
+        "id": "ID",
+        "supplier": "供应商",
+        "status": "状态",
+        "date": "日期",
+        "empty": "没有加载最近的订单。",
+        "viewHistory": "查看订单历史"
       }
     },
     "reportsPage": {
@@ -540,6 +641,9 @@
       "kicker": "餐厅",
       "title": "警报",
       "description": "整合库存、温度 and 交付偏差，并采取后续行动。",
+      "header": {
+        "sensors-btn": "传感器"
+      },
       "search-label": "搜索",
       "search-placeholder": "搜索警报...",
       "severity-label": "严重程度",
@@ -581,6 +685,55 @@
         "actions": {
           "close": "关闭",
           "acknowledge": "确认"
+        }
+      }
+    },
+    "sensors-page": {
+      "kicker": "餐厅",
+      "title": "传感器",
+      "description": "监控和配置物理 IoT 硬件的阈值。",
+      "search-label": "搜索",
+      "search-placeholder": "搜索传感器...",
+      "type-label": "类型",
+      "type-placeholder": "按类型筛选",
+      "no-sensors": "该环境中没有加载传感器。",
+      "header": {
+        "back-btn": "返回警报",
+        "create-btn": "创建传感器"
+      },
+      "types": {
+        "all": "全部",
+        "temperature": "温度",
+        "humidity": "湿度",
+        "weight": "重量"
+      },
+      "table": {
+        "unassigned": "未分配",
+        "columns": {
+          "name": "名称",
+          "assignment": "分配 / 位置",
+          "type": "类型",
+          "min-value": "最小值",
+          "max-value": "最大值",
+          "actions": "操作"
+        },
+        "actions": {
+          "edit": "编辑传感器"
+        }
+      },
+      "dialog": {
+        "header": "编辑传感器详情",
+        "header-create": "创建新传感器",
+        "fields": {
+          "name": "传感器名称",
+          "assignment": "分配 / 位置",
+          "type": "传感器类型",
+          "min-value": "最小阈值",
+          "max-value": "最大阈值"
+        },
+        "actions": {
+          "cancel": "取消",
+          "save": "保存修改"
         }
       }
     }

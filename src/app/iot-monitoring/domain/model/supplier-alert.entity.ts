@@ -15,20 +15,31 @@ export class SupplierAlert implements BaseEntity {
     status?: string;
   } = {}) {
     this._id = alert.id ?? null;
-    this._severity = alert.severity ?? '';
+    this._severity = SupplierAlert.normalizeSeverity(alert.severity);
     this._detail = alert.detail ?? '';
     this._date = alert.date ?? '';
-    this._status = alert.status ?? '';
+    this._status = SupplierAlert.normalizeStatus(alert.status);
+  }
+
+  private static normalizeSeverity(value?: string): string {
+    return String(value ?? '').trim().toLowerCase();
+  }
+
+  private static normalizeStatus(value?: string): string {
+    const normalized = String(value ?? '').trim().toLowerCase();
+    if (normalized === 'pending') return 'open';
+    if (normalized === 'resolved') return 'acknowledged';
+    return normalized;
   }
 
   get id(): number | string | null { return this._id; }
   set id(value: number | string | null) { this._id = value; }
   get severity(): string { return this._severity; }
-  set severity(value: string) { this._severity = value; }
+  set severity(value: string) { this._severity = SupplierAlert.normalizeSeverity(value); }
   get detail(): string { return this._detail; }
   set detail(value: string) { this._detail = value; }
   get date(): string { return this._date; }
   set date(value: string) { this._date = value; }
   get status(): string { return this._status; }
-  set status(value: string) { this._status = value; }
+  set status(value: string) { this._status = SupplierAlert.normalizeStatus(value); }
 }

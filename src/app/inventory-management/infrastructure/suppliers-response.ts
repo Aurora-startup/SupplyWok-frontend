@@ -7,4 +7,5 @@ export interface SuppliersResponse extends BaseResponse {
 export interface SupplierResource extends BaseResource {
   id: number;
   name: string;
+  email?: string;
 }

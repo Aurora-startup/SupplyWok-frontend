@@ -19,7 +19,8 @@ export class ComandaCardComponent {
   constructor(private store: RestaurantManagementStore) {}
 
   get tableLabel(): string {
-    return `T-${String(this.comanda.tableNumber).padStart(2, '0')}`;
+    const tableNumber = this.comanda.tableNumber || this.comanda.tableId;
+    return `T-${String(tableNumber).padStart(2, '0')}`;
   }
 
   get elapsedTime(): string {

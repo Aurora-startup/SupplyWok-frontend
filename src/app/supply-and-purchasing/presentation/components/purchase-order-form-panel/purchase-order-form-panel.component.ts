@@ -6,6 +6,8 @@ import { Order } from '../../../domain/model/order.entity';
 import { OrderItem } from '../../../domain/model/order-item.entity';
 import { PurchaseOrderStore } from '../../../application/purchase-order.store';
 import { InventoryManagementStore } from '../../../../inventory-management/application/inventory-management-store';
+import { ProfileApi } from '../../../../profile-management/infrastructure/profile-api';
+import { Profile } from '../../../../profile-management/domain/model/profile.entity';
 
 interface SupplierOption {
   id: string;
@@ -21,8 +23,16 @@ interface SupplierOption {
 export class PurchaseOrderFormPanelComponent {
   protected readonly store = inject(PurchaseOrderStore);
   private readonly inventoryStore = inject(InventoryManagementStore);
+  private readonly profileApi = inject(ProfileApi);
+  private readonly supplierProfiles = signal<Profile[]>([]);
 
   constructor() {
+    this.inventoryStore.refreshSuppliers();
+    this.profileApi.getProfilesByType('supplier').subscribe({
+      next: (profiles) => this.supplierProfiles.set(profiles),
+      error: () => this.supplierProfiles.set([]),
+    });
+
     effect(() => {
       if (this.store.orderCreated()) {
         this.orderLines = [];
@@ -43,7 +53,7 @@ export class PurchaseOrderFormPanelComponent {
   protected readonly supplierOptions = computed<SupplierOption[]>(() =>
     this.inventoryStore.suppliers().map((supplier) => ({
       id: String(supplier.id),
-      name: supplier.name,
+      name: this.resolveSupplierName(supplier.email, supplier.name),
     }))
   );
 
@@ -86,7 +96,7 @@ export class PurchaseOrderFormPanelComponent {
 
   protected buildOrderItemFromDraft(): OrderItem {
     return new OrderItem({
-      id: Date.now() + Math.floor(Math.random() * 1000),
+      id: null,
       inventoryItemId: null,
       productName: this.draftLine.productName,
       quantity: Number(this.draftLine.quantity || 0),
@@ -174,4 +184,13 @@ export class PurchaseOrderFormPanelComponent {
   private buildPurchaseOrderCode(): string {
     return `PO-${String(Date.now()).slice(-5)}`;
   }
+
+  private resolveSupplierName(email: string, fallbackName: string): string {
+    const normalizedEmail = email.trim().toLowerCase();
+    const profile = this.supplierProfiles().find(
+      (supplierProfile) => supplierProfile.email.trim().toLowerCase() === normalizedEmail
+    );
+    return profile?.businessName.trim() || fallbackName;
+  }
+
 }

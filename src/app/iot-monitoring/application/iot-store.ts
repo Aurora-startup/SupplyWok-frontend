@@ -105,7 +105,7 @@ export class IotStore {
     return Math.round((occupied / tables.length) * 100);
   });
 
-  readonly openSupplierAlertsCount = computed(() => this.supplierAlerts().filter((alert) => alert.status === 'pending').length);
+  readonly openSupplierAlertsCount = computed(() => this.supplierAlerts().filter((alert) => alert.status === 'open').length);
 
   constructor(private iotMonitoringApi: IotMonitoringApi) {
     this.loadRestaurantAlerts();

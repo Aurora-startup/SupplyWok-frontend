@@ -3,13 +3,13 @@
 
   <!-- Search Input -->
   <div class="search-group">
-    <label class="search-label">Search</label>
+    <label class="search-label">{{ 'inventory.search-bar.search-label' | translate }}</label>
     <div class="input-wrapper">
       <mat-icon class="input-icon">search</mat-icon>
       <input
         class="search-input"
         type="text"
-        placeholder="Search product name, category or supplier..."
+        [placeholder]="'inventory.search-bar.search-placeholder' | translate"
         [value]="searchValue()"
         (input)="onSearchChange($event)"
       />
@@ -21,18 +21,26 @@
 
   <!-- Category Select -->
   <div class="search-group">
-    <label class="search-label">Category</label>
+    <label class="search-label">{{ 'inventory.search-bar.category-label' | translate }}</label>
     <div class="input-wrapper">
       <mat-icon class="input-icon">tune</mat-icon>
       <mat-select
         class="category-select"
-        placeholder="All categories"
+        [placeholder]="'inventory.search-bar.category-placeholder' | translate"
         [value]="categoryValue()"
         (selectionChange)="onCategoryChange($event.value)"
       >
-        <mat-option [value]="null">All categories</mat-option>
+        <mat-option [value]="null">
+          {{ 'inventory.search-bar.category-placeholder' | translate }}
+        </mat-option>
         @for (category of categories(); track category.id) {
-          <mat-option [value]="category.id">{{ category.name }}</mat-option>
+          <mat-option [value]="category.id">
+            @if (getCategoryTranslationKey(category); as categoryKey) {
+              {{ categoryKey | translate }}
+            } @else {
+              {{ category.name }}
+            }
+          </mat-option>
         }
       </mat-select>
     </div>

@@ -1,0 +1,296 @@
+.sensors-page {
+  color: #2d241e;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0;
+}
+
+.sensors-page__header {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.sensors-page__header-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.sensors-page__kicker {
+  color: #a07832;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.sensors-page__header h1 {
+  color: #342923;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: clamp(2rem, 2.2vw, 2.4rem);
+  line-height: 1.05;
+  margin: 8px 0 0;
+}
+
+.sensors-page__subtitle {
+  color: #65594f;
+  font-size: .98rem;
+  line-height: 1.45;
+  margin: 4px 0 0;
+  max-width: 68ch;
+}
+
+.sensors-page__filters {
+  background: #fff;
+  border: 1px solid var(--sw-border);
+  border-radius: 10px;
+  box-shadow: var(--sw-shadow-soft);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(280px, 1fr) minmax(220px, 320px);
+  padding: 16px;
+}
+
+.sensors-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sensors-page__field-label {
+  color: #564433;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.sensors-page__input-shell {
+  align-items: center;
+  display: flex;
+  position: relative;
+}
+
+.sensors-page__input-shell .pi {
+  color: #9b8e80;
+  font-size: 14px;
+  left: 14px;
+  position: absolute;
+  z-index: 1;
+}
+
+.sensors-page__table-shell {
+  background: #fff;
+  border: 1px solid var(--sw-border);
+  border-radius: 10px;
+  box-shadow: var(--sw-shadow-soft);
+  overflow: hidden;
+}
+
+.sensors-page__name {
+  color: #2d241e;
+  font-weight: 700;
+}
+
+.sensors-page__assignment {
+  color: #65594f;
+}
+
+.sensors-page__type-badge {
+  background: #f7eddf;
+  border-radius: 6px;
+  color: #564433;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+
+.sensors-page__value {
+  color: #2d241e;
+  font-family: monospace;
+  font-size: 1rem;
+}
+
+.sensors-page__actions {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.sensors-page__icon-button {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d9d1c7;
+  border-radius: 8px;
+  color: #3f352e;
+  cursor: pointer;
+  display: inline-flex;
+  height: 34px;
+  justify-content: center;
+  transition: .2s;
+  width: 34px;
+}
+
+.sensors-page__icon-button:hover {
+  background: #fff8ef;
+  border-color: #c9b89f;
+  color: #2d241e;
+}
+
+.sensors-page__empty {
+  color: #7d7065;
+  font-size: 14px;
+  padding: 32px;
+  text-align: center;
+}
+
+.sensors-dialog__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 10px 0;
+}
+
+.sensors-dialog__field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sensors-dialog__field label {
+  color: #564433;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.sensors-dialog__field input {
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--sw-border);
+  border-radius: 8px;
+  outline: none;
+}
+
+.sensors-dialog__field input:focus {
+  border-color: #b91c1c;
+  box-shadow: 0 0 0 2px rgba(185, 28, 28, 0.15);
+}
+
+.sensors-dialog__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.sensors-dialog__actions {
+  align-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+:host ::ng-deep .sensors-page__input-shell .p-inputtext,
+:host ::ng-deep .sensors-page__select.p-select {
+  border: 1px solid var(--sw-border);
+  border-radius: 10px;
+  box-shadow: none;
+  color: #3f352e;
+  font-size: 14px;
+  min-height: 44px;
+  width: 100%;
+}
+
+:host ::ng-deep .sensors-page__input-shell .p-inputtext {
+  padding-left: 40px;
+}
+
+:host ::ng-deep .sensors-page__select .p-select-label {
+  align-items: center;
+  display: flex;
+  padding: 0 12px;
+}
+
+:host ::ng-deep .sensors-page__select .p-select-dropdown {
+  color: #8a7c6f;
+  width: 42px;
+}
+
+:host ::ng-deep .sensors-page__table .p-datatable-thead > tr > th {
+  background: #f7eddf;
+  border-bottom: 1px solid var(--sw-border);
+  color: #564433;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: 14px 16px;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+:host ::ng-deep .sensors-page__table .p-datatable-tbody > tr > td {
+  border-bottom: 1px solid #efe5d9;
+  color: #3f352e;
+  font-size: 14px;
+  padding: 16px;
+  vertical-align: middle;
+}
+
+:host ::ng-deep .sensors-page__table .p-datatable-tbody > tr:hover {
+  background: #fff8ef;
+}
+
+:host ::ng-deep .sensors-page__table .p-paginator {
+  background: #fff;
+  border-top: 1px solid var(--sw-border);
+  justify-content: flex-end;
+  padding: 12px 16px;
+}
+
+::ng-deep .sensors-dialog {
+  border-radius: 10px !important;
+  box-shadow: var(--sw-shadow-soft) !important;
+  overflow: hidden;
+  width: min(520px, calc(100vw - 32px)) !important;
+}
+
+::ng-deep .sensors-dialog .p-dialog-header {
+  border-bottom: 1px solid var(--sw-border);
+  color: #342923;
+  padding: 18px 20px;
+}
+
+::ng-deep .sensors-dialog .p-dialog-content {
+  padding: 20px !important;
+}
+
+::ng-deep .sensors-dialog .p-dialog-footer {
+  border-top: 1px solid var(--sw-border);
+  padding: 14px 20px !important;
+}
+
+@media (max-width: 900px) {
+  .sensors-page__filters {
+    grid-template-columns: 1fr;
+  }
+  .sensors-page__header h1 {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 560px) {
+  .sensors-dialog__row {
+    grid-template-columns: 1fr;
+  }
+}

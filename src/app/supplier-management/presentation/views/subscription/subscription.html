@@ -1,11 +1,11 @@
-<section class="subscription-page">
-  <section class="subscription-page__hero">
-    <p>{{ 'supplier-management.subscription.breadcrumb' | translate }}</p>
-    <h1>{{ 'shared.subscriptionPage.title' | translate }}</h1>
-    <p class="subscription-page__hero-subtitle">
-      {{ 'shared.subscriptionPage.description' | translate }}
-    </p>
-  </section>
+<section class="supplier-page subscription-page">
+  <header class="supplier-page__header">
+    <div class="supplier-page__header-main">
+      <p class="supplier-page__kicker">{{ 'supplier-management.subscription.breadcrumb' | translate }}</p>
+      <h1 class="supplier-page__title">{{ 'shared.subscriptionPage.title' | translate }}</h1>
+      <span class="supplier-page__subtitle">{{ 'shared.subscriptionPage.description' | translate }}</span>
+    </div>
+  </header>
 
   <section class="subscription-page__summary">
     @for (item of metricCards(); track item.labelKey) {

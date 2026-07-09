@@ -56,6 +56,63 @@
       />
     </div>
 
+    <div class="profile-fields">
+      <div class="field">
+        <label for="businessName">{{ 'access.register.business-name' | translate }}</label>
+        <input
+          pInputText
+          id="businessName"
+          [(ngModel)]="businessName"
+          name="businessName"
+          type="text"
+          [placeholder]="'access.register.business-name-example' | translate"
+          [class.p-invalid]="errors.businessName"
+          class="w-full"
+        />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="firstName">{{ 'profiles.settings.fields.firstName' | translate }}</label>
+          <input pInputText id="firstName" [(ngModel)]="firstName" name="firstName" type="text" [class.p-invalid]="errors.firstName" class="w-full" />
+        </div>
+
+        <div class="field">
+          <label for="lastName">{{ 'profiles.settings.fields.lastName' | translate }}</label>
+          <input pInputText id="lastName" [(ngModel)]="lastName" name="lastName" type="text" [class.p-invalid]="errors.lastName" class="w-full" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="street">{{ 'profiles.settings.fields.street' | translate }}</label>
+          <input pInputText id="street" [(ngModel)]="street" name="street" type="text" [class.p-invalid]="errors.street" class="w-full" />
+        </div>
+
+        <div class="field">
+          <label for="district">{{ 'profiles.settings.fields.district' | translate }}</label>
+          <input pInputText id="district" [(ngModel)]="district" name="district" type="text" [class.p-invalid]="errors.district" class="w-full" />
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="city">{{ 'profiles.settings.fields.city' | translate }}</label>
+          <input pInputText id="city" [(ngModel)]="city" name="city" type="text" [class.p-invalid]="errors.city" class="w-full" />
+        </div>
+
+        <div class="field">
+          <label for="country">{{ 'profiles.settings.fields.country' | translate }}</label>
+          <input pInputText id="country" [(ngModel)]="country" name="country" type="text" [class.p-invalid]="errors.country" class="w-full" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="supportContact">{{ 'profiles.settings.fields.supportContact' | translate }}</label>
+        <input pInputText id="supportContact" [(ngModel)]="supportContact" name="supportContact" type="text" [class.p-invalid]="errors.supportContact" class="w-full" />
+      </div>
+    </div>
+
     <p class="plans-help">
       {{ 'access.register.no-plans' | translate }} 
       <a [href]="landingUrl" target="_blank" class="link-secondary">{{ 'access.register.click-here' | translate }}</a>
@@ -77,7 +134,7 @@
       type="submit" 
       [label]="'access.register.go-to-pay' | translate" 
       styleClass="submit-button" 
-      [loading]="loading"
+      [loading]="loading || profileCreationInProgress"
       class="w-full"
     />
   </form>

@@ -11,6 +11,34 @@
       "password-example": "Ingresa tu contrasena",
       "forgot-password": "Olvidaste tu contrasena?",
       "login": "Iniciar sesion"
+    },
+    "register": {
+      "get-started": "Crear cuenta",
+      "phone": "Telefono",
+      "phone-example": "999 666 333",
+      "business-name": "Nombre comercial",
+      "business-name-example": "Distribuidora Fresh Andes",
+      "role": "Rol",
+      "subscription": "Suscripcion",
+      "select-one": "Selecciona uno",
+      "no-plans": "No conoces nuestros planes?",
+      "click-here": "Haz clic aqui",
+      "terms-accept": "Acepto {{terms}} y {{policy}}",
+      "terms": "terminos",
+      "policy": "politica de privacidad",
+      "go-to-pay": "Registrarse"
+    },
+    "languages": {
+      "english": "Ingles (US)",
+      "spanish": "Espanol (ES)",
+      "chinese": "Chino (ZH)"
+    },
+    "validation": {
+      "email-invalid": "Correo electronico invalido.",
+      "password-min": "La contrasena debe tener al menos 8 caracteres.",
+      "phone-invalid": "Telefono invalido.",
+      "terms-required": "Debes aceptar los terminos para continuar.",
+      "invalid-credentials": "Correo o contrasena invalidos."
     }
   },
   "shared": {
@@ -68,12 +96,6 @@
           "sms": "SMS"
         }
       },
-      "users": {
-        "title": "Lista de usuarios",
-        "status": {
-          "active": "Activo"
-        }
-      },
       "demo": {
         "state": "Estado demo"
       },
@@ -128,6 +150,48 @@
       }
     }
   },
+  "profiles": {
+    "settings": {
+      "restaurant": {
+        "kicker": "Restaurante",
+        "title": "Configuracion del restaurante",
+        "description": "Perfil operativo, notificaciones, datos de contacto y acceso.",
+        "profileTitle": "Perfil del restaurante",
+        "fields": {
+          "businessName": "Perfil del restaurante"
+        }
+      },
+      "supplier": {
+        "kicker": "Proveedor",
+        "title": "Configuracion del proveedor",
+        "description": "Perfil comercial, notificaciones, datos de contacto y acceso.",
+        "profileTitle": "Perfil del proveedor",
+        "fields": {
+          "businessName": "Perfil del proveedor"
+        }
+      },
+      "fields": {
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "email": "Correo",
+        "street": "Calle",
+        "district": "Distrito",
+        "city": "Ciudad",
+        "country": "Pais",
+        "supportContact": "Contacto de soporte",
+        "emailNotifications": "Correo",
+        "smsNotifications": "SMS"
+      },
+      "actions": {
+        "save": "Guardar",
+        "saving": "Guardando"
+      },
+      "messages": {
+        "saved": "Configuracion del perfil guardada.",
+        "error": "No se pudo guardar la configuracion del perfil."
+      }
+    }
+  },
   "inventory": {
     "header": {
       "section": "Restaurante",
@@ -141,10 +205,24 @@
       "search-placeholder": "Buscar productos del inventario",
       "category-label": "Categoría",
       "category-placeholder": "Todas las categorías",
+      "create-category-label": "Nueva categoría",
+      "create-category-placeholder": "Escribe un nombre de categoría",
+      "create-category-action": "Agregar categoría",
+      "create-category-hint": "Se guarda en el frontend y queda disponible al instante para filtros y formularios.",
       "supplier-label": "Proveedor",
       "supplier-placeholder": "Todos los proveedores",
       "status-label": "Estado",
       "status-placeholder": "Todos los estados"
+    },
+
+    "categories": {
+      "grains": "Granos",
+      "proteins": "Proteínas",
+      "vegetables": "Vegetales",
+      "sauces": "Salsas",
+      "beverages": "Bebidas",
+      "packaging": "Empaques",
+      "none": "Sin categoría"
     },
 
     "list": {
@@ -168,6 +246,10 @@
       "current-stock-label": "Stock actual",
       "minimum-stock-label": "Stock mínimo",
       "category-label": "Categoría",
+      "create-category-label": "Crear categoría",
+      "create-category-placeholder": "Nombre de la categoría",
+      "create-category-action": "Agregar",
+      "create-category-hint": "Si no existe todavía, créala aquí y quedará seleccionada para este producto.",
       "supplier-label": "Proveedor",
       "unit-of-measure-label": "Unidad de medida",
       "save-button": "Guardar",
@@ -220,7 +302,9 @@
           "linked-items": "Items vinculados",
           "categories": "Categorias",
           "low-stock": "Bajo stock",
-          "coverage": "Cobertura"
+          "coverage": "Cobertura",
+          "street": "Calle",
+          "support-contact": "Contacto de Soporte"
         }
       },
       "coverage": {
@@ -256,6 +340,7 @@
     "table": {
       "title": "Seguimiento de pedidos",
       "search-placeholder": "Buscar por proveedor, estado o codigo",
+      "loading": "Cargando pedidos...",
       "columns": {
         "code": "Codigo",
         "status": "Estado",
@@ -346,6 +431,61 @@
         "medium": "Media",
         "low": "Baja"
       }
+    },
+    "alerts": {
+      "breadcrumb": "PROVEEDOR",
+      "title": "Alertas de proveedores",
+      "description": "Monitorea cambios urgentes, retrasos y señales compartidas por tus clientes.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar alertas...",
+      "severity-label": "Severidad",
+      "severity-placeholder": "Filtrar por severidad",
+      "severity": {
+        "all": "Todas las severidades",
+        "critical": "Crítica",
+        "high": "Alta",
+        "medium": "Media",
+        "low": "Baja"
+      },
+      "status": {
+        "open": "Abierta",
+        "acknowledged": "Reconocida"
+      },
+      "table": {
+        "columns": {
+          "severity": "SEVERIDAD",
+          "detail": "DETALLE DE ALERTA",
+          "source": "ORIGEN",
+          "date": "FECHA",
+          "status": "ESTADO",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "view-details": "VER DETALLES",
+          "acknowledge": "RECONOCER"
+        },
+        "footer": "Mostrando {{ first }} a {{ last }} de {{ total }} alertas de proveedor"
+      },
+      "dialog": {
+        "header": "Detalle de alerta",
+        "meta": {
+          "date": "Fecha",
+          "status": "Estado"
+        },
+        "actions": {
+          "close": "Cerrar",
+          "acknowledge": "Reconocer"
+        }
+      },
+      "empty": "No hay alertas que coincidan con tu búsqueda.",
+      "notification-title": "Notificación del proveedor",
+      "messages": {
+        "rush-reorder": "Solicitud urgente de reposición",
+        "route-congestion": "Congestión detectada en la ruta",
+        "client-stock-alert-received": "Se recibió una alerta de stock del cliente",
+        "delayed-delivery-on-route-lima-centro-am": "Entrega retrasada en la ruta Lima Centro AM",
+        "new-urgent-order-from-ming-garden": "Nuevo pedido urgente de Ming Garden"
+      }
     }
   },
   "restaurant-management": {
@@ -368,7 +508,28 @@
       "view-details": "Ver Detalles",
       "checkout": "Liberar",
       "assign-guest": "Asignar Comensal",
+      "edit": "Editar",
+      "delete": "Eliminar",
       "no-tables": "No hay mesas registradas.",
+      "form": {
+        "add-table": "Agregar mesa",
+        "title": "Registrar una nueva mesa",
+        "edit-title": "Editar mesa",
+        "description": "Crea una mesa con su número de servicio y capacidad de asientos.",
+        "number": "Número de mesa",
+        "capacity": "Capacidad de asientos",
+        "save": "Guardar mesa",
+        "update": "Actualizar mesa",
+        "cancel": "Cancelar",
+        "errors": {
+          "invalid-number": "Ingresa un número de mesa válido mayor que cero.",
+          "invalid-capacity": "Ingresa una capacidad válida mayor que cero.",
+          "duplicate-number": "Ese número de mesa ya existe.",
+          "create-failed": "No se pudo crear la mesa. Inténtalo de nuevo.",
+          "update-failed": "No se pudo actualizar la mesa. Inténtalo de nuevo.",
+          "delete-failed": "No se pudo eliminar la mesa. Inténtalo de nuevo."
+        }
+      },
       "status": {
         "OCCUPIED": "Ocupada",
         "FREE": "Libre",
@@ -487,8 +648,58 @@
           "supplier": "Proveedor",
           "status": "Estado",
           "date": "Fecha"
-        },
-        "footer": "Ver historial de pedidos"
+        }
+      }
+    },
+    "dashboard": {
+      "title": "Panel de Cocina",
+      "description": "Supervisión en tiempo real de la cadena de suministro y sala.",
+      "metrics": {
+        "lowStock": "ARTÍCULOS BAJO STOCK",
+        "lowStockHint": "Urgente",
+        "pendingOrders": "PEDIDOS PENDIENTES",
+        "pendingOrdersHint": "Abierto a proveedores",
+        "tempAlerts": "ALERTAS TEMP.",
+        "tempAlertsHint": "Atención de sensores",
+        "activeTables": "MESAS ACTIVAS",
+        "activeTablesHint": "Tasa de ocupación",
+        "kitchenCommands": "COMANDAS ACTIVAS",
+        "kitchenCommandsHint": "Flujo en vivo de cocina"
+      },
+      "iotPanel": {
+        "title": "Panel de IoT listo para sensores reales",
+        "support": "Lecturas de cocina, almacenamiento y ocupación con umbrales y eventos recientes.",
+        "optimalRange": "Rango óptimo:",
+        "empty": "No hay eventos de sensor recientes en este entorno."
+      },
+      "kitchenTickets": {
+        "title": "Tickets de Cocina",
+        "seeAll": "Ver todos los tickets de cocina",
+        "table": "Mesa",
+        "items": "artículos",
+        "empty": "No hay tickets de cocina activos para mostrar."
+      },
+      "activeCommands": {
+        "label": "Comandas de cocina"
+      },
+      "inventory": {
+        "title": "Por debajo del mínimo",
+        "support": "producto(s) por debajo del nivel de stock mínimo",
+        "product": "PRODUCTO",
+        "currentStock": "STOCK ACTUAL",
+        "status": "ESTADO",
+        "empty": "No hay productos por debajo del nivel de stock mínimo.",
+        "sortAll": "ORDENAR TODO"
+      },
+      "orders": {
+        "title": "Pedidos",
+        "support": "pedidos cargados en este contexto",
+        "id": "ID",
+        "supplier": "PROVEEDOR",
+        "status": "ESTADO",
+        "date": "FECHA",
+        "empty": "No hay pedidos recientes cargados.",
+        "viewHistory": "Ver historial de pedidos"
       }
     },
     "reportsPage": {
@@ -547,6 +758,9 @@
       "kicker": "Restaurante",
       "title": "Alertas",
       "description": "Consolida desviaciones de stock, temperatura y entregas con acciones de seguimiento.",
+      "header": {
+        "sensors-btn": "Sensores"
+      },
       "search-label": "Buscar",
       "search-placeholder": "Buscar alertas...",
       "severity-label": "Severidad",
@@ -580,6 +794,55 @@
       },
       "dialog": {
         "header": "Detalles de la Alerta"
+      }
+    },
+    "sensors-page": {
+      "kicker": "Restaurante",
+      "title": "Sensores",
+      "description": "Supervisa y configura los umbrales del hardware físico de IoT.",
+      "search-label": "Buscar",
+      "search-placeholder": "Buscar sensores...",
+      "type-label": "Tipo",
+      "type-placeholder": "Filtrar por Tipo",
+      "no-sensors": "No hay sensores cargados en este entorno.",
+      "header": {
+        "back-btn": "Volver a Alertas",
+        "create-btn": "Crear Sensor"
+      },
+      "types": {
+        "all": "Todos",
+        "temperature": "Temperatura",
+        "humidity": "Humedad",
+        "weight": "Peso"
+      },
+      "table": {
+        "unassigned": "Sin Asignar",
+        "columns": {
+          "name": "NOMBRE",
+          "assignment": "ASIGNACIÓN",
+          "type": "TIPO",
+          "min-value": "VALOR MÍN",
+          "max-value": "VALOR MÁX",
+          "actions": "ACCIONES"
+        },
+        "actions": {
+          "edit": "EDITAR SENSOR"
+        }
+      },
+      "dialog": {
+        "header": "Editar Detalles del Sensor",
+        "header-create": "Crear Nuevo Sensor",
+        "fields": {
+          "name": "Nombre del Sensor",
+          "assignment": "Asignación / Ubicación",
+          "type": "Tipo de Sensor",
+          "min-value": "Umbral Mínimo",
+          "max-value": "Umbral Máximo"
+        },
+        "actions": {
+          "cancel": "Cancelar",
+          "save": "Guardar Cambios"
+        }
       }
     }
   }

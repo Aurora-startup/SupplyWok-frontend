@@ -4,8 +4,8 @@ import { Clients } from './views/clients/clients';
 import { Dashboard } from './views/dashboard/dashboard';
 import { Forecast } from './views/forecast/forecast';
 import { Orders } from './views/orders/orders';
-import { Settings } from './views/settings/settings';
 import { Subscription } from './views/subscription/subscription';
+import { ProfileSettingsPageComponent } from '../../profile-management/presentation/views/profile-settings-page.component';
 
 export const supplierManagementRoutes: Routes = [
   { path: 'supplier', pathMatch: 'full', redirectTo: 'supplier/dashboard' },
@@ -17,6 +17,6 @@ export const supplierManagementRoutes: Routes = [
   { path: 'supplier/catalog', component: Catalog, title: 'Supplier Catalog' },
   { path: 'supplier/catalog/new', component: Catalog, title: 'New Catalog Item' },
   { path: 'supplier/catalog/:itemId/edit', component: Catalog, title: 'Edit Catalog Item' },
-  { path: 'supplier/configuration', component: Settings, title: 'Supplier Configuration' },
+  { path: 'supplier/configuration', component: ProfileSettingsPageComponent, title: 'Supplier Configuration' },
   { path: 'supplier/subscription', component: Subscription, title: 'Supplier Subscription' }
 ];

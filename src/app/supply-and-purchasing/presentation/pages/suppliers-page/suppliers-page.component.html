@@ -10,10 +10,7 @@
       <span>{{ 'supply-and-purchasing.suppliers-page.stats.total' | translate }}</span>
       <strong>{{ supplierRows().length }}</strong>
     </article>
-    <article class="suppliers-page__stat-card">
-      <span>{{ 'supply-and-purchasing.suppliers-page.stats.linked-items' | translate }}</span>
-      <strong>{{ totalLinkedItems() }}</strong>
-    </article>
+
     <article class="suppliers-page__stat-card">
       <span>{{ 'supply-and-purchasing.suppliers-page.stats.low-stock' | translate }}</span>
       <strong>{{ totalLowStockItems() }}</strong>
@@ -31,10 +28,9 @@
           <thead>
             <tr>
               <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.supplier' | translate }}</th>
-              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.linked-items' | translate }}</th>
               <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.categories' | translate }}</th>
-              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.low-stock' | translate }}</th>
-              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.coverage' | translate }}</th>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.street' | translate | uppercase }}</th>
+              <th>{{ 'supply-and-purchasing.suppliers-page.table.headers.support-contact' | translate | uppercase }}</th>
             </tr>
           </thead>
 
@@ -44,10 +40,12 @@
                 <td>
                   <div class="suppliers-table__supplier-cell">
                     <span class="suppliers-table__supplier-avatar">{{ row.name.charAt(0) }}</span>
-                    <span>{{ row.name }}</span>
+                    <span class="suppliers-table__supplier-copy">
+                      <strong>{{ row.name }}</strong>
+                      <small>{{ row.email }}</small>
+                    </span>
                   </div>
                 </td>
-                <td><span class="suppliers-table__number">{{ row.linkedItems }}</span></td>
                 <td>
                   <div class="suppliers-table__tags">
                     @for (category of row.categories; track category) {
@@ -55,15 +53,11 @@
                     }
                   </div>
                 </td>
-                <td><span class="suppliers-table__number">{{ row.lowStockItems }}</span></td>
                 <td>
-                  <span
-                    class="suppliers-table__badge"
-                    [class.suppliers-table__badge--healthy]="row.coverageLabel === 'healthy'"
-                    [class.suppliers-table__badge--watch]="row.coverageLabel === 'watch'"
-                    [class.suppliers-table__badge--critical]="row.coverageLabel === 'critical'">
-                    {{ ('supply-and-purchasing.suppliers-page.coverage.' + row.coverageLabel) | translate }}
-                  </span>
+                  <span class="suppliers-table__street">{{ row.street }}</span>
+                </td>
+                <td>
+                  <span class="suppliers-table__support-contact">{{ row.supportContact }}</span>
                 </td>
               </tr>
             }

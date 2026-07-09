@@ -16,6 +16,8 @@
       "get-started": "Get Started",
       "phone": "Phone number",
       "phone-example": "999 666 333",
+      "business-name": "Business name",
+      "business-name-example": "Distribuidora Fresh Andes",
       "role": "Role",
       "subscription": "Subscription",
       "select-one": "Select one",
@@ -110,12 +112,6 @@
           "contact": "Support contact",
           "email": "Email",
           "sms": "SMS"
-        }
-      },
-      "users": {
-        "title": "User list",
-        "status": {
-          "active": "Active"
         }
       },
       "demo": {
@@ -284,6 +280,8 @@
       "severity-label": "Severity",
       "severity-placeholder": "Filter by Severity",
       "severity": {
+        "all": "All severities",
+        "critical": "Critical",
         "high": "High",
         "medium": "Medium",
         "low": "Low"
@@ -539,6 +537,48 @@
       "grams": "Grams"
     }
   },
+  "profiles": {
+    "settings": {
+      "restaurant": {
+        "kicker": "Restaurant",
+        "title": "Restaurant settings",
+        "description": "Operational profile, notifications, contact details, and access.",
+        "profileTitle": "Restaurant profile",
+        "fields": {
+          "businessName": "Restaurant profile"
+        }
+      },
+      "supplier": {
+        "kicker": "Supplier",
+        "title": "Supplier settings",
+        "description": "Commercial profile, notifications, contact details, and access.",
+        "profileTitle": "Supplier profile",
+        "fields": {
+          "businessName": "Supplier profile"
+        }
+      },
+      "fields": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "street": "Street",
+        "district": "District",
+        "city": "City",
+        "country": "Country",
+        "supportContact": "Support contact",
+        "emailNotifications": "Email",
+        "smsNotifications": "SMS"
+      },
+      "actions": {
+        "save": "Save",
+        "saving": "Saving"
+      },
+      "messages": {
+        "saved": "Profile settings saved.",
+        "error": "Profile settings could not be saved."
+      }
+    }
+  },
   "inventory": {
     "header": {
       "section": "Restaurant",
@@ -551,10 +591,23 @@
       "search-placeholder": "Search inventory items",
       "category-label": "Category",
       "category-placeholder": "All Categories",
+      "create-category-label": "New category",
+      "create-category-placeholder": "Enter a category name",
+      "create-category-action": "Add category",
+      "create-category-hint": "It is stored in the frontend and becomes available immediately for filters and forms.",
       "supplier-label": "Supplier",
       "supplier-placeholder": "All suppliers",
       "status-label": "Status",
       "status-placeholder": "All status"
+    },
+    "categories": {
+      "grains": "Grains",
+      "proteins": "Proteins",
+      "vegetables": "Vegetables",
+      "sauces": "Sauces",
+      "beverages": "Beverages",
+      "packaging": "Packaging",
+      "none": "No category"
     },
     "list": {
       "product-label": "Product",
@@ -576,6 +629,10 @@
       "current-stock-label": "Current Stock",
       "minimum-stock-label": "Minimum Stock",
       "category-label": "Category",
+      "create-category-label": "Create category",
+      "create-category-placeholder": "Category name",
+      "create-category-action": "Add",
+      "create-category-hint": "If it does not exist yet, create it here and it will be selected for this item.",
       "supplier-label": "Supplier",
       "unit-of-measure-label": "Unit Of Measure",
       "save-button": "Save",
@@ -627,7 +684,9 @@
           "linked-items": "Linked items",
           "categories": "Categories",
           "low-stock": "Low stock",
-          "coverage": "Coverage"
+          "coverage": "Coverage",
+          "street": "Street",
+          "support-contact": "Support Contact"
         }
       },
       "coverage": {
@@ -663,6 +722,7 @@
     "table": {
       "title": "Order tracking",
       "search-placeholder": "Search by supplier, status, or code",
+      "loading": "Loading orders...",
       "columns": {
         "code": "Code",
         "status": "Status",
@@ -763,7 +823,28 @@
       "view-details": "View Details",
       "checkout": "Checkout",
       "assign-guest": "Assign Guest",
+      "edit": "Edit",
+      "delete": "Delete",
       "no-tables": "No tables registered.",
+      "form": {
+        "add-table": "Add table",
+        "title": "Register a new table",
+        "edit-title": "Edit table",
+        "description": "Create a table with its service number and seat capacity.",
+        "number": "Table number",
+        "capacity": "Seat capacity",
+        "save": "Save table",
+        "update": "Update table",
+        "cancel": "Cancel",
+        "errors": {
+          "invalid-number": "Enter a valid table number greater than zero.",
+          "invalid-capacity": "Enter a valid capacity greater than zero.",
+          "duplicate-number": "That table number already exists.",
+          "create-failed": "The table could not be created. Try again.",
+          "update-failed": "The table could not be updated. Try again.",
+          "delete-failed": "The table could not be deleted. Try again."
+        }
+      },
       "status": {
         "OCCUPIED": "Occupied",
         "FREE": "Free",
@@ -827,12 +908,54 @@
       }
     },
     "dashboard": {
+      "title": "Kitchen Dashboard",
+      "description": "Real-time supply chain and floor monitoring.",
+      "metrics": {
+        "lowStock": "LOW STOCK ITEMS",
+        "lowStockHint": "Urgent",
+        "pendingOrders": "PENDING ORDERS",
+        "pendingOrdersHint": "Open to suppliers",
+        "tempAlerts": "TEMP. ALERTS",
+        "tempAlertsHint": "Sensor attention",
+        "activeTables": "ACTIVE TABLES",
+        "activeTablesHint": "Occupancy rate",
+        "kitchenCommands": "KITCHEN COMMANDS",
+        "kitchenCommandsHint": "Live kitchen flow"
+      },
+      "iotPanel": {
+        "title": "IoT panel ready for real sensors",
+        "support": "Kitchen, storage, and occupancy readings with thresholds and recent events.",
+        "optimalRange": "Optimal range:",
+        "empty": "No recent sensor events in this environment."
+      },
       "kitchenTickets": {
         "title": "Kitchen Tickets",
-        "seeAll": "See All Kitchen Tickets"
+        "seeAll": "See All Kitchen Tickets",
+        "table": "Table",
+        "items": "items",
+        "empty": "No active kitchen tickets to display."
       },
       "activeCommands": {
         "label": "Kitchen Commands"
+      },
+      "inventory": {
+        "title": "Below minimum",
+        "support": "product(s) below minimum stock level",
+        "product": "PRODUCT",
+        "currentStock": "CURRENT STOCK",
+        "status": "STATUS",
+        "empty": "No products below minimum stock level.",
+        "sortAll": "SORT ALL"
+      },
+      "orders": {
+        "title": "Orders",
+        "support": "orders loaded in this context",
+        "id": "ID",
+        "supplier": "SUPPLIER",
+        "status": "STATUS",
+        "date": "DATE",
+        "empty": "There are no recent orders loaded.",
+        "viewHistory": "View order history"
       }
     },
     "dashboardPage": {
@@ -976,6 +1099,9 @@
       "kicker": "Restaurant",
       "title": "Alerts",
       "description": "Consolidate stock, temperature, and delivery deviations with follow-up actions.",
+      "header": {
+        "sensors-btn": "Sensors"
+      },
       "search-label": "Search",
       "search-placeholder": "Search alerts...",
       "severity-label": "Severity",
@@ -1017,6 +1143,55 @@
         "actions": {
           "close": "Close",
           "acknowledge": "Acknowledge"
+        }
+      }
+    },
+    "sensors-page": {
+      "kicker": "Restaurant",
+      "title": "Sensors",
+      "description": "Monitor and configure the thresholds for physical IoT hardware.",
+      "search-label": "Search",
+      "search-placeholder": "Search sensors...",
+      "type-label": "Type",
+      "type-placeholder": "Filter by Type",
+      "no-sensors": "There are no sensors loaded in this environment.",
+      "header": {
+        "back-btn": "Back to Alerts",
+        "create-btn": "Create Sensor"
+      },
+      "types": {
+        "all": "All",
+        "temperature": "Temperature",
+        "humidity": "Humidity",
+        "weight": "Weight"
+      },
+      "table": {
+        "unassigned": "Unassigned",
+        "columns": {
+          "name": "NAME",
+          "assignment": "ASSIGNMENT",
+          "type": "TYPE",
+          "min-value": "MIN VALUE",
+          "max-value": "MAX VALUE",
+          "actions": "ACTIONS"
+        },
+        "actions": {
+          "edit": "EDIT SENSOR"
+        }
+      },
+      "dialog": {
+        "header": "Edit Sensor Details",
+        "header-create": "Create New Sensor",
+        "fields": {
+          "name": "Sensor Name",
+          "assignment": "Assignment / Location",
+          "type": "Sensor Type",
+          "min-value": "Minimum Threshold",
+          "max-value": "Maximum Threshold"
+        },
+        "actions": {
+          "cancel": "Cancel",
+          "save": "Save Changes"
         }
       }
     }

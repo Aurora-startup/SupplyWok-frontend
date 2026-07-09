@@ -10,9 +10,9 @@ export class Sensor implements BaseEntity {
   private _type: string;
 
   constructor(sensor:
-              { id: number, name: string, minValue: number, maxValue: number, enabled: boolean, lastValue: number, type: string})
+              { id?: number, name: string, minValue: number, maxValue: number, enabled: boolean, lastValue: number, type: string})
   {
-    this._id = sensor.id;
+    this._id = sensor.id ?? 0;
     this._name = sensor.name;
     this._minValue = sensor.minValue;
     this._maxValue = sensor.maxValue;

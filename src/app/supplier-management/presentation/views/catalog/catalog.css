@@ -1,259 +1,48 @@
+@import '../../supplier-ui.css';
+@import '../../supplier-dialog.css';
+
 :host {
   display: block;
 }
 
-.catalog-page {
-  color: var(--sw-text);
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  padding: 0;
-}
-
-.catalog-page__header {
-  align-items: flex-start;
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-}
-
-.catalog-page__header > div {
-  max-width: 760px;
-}
-
-.catalog-page__header p {
-  color: var(--sw-accent);
-  font-size: 0.72rem;
+.catalog-page__add-button {
+  align-self: flex-start;
+  background: var(--sw-accent-strong) !important;
+  border-radius: 8px !important;
+  color: #ffffff !important;
+  font-family: 'Poppins', system-ui, sans-serif !important;
+  font-size: 0.9rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
-  margin: 0 0 6px;
-  text-transform: uppercase;
+  min-height: 42px;
+  padding: 0 16px !important;
 }
 
-.catalog-page__header h1 {
-  color: #342923;
-  font-size: clamp(2rem, 2.2vw, 2.4rem);
-  line-height: 1;
-  margin: 0;
+.catalog-page__add-button mat-icon {
+  font-size: 20px;
+  height: 20px;
+  margin-right: 6px;
+  width: 20px;
 }
 
-.catalog-page__subtitle {
-  color: #65594f !important;
-  font-size: 1rem !important;
-  font-weight: 400 !important;
-  letter-spacing: 0 !important;
-  line-height: 1.55;
-  margin-top: 8px !important;
-  text-transform: none !important;
-}
-
-.catalog-page__filters,
-.catalog-page__form {
-  background: var(--sw-surface);
-  border: 1px solid var(--sw-border);
-  border-radius: 8px;
-  box-shadow: var(--sw-shadow-soft);
-  padding: 14px;
-}
-
-.catalog-page__search-block {
-  color: var(--sw-text-muted);
-  display: grid;
-  font-size: 0.72rem;
-  font-weight: 800;
-  gap: 8px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.catalog-page__search-block input {
-  width: 100%;
-}
-
-.catalog-page__form {
-  display: grid;
-  gap: 14px;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.catalog-page__form label {
-  color: #4c4037;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 0.86rem;
-  font-weight: 800;
-  gap: 7px;
-}
-
-.catalog-page__form-wide {
-  grid-column: span 2;
-}
-
-.catalog-page__form-actions {
-  align-items: end;
-  display: flex;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.catalog-page__error {
-  background: #fde7e4;
-  border: 1px solid #f2c4bd;
-  border-radius: 8px;
-  color: var(--sw-danger);
-  font-weight: 700;
-  margin: 0;
-  padding: 12px 14px;
-}
-
-.catalog-page__actions,
-.catalog-page__dialog-actions {
-  align-items: center;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  justify-content: flex-end;
-}
-
-.catalog-page__dialog-actions {
-  margin-top: 18px;
-}
-
-.catalog-page__action-link {
-  align-items: center;
-  background: #fffaf2;
-  border: 1px solid var(--sw-border);
-  border-radius: 8px;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 800;
-  gap: 6px;
-  min-height: 34px;
-  padding: 0 10px;
-  transition: background-color 0.16s ease, border-color 0.16s ease, color 0.16s ease;
-  white-space: nowrap;
-}
-
-.catalog-page__action-link--edit {
-  color: var(--sw-success);
-}
-
-.catalog-page__action-link--edit:hover {
-  background: #edf8f1;
-  border-color: #cbe8d6;
-}
-
-.catalog-page__action-link--delete {
-  color: var(--sw-danger);
-}
-
-.catalog-page__action-link--delete:hover {
-  background: #fde7e4;
-  border-color: #f2c4bd;
-}
-
-:host ::ng-deep .catalog-page__add-btn .p-button {
-  min-height: 44px;
-  padding: 0.55rem 1rem;
-}
-
-:host ::ng-deep .catalog-page__form-actions .p-button {
-  min-height: 40px;
-}
-
-:host ::ng-deep .catalog-page__form-actions .p-button:not(.p-button-text) {
-  background: var(--sw-success) !important;
-  border-color: var(--sw-success) !important;
-}
-
-:host ::ng-deep .catalog-page__filters .p-inputtext,
-:host ::ng-deep .catalog-page__form .p-inputtext,
-:host ::ng-deep .catalog-page__form .p-inputnumber-input,
-:host ::ng-deep .catalog-page__form .p-select {
-  width: 100%;
-}
-
-:host ::ng-deep .catalog-page__table .p-datatable-tbody > tr > td:first-child strong {
-  color: #2d241e;
-  font-weight: 800;
-}
-
-:host ::ng-deep .catalog-page__table .p-datatable-tbody > tr > td:nth-child(3) {
+.catalog-page__price {
   color: var(--sw-success);
   font-family: 'Poppins', system-ui, sans-serif;
   font-weight: 800;
 }
 
-:host ::ng-deep .catalog-delete-mask {
-  background: rgba(34, 29, 24, 0.46) !important;
-}
-
-:host ::ng-deep .catalog-delete-dialog {
-  max-width: min(92vw, 460px);
-}
-
-:host ::ng-deep .catalog-delete-dialog .p-dialog-content {
-  background: var(--sw-surface);
+.catalog-page__unit {
+  background: #fff3e1;
   border: 1px solid var(--sw-border);
-  border-radius: 8px;
-  padding: 18px;
-}
-
-.catalog-delete-dialog__header {
-  align-items: center;
-  display: flex;
-  gap: 16px;
-  justify-content: space-between;
-}
-
-.catalog-delete-dialog__header h3 {
-  color: var(--sw-text);
-  font-size: 1.25rem;
-  line-height: 1.15;
-  margin: 0;
-}
-
-.catalog-delete-dialog__close {
-  align-items: center;
-  background: #fffaf2;
-  border: 1px solid var(--sw-border-strong);
-  border-radius: 8px;
-  color: var(--sw-text-muted);
-  cursor: pointer;
+  border-radius: 999px;
+  color: #7d5518;
   display: inline-flex;
-  flex: 0 0 auto;
-  height: 36px;
-  justify-content: center;
-  width: 36px;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.25rem 0.65rem;
 }
 
-.catalog-delete-dialog__message {
-  color: #65594f;
-  font-size: 0.98rem;
-  line-height: 1.5;
-  margin: 14px 0 0;
-}
-
-:host ::ng-deep .catalog-delete-dialog .p-dialog-content .p-button-danger {
-  background: var(--sw-danger) !important;
-  border-color: var(--sw-danger) !important;
-}
-
-@media (max-width: 900px) {
-  .catalog-page__header,
-  .catalog-page__form-actions {
-    align-items: stretch;
-    flex-direction: column;
-  }
-
-  .catalog-page__form {
-    grid-template-columns: 1fr;
-  }
-
-  .catalog-page__form-wide {
-    grid-column: auto;
-  }
+:host ::ng-deep .catalog-page__table .p-datatable-tbody > tr > td:nth-child(5) {
+  max-width: 340px;
+  white-space: normal;
 }
